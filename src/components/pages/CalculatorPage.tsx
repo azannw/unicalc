@@ -775,11 +775,17 @@ const CalculatorPage: React.FC = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-2 sm:px-4 pt-8 pb-12">
-        <div className="max-w-[52rem] mx-auto glassmorphic-card p-4 sm:p-8 transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] border border-gray-700/30">
+        <div className="max-w-[52rem] mx-auto glassmorphic-card p-3 sm:p-8 transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] border border-gray-700/30">
           {/* Sticky Tabs Container - Stays fixed at the top on mobile */}
           <div className="sticky top-0 z-10 sm:static bg-transparent -mx-4 sm:mx-0 px-2 sm:px-0 pt-2 sm:pt-0 pb-2 sm:pb-0 -mt-2 sm:mt-0 mb-2 sm:mb-0">
             <div className="relative">
-              <div className="flex items-center space-x-1.5 sm:space-x-1 mb-1 sm:mb-6 overflow-x-auto pb-3 sm:pb-0 hide-scrollbar bg-midnight-blue/95 sm:bg-transparent rounded-lg sm:rounded-none px-2 sm:px-0">
+              
+              
+              {/* pb-3 to p-2 / p-1 */}
+              <div className="flex items-center space-x-1.5 sm:space-x-1 mb-1 sm:mb-6 overflow-x-auto p-2 sm:pb-0 hide-scrollbar bg-midnight-blue/95 sm:bg-transparent rounded-lg sm:rounded-none px-2 sm:px-0">
+              
+              
+              
               <button
                 onClick={() => {setActiveSection('form'); setShowTestPattern(false); setShowFacts(false); setShowMerits(false);}} 
                 className={`flex-shrink-0 px-3 sm:px-4 py-2.5 sm:py-1.5 text-xs sm:text-sm font-medium rounded-lg sm:rounded transition-all duration-200 transform hover:scale-105 active:scale-95 ${
@@ -1073,7 +1079,7 @@ const CalculatorPage: React.FC = () => {
           {/* Test Pattern Section */}
           {showTestPattern && university && (
             <div className="space-y-6">
-              <div className="bg-midnight-blue/20 p-6 sm:p-8 rounded-xl border border-gray-700/30">
+              {/* <div className="bg-midnight-blue/20 p-6 sm:p-8 rounded-xl border border-gray-700/30"> */}
                 {/* Test Pattern Section */}
                 <div className="space-y-6">
                   {(() => {
@@ -1081,7 +1087,7 @@ const CalculatorPage: React.FC = () => {
                     if (!testPattern) return null;
                     
                     return (
-                      <div className="bg-midnight-blue/20 p-6 sm:p-8 rounded-xl border border-gray-700/30 relative overflow-hidden">
+                      <div className="bg-midnight-blue/20 p-4 sm:p-8 rounded-xl border border-gray-700/30 relative overflow-hidden">
                         <h3 className="font-semibold text-electric-blue mb-5 text-xl sm:text-2xl flex items-center">
                           <span className="bg-electric-blue/20 rounded-full p-2 mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1117,7 +1123,7 @@ const CalculatorPage: React.FC = () => {
                             <div className="space-y-3">
                               <ul className="space-y-2">
                                 {testPattern.pattern.subjects.map((subject, index) => (
-                                  <li key={index} className="flex justify-between items-center bg-midnight-blue/60 p-3 rounded-lg">
+                                  <li key={index} className="flex justify-between items-center bg-midnight-blue/60 p-2 rounded-lg">
                                     <span className="text-gray-300 text-sm">{subject.name}</span>
                                     <span className="text-gray-300 text-sm">
                                       {subject.mcqs} MCQs
@@ -1176,7 +1182,7 @@ const CalculatorPage: React.FC = () => {
                 <div className="p-3 sm:p-4 bg-soft-cyan/10 rounded-lg border border-soft-cyan/30 text-sm">
                   <p className="text-gray-300"><strong>Note:</strong> Test patterns may change. Always verify the latest information from the official university websites before your test.</p>
                 </div>
-              </div>
+              {/* </div> */}
             </div>
           )}
 
