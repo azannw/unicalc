@@ -779,13 +779,7 @@ const CalculatorPage: React.FC = () => {
           {/* Sticky Tabs Container - Stays fixed at the top on mobile */}
           <div className="sticky top-0 z-10 sm:static bg-transparent -mx-4 sm:mx-0 px-2 sm:px-0 pt-2 sm:pt-0 pb-2 sm:pb-0 -mt-2 sm:mt-0 mb-2 sm:mb-0">
             <div className="relative">
-              
-              
-              {/* pb-3 to p-2 / p-1 */}
               <div className="flex items-center space-x-1.5 sm:space-x-1 mb-1 sm:mb-6 overflow-x-auto p-2 sm:pb-0 hide-scrollbar bg-midnight-blue/95 sm:bg-transparent rounded-lg sm:rounded-none px-2 sm:px-0">
-              
-              
-              
               <button
                 onClick={() => {setActiveSection('form'); setShowTestPattern(false); setShowFacts(false); setShowMerits(false);}} 
                 className={`flex-shrink-0 px-3 sm:px-4 py-2.5 sm:py-1.5 text-xs sm:text-sm font-medium rounded-lg sm:rounded transition-all duration-200 transform hover:scale-105 active:scale-95 ${
@@ -1079,7 +1073,6 @@ const CalculatorPage: React.FC = () => {
           {/* Test Pattern Section */}
           {showTestPattern && university && (
             <div className="space-y-6">
-              {/* <div className="bg-midnight-blue/20 p-6 sm:p-8 rounded-xl border border-gray-700/30"> */}
                 {/* Test Pattern Section */}
                 <div className="space-y-6">
                   {(() => {
@@ -1182,7 +1175,6 @@ const CalculatorPage: React.FC = () => {
                 <div className="p-3 sm:p-4 bg-soft-cyan/10 rounded-lg border border-soft-cyan/30 text-sm">
                   <p className="text-gray-300"><strong>Note:</strong> Test patterns may change. Always verify the latest information from the official university websites before your test.</p>
                 </div>
-              {/* </div> */}
             </div>
           )}
 
