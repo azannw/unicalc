@@ -240,7 +240,7 @@ const testPatterns: UniversityTestPattern[] = [
     name: "Air University Entry Test",
     pattern: {
       totalMCQs: 100,
-      duration: "3 hours",
+      duration: "2 hours",
       totalMarks: 100,
       isComputerBased: true,
       hasNegativeMarking: false,

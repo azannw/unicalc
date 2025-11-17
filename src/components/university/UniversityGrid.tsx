@@ -88,6 +88,23 @@ const UniversityGrid: React.FC<UniversityGridProps> = ({ universities = defaultU
                 textShadow: '0 2px 6px rgba(0, 0, 0, 0.5)',
                 transition: 'transform 0.3s ease, opacity 0.3s ease'
               }}>{university.name}</p>
+              {/* Display merit formula for each program if available */}
+              {university.programs && university.programs.length > 0 && (
+                <div style={{ marginBottom: '16px' }}>
+                  {university.programs.map((program) => (
+                    program.formula ? (
+                      <div key={program.id} style={{ color: '#b6eaff', fontSize: '0.95rem', marginBottom: 4 }}>
+                        <span style={{ fontWeight: 600 }}>{program.name}:</span> 
+                        <span>
+                          {program.formula.matriculation !== undefined && `SSC: ${(program.formula.matriculation * 100).toFixed(0)}%`}
+                          {program.formula.intermediate !== undefined && `, HSSC: ${(program.formula.intermediate * 100).toFixed(0)}%`}
+                          {program.formula.entryTest !== undefined && `, Entry Test: ${(program.formula.entryTest * 100).toFixed(0)}%`}
+                        </span>
+                      </div>
+                    ) : null
+                  ))}
+                </div>
+              )}
               
               {university.isImplemented ? (
                 <Link 

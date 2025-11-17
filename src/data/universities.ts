@@ -1315,9 +1315,9 @@ const universities: University[] = [
         name: "Engineering Programs",
         testOptions: ["CBT", "NTS"],
         formula: {
-          matriculation: 0.00,
+          matriculation: 0.10,
           intermediate: 0.50,
-          entryTest: 0.50
+          entryTest: 0.40
         },
         minimumCriteria: {
           matriculation: 60,
