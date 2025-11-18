@@ -285,7 +285,7 @@ const testPatterns: UniversityTestPattern[] = [
       subjects: [
         { name: "Mathematics", mcqs: 30 },
         { name: "Physics", mcqs: 30 },
-        { name: "Computer/Chemistry", mcqs: 30 },
+        { name: "Comp. / Chem.", mcqs: 30 },
         { name: "English", mcqs: 10 }
       ]
     }
