@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAST Aggregate Calculator — UniCalc</title>
+    <meta name="description" content="Calculate your aggregate for FAST National University. Accurate merit calculator for all campuses.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+</head>
+<body>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container-fluid">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">UniCalc®</span>
+                </a>
+                
+                <div class="nav-center">
+                    <div class="nav-links">
+                        <a href="index.html#how-it-works" class="nav-link magnetic">Process</a>
+                        <a href="index.html#universities" class="nav-link magnetic">Universities</a>
+                        <a href="index.html#faq" class="nav-link magnetic">FAQ</a>
+                    </div>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </button>
+                    <a href="index.html" class="btn btn-primary btn-nav magnetic-btn">
+                        <span class="btn-text">Home</span>
+                        <span class="btn-icon">←</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <!-- Background Elements -->
+            <div class="hero-bg">
+                <div class="bg-image"></div>
+                <div class="bg-grid"></div>
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere secondary"></div>
+            </div>
+
+            <div class="container">
+                <!-- Page Header -->
+                <div class="calc-page-header reveal-text">
+                    <div class="breadcrumb">
+                        <a href="index.html" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-sep">→</span>
+                        <span class="breadcrumb-current">FAST National University</span>
+                    </div>
+                    <h1 class="calc-page-title">
+                        <span class="line-wrapper"><span class="line-reveal">FAST</span></span>
+                        <span class="line-wrapper"><span class="line-reveal">Aggregate</span></span>
+                        <span class="line-wrapper"><span class="line-reveal text-outline">Calculator</span></span>
+                    </h1>
+                    <p class="calc-page-subtitle reveal-text delay-1">
+                        Calculate your aggregate for FAST National University programs with precision.
+                    </p>
+                </div>
+
+                <!-- Main Calculator Container -->
+                <div class="calc-main-container reveal-scale" id="calcContainer">
+                    <!-- Tab Navigation -->
+                    <div class="calc-tabs">
+                        <button class="calc-tab active" data-tab="calculator">
+                            <span class="tab-label">Calculator</span>
+                        </button>
+                        <button class="calc-tab" data-tab="results" id="resultsTab" disabled>
+                            <span class="tab-label">Results</span>
+                        </button>
+                        <button class="calc-tab" data-tab="merit">
+                            <span class="tab-label">Merit</span>
+                        </button>
+                        <button class="calc-tab" data-tab="pattern">
+                            <span class="tab-label">Pattern</span>
+                        </button>
+                        <button class="calc-tab" data-tab="facts">
+                            <span class="tab-label">Facts</span>
+                        </button>
+                    </div>
+
+                    <!-- Calculator Tab Content -->
+                    <div class="calc-tab-content active" id="calculator">
+                        <form id="calcForm" class="calc-form">
+                            <!-- Program Selection -->
+                            <div class="form-section">
+                                <label class="form-label">Select Program</label>
+                                <div class="select-wrapper">
+                                    <select class="form-select" id="programSelect">
+                                        <option value="cs">Computing Programs (CS, SE, AI, DS, CYS)</option>
+                                        <option value="eng">Engineering Programs (EE, CV)</option>
+                                        <option value="bba">Business Programs (BBA, AFM)</option>
+                                    </select>
+                                    <span class="select-arrow">▼</span>
+                                </div>
+                            </div>
+
+                            <!-- Education System -->
+                            <div class="form-section">
+                                <label class="form-label">Education System</label>
+                                <div class="toggle-group">
+                                    <label class="toggle-option">
+                                        <input type="radio" name="eduSystem" value="fsc" checked>
+                                        <span class="toggle-btn">FSc</span>
+                                    </label>
+                                    <label class="toggle-option">
+                                        <input type="radio" name="eduSystem" value="alevel-immediate">
+                                        <span class="toggle-btn">A-Levels (Immediate)</span>
+                                    </label>
+                                    <label class="toggle-option">
+                                        <input type="radio" name="eduSystem" value="alevel-gap">
+                                        <span class="toggle-btn">A-Levels (Gap Year)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Marks Input Grid -->
+                            <div class="form-grid">
+                                <!-- Matric Marks -->
+                                <div class="input-card">
+                                    <div class="input-header">
+                                        <label class="input-label">Matric Marks</label>
+                                        <span class="input-weight">10%</span>
+                                    </div>
+                                    <div class="input-row">
+                                        <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="0">
+                                        <span class="input-separator">/</span>
+                                        <input type="number" value="1100" class="form-input form-input-total" id="matricTotal" readonly>
+                                    </div>
+                                    <p class="input-hint">Contributes 10% to your aggregate score</p>
+                                </div>
+
+                                <!-- Intermediate Marks -->
+                                <div class="input-card">
+                                    <div class="input-header">
+                                        <label class="input-label">Intermediate Marks</label>
+                                        <span class="input-weight">40%</span>
+                                    </div>
+                                    <div class="input-row">
+                                        <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0">
+                                        <span class="input-separator">/</span>
+                                        <input type="number" value="1100" class="form-input form-input-total" id="interTotal" readonly>
+                                    </div>
+                                    <p class="input-hint">Contributes 40% to your aggregate score</p>
+                                </div>
+
+                                <!-- Entry Test Type -->
+                                <div class="input-card full-width">
+                                    <label class="input-label">Entry Test Type</label>
+                                    <div class="pill-group">
+                                        <label class="pill-option">
+                                            <input type="radio" name="testType" value="nu" checked>
+                                            <span class="pill-btn">NU</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="testType" value="nat">
+                                            <span class="pill-btn">NAT</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="testType" value="sat">
+                                            <span class="pill-btn">SAT</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry Test Marks -->
+                                <div class="input-card full-width">
+                                    <div class="input-header">
+                                        <label class="input-label">Entry Test Marks</label>
+                                        <span class="input-weight">50%</span>
+                                    </div>
+                                    <div class="input-row">
+                                        <input type="number" placeholder="Obtained" class="form-input" id="testObtained" min="0">
+                                        <span class="input-separator">/</span>
+                                        <input type="number" value="100" class="form-input form-input-total" id="testTotal" readonly>
+                                    </div>
+                                    <p class="input-hint">Contributes 50% to your aggregate score</p>
+                                </div>
+                            </div>
+
+                            <!-- NU Test Calculator Banner -->
+                            <div class="nu-calc-banner">
+                                <div class="banner-content">
+                                    <h4>NU Test Score Calculator</h4>
+                                    <p>Calculate your detailed NU test marks based on section-wise performance</p>
+                                </div>
+                                <button type="button" class="btn btn-outline btn-sm magnetic-btn">
+                                    <span class="btn-text">NU Marks Calc</span>
+                                    <span class="btn-icon">🧮</span>
+                                </button>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block magnetic-btn">
+                                    <span class="btn-text">Calculate Aggregate</span>
+                                    <span class="btn-icon">→</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Results Tab Content -->
+                    <div class="calc-tab-content" id="results">
+                        <div class="results-container">
+                            <!-- Aggregate Display -->
+                            <div class="results-header">
+                                <h3>Your Aggregate Results</h3>
+                            </div>
+
+                            <div class="aggregate-display">
+                                <div class="aggregate-circle">
+                                    <svg class="progress-ring" viewBox="0 0 200 200">
+                                        <circle class="progress-ring-background" cx="100" cy="100" r="85"></circle>
+                                        <circle class="progress-ring-fill" cx="100" cy="100" r="85" id="progressCircle"></circle>
+                                    </svg>
+                                    <div class="aggregate-content">
+                                        <span class="aggregate-value" id="aggregateValue">0.00</span>
+                                        <span class="aggregate-unit">%</span>
+                                        <span class="aggregate-label">Aggregate</span>
+                                    </div>
+                                </div>
+                                <div class="aggregate-status" id="aggregateStatus">
+                                    <span class="status-badge pending">Calculate to see results</span>
+                                </div>
+                            </div>
+
+                            <!-- Score Breakdown -->
+                            <div class="breakdown-section">
+                                <h4>Score Breakdown</h4>
+                                <div class="breakdown-list">
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-info">
+                                            <span class="breakdown-label">Matric (10%)</span>
+                                            <div class="breakdown-bar">
+                                                <div class="breakdown-fill" id="breakdownMatric" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <span class="breakdown-value" id="bdMatric">0.00%</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-info">
+                                            <span class="breakdown-label">Intermediate (40%)</span>
+                                            <div class="breakdown-bar">
+                                                <div class="breakdown-fill" id="breakdownInter" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <span class="breakdown-value" id="bdInter">0.00%</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-info">
+                                            <span class="breakdown-label">Entry Test (50%)</span>
+                                            <div class="breakdown-bar">
+                                                <div class="breakdown-fill" id="breakdownTest" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <span class="breakdown-value" id="bdTest">0.00%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admission Prediction -->
+                            <div class="prediction-card" id="predictionCard">
+                                <div class="prediction-header">
+                                    <h4>Admission Prediction</h4>
+                                </div>
+                                <div class="prediction-content">
+                                    <p class="prediction-text">Calculate to see your admission chances.</p>
+                                </div>
+                            </div>
+
+                            <!-- Formula Info -->
+                            <div class="formula-card">
+                                <div class="formula-icon">📐</div>
+                                <p>Based on the FAST National University admission formula:<br>
+                                <strong>Matric (10%) + Intermediate (40%) + Entry Test (50%)</strong></p>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="results-actions">
+                                <button class="btn btn-outline magnetic-btn" id="editBtn">
+                                    <span class="btn-text">Edit Information</span>
+                                </button>
+                                <button class="btn btn-success magnetic-btn">
+                                    <span class="btn-text">Join Entry Test Group</span>
+                                    <span class="btn-icon">💬</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pattern Tab Content -->
+                    <div class="calc-tab-content" id="pattern">
+                        <div class="pattern-container">
+                            <div class="pattern-header">
+                                <div class="pattern-icon">📋</div>
+                                <h3>FAST Entry Test</h3>
+                            </div>
+
+                            <div class="pattern-grid">
+                                <div class="pattern-card">
+                                    <span class="pattern-label">Total MCQs</span>
+                                    <span class="pattern-value">120</span>
+                                </div>
+                                <div class="pattern-card">
+                                    <span class="pattern-label">Duration</span>
+                                    <span class="pattern-value">2 hours</span>
+                                </div>
+                                <div class="pattern-card">
+                                    <span class="pattern-label">Total Marks</span>
+                                    <span class="pattern-value">100 Marks</span>
+                                </div>
+                            </div>
+
+                            <div class="subject-section">
+                                <h4>Subject Distribution</h4>
+                                <div class="subject-list">
+                                    <div class="subject-item">
+                                        <span class="subject-name">Advanced Mathematics</span>
+                                        <span class="subject-count">50 MCQs</span>
+                                    </div>
+                                    <div class="subject-item">
+                                        <span class="subject-name">Basic Mathematics</span>
+                                        <span class="subject-count">20 MCQs</span>
+                                    </div>
+                                    <div class="subject-item">
+                                        <span class="subject-name">Analytical</span>
+                                        <span class="subject-count">20 MCQs</span>
+                                    </div>
+                                    <div class="subject-item">
+                                        <span class="subject-name">English</span>
+                                        <span class="subject-count">30 MCQs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pattern-tags">
+                                <span class="pattern-tag negative">Has Neg. Marking</span>
+                                <span class="pattern-tag negative">No Calculator</span>
+                            </div>
+
+                            <div class="pattern-note">
+                                <strong>Note:</strong> Test patterns may change. Always verify the latest information from the official university websites before your test.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merit Tab Content -->
+                    <div class="calc-tab-content" id="merit">
+                        <div class="merit-container">
+                            <div class="merit-header">
+                                <h3>Last Year Merit (2024)</h3>
+                                <p class="merit-subtitle">Closing aggregates for various campuses and programs</p>
+                            </div>
+
+                            <div class="merit-list">
+                                <div class="merit-item">
+                                    <div class="merit-info">
+                                        <span class="merit-program">BS Computer Science (Lahore)</span>
+                                        <span class="merit-campus">Lahore Campus</span>
+                                    </div>
+                                    <span class="merit-value">74.5%</span>
+                                </div>
+                                <div class="merit-item">
+                                    <div class="merit-info">
+                                        <span class="merit-program">BS Computer Science (Islamabad)</span>
+                                        <span class="merit-campus">Islamabad Campus</span>
+                                    </div>
+                                    <span class="merit-value">72.8%</span>
+                                </div>
+                                <div class="merit-item">
+                                    <div class="merit-info">
+                                        <span class="merit-program">BS Software Engineering (Lahore)</span>
+                                        <span class="merit-campus">Lahore Campus</span>
+                                    </div>
+                                    <span class="merit-value">71.2%</span>
+                                </div>
+                                <div class="merit-item">
+                                    <div class="merit-info">
+                                        <span class="merit-program">BS Artificial Intelligence (Lahore)</span>
+                                        <span class="merit-campus">Lahore Campus</span>
+                                    </div>
+                                    <span class="merit-value">70.5%</span>
+                                </div>
+                                <div class="merit-item">
+                                    <div class="merit-info">
+                                        <span class="merit-program">BS Data Science (Lahore)</span>
+                                        <span class="merit-campus">Lahore Campus</span>
+                                    </div>
+                                    <span class="merit-value">69.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facts Tab Content -->
+                    <div class="calc-tab-content" id="facts">
+                        <div class="facts-container">
+                            <div class="facts-header">
+                                <h3>University Facts</h3>
+                            </div>
+
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon">🎓</div>
+                                    <h4>Pioneer Institution</h4>
+                                    <p>Pioneer of Computer Science education in Pakistan, established in 2000.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon">💼</div>
+                                    <h4>High Employability</h4>
+                                    <p>Highest employability rate for CS graduates among Pakistani universities.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon">🏛️</div>
+                                    <h4>Multiple Campuses</h4>
+                                    <p>Campuses in Lahore, Islamabad, Karachi, Peshawar, and Faisalabad.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon">🌟</div>
+                                    <h4>Industry Recognition</h4>
+                                    <p>Strong industry partnerships and recognition from tech companies worldwide.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/vanilla-tilt.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/calculator.js"></script>
+</body>
+</html>
+

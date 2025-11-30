@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCalc — The Future of Merit</title>
+    <meta name="description" content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 15+ universities.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+</head>
+<body>
+    <!-- Noise Overlay for Texture -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container-fluid">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <span class="logo-text">UniCalc®</span>
+                </a>
+                
+                <div class="nav-center">
+                    <div class="nav-links" id="navLinks">
+                        <a href="#how-it-works" class="nav-link magnetic" data-text="Process">Process</a>
+                        <a href="#universities" class="nav-link magnetic" data-text="Universities">Universities</a>
+                        <a href="#faq" class="nav-link magnetic" data-text="FAQ">FAQ</a>
+                    </div>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </button>
+                    <a href="#universities" class="btn btn-primary btn-nav magnetic-btn">
+                        <span class="btn-text">Calculate Merit</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <!-- Abstract Background Image -->
+                <div class="bg-image"></div>
+                <div class="bg-grid"></div>
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere secondary"></div>
+            </div>
+            
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-label reveal-text">
+                            <span class="label-line"></span>
+                            Pakistan's #1 Merit Calculator
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="line-wrapper"><span class="line-reveal">PRECISION</span></span>
+                            <span class="line-wrapper"><span class="line-reveal">IN EVERY</span></span>
+                            <span class="line-wrapper"><span class="line-reveal text-outline">CALCULATION</span></span>
+                        </h1>
+                        
+                        <p class="hero-description reveal-text delay-1">
+                            Forget the guesswork. We engineered the ultimate tool for FAST, NUST, and COMSATS aspirants. Accurate. Instant. Essential.
+                        </p>
+                        
+                        <div class="hero-actions reveal-text delay-2">
+                            <a href="#universities" class="btn btn-primary btn-lg magnetic-btn">
+                                <span class="btn-text">Start Calculating</span>
+                                <span class="btn-icon">↗</span>
+                            </a>
+                            <a href="#how-it-works" class="link-underline magnetic">
+                                How it works
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual reveal-scale">
+                        <div class="calculator-window" id="meritEngine">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <div class="window-title">merit_engine.exe</div>
+                            </div>
+                            <div class="window-body">
+                                <div class="calc-grid">
+                                    <div class="calc-item">
+                                        <label>Matriculation</label>
+                                        <div class="input-mock">
+                                            <span>1028</span>
+                                            <span class="total">/1100</span>
+                                        </div>
+                                        <div class="bar"><div class="fill" style="width: 93%"></div></div>
+                                    </div>
+                                    <div class="calc-item">
+                                        <label>FSc / A-Level</label>
+                                        <div class="input-mock">
+                                            <span>980</span>
+                                            <span class="total">/1100</span>
+                                        </div>
+                                        <div class="bar"><div class="fill" style="width: 89%"></div></div>
+                                    </div>
+                                    <div class="calc-item">
+                                        <label>Entry Test</label>
+                                        <div class="input-mock active">
+                                            <span class="typing">156</span>
+                                            <span class="total">/200</span>
+                                        </div>
+                                        <div class="bar"><div class="fill" style="width: 78%"></div></div>
+                                    </div>
+                                </div>
+                                <div class="calc-divider"></div>
+                                <div class="calc-result">
+                                    <span class="result-label">AGGREGATE</span>
+                                    <span class="result-value counter" data-target="87.41">0.00</span>
+                                    <span class="result-unit">%</span>
+                                </div>
+                            </div>
+                            <div class="window-reflection"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Section (Trusted By) -->
+        <section class="marquee-section">
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <span class="marquee-item">FAST-NUCES</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NUST</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">LUMS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">GIKI</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">ITU</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">COMSATS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">PIEAS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">UET</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NED</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">PUCIT</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">IBA</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NUTECH</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">AIR</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">BAHRIA</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">IST</span>
+                    <span class="separator">✦</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="marquee-item">FAST-NUCES</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NUST</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">LUMS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">GIKI</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">ITU</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">COMSATS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">PIEAS</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">UET</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NED</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">PUCIT</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">IBA</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">NUTECH</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">AIR</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">BAHRIA</span>
+                    <span class="separator">✦</span>
+                    <span class="marquee-item">IST</span>
+                    <span class="separator">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works (Reimagined) -->
+        <section class="process" id="how-it-works">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="headline">THE ALGORITHM</h2>
+                    <p class="sub-headline">Three steps to your future.</p>
+                </div>
+                
+                <div class="process-grid">
+                    <div class="process-card">
+                        <div class="card-number">01</div>
+                        <h3>Select Target</h3>
+                        <p>Choose from our database of verified university merit formulas.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="card-number">02</div>
+                        <h3>Input Data</h3>
+                        <p>Enter your academic history. We handle complex A-Level conversions.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="card-number">03</div>
+                        <h3>Analyze</h3>
+                        <p>Get a precise aggregate breakdown and acceptance probability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Universities Section -->
+        <section class="universities" id="universities">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="headline">ECOSYSTEM</h2>
+                    <div class="filter-container">
+                        <button class="filter-pill active magnetic" data-filter="all">All</button>
+                        <button class="filter-pill magnetic" data-filter="engineering">Engineering</button>
+                        <button class="filter-pill magnetic" data-filter="cs">Computing</button>
+                        <button class="filter-pill magnetic" data-filter="medical">Medical</button>
+                    </div>
+                </div>
+                
+                <div class="uni-grid" id="uniGrid">
+                    <!-- Content via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Strip (Parallax) -->
+        <section class="feature-strip">
+            <div class="strip-content">
+                <span class="big-text">ACCURATE. FAST. FREE. VERIFIED.</span>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="headline">QUERIES</h2>
+                    <p class="sub-headline">Everything you need to know.</p>
+                </div>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            How accurate is the calculator?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                We manually verify formulas from official university prospectuses every year. Our error margin is effectively zero, assuming you input correct marks.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            Do you support A-Level students?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                Absolutely. We implement the HEC equivalence formula automatically. Just toggle the A-Level switch in the input form.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            Is UniCalc actually free?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                100%. No hidden fees, no premium tiers. We believe educational tools should be accessible to everyone.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-trigger">
+                            How often are universities updated?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                We push updates weekly. If a university changes its policy (like FAST recently did), we update the algorithm within 24 hours.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <h2 class="footer-headline">UNICALC</h2>
+                </div>
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <a href="#universities" class="link-hover">Universities</a>
+                        <a href="#how-it-works" class="link-hover">Algorithm</a>
+                        <a href="#" class="link-hover">Changelog</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Community</h4>
+                        <a href="https://github.com" target="_blank" class="link-hover">GitHub</a>
+                        <a href="#" class="link-hover">Discord</a>
+                        <a href="mailto:hello@unicalc.pk" class="link-hover">Contact</a>
+                    </div>
+                    <div class="footer-col subscribe">
+                        <h4>Stay Updated</h4>
+                        <p>New universities added weekly.</p>
+                        <div class="input-group">
+                            <input type="email" placeholder="Enter email" class="input-minimal">
+                            <button class="btn-arrow">→</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">© 2025 UniCalc Engineering.</div>
+                    <div class="maker">Crafted by <a href="#" class="link-underline">Azan</a></div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/vanilla-tilt.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
