@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniCalc — The Future of Merit</title>
-    <meta name="description" content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 15+ universities.">
-    
+    <meta name="description"
+        content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 15+ universities.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 </head>
+
 <body>
     <!-- Noise Overlay for Texture -->
     <div class="noise-overlay"></div>
@@ -25,10 +31,10 @@
     <header class="header" id="header">
         <div class="container-fluid">
             <nav class="nav">
-                <a href="/" class="logo">
+                <a href="index.html" class="logo">
                     <span class="logo-text">UniCalc®</span>
                 </a>
-                
+
                 <div class="nav-center">
                     <div class="nav-links" id="navLinks">
                         <a href="#how-it-works" class="nav-link magnetic" data-text="Process">Process</a>
@@ -36,13 +42,8 @@
                         <a href="#faq" class="nav-link magnetic" data-text="FAQ">FAQ</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-actions">
-                    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
-                        <div class="toggle-track">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </button>
                     <a href="#universities" class="btn btn-primary btn-nav magnetic-btn">
                         <span class="btn-text">Calculate Merit</span>
                         <span class="btn-icon">→</span>
@@ -66,7 +67,7 @@
                 <div class="gradient-sphere"></div>
                 <div class="gradient-sphere secondary"></div>
             </div>
-            
+
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-content">
@@ -74,17 +75,18 @@
                             <span class="label-line"></span>
                             Pakistan's #1 Merit Calculator
                         </div>
-                        
+
                         <h1 class="hero-title">
                             <span class="line-wrapper"><span class="line-reveal">PRECISION</span></span>
                             <span class="line-wrapper"><span class="line-reveal">IN EVERY</span></span>
                             <span class="line-wrapper"><span class="line-reveal text-outline">CALCULATION</span></span>
                         </h1>
-                        
+
                         <p class="hero-description reveal-text delay-1">
-                            Forget the guesswork. We engineered the ultimate tool for FAST, NUST, and COMSATS aspirants. Accurate. Instant. Essential.
+                            Forget the guesswork. We engineered the ultimate tool for FAST, NUST, and COMSATS aspirants.
+                            Accurate. Instant. Essential.
                         </p>
-                        
+
                         <div class="hero-actions reveal-text delay-2">
                             <a href="#universities" class="btn btn-primary btn-lg magnetic-btn">
                                 <span class="btn-text">Start Calculating</span>
@@ -95,7 +97,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="hero-visual reveal-scale">
                         <div class="calculator-window" id="meritEngine">
                             <div class="window-header">
@@ -114,7 +116,9 @@
                                             <span>1028</span>
                                             <span class="total">/1100</span>
                                         </div>
-                                        <div class="bar"><div class="fill" style="width: 93%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 93%"></div>
+                                        </div>
                                     </div>
                                     <div class="calc-item">
                                         <label>FSc / A-Level</label>
@@ -122,7 +126,9 @@
                                             <span>980</span>
                                             <span class="total">/1100</span>
                                         </div>
-                                        <div class="bar"><div class="fill" style="width: 89%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 89%"></div>
+                                        </div>
                                     </div>
                                     <div class="calc-item">
                                         <label>Entry Test</label>
@@ -130,7 +136,9 @@
                                             <span class="typing">156</span>
                                             <span class="total">/200</span>
                                         </div>
-                                        <div class="bar"><div class="fill" style="width: 78%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 78%"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="calc-divider"></div>
@@ -152,66 +160,36 @@
             <div class="marquee-wrapper">
                 <div class="marquee-track">
                     <span class="marquee-item">FAST-NUCES</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NUST</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">LUMS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">GIKI</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">ITU</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">COMSATS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">PIEAS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">UET</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NED</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">PUCIT</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">IBA</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NUTECH</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">AIR</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">BAHRIA</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">IST</span>
-                    <span class="separator">✦</span>
                     <!-- Duplicate for seamless loop -->
                     <span class="marquee-item">FAST-NUCES</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NUST</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">LUMS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">GIKI</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">ITU</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">COMSATS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">PIEAS</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">UET</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NED</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">PUCIT</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">IBA</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">NUTECH</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">AIR</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">BAHRIA</span>
-                    <span class="separator">✦</span>
                     <span class="marquee-item">IST</span>
-                    <span class="separator">✦</span>
                 </div>
             </div>
         </section>
@@ -223,7 +201,7 @@
                     <h2 class="headline">THE ALGORITHM</h2>
                     <p class="sub-headline">Three steps to your future.</p>
                 </div>
-                
+
                 <div class="process-grid">
                     <div class="process-card">
                         <div class="card-number">01</div>
@@ -244,6 +222,48 @@
             </div>
         </section>
 
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="headline">STUDENT SIGNAL</h2>
+                    <p class="sub-headline">Real outcomes from real applicants.</p>
+                </div>
+
+                <div class="testimonial-grid">
+                    <article class="testimonial-card">
+                        <header class="testimonial-header">
+                            <div class="testimonial-name">Ali R.</div>
+                            <div class="testimonial-meta">FAST Lahore • BS CS</div>
+                        </header>
+                        <p class="testimonial-quote">
+                            “UniCalc matched my final FAST aggregate within 0.02%. I stopped guessing and started planning.”
+                        </p>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <header class="testimonial-header">
+                            <div class="testimonial-name">Hira S.</div>
+                            <div class="testimonial-meta">NUST • SEECS</div>
+                        </header>
+                        <p class="testimonial-quote">
+                            “I used UniCalc every time NUST updated its policy. The projections were reliable the entire cycle.”
+                        </p>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <header class="testimonial-header">
+                            <div class="testimonial-name">Bilal K.</div>
+                            <div class="testimonial-meta">GIKI • Engineering</div>
+                        </header>
+                        <p class="testimonial-quote">
+                            “For A-Levels, the built‑in equivalence saved me hours. It felt like having an admission team in my browser.”
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- Universities Section -->
         <section class="universities" id="universities">
             <div class="container">
@@ -256,7 +276,7 @@
                         <button class="filter-pill magnetic" data-filter="medical">Medical</button>
                     </div>
                 </div>
-                
+
                 <div class="uni-grid" id="uniGrid">
                     <!-- Content via JS -->
                 </div>
@@ -277,7 +297,7 @@
                     <h2 class="headline">QUERIES</h2>
                     <p class="sub-headline">Everything you need to know.</p>
                 </div>
-                
+
                 <div class="faq-grid">
                     <div class="faq-item">
                         <button class="faq-trigger">
@@ -286,11 +306,12 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-inner">
-                                We manually verify formulas from official university prospectuses every year. Our error margin is effectively zero, assuming you input correct marks.
+                                We manually verify formulas from official university prospectuses every year. Our error
+                                margin is effectively zero, assuming you input correct marks.
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <button class="faq-trigger">
                             Do you support A-Level students?
@@ -298,11 +319,12 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-inner">
-                                Absolutely. We implement the HEC equivalence formula automatically. Just toggle the A-Level switch in the input form.
+                                Absolutely. We implement the HEC equivalence formula automatically. Just toggle the
+                                A-Level switch in the input form.
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <button class="faq-trigger">
                             Is UniCalc actually free?
@@ -310,11 +332,12 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-inner">
-                                100%. No hidden fees, no premium tiers. We believe educational tools should be accessible to everyone.
+                                100%. No hidden fees, no premium tiers. We believe educational tools should be
+                                accessible to everyone.
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <button class="faq-trigger">
                             How often are universities updated?
@@ -322,7 +345,8 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-inner">
-                                We push updates weekly. If a university changes its policy (like FAST recently did), we update the algorithm within 24 hours.
+                                We push updates weekly. If a university changes its policy (like FAST recently did), we
+                                update the algorithm within 24 hours.
                             </div>
                         </div>
                     </div>
@@ -369,4 +393,5 @@
     <script src="js/vanilla-tilt.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

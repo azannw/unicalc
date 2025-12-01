@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST Aggregate Calculator — UniCalc</title>
-    <meta name="description" content="Calculate your aggregate for FAST National University. Accurate merit calculator for all campuses.">
+    <title>University Aggregate Calculator — UniCalc</title>
+    <meta name="description" content="Calculate your merit for top Pakistani universities with UniCalc's accurate aggregate engine.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/styles.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 </head>
 <body>
     <!-- Noise Overlay -->
@@ -38,11 +38,6 @@
                 </div>
                 
                 <div class="nav-actions">
-                    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
-                        <div class="toggle-track">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </button>
                     <a href="index.html" class="btn btn-primary btn-nav magnetic-btn">
                         <span class="btn-text">Home</span>
                         <span class="btn-icon">←</span>
@@ -72,14 +67,14 @@
                     <div class="breadcrumb">
                         <a href="index.html" class="breadcrumb-link">Home</a>
                         <span class="breadcrumb-sep">→</span>
-                        <span class="breadcrumb-current">FAST National University</span>
+                        <span class="breadcrumb-current" id="breadcrumbCurrent">FAST National University</span>
                     </div>
-                    <h1 class="calc-page-title">
+                    <h1 class="calc-page-title" id="calculatorHeading">
                         <span class="line-wrapper"><span class="line-reveal">FAST</span></span>
                         <span class="line-wrapper"><span class="line-reveal">Aggregate</span></span>
                         <span class="line-wrapper"><span class="line-reveal text-outline">Calculator</span></span>
                     </h1>
-                    <p class="calc-page-subtitle reveal-text delay-1">
+                    <p class="calc-page-subtitle reveal-text delay-1" id="calculatorSubtitle">
                         Calculate your aggregate for FAST National University programs with precision.
                     </p>
                 </div>
@@ -146,28 +141,28 @@
                                 <div class="input-card">
                                     <div class="input-header">
                                         <label class="input-label">Matric Marks</label>
-                                        <span class="input-weight">10%</span>
+                                        <span class="input-weight" id="weightMatric">10%</span>
                                     </div>
                                     <div class="input-row">
                                         <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="0">
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="matricTotal" readonly>
                                     </div>
-                                    <p class="input-hint">Contributes 10% to your aggregate score</p>
+                                    <p class="input-hint" id="hintMatric">Contributes 10% to your aggregate score</p>
                                 </div>
 
                                 <!-- Intermediate Marks -->
                                 <div class="input-card">
                                     <div class="input-header">
                                         <label class="input-label">Intermediate Marks</label>
-                                        <span class="input-weight">40%</span>
+                                        <span class="input-weight" id="weightInter">40%</span>
                                     </div>
                                     <div class="input-row">
                                         <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0">
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="interTotal" readonly>
                                     </div>
-                                    <p class="input-hint">Contributes 40% to your aggregate score</p>
+                                    <p class="input-hint" id="hintInter">Contributes 40% to your aggregate score</p>
                                 </div>
 
                                 <!-- Entry Test Type -->
@@ -193,14 +188,14 @@
                                 <div class="input-card full-width">
                                     <div class="input-header">
                                         <label class="input-label">Entry Test Marks</label>
-                                        <span class="input-weight">50%</span>
+                                        <span class="input-weight" id="weightTest">50%</span>
                                     </div>
                                     <div class="input-row">
                                         <input type="number" placeholder="Obtained" class="form-input" id="testObtained" min="0">
                                         <span class="input-separator">/</span>
                                         <input type="number" value="100" class="form-input form-input-total" id="testTotal" readonly>
                                     </div>
-                                    <p class="input-hint">Contributes 50% to your aggregate score</p>
+                                    <p class="input-hint" id="hintTest">Contributes 50% to your aggregate score</p>
                                 </div>
                             </div>
 
@@ -297,7 +292,7 @@
 
                             <!-- Formula Info -->
                             <div class="formula-card">
-                                <div class="formula-icon">📐</div>
+                                <div class="formula-icon">∑</div>
                                 <p>Based on the FAST National University admission formula:<br>
                                 <strong>Matric (10%) + Intermediate (40%) + Entry Test (50%)</strong></p>
                             </div>

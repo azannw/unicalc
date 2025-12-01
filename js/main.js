@@ -32,7 +32,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="/calculator.html?uni=${uni.id}" class="uni-card">
+        <a href="calculator.html?uni=${uni.id}" class="uni-card">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>
@@ -341,7 +341,7 @@ magneticButtons.forEach(btn => {
 
 // === Card Glow Effect ===
 function initCardGlow() {
-    const cards = document.querySelectorAll('.uni-card');
+    const cards = document.querySelectorAll('.uni-card, .process-card, .testimonial-card');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -355,5 +355,22 @@ function initCardGlow() {
 }
 
 initCardGlow();
+
+// === Footer Letter Hover ===
+function initFooterWordHover() {
+    const headline = document.querySelector('.footer-headline');
+    if (!headline) return;
+    const text = headline.textContent.trim();
+    if (!text) return;
+    headline.setAttribute('aria-label', text);
+    headline.innerHTML = '';
+    [...text].forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        headline.appendChild(span);
+    });
+}
+
+initFooterWordHover();
 
 console.log('UniCalc Engine v3.1 Initialized.');
