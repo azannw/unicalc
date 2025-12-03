@@ -680,7 +680,7 @@ a {
 
 .headline {
     font-size: 4rem;
-    margin-bottom: 0;
+        font-size: clamp(2.5rem, 8vw, 4.8rem);
 }
 
 .sub-headline {
@@ -2149,10 +2149,13 @@ a {
 /* Feature Strip */
 .feature-strip {
     background: #f3f3f3;
-    padding: 90px 0;
+    padding: 50px 0;
+    margin: 60px -100px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    transform: rotate(-6deg);
 }
+
 
 .feature-strip::after,
 .feature-strip::before {
@@ -2185,11 +2188,12 @@ a {
 
 .big-text {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 8vw, 4.8rem);
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    letter-spacing: -0.02em;
     color: #050505;
     text-transform: uppercase;
-    transform: rotate(-3deg);
+    transform: rotate(0deg);
     display: inline-block;
 }
 
