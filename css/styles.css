@@ -58,6 +58,8 @@ main {
     width: 100%;
     overflow-x: hidden;
     overflow-y: visible;
+    position: relative;
+    z-index: 10;
 }
 
 .noise-overlay {
@@ -67,7 +69,7 @@ main {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 1;
     
     /* INCREASED: This is the main knob. 0.05 was too ghost-like. 
        0.12 to 0.15 makes it visible on dark backgrounds. */
@@ -271,7 +273,14 @@ a {
     text-decoration: none;
     cursor: pointer;
     position: relative;
+    z-index: 10;
     overflow: hidden;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     
     /* Blue-tinted border */
     border: 1px solid rgba(59, 130, 246, 0.3);
@@ -444,6 +453,8 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-label {
@@ -455,6 +466,11 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 24px;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
 }
 
 .label-line {
@@ -469,6 +485,12 @@ a {
     line-height: 1;
     margin-bottom: 32px;
     font-family: var(--font-display);
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .line-wrapper {
@@ -506,12 +528,19 @@ a {
     margin-bottom: 40px;
     line-height: 1.6;
     max-width: 600px;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
 }
 
 .hero-actions {
     display: flex;
     align-items: center;
     gap: 32px;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-lg {
@@ -522,7 +551,13 @@ a {
 .link-underline {
     color: var(--text-secondary);
     position: relative;
+    z-index: 10;
     transition: color 0.3s ease;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
 }
 
 .link-underline:hover {
@@ -1037,18 +1072,26 @@ a {
     line-height: 1.6;
     color: var(--text-primary);
     margin: 0 0 32px 0;
-    padding-top: 20px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 /* Author Section */
 .card-author {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .author-avatar {
@@ -1075,6 +1118,13 @@ a {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    text-align: center;
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .author-name {
@@ -1082,6 +1132,9 @@ a {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .author-uni {
@@ -1089,6 +1142,9 @@ a {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Card States - 3D Positioning */
@@ -1125,6 +1181,12 @@ a {
     pointer-events: auto;
     filter: blur(0);
     z-index: 100;
+    /* Ensure crisp text rendering on active card */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 .coverflow-card[data-position="0"] .card-glass {
@@ -1142,6 +1204,14 @@ a {
         0 40px 80px -20px rgba(0, 0, 0, 0.9),
         0 0 0 1px rgba(255, 255, 255, 0.08) inset,
         0 0 60px -20px rgba(59, 130, 246, 0.15);
+    
+    /* Crisp text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 /* Right Card */
