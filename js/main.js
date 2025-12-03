@@ -379,6 +379,145 @@ function initCardGlow() {
 
 initCardGlow();
 
+// === Mobile Menu Toggle ===
+const mobileToggle = document.getElementById('mobileToggle');
+const navCenter = document.querySelector('.nav-center');
+
+if (mobileToggle && navCenter) {
+    mobileToggle.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navCenter.classList.toggle('mobile-open');
+        document.body.classList.toggle('menu-open');
+    });
+    
+    // Close menu when clicking a link
+    const links = navCenter.querySelectorAll('.nav-link');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileToggle.classList.remove('active');
+            navCenter.classList.remove('mobile-open');
+            document.body.classList.remove('menu-open');
+        });
+    });
+}
+
+// === Testimonial Carousel ===
+const testimonialCarousel = document.getElementById('testimonialCarousel');
+
+if (testimonialCarousel) {
+    const slides = testimonialCarousel.querySelectorAll('.testimonial-slide');
+    const dots = testimonialCarousel.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let autoPlayInterval = null;
+    let isPaused = false;
+    
+    function showSlide(index) {
+        // Handle wrapping
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+        
+        currentIndex = index;
+        
+        // Update slides
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.remove('active');
+            if (i === index) {
+                dot.classList.add('active');
+            }
+        });
+    }
+    
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+    
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            if (!isPaused) {
+                nextSlide();
+            }
+        }, 5000); // Change slide every 5 seconds
+    }
+    
+    // Dot click handlers
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.index);
+            showSlide(index);
+            startAutoPlay(); // Reset timer on manual navigation
+        });
+    });
+    
+    // Pause on hover
+    testimonialCarousel.addEventListener('mouseenter', () => {
+        isPaused = true;
+    });
+    
+    testimonialCarousel.addEventListener('mouseleave', () => {
+        isPaused = false;
+    });
+    
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    testimonialCarousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    testimonialCarousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                showSlide(currentIndex + 1);
+            } else {
+                // Swipe right - previous slide
+                showSlide(currentIndex - 1);
+            }
+            startAutoPlay();
+        }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        // Only if carousel is in viewport
+        const rect = testimonialCarousel.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+            if (e.key === 'ArrowLeft') {
+                showSlide(currentIndex - 1);
+                startAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                showSlide(currentIndex + 1);
+                startAutoPlay();
+            }
+        }
+    });
+    
+    // Start autoplay
+    startAutoPlay();
+    
+    console.log('Testimonial Carousel initialized.');
+}
+
 // === Footer Letter Hover ===
 function initFooterWordHover() {
     const headline = document.querySelector('.footer-headline');

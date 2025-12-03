@@ -394,6 +394,20 @@ function displayResults(total, matric, inter, test) {
     if (resultsTabBtn) {
         resultsTabBtn.disabled = false;
         resultsTabBtn.click();
+        
+        // Scroll to top of calculator container to show results
+        const calcContainer = document.querySelector('.calc-main-container');
+        if (calcContainer) {
+            // Small delay to ensure tab switch is complete
+            setTimeout(() => {
+                calcContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                // Offset for fixed header
+                window.scrollBy(0, -100);
+            }, 100);
+        }
     }
 
     const circumference = 534;
