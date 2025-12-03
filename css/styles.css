@@ -46,8 +46,6 @@ body {
     overflow-x: hidden;
     line-height: 1.5;
 }
-
-/* Noise Overlay */
 .noise-overlay {
     position: fixed;
     top: 0;
@@ -56,8 +54,19 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.04;
+    
+    /* INCREASED: This is the main knob. 0.05 was too ghost-like. 
+       0.12 to 0.15 makes it visible on dark backgrounds. */
+    opacity: 0.14; 
+
+    /* LOWERED FREQUENCY: Changed 0.8 -> 0.65
+       0.65 makes the dots slightly larger so they don't vanish, 
+       but the background-size keeps them sharp. */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    
+    /* TILED: Keeps it crisp by repeating a small square instead of stretching */
+    background-repeat: repeat;
+    background-size: 180px 180px; 
 }
 
 /* Typography Utility */
@@ -779,7 +788,7 @@ a {
     max-width: 320px;
 }
 
-/* Testimonials - Carousel Style */
+/* Testimonials - 3D Cover Flow Carousel */
 .testimonials {
     padding: 140px 0;
     position: relative;
@@ -792,14 +801,20 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 40%, transparent 70%);
     pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 }
 
 .testimonials .section-head {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .section-head-center {
@@ -815,111 +830,251 @@ a {
     max-width: 400px;
 }
 
-.testimonial-carousel {
-    max-width: 900px;
+/* Cover Flow Carousel Container */
+.coverflow-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
+    perspective: 1500px;
+    perspective-origin: center center;
 }
 
-.testimonial-slider {
+.coverflow-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    min-height: 350px;
+    height: 420px;
+    transform-style: preserve-3d;
 }
 
-.testimonial-slide {
+/* Individual Card */
+.coverflow-card {
+    position: absolute;
+    width: 100%;
+    max-width: 480px;
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Glassmorphism Card Inner */
+.card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+.card-glass::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
-.testimonial-slide.active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-}
 
-.quote-icon {
+/* Quote Mark */
+.quote-mark {
     font-family: var(--font-display);
-    font-size: 6rem;
-    line-height: 1;
-    color: var(--accent);
-    opacity: 0.3;
-    margin-bottom: -20px;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 0.8;
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.6;
+    position: absolute;
+    top: 24px;
+    left: 32px;
 }
 
-.testimonial-quote-large {
+/* Quote Text */
+.card-quote {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.6;
     color: var(--text-primary);
-    margin-bottom: 40px;
-    max-width: 700px;
+    margin: 0 0 32px 0;
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
 }
 
-.testimonial-author {
+/* Author Section */
+.card-author {
     display: flex;
     align-items: center;
     gap: 16px;
+    position: relative;
+    z-index: 1;
 }
 
 .author-avatar {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: white;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    flex-shrink: 0;
 }
 
-.author-info {
+.author-avatar span {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    letter-spacing: 0.02em;
+}
+
+.author-details {
     display: flex;
     flex-direction: column;
-    text-align: left;
+    gap: 4px;
 }
 
 .author-name {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
-.author-meta {
-    font-size: 0.9rem;
+.author-uni {
+    font-size: 0.85rem;
     color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
-.testimonial-dots {
+/* Card States - 3D Positioning */
+.coverflow-card {
+    /* Default: hidden far back */
+    opacity: 0;
+    transform: translateX(0) translateZ(-400px) scale(0.7);
+    pointer-events: none;
+    filter: blur(8px);
+    z-index: 1;
+}
+
+/* Far Left Card (2 positions left) */
+.coverflow-card[data-position="-2"] {
+    opacity: 0.3;
+    transform: translateX(-120%) translateZ(-300px) rotateY(35deg) scale(0.7);
+    filter: blur(4px);
+    z-index: 2;
+}
+
+/* Left Card */
+.coverflow-card[data-position="-1"] {
+    opacity: 0.6;
+    transform: translateX(-70%) translateZ(-150px) rotateY(25deg) scale(0.85);
+    pointer-events: auto;
+    filter: blur(2px);
+    z-index: 5;
+}
+
+/* Active Center Card */
+.coverflow-card[data-position="0"] {
+    opacity: 1;
+    transform: translateX(0) translateZ(50px) rotateY(0) scale(1);
+    pointer-events: auto;
+    filter: blur(0);
+    z-index: 100;
+}
+
+.coverflow-card[data-position="0"] .card-glass {
+    /* Solid background color matching your theme base */
+    background: #050505; 
+    /* Remove transparency so nothing behind it is visible */
+    
+    /* You can keep blur or remove it, since the bg is solid, blur doesn't matter much */
+    backdrop-filter: none; 
+    -webkit-backdrop-filter: none;
+
+    /* Keep your borders and shadows */
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 40px 80px -20px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 0 60px -20px rgba(59, 130, 246, 0.15);
+}
+
+/* Right Card */
+.coverflow-card[data-position="1"] {
+    opacity: 0.6;
+    transform: translateX(70%) translateZ(-150px) rotateY(-25deg) scale(0.85);
+    pointer-events: auto;
+    filter: blur(2px);
+    z-index: 5;
+}
+
+/* Far Right Card (2 positions right) */
+.coverflow-card[data-position="2"] {
+    opacity: 0.3;
+    transform: translateX(120%) translateZ(-300px) rotateY(-35deg) scale(0.7);
+    filter: blur(4px);
+    z-index: 2;
+}
+
+/* Navigation */
+.coverflow-nav {
+    display: none !important; /* This completely removes the buttons */
+}
+
+.coverflow-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    cursor: pointer;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
+    transition: all 0.3s ease;
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
+.coverflow-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.coverflow-btn:active {
+    transform: scale(0.95);
+}
+
+.coverflow-dots {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coverflow-dot {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     border: none;
@@ -928,15 +1083,162 @@ a {
     padding: 0;
 }
 
-.dot:hover {
+.coverflow-dot:hover {
     background: rgba(255, 255, 255, 0.4);
     transform: scale(1.2);
 }
 
-.dot.active {
+.coverflow-dot.active {
     background: var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
-    transform: scale(1.2);
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: scale(1.3);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 992px) {
+    .coverflow-track {
+        height: 380px;
+    }
+    
+    .coverflow-card {
+        max-width: 420px;
+    }
+    
+    .card-glass {
+        padding: 40px 32px;
+    }
+    
+    .quote-mark {
+        font-size: 4rem;
+    }
+    
+    .coverflow-card[data-position="-1"] {
+        transform: translateX(-60%) translateZ(-120px) rotateY(20deg) scale(0.85);
+    }
+    
+    .coverflow-card[data-position="1"] {
+        transform: translateX(60%) translateZ(-120px) rotateY(-20deg) scale(0.85);
+    }
+    
+    .coverflow-card[data-position="-2"],
+    .coverflow-card[data-position="2"] {
+        opacity: 0;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 100px 0;
+    }
+    
+    .coverflow-track {
+        height: 360px;
+    }
+    
+    .coverflow-card {
+        max-width: 340px;
+    }
+    
+    .card-glass {
+        padding: 32px 24px;
+    }
+    
+    .quote-mark {
+        font-size: 3.5rem;
+        top: 16px;
+        left: 20px;
+    }
+    
+    .card-quote {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+    
+    .author-avatar {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .author-avatar span {
+        font-size: 0.9rem;
+    }
+    
+    .author-name {
+        font-size: 1rem;
+    }
+    
+    .author-uni {
+        font-size: 0.75rem;
+    }
+    
+    /* Hide side cards on mobile - show only center */
+    .coverflow-card[data-position="-1"],
+    .coverflow-card[data-position="1"] {
+        opacity: 0.4;
+        transform: translateX(-50%) translateZ(-100px) scale(0.8);
+        filter: blur(3px);
+    }
+    
+    .coverflow-card[data-position="1"] {
+        transform: translateX(50%) translateZ(-100px) scale(0.8);
+    }
+    
+    .coverflow-card[data-position="-2"],
+    .coverflow-card[data-position="2"] {
+        opacity: 0;
+    }
+    
+    .coverflow-nav {
+        margin-top: 40px;
+        gap: 24px;
+    }
+    
+    .coverflow-btn {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .coverflow-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+    .testimonials {
+        padding: 80px 0;
+    }
+    
+    .coverflow-track {
+        height: 340px;
+    }
+    
+    .coverflow-card {
+        max-width: 300px;
+    }
+    
+    .card-glass {
+        padding: 28px 20px;
+    }
+    
+    .quote-mark {
+        font-size: 3rem;
+        top: 12px;
+        left: 16px;
+    }
+    
+    .card-quote {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* Only show active card on very small screens */
+    .coverflow-card[data-position="-1"],
+    .coverflow-card[data-position="1"] {
+        opacity: 0.2;
+    }
 }
 
 @media (max-width: 992px) {
@@ -2807,8 +3109,8 @@ a {
     
     .hero-visual {
         order: 2;
-        width: 100%;
-        max-width: 600px;
+        width: 90%;
+        max-width: 500px;
         margin: 0 auto;
     }
     
@@ -2951,9 +3253,11 @@ a {
         font-size: 1rem;
     }
     
-    /* Calculator Window - Full width on mobile */
+    /* Calculator Window - Leave margins on mobile */
     .hero-visual {
-        max-width: 100%;
+        width: 92%;
+        max-width: 420px;
+        margin: 0 auto;
     }
     
     .calculator-window {
@@ -3283,7 +3587,13 @@ a {
         margin-top: 8px;
     }
     
-    /* Calculator Window */
+    /* Calculator Window - Mobile margins */
+    .hero-visual {
+        width: 88%;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+    
     .calculator-window {
         padding: 16px;
     }
@@ -3704,20 +4014,18 @@ a {
         font-size: 1.8rem;
     }
     
+    /* Calculator Window - Extra small mobile */
+    .hero-visual {
+        width: 85%;
+        max-width: 320px;
+    }
+    
     .calculator-window {
         padding: 12px;
     }
     
     .result-value {
         font-size: 1.8rem;
-    }
-    
-    .testimonial-slider {
-        min-height: 450px;
-    }
-    
-    .testimonial-quote-large {
-        font-size: 0.95rem;
     }
     
     .calc-tab {

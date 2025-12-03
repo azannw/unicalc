@@ -401,68 +401,120 @@ if (mobileToggle && navCenter) {
     });
 }
 
-// === Testimonial Carousel ===
-const testimonialCarousel = document.getElementById('testimonialCarousel');
+// === 3D Cover Flow Testimonial Carousel ===
+const coverflowCarousel = document.getElementById('coverflowCarousel');
 
-if (testimonialCarousel) {
-    const slides = testimonialCarousel.querySelectorAll('.testimonial-slide');
-    const dots = testimonialCarousel.querySelectorAll('.dot');
+if (coverflowCarousel) {
+    const cards = coverflowCarousel.querySelectorAll('.coverflow-card');
+    const dots = coverflowCarousel.querySelectorAll('.coverflow-dot');
+    const prevBtn = coverflowCarousel.querySelector('.coverflow-prev');
+    const nextBtn = coverflowCarousel.querySelector('.coverflow-next');
+    
     let currentIndex = 0;
     let autoPlayInterval = null;
     let isPaused = false;
+    const totalCards = cards.length;
+    const autoPlayDelay = 2500; // 2.5 seconds
     
-    function showSlide(index) {
-        // Handle wrapping
-        if (index >= slides.length) index = 0;
-        if (index < 0) index = slides.length - 1;
-        
-        currentIndex = index;
-        
-        // Update slides
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
+    // Update card positions for 3D Cover Flow effect
+    function updatePositions() {
+        cards.forEach((card, i) => {
+            // Calculate relative position from center
+            let position = i - currentIndex;
+            
+            // Handle infinite loop wrapping
+            if (position > Math.floor(totalCards / 2)) {
+                position -= totalCards;
+            } else if (position < -Math.floor(totalCards / 2)) {
+                position += totalCards;
             }
+            
+            // Clamp position for visible range
+            const clampedPosition = Math.max(-2, Math.min(2, position));
+            card.setAttribute('data-position', clampedPosition);
         });
         
         // Update dots
         dots.forEach((dot, i) => {
-            dot.classList.remove('active');
-            if (i === index) {
-                dot.classList.add('active');
-            }
+            dot.classList.toggle('active', i === currentIndex);
         });
     }
     
-    function nextSlide() {
-        showSlide(currentIndex + 1);
+    // Navigate to specific index
+    function goToSlide(index) {
+        // Wrap around for infinite loop
+        if (index >= totalCards) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = totalCards - 1;
+        } else {
+            currentIndex = index;
+        }
+        
+        updatePositions();
     }
     
+    // Next slide
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+    
+    // Auto-play functionality
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(() => {
             if (!isPaused) {
                 nextSlide();
             }
-        }, 5000); // Change slide every 5 seconds
+        }, autoPlayDelay);
     }
+    
+    function resetAutoPlay() {
+        startAutoPlay();
+    }
+    
+    // Event Listeners - Navigation buttons
+    prevBtn?.addEventListener('click', () => {
+        prevSlide();
+        resetAutoPlay();
+    });
+    
+    nextBtn?.addEventListener('click', () => {
+        nextSlide();
+        resetAutoPlay();
+    });
     
     // Dot click handlers
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const index = parseInt(dot.dataset.index);
-            showSlide(index);
-            startAutoPlay(); // Reset timer on manual navigation
+            goToSlide(index);
+            resetAutoPlay();
+        });
+    });
+    
+    // Card click - go to that card
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const index = parseInt(card.dataset.index);
+            if (index !== currentIndex) {
+                goToSlide(index);
+                resetAutoPlay();
+            }
         });
     });
     
     // Pause on hover
-    testimonialCarousel.addEventListener('mouseenter', () => {
+    coverflowCarousel.addEventListener('mouseenter', () => {
         isPaused = true;
     });
     
-    testimonialCarousel.addEventListener('mouseleave', () => {
+    coverflowCarousel.addEventListener('mouseleave', () => {
         isPaused = false;
     });
     
@@ -470,13 +522,15 @@ if (testimonialCarousel) {
     let touchStartX = 0;
     let touchEndX = 0;
     
-    testimonialCarousel.addEventListener('touchstart', (e) => {
+    coverflowCarousel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        isPaused = true;
     }, { passive: true });
     
-    testimonialCarousel.addEventListener('touchend', (e) => {
+    coverflowCarousel.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
+        isPaused = false;
     }, { passive: true });
     
     function handleSwipe() {
@@ -485,37 +539,35 @@ if (testimonialCarousel) {
         
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) {
-                // Swipe left - next slide
-                showSlide(currentIndex + 1);
+                nextSlide();
             } else {
-                // Swipe right - previous slide
-                showSlide(currentIndex - 1);
+                prevSlide();
             }
-            startAutoPlay();
+            resetAutoPlay();
         }
     }
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        // Only if carousel is in viewport
-        const rect = testimonialCarousel.getBoundingClientRect();
+        const rect = coverflowCarousel.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         
         if (isVisible) {
             if (e.key === 'ArrowLeft') {
-                showSlide(currentIndex - 1);
-                startAutoPlay();
+                prevSlide();
+                resetAutoPlay();
             } else if (e.key === 'ArrowRight') {
-                showSlide(currentIndex + 1);
-                startAutoPlay();
+                nextSlide();
+                resetAutoPlay();
             }
         }
     });
     
-    // Start autoplay
+    // Initialize
+    updatePositions();
     startAutoPlay();
     
-    console.log('Testimonial Carousel initialized.');
+    console.log('3D Cover Flow Carousel initialized.');
 }
 
 // === Footer Letter Hover ===
