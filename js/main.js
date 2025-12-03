@@ -101,20 +101,22 @@ if (meritEngine) {
     let currentY = 0;
     let targetX = 0;
     let targetY = 0;
+    let animationStarted = false;
     
-    // Configuration
-    const maxTilt = 12; // Maximum additional rotation in degrees (on top of initial)
+    // Configuration - Enhanced for more dramatic 3D effect
+    const maxTilt = 15; // Maximum additional rotation in degrees (on top of initial)
     const perspective = 1000; // 3D perspective
-    const scale = 1.02; // Scale on hover
-    const easing = 0.12; // Easing factor (0-1, lower = smoother)
-    const glareIntensity = 0.08; // Reduced glare opacity (was 0.3)
+    const scaleHover = 1.03; // Scale on hover
+    const easing = 0.08; // Easing factor (0-1, lower = smoother)
+    const glareIntensity = 0.12; // Subtle glare opacity
     
-    // Initial tilt state (resting position)
-    const initialRotateX = 2; // Initial X rotation
-    const initialRotateY = -5; // Initial Y rotation
+    // Initial tilt state (resting position) - matches CSS animation end state
+    const initialRotateX = 4; // Initial X rotation (tilted slightly backward)
+    const initialRotateY = -8; // Initial Y rotation (tilted slightly to the left)
     
-    // Create glare element with reduced intensity
+    // Create glare element for light reflection effect
     const glare = document.createElement('div');
+    glare.className = 'tilt-glare';
     glare.style.cssText = `
         position: absolute;
         top: 0;
@@ -124,28 +126,40 @@ if (meritEngine) {
         border-radius: 16px;
         pointer-events: none;
         opacity: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(255,255,255,${glareIntensity}) 0%, transparent 50%);
-        transition: opacity 0.4s ease;
-        z-index: 1;
+        background: radial-gradient(circle at 50% 50%, rgba(255,255,255,${glareIntensity}) 0%, transparent 60%);
+        transition: opacity 0.3s ease;
+        z-index: 10;
     `;
     meritEngine.style.position = 'relative';
     meritEngine.appendChild(glare);
     
-    // Set initial transform state immediately (card should appear tilted from start)
-    meritEngine.style.transform = `
-        perspective(${perspective}px) 
-        rotateX(${initialRotateX}deg) 
-        rotateY(${initialRotateY}deg)
-    `;
+    // Wait for CSS animation to complete before taking over
+    setTimeout(() => {
+        animationStarted = true;
+        // Take control of the transform after CSS animation ends
+        meritEngine.style.animation = 'none';
+        meritEngine.style.opacity = '1';
+        meritEngine.style.transform = `
+            perspective(${perspective}px) 
+            rotateX(${initialRotateX}deg) 
+            rotateY(${initialRotateY}deg)
+        `;
+    }, 1500); // 1.2s animation + 0.3s delay = 1.5s
     
     // Animation loop using requestAnimationFrame for smooth updates
     function animate() {
+        if (!animationStarted) {
+            if (isHovering) requestAnimationFrame(animate);
+            return;
+        }
+        
         if (isHovering) {
             // Smooth interpolation using easing
             currentX += (targetX - currentX) * easing;
             currentY += (targetY - currentY) * easing;
             
             // Calculate additional rotation angles (added to initial)
+            // Inverted Y for natural feel: moving mouse up tilts top toward viewer
             const rotateX = initialRotateX + (-currentY * maxTilt);
             const rotateY = initialRotateY + (currentX * maxTilt);
             
@@ -154,13 +168,13 @@ if (meritEngine) {
                 perspective(${perspective}px) 
                 rotateX(${rotateX}deg) 
                 rotateY(${rotateY}deg) 
-                scale(${scale})
+                scale(${scaleHover})
             `;
             
-            // Update glare position with reduced spread
+            // Update glare position - follows cursor position
             const glareX = (currentX + 1) * 50;
             const glareY = (currentY + 1) * 50;
-            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,${glareIntensity}) 0%, transparent 50%)`;
+            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,${glareIntensity}) 0%, transparent 60%)`;
             glare.style.opacity = '1';
             
             requestAnimationFrame(animate);
@@ -182,10 +196,12 @@ if (meritEngine) {
             glare.style.opacity = '0';
             
             // Continue animating until fully reset
-            if (Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01) {
+            if (Math.abs(currentX) > 0.001 || Math.abs(currentY) > 0.001) {
                 requestAnimationFrame(animate);
             } else {
                 // Ensure final state is exactly the initial tilt
+                currentX = 0;
+                currentY = 0;
                 meritEngine.style.transform = `
                     perspective(${perspective}px) 
                     rotateX(${initialRotateX}deg) 
@@ -195,8 +211,17 @@ if (meritEngine) {
         }
     }
     
-    // Mouse move handler
+    // Mouse enter handler - start tracking
+    meritEngine.addEventListener('mouseenter', () => {
+        if (!animationStarted) return;
+        isHovering = true;
+        animate();
+    });
+    
+    // Mouse move handler - update target position
     meritEngine.addEventListener('mousemove', (e) => {
+        if (!animationStarted) return;
+        
         if (!isHovering) {
             isHovering = true;
             animate();
@@ -211,8 +236,9 @@ if (meritEngine) {
         const mouseY = (e.clientY - centerY) / (rect.height / 2);
         
         // Apply smooth clamping with mathematical function (tanh for smooth edges)
-        targetX = Math.tanh(mouseX * 1.5) / Math.tanh(1.5);
-        targetY = Math.tanh(mouseY * 1.5) / Math.tanh(1.5);
+        // This creates a more natural feel when cursor is near edges
+        targetX = Math.tanh(mouseX * 1.2) / Math.tanh(1.2);
+        targetY = Math.tanh(mouseY * 1.2) / Math.tanh(1.2);
     });
     
     // Mouse leave handler
@@ -224,18 +250,15 @@ if (meritEngine) {
     });
     
     // Touch support for mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-    
     meritEngine.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        const rect = meritEngine.getBoundingClientRect();
-        touchStartX = touch.clientX - (rect.left + rect.width / 2);
-        touchStartY = touch.clientY - (rect.top + rect.height / 2);
-    });
+        if (!animationStarted) return;
+        isHovering = true;
+        animate();
+    }, { passive: true });
     
     meritEngine.addEventListener('touchmove', (e) => {
-        e.preventDefault();
+        if (!animationStarted) return;
+        
         const touch = e.touches[0];
         const rect = meritEngine.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -244,14 +267,14 @@ if (meritEngine) {
         const mouseX = (touch.clientX - centerX) / (rect.width / 2);
         const mouseY = (touch.clientY - centerY) / (rect.height / 2);
         
-        targetX = Math.tanh(mouseX * 1.5) / Math.tanh(1.5);
-        targetY = Math.tanh(mouseY * 1.5) / Math.tanh(1.5);
+        targetX = Math.tanh(mouseX * 1.2) / Math.tanh(1.2);
+        targetY = Math.tanh(mouseY * 1.2) / Math.tanh(1.2);
         
         if (!isHovering) {
             isHovering = true;
             animate();
         }
-    });
+    }, { passive: true });
     
     meritEngine.addEventListener('touchend', () => {
         isHovering = false;
@@ -260,7 +283,7 @@ if (meritEngine) {
         animate();
     });
     
-    console.log('Custom 3D Tilt initialized for meritEngine');
+    console.log('3D Tilt Effect initialized for merit_engine.exe');
 }
 
 // === FAQ Accordion Logic ===

@@ -420,6 +420,12 @@ a {
     animation: revealScale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
 }
 
+/* Hero visual container - provides 3D space for the calculator window */
+.hero-visual {
+    perspective: 1200px;
+    perspective-origin: center center;
+}
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -431,6 +437,18 @@ a {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+/* 3D Window reveal animation - ends in tilted state */
+@keyframes reveal3DWindow {
+    0% {
+        opacity: 0;
+        transform: perspective(1000px) rotateX(15deg) rotateY(-15deg) scale(0.9) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(1000px) rotateX(4deg) rotateY(-8deg) scale(1);
     }
 }
 
@@ -450,23 +468,29 @@ a {
     backdrop-filter: blur(20px);
     /* Initial state for animation entrance */
     opacity: 0;
-    animation: revealScale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+    animation: reveal3DWindow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
     /* Transform will be controlled by JS for 3D tilt */
     transform-style: preserve-3d;
     will-change: transform;
     position: relative;
-    /* 3D depth effect */
+    /* 3D depth effect - transition for hover shadow changes only */
     transition: box-shadow 0.4s ease;
 }
 
 /* Enhanced shadow on hover for more 3D depth */
 .calculator-window:hover {
     box-shadow:
-        0 50px 100px rgba(0, 0, 0, 0.7),
-        0 30px 60px rgba(0, 0, 0, 0.5),
-        0 15px 30px rgba(0, 0, 0, 0.4),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-        inset 0 1px 2px rgba(255, 255, 255, 0.03);
+        10px 50px 100px rgba(0, 0, 0, 0.7),
+        5px 30px 60px rgba(0, 0, 0, 0.5),
+        2px 15px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 3px rgba(255, 255, 255, 0.05),
+        0 0 40px rgba(59, 130, 246, 0.08);
+}
+
+/* Glare overlay for the tilt effect */
+.calculator-window .tilt-glare {
+    mix-blend-mode: overlay;
 }
 
 .window-header {
