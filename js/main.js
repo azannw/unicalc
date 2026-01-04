@@ -19,6 +19,8 @@ const universities = [
     { id: 'bahria', name: 'Bahria', fullName: 'Bahria University', category: ['cs', 'engineering'] },
     { id: 'qau', name: 'QAU', fullName: 'Quaid-i-Azam University', category: ['cs'] },
     { id: 'iba', name: 'IBA', fullName: 'Institute of Business Administration', category: ['cs'] },
+    { id: 'iiu', name: 'IIUI', fullName: 'International Islamic University Islamabad', category: ['cs', 'engineering'] },
+    { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['cs'] },
 ];
 
 // === Render Universities (Grid Layout) ===
@@ -32,7 +34,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="calculator.html?uni=${uni.id}" class="uni-card">
+        <a href="calculator/${uni.id}/" class="uni-card">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>

@@ -1,0 +1,233 @@
+[
+  {
+    "id": "fast",
+    "name": "FAST National University",
+    "shortName": "FAST",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["nu", "nat", "sat"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "nust",
+    "name": "NUST",
+    "shortName": "NUST",
+    "formula": {
+      "matric": 10,
+      "inter": 15,
+      "test": 75
+    },
+    "testTypes": ["net"],
+    "defaultTestTotal": 200
+  },
+  {
+    "id": "giki",
+    "name": "GIKI",
+    "shortName": "GIKI",
+    "formula": {
+      "matric": 10,
+      "inter": 0,
+      "test": 85
+    },
+    "testTypes": ["giki"],
+    "defaultTestTotal": 200,
+    "notes": "5% reserved for O/A Level students"
+  },
+  {
+    "id": "comsats",
+    "name": "COMSATS University",
+    "shortName": "COMSATS",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["nat", "nts"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "ist",
+    "name": "Institute of Space Technology",
+    "shortName": "IST",
+    "formula": {
+      "matric": 40,
+      "inter": 60,
+      "test": 0
+    },
+    "testTypes": [],
+    "defaultTestTotal": 0,
+    "notes": "No entry test for BS CS"
+  },
+  {
+    "id": "iiu",
+    "name": "International Islamic University",
+    "shortName": "IIU",
+    "formula": {
+      "matric": 20,
+      "inter": 40,
+      "test": 40
+    },
+    "testTypes": ["iiu", "nat"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "qau",
+    "name": "Quaid-e-Azam University",
+    "shortName": "QAU",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["nat", "nts"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "pu",
+    "name": "Punjab University",
+    "shortName": "PU",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["pu"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "pucit",
+    "name": "Punjab University College of IT",
+    "shortName": "PUCIT",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["pucit"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "bahria",
+    "name": "Bahria University",
+    "shortName": "Bahria",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["bahria", "nts"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "pieas",
+    "name": "PIEAS",
+    "shortName": "PIEAS",
+    "formula": {
+      "matric": 10,
+      "inter": 15,
+      "test": 75
+    },
+    "testTypes": ["pieas"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "ned",
+    "name": "NED University",
+    "shortName": "NED",
+    "formula": {
+      "matric": 0,
+      "inter": 40,
+      "test": 60
+    },
+    "testTypes": ["ned"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "nutech",
+    "name": "NUTECH",
+    "shortName": "NUTECH",
+    "formula": {
+      "matric": 25,
+      "inter": 50,
+      "test": 25
+    },
+    "testTypes": ["nuet"],
+    "defaultTestTotal": 200
+  },
+  {
+    "id": "air",
+    "name": "Air University",
+    "shortName": "Air",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["air", "nts"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "uet-taxila",
+    "name": "UET Taxila",
+    "shortName": "UET Taxila",
+    "formula": {
+      "matric": 17,
+      "inter": 50,
+      "test": 33
+    },
+    "testTypes": ["ecat"],
+    "defaultTestTotal": 400
+  },
+  {
+    "id": "uet",
+    "name": "UET Lahore",
+    "shortName": "UET",
+    "formula": {
+      "matric": 17,
+      "inter": 50,
+      "test": 33
+    },
+    "testTypes": ["ecat"],
+    "defaultTestTotal": 400
+  },
+  {
+    "id": "itu",
+    "name": "Information Technology University",
+    "shortName": "ITU",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["itu", "sat", "nts"],
+    "defaultTestTotal": 100
+  },
+  {
+    "id": "lums",
+    "name": "LUMS",
+    "shortName": "LUMS",
+    "formula": {
+      "matric": 0,
+      "inter": 0,
+      "test": 100
+    },
+    "testTypes": ["sat", "lcat"],
+    "defaultTestTotal": 1600,
+    "notes": "Holistic admission process"
+  },
+  {
+    "id": "iba",
+    "name": "IBA Karachi",
+    "shortName": "IBA",
+    "formula": {
+      "matric": 10,
+      "inter": 40,
+      "test": 50
+    },
+    "testTypes": ["iba", "sat"],
+    "defaultTestTotal": 100
+  }
+]

@@ -2195,11 +2195,12 @@ a {
 
 .form-input-total {
     flex: 0 0 auto;
-    width: 80px;
-    min-width: 60px;
+    width: 90px;
+    min-width: 80px;
     background: rgba(10, 10, 10, 0.8);
     color: var(--text-secondary);
     cursor: not-allowed;
+    text-align: center;
 }
 
 .input-separator {
@@ -2259,10 +2260,16 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 24px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     gap: 24px;
+    transition: all 0.3s ease;
+}
+
+.nu-calc-banner:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .banner-content h4 {
@@ -2972,6 +2979,133 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
+}
+
+/* Merit Campus Table Styles */
+.merit-campus-section {
+    margin-bottom: 32px;
+}
+
+.merit-campus-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.merit-table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.merit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.merit-table thead {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.merit-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.merit-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+}
+
+.merit-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.merit-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.merit-value-cell {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.merit-note {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.merit-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Pattern Tag Styles */
+.pattern-tag.positive {
+    background: rgba(34, 197, 94, 0.15);
+    color: rgb(34, 197, 94);
+}
+
+.pattern-tag.info {
+    background: rgba(59, 130, 246, 0.15);
+    color: rgb(59, 130, 246);
+}
+
+.pattern-no-test {
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.no-test-message {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.pattern-alt-note {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.pattern-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .merit-table th,
+    .merit-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .merit-campus-title {
+        font-size: 1.1rem;
+    }
 }
 
 /* Facts Tab Styles */
@@ -4038,9 +4172,10 @@ a {
     }
     
     .form-input-total {
-        width: 70px;
-        min-width: 50px;
+        width: 80px;
+        min-width: 70px;
         padding: 12px 10px;
+        text-align: center;
         font-size: 0.9rem;
     }
     
@@ -4343,9 +4478,10 @@ a {
     }
     
     .form-input-total {
-        width: 60px;
-        min-width: 45px;
+        width: 70px;
+        min-width: 60px;
         padding: 10px 8px;
+        text-align: center;
         font-size: 0.85rem;
     }
     
@@ -4378,9 +4514,99 @@ a {
     .feature-strip {
         display: none;
     }
-    
+
     body {
         background: white;
         color: black;
+    }
+}
+
+/* Calculator Footer Styles */
+.calculator-footer {
+    margin-top: 80px;
+    padding: 40px 0;
+    background: rgba(5, 5, 5, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.footer-tagline {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-link {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--text-primary);
+}
+
+.footer-credit {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+}
+
+.footer-credit a {
+    color: var(--text-secondary);
+}
+
+.community-btn {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.community-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .calculator-footer {
+        margin-top: 60px;
+        padding: 32px 0;
+    }
+
+    .footer-compact {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-brand {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .footer-links {
+        gap: 16px;
     }
 }

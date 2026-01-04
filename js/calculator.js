@@ -32,14 +32,14 @@ const calculatorConfigs = {
     itu: {
         shortName: 'ITU',
         longName: 'Information Technology University',
-        description: 'Plan your admission strategy for ITU Lahore with the 10/30/60 split.',
+        description: 'Plan your admission strategy for ITU Lahore with the 15/35/50 split.',
         metaDescription: 'ITU merit calculator for CS, DS and EE programs.',
         programs: [
             'Computer Science & Data Science',
             'Electrical Engineering',
             'Business & Management'
         ],
-        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
+        weights: { matric: 0.15, inter: 0.35, test: 0.50 },
         testMax: 100
     },
     comsats: {
@@ -58,14 +58,14 @@ const calculatorConfigs = {
     giki: {
         shortName: 'GIKI',
         longName: 'Ghulam Ishaq Khan Institute',
-        description: 'GIKI aggregate calculator with the 15/25/60 matric, inter and admission test formula.',
+        description: 'GIKI aggregate calculator with the 10/0/85 matric and admission test formula (no inter weightage).',
         metaDescription: 'GIKI merit calculator with admission test weightage.',
         programs: [
             'Engineering & Sciences',
             'Computer Systems & AI',
             'Management Sciences'
         ],
-        weights: { matric: 0.15, inter: 0.25, test: 0.60 },
+        weights: { matric: 0.10, inter: 0.00, test: 0.85 },
         testMax: 200
     },
     pieas: {
@@ -79,7 +79,7 @@ const calculatorConfigs = {
             'Computer & Information Sciences'
         ],
         weights: { matric: 0.15, inter: 0.25, test: 0.60 },
-        testMax: 200
+        testMax: 100
     },
     lums: {
         shortName: 'LUMS',
@@ -97,54 +97,54 @@ const calculatorConfigs = {
     uet: {
         shortName: 'UET',
         longName: 'University of Engineering & Technology',
-        description: 'UET ECAT aggregate calculator for all campuses.',
+        description: 'UET ECAT aggregate calculator with the official 17/50/33 formula.',
         metaDescription: 'UET merit calculator with ECAT weightings.',
         programs: [
             'Engineering Programs',
             'Architecture & Planning',
             'Computer & Industrial Disciplines'
         ],
-        weights: { matric: 0.10, inter: 0.50, test: 0.40 },
+        weights: { matric: 0.17, inter: 0.50, test: 0.33 },
         testMax: 400
     },
     ned: {
         shortName: 'NED',
         longName: 'NED University of Engineering & Technology',
-        description: 'NED aggregate calculator with Karachi board friendly inputs.',
+        description: 'NED aggregate calculator with the official 0/40/60 formula.',
         metaDescription: 'NED engineering merit calculator.',
         programs: [
             'Engineering Programs',
             'Technology Programs',
             'Architecture & Planning'
         ],
-        weights: { matric: 0.20, inter: 0.50, test: 0.30 },
+        weights: { matric: 0.00, inter: 0.40, test: 0.60 },
         testMax: 100
     },
     ist: {
         shortName: 'IST',
         longName: 'Institute of Space Technology',
-        description: 'IST aggregate calculator for aerospace, avionics and space science.',
-        metaDescription: 'IST merit calculator with SAT / NAT support.',
+        description: 'IST aggregate calculator with the 40/60/0 formula (no entry test for BS CS).',
+        metaDescription: 'IST merit calculator - matric and inter based.',
         programs: [
+            'BS Computer Science',
             'Aerospace & Avionics',
-            'Space Science & Engineering',
-            'Applied Mathematics & Physics'
+            'Space Science & Engineering'
         ],
-        weights: { matric: 0.15, inter: 0.25, test: 0.60 },
-        testMax: 200
+        weights: { matric: 0.40, inter: 0.60, test: 0.00 },
+        testMax: 0
     },
     nutech: {
         shortName: 'NUTECH',
         longName: 'National University of Technology',
-        description: 'NUTECH aggregate calculator aligned with its applied engineering focus.',
+        description: 'NUTECH aggregate calculator with the official 10/20/70 formula.',
         metaDescription: 'NUTECH merit calculator for technology-driven programs.',
         programs: [
             'Engineering Technologies',
             'Computing & AI',
             'Business & Management'
         ],
-        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
-        testMax: 100
+        weights: { matric: 0.10, inter: 0.20, test: 0.70 },
+        testMax: 200
     },
     pucit: {
         shortName: 'PUCIT',
@@ -156,47 +156,47 @@ const calculatorConfigs = {
             'Software Engineering',
             'Information Technology'
         ],
-        weights: { matric: 0.15, inter: 0.35, test: 0.50 },
+        weights: { matric: 0.20, inter: 0.30, test: 0.50 },
         testMax: 100
     },
     air: {
         shortName: 'AIR',
         longName: 'Air University',
-        description: 'Air University aggregate calculator for Islamabad and Multan campuses.',
+        description: 'Air University aggregate calculator with the official 15/35/50 formula for CS programs.',
         metaDescription: 'Air University merit calculator with AU admission test support.',
         programs: [
             'Engineering & Avionics',
             'Computing & Cyber Security',
             'Management Sciences'
         ],
-        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
+        weights: { matric: 0.15, inter: 0.35, test: 0.50 },
         testMax: 100
     },
     bahria: {
         shortName: 'Bahria',
         longName: 'Bahria University',
-        description: 'Bahria University aggregate calculator for Islamabad, Karachi and Lahore.',
+        description: 'Bahria University aggregate calculator with the official 0/50/50 formula.',
         metaDescription: 'Bahria merit calculator for engineering, computing and business.',
         programs: [
             'Engineering & Maritime Studies',
             'Computing & AI',
             'Business & Media Studies'
         ],
-        weights: { matric: 0.10, inter: 0.40, test: 0.50 },
+        weights: { matric: 0.00, inter: 0.50, test: 0.50 },
         testMax: 100
     },
     qau: {
         shortName: 'QAU',
         longName: 'Quaid-i-Azam University',
-        description: 'QAU aggregate calculator for natural sciences and computing departments.',
+        description: 'QAU aggregate calculator with 30/70/0 formula (no entry test required).',
         metaDescription: 'QAU merit calculator for BS programs.',
         programs: [
             'Natural Sciences',
             'Computer & Mathematical Sciences',
             'Management Sciences'
         ],
-        weights: { matric: 0.20, inter: 0.30, test: 0.50 },
-        testMax: 100
+        weights: { matric: 0.30, inter: 0.70, test: 0.00 },
+        testMax: 0
     },
     iba: {
         shortName: 'IBA',
@@ -209,6 +209,32 @@ const calculatorConfigs = {
             'Computer Science & Math'
         ],
         weights: { matric: 0.20, inter: 0.30, test: 0.50 },
+        testMax: 100
+    },
+    iiu: {
+        shortName: 'IIU',
+        longName: 'International Islamic University',
+        description: 'IIU aggregate calculator with the official 0/40/60 formula.',
+        metaDescription: 'IIUI merit calculator for all programs.',
+        programs: [
+            'Computer Science',
+            'Software Engineering',
+            'Information Technology'
+        ],
+        weights: { matric: 0.00, inter: 0.40, test: 0.60 },
+        testMax: 100
+    },
+    pu: {
+        shortName: 'PU',
+        longName: 'University of the Punjab',
+        description: 'PU aggregate calculator with the official 25/50/25 formula.',
+        metaDescription: 'Punjab University merit calculator for all programs.',
+        programs: [
+            'Computing Programs',
+            'Engineering Programs',
+            'Business Programs'
+        ],
+        weights: { matric: 0.25, inter: 0.50, test: 0.25 },
         testMax: 100
     }
 };
@@ -493,5 +519,286 @@ function updatePrediction(aggregate, universityName = 'your target university') 
 
     predictionContent.innerHTML = `<p class="prediction-text">${predictionText}</p>`;
 }
+
+// === Dynamic Merit & Pattern Rendering ===
+
+function renderMeritData(universityId) {
+    const container = document.getElementById('meritContainer');
+    if (!container) return;
+
+    const uniMerit = getMeritDataById(universityId);
+
+    if (!uniMerit || !uniMerit.campuses || uniMerit.campuses.length === 0) {
+        container.innerHTML = `
+            <div class="merit-header">
+                <h3>2024 Merit Data</h3>
+                <p class="merit-subtitle">Merit data not available for this university</p>
+            </div>
+            <div class="merit-empty">
+                <p>No merit data available. Please check the official university website for the latest information.</p>
+            </div>
+        `;
+        return;
+    }
+
+    let html = `
+        <div class="merit-header">
+            <h3>2024 Merit - ${uniMerit.name}</h3>
+            <p class="merit-subtitle">Closing aggregates for all campuses and programs</p>
+        </div>
+    `;
+
+    uniMerit.campuses.forEach(campus => {
+        html += `
+            <div class="merit-campus-section">
+                <h4 class="merit-campus-title">${campus.campus}</h4>
+                <div class="merit-table-wrapper">
+                    <table class="merit-table">
+                        <thead>
+                            <tr>
+                                <th>Program</th>
+                                <th>Merit</th>
+                                ${campus.programs.some(p => p.shift) ? '<th>Shift</th>' : ''}
+                                ${campus.programs.some(p => p.category) ? '<th>Category</th>' : ''}
+                            </tr>
+                        </thead>
+                        <tbody>
+        `;
+
+        campus.programs.forEach(program => {
+            const meritValue = formatMeritDisplay(program.merit);
+            html += `
+                <tr>
+                    <td>${program.name}</td>
+                    <td class="merit-value-cell">${meritValue}</td>
+                    ${campus.programs.some(p => p.shift) ? `<td>${program.shift || '-'}</td>` : ''}
+                    ${campus.programs.some(p => p.category) ? `<td>${program.category || '-'}</td>` : ''}
+                </tr>
+            `;
+        });
+
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        <div class="merit-note">
+            <strong>Note:</strong> Merit data is from the 2024 admissions cycle. Actual merit may vary based on the number of applicants and seats available.
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
+function formatMeritDisplay(merit) {
+    if (typeof merit === 'number') {
+        return merit.toFixed(2) + '%';
+    }
+    if (typeof merit === 'string') {
+        // If it already has % or is a rank/range, return as-is
+        if (merit.includes('%') || merit.includes('#') || merit.includes('/') || merit.includes('-') || merit.includes('Top')) {
+            return merit;
+        }
+        return merit + '%';
+    }
+    return merit;
+}
+
+function renderTestPattern(universityId) {
+    const container = document.getElementById('patternContainer');
+    if (!container) return;
+
+    const pattern = getTestPatternById(universityId);
+
+    if (!pattern) {
+        container.innerHTML = `
+            <div class="pattern-header">
+                <div class="pattern-icon">#</div>
+                <h3>Entry Test Pattern</h3>
+            </div>
+            <div class="pattern-empty">
+                <p>Test pattern data not available for this university. Please check the official university website.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const testData = pattern.pattern;
+
+    // Handle case where no test is required
+    if (testData.totalMCQs === 0) {
+        container.innerHTML = `
+            <div class="pattern-header">
+                <div class="pattern-icon">#</div>
+                <h3>${pattern.name}</h3>
+            </div>
+            <div class="pattern-no-test">
+                <p class="no-test-message">No entry test required</p>
+                ${testData.notes ? `<p class="pattern-alt-note">${testData.notes}</p>` : ''}
+            </div>
+        `;
+        return;
+    }
+
+    let subjectListHtml = '';
+    if (testData.subjects && testData.subjects.length > 0) {
+        subjectListHtml = `
+            <div class="subject-section">
+                <h4>Subject Distribution</h4>
+                <div class="subject-list">
+                    ${testData.subjects.map(subject => `
+                        <div class="subject-item">
+                            <span class="subject-name">${subject.name}</span>
+                            <span class="subject-count">${subject.mcqs} MCQs</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // Build tags
+    let tagsHtml = '<div class="pattern-tags">';
+    if (testData.hasNegativeMarking) {
+        tagsHtml += '<span class="pattern-tag negative">Negative Marking</span>';
+    } else {
+        tagsHtml += '<span class="pattern-tag positive">No Negative Marking</span>';
+    }
+    if (testData.allowsCalculator) {
+        tagsHtml += '<span class="pattern-tag positive">Calculator Allowed</span>';
+    } else {
+        tagsHtml += '<span class="pattern-tag negative">No Calculator</span>';
+    }
+    if (testData.isComputerBased) {
+        tagsHtml += '<span class="pattern-tag info">Computer Based</span>';
+    } else {
+        tagsHtml += '<span class="pattern-tag info">Paper Based</span>';
+    }
+    tagsHtml += '</div>';
+
+    container.innerHTML = `
+        <div class="pattern-header">
+            <div class="pattern-icon">#</div>
+            <h3>${pattern.name}</h3>
+        </div>
+
+        <div class="pattern-grid">
+            <div class="pattern-card">
+                <span class="pattern-label">Total MCQs</span>
+                <span class="pattern-value">${testData.totalMCQs}</span>
+            </div>
+            <div class="pattern-card">
+                <span class="pattern-label">Duration</span>
+                <span class="pattern-value">${testData.duration}</span>
+            </div>
+            <div class="pattern-card">
+                <span class="pattern-label">Total Marks</span>
+                <span class="pattern-value">${testData.totalMarks}</span>
+            </div>
+        </div>
+
+        ${subjectListHtml}
+
+        ${tagsHtml}
+
+        ${testData.notes ? `
+        <div class="pattern-note">
+            <strong>Note:</strong> ${testData.notes}
+        </div>
+        ` : `
+        <div class="pattern-note">
+            <strong>Note:</strong> Test patterns may change. Always verify the latest information from the official university website.
+        </div>
+        `}
+    `;
+}
+
+// Update formula card with dynamic values
+function updateFormulaCard(config) {
+    const formulaCard = document.querySelector('.formula-card p');
+    if (!formulaCard || !config) return;
+
+    const matric = Math.round((config.weights.matric || 0) * 100);
+    const inter = Math.round((config.weights.inter || 0) * 100);
+    const test = Math.round((config.weights.test || 0) * 100);
+
+    let formulaText = `Based on the ${config.longName} admission formula:<br><strong>`;
+
+    const parts = [];
+    if (matric > 0) parts.push(`Matric (${matric}%)`);
+    if (inter > 0) parts.push(`Intermediate (${inter}%)`);
+    if (test > 0) parts.push(`Entry Test (${test}%)`);
+
+    formulaText += parts.join(' + ') + '</strong>';
+    formulaCard.innerHTML = formulaText;
+}
+
+// Update breakdown labels with dynamic weights
+function updateBreakdownLabels(config) {
+    if (!config) return;
+
+    const matricLabel = document.querySelector('.breakdown-item:nth-child(1) .breakdown-label');
+    const interLabel = document.querySelector('.breakdown-item:nth-child(2) .breakdown-label');
+    const testLabel = document.querySelector('.breakdown-item:nth-child(3) .breakdown-label');
+
+    const matric = Math.round((config.weights.matric || 0) * 100);
+    const inter = Math.round((config.weights.inter || 0) * 100);
+    const test = Math.round((config.weights.test || 0) * 100);
+
+    if (matricLabel) matricLabel.textContent = `Matric (${matric}%)`;
+    if (interLabel) interLabel.textContent = `Intermediate (${inter}%)`;
+    if (testLabel) testLabel.textContent = `Entry Test (${test}%)`;
+}
+
+// Get the university ID from URL (supports both ?uni=fast and /calculator/fast/ paths)
+function getUniversityId() {
+    // First check query parameter
+    const params = new URLSearchParams(window.location.search);
+    const uniParam = params.get('uni')?.toLowerCase();
+    if (uniParam) return uniParam;
+
+    // Then check URL path (e.g., /calculator/fast/)
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const calcIndex = pathParts.indexOf('calculator');
+    if (calcIndex !== -1 && pathParts[calcIndex + 1]) {
+        const uniFromPath = pathParts[calcIndex + 1].toLowerCase();
+        // Exclude special pages like nu-marks
+        if (uniFromPath !== 'nu-marks' && calculatorConfigs[uniFromPath]) {
+            return uniFromPath;
+        }
+    }
+
+    return 'fast';
+}
+
+// Initialize dynamic content
+function initDynamicContent() {
+    const universityId = getUniversityId();
+    renderMeritData(universityId);
+    renderTestPattern(universityId);
+    updateFormulaCard(currentCalculatorConfig);
+    updateBreakdownLabels(currentCalculatorConfig);
+    updateNuCalcBanner(universityId);
+}
+
+// Show/hide NU calc banner based on university
+function updateNuCalcBanner(universityId) {
+    const nuBanner = document.getElementById('nuCalcBanner') || document.querySelector('.nu-calc-banner');
+    if (!nuBanner) return;
+
+    // Only show for FAST university
+    if (universityId === 'fast') {
+        nuBanner.style.display = 'flex';
+    } else {
+        nuBanner.style.display = 'none';
+    }
+}
+
+// Call initDynamicContent after DOM loads
+document.addEventListener('DOMContentLoaded', initDynamicContent);
 
 console.log('Calculator Engine v3 Initialized.');

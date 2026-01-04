@@ -3,44 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Aggregate Calculator — UniCalc</title>
-    <meta name="description" content="Calculate your merit for top Pakistani universities with UniCalc's accurate aggregate engine.">
-    
-    <!-- Fonts -->
+    <title>University Aggregate Calculator - UniCalc</title>
+    <meta name="description" content="Calculate your university aggregate with UniCalc's accurate calculator.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Favicon -->
+    <link rel="stylesheet" href="../../css/styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    <!-- Noise Overlay -->
     <div class="noise-overlay"></div>
-
-    <!-- Header -->
     <header class="header" id="header">
         <div class="container-fluid">
             <nav class="nav">
-                <a href="index.html" class="logo">
-                    <span class="logo-text">UniCalc®</span>
-                </a>
-                
+                <a href="../../index.html" class="logo"><span class="logo-text">UniCalc</span></a>
                 <div class="nav-center">
                     <div class="nav-links">
-                        <a href="index.html#how-it-works" class="nav-link magnetic">Process</a>
-                        <a href="index.html#universities" class="nav-link magnetic">Universities</a>
-                        <a href="index.html#faq" class="nav-link magnetic">FAQ</a>
+                        <a href="../../index.html#how-it-works" class="nav-link magnetic">Process</a>
+                        <a href="../../index.html#universities" class="nav-link magnetic">Universities</a>
+                        <a href="../../index.html#faq" class="nav-link magnetic">FAQ</a>
                     </div>
                 </div>
-                
                 <div class="nav-actions">
-                    <a href="index.html" class="btn btn-primary btn-nav magnetic-btn">
+                    <a href="../../index.html" class="btn btn-primary btn-nav magnetic-btn">
                         <span class="btn-text">Home</span>
-                        <span class="btn-icon">←</span>
+                        <span class="btn-icon">&larr;</span>
                     </a>
                     <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
                         <span class="line"></span>
@@ -53,67 +40,46 @@
 
     <main>
         <section class="calculator-page">
-            <!-- Background Elements -->
             <div class="hero-bg">
                 <div class="bg-image"></div>
                 <div class="bg-grid"></div>
                 <div class="gradient-sphere"></div>
                 <div class="gradient-sphere secondary"></div>
             </div>
-
             <div class="container">
-                <!-- Page Header -->
                 <div class="calc-page-header reveal-text">
                     <div class="breadcrumb">
-                        <a href="index.html" class="breadcrumb-link">Home</a>
-                        <span class="breadcrumb-sep">→</span>
-                        <span class="breadcrumb-current" id="breadcrumbCurrent">FAST National University</span>
+                        <a href="../../index.html" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-sep">&rarr;</span>
+                        <span class="breadcrumb-current" id="breadcrumbCurrent">University</span>
                     </div>
                     <h1 class="calc-page-title" id="calculatorHeading">
-                        <span class="line-wrapper"><span class="line-reveal">FAST</span></span>
+                        <span class="line-wrapper"><span class="line-reveal">University</span></span>
                         <span class="line-wrapper"><span class="line-reveal">Aggregate</span></span>
                         <span class="line-wrapper"><span class="line-reveal text-outline">Calculator</span></span>
                     </h1>
                     <p class="calc-page-subtitle reveal-text delay-1" id="calculatorSubtitle">
-                        Calculate your aggregate for FAST National University programs with precision.
+                        Calculate your aggregate with precision.
                     </p>
                 </div>
 
-                <!-- Main Calculator Container -->
                 <div class="calc-main-container reveal-scale" id="calcContainer">
-                    <!-- Tab Navigation -->
                     <div class="calc-tabs">
-                        <button class="calc-tab active" data-tab="calculator">
-                            <span class="tab-label">Calculator</span>
-                        </button>
-                        <button class="calc-tab" data-tab="results" id="resultsTab" disabled>
-                            <span class="tab-label">Results</span>
-                        </button>
-                        <button class="calc-tab" data-tab="merit">
-                            <span class="tab-label">Merit</span>
-                        </button>
-                        <button class="calc-tab" data-tab="pattern">
-                            <span class="tab-label">Pattern</span>
-                        </button>
+                        <button class="calc-tab active" data-tab="calculator"><span class="tab-label">Calculator</span></button>
+                        <button class="calc-tab" data-tab="results" id="resultsTab" disabled><span class="tab-label">Results</span></button>
+                        <button class="calc-tab" data-tab="merit"><span class="tab-label">Merit</span></button>
+                        <button class="calc-tab" data-tab="pattern"><span class="tab-label">Pattern</span></button>
                     </div>
 
-                    <!-- Calculator Tab Content -->
                     <div class="calc-tab-content active" id="calculator">
                         <form id="calcForm" class="calc-form">
-                            <!-- Program Selection -->
                             <div class="form-section">
                                 <label class="form-label">Select Program</label>
                                 <div class="select-wrapper">
-                                    <select class="form-select" id="programSelect">
-                                        <option value="cs">Computing Programs (CS, SE, AI, DS, CYS)</option>
-                                        <option value="eng">Engineering Programs (EE, CV)</option>
-                                        <option value="bba">Business Programs (BBA, AFM)</option>
-                                    </select>
-                                    <span class="select-arrow">▼</span>
+                                    <select class="form-select" id="programSelect"></select>
+                                    <span class="select-arrow">&#9660;</span>
                                 </div>
                             </div>
-
-                            <!-- Education System -->
                             <div class="form-section">
                                 <label class="form-label">Education System</label>
                                 <div class="toggle-group">
@@ -131,10 +97,7 @@
                                     </label>
                                 </div>
                             </div>
-
-                            <!-- Marks Input Grid -->
                             <div class="form-grid">
-                                <!-- Matric Marks -->
                                 <div class="input-card">
                                     <div class="input-header">
                                         <label class="input-label">Matric Marks</label>
@@ -145,10 +108,8 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="matricTotal" readonly>
                                     </div>
-                                    <p class="input-hint" id="hintMatric">Contributes 10% to your aggregate score</p>
+                                    <p class="input-hint" id="hintMatric">Contributes to your aggregate score</p>
                                 </div>
-
-                                <!-- Intermediate Marks -->
                                 <div class="input-card">
                                     <div class="input-header">
                                         <label class="input-label">Intermediate Marks</label>
@@ -159,16 +120,14 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="interTotal" readonly>
                                     </div>
-                                    <p class="input-hint" id="hintInter">Contributes 40% to your aggregate score</p>
+                                    <p class="input-hint" id="hintInter">Contributes to your aggregate score</p>
                                 </div>
-
-                                <!-- Entry Test Type -->
-                                <div class="input-card full-width">
+                                <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>
                                     <div class="pill-group">
                                         <label class="pill-option">
-                                            <input type="radio" name="testType" value="nu" checked>
-                                            <span class="pill-btn">NU</span>
+                                            <input type="radio" name="testType" value="uni" checked>
+                                            <span class="pill-btn">University Test</span>
                                         </label>
                                         <label class="pill-option">
                                             <input type="radio" name="testType" value="nat">
@@ -180,9 +139,7 @@
                                         </label>
                                     </div>
                                 </div>
-
-                                <!-- Entry Test Marks -->
-                                <div class="input-card full-width">
+                                <div class="input-card full-width" id="testMarksSection">
                                     <div class="input-header">
                                         <label class="input-label">Entry Test Marks</label>
                                         <span class="input-weight" id="weightTest">50%</span>
@@ -192,40 +149,31 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="100" class="form-input form-input-total" id="testTotal" readonly>
                                     </div>
-                                    <p class="input-hint" id="hintTest">Contributes 50% to your aggregate score</p>
+                                    <p class="input-hint" id="hintTest">Contributes to your aggregate score</p>
                                 </div>
                             </div>
-
-                            <!-- NU Test Calculator Banner -->
                             <div class="nu-calc-banner" id="nuCalcBanner">
                                 <div class="banner-content">
                                     <h4>NU Test Score Calculator</h4>
                                     <p>Calculate your detailed NU test marks based on section-wise performance</p>
                                 </div>
-                                <a href="calculator/nu-marks/" class="btn btn-outline btn-sm magnetic-btn">
+                                <a href="../nu-marks/" class="btn btn-outline btn-sm magnetic-btn">
                                     <span class="btn-text">NU Marks Calc</span>
-                                    <span class="btn-icon">→</span>
+                                    <span class="btn-icon">&rarr;</span>
                                 </a>
                             </div>
-
-                            <!-- Submit Button -->
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block magnetic-btn">
                                     <span class="btn-text">Calculate Aggregate</span>
-                                    <span class="btn-icon">→</span>
+                                    <span class="btn-icon">&rarr;</span>
                                 </button>
                             </div>
                         </form>
                     </div>
 
-                    <!-- Results Tab Content -->
                     <div class="calc-tab-content" id="results">
                         <div class="results-container">
-                            <!-- Aggregate Display -->
-                            <div class="results-header">
-                                <h3>Your Aggregate Results</h3>
-                            </div>
-
+                            <div class="results-header"><h3>Your Aggregate Results</h3></div>
                             <div class="aggregate-display">
                                 <div class="aggregate-circle">
                                     <svg class="progress-ring" viewBox="0 0 200 200">
@@ -242,63 +190,42 @@
                                     <span class="status-badge pending">Calculate to see results</span>
                                 </div>
                             </div>
-
-                            <!-- Score Breakdown -->
                             <div class="breakdown-section">
                                 <h4>Score Breakdown</h4>
                                 <div class="breakdown-list">
                                     <div class="breakdown-item">
                                         <div class="breakdown-info">
                                             <span class="breakdown-label">Matric (10%)</span>
-                                            <div class="breakdown-bar">
-                                                <div class="breakdown-fill" id="breakdownMatric" style="width: 0%"></div>
-                                            </div>
+                                            <div class="breakdown-bar"><div class="breakdown-fill" id="breakdownMatric" style="width: 0%"></div></div>
                                         </div>
                                         <span class="breakdown-value" id="bdMatric">0.00%</span>
                                     </div>
                                     <div class="breakdown-item">
                                         <div class="breakdown-info">
                                             <span class="breakdown-label">Intermediate (40%)</span>
-                                            <div class="breakdown-bar">
-                                                <div class="breakdown-fill" id="breakdownInter" style="width: 0%"></div>
-                                            </div>
+                                            <div class="breakdown-bar"><div class="breakdown-fill" id="breakdownInter" style="width: 0%"></div></div>
                                         </div>
                                         <span class="breakdown-value" id="bdInter">0.00%</span>
                                     </div>
                                     <div class="breakdown-item">
                                         <div class="breakdown-info">
                                             <span class="breakdown-label">Entry Test (50%)</span>
-                                            <div class="breakdown-bar">
-                                                <div class="breakdown-fill" id="breakdownTest" style="width: 0%"></div>
-                                            </div>
+                                            <div class="breakdown-bar"><div class="breakdown-fill" id="breakdownTest" style="width: 0%"></div></div>
                                         </div>
                                         <span class="breakdown-value" id="bdTest">0.00%</span>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Admission Prediction -->
                             <div class="prediction-card" id="predictionCard">
-                                <div class="prediction-header">
-                                    <h4>Admission Prediction</h4>
-                                </div>
-                                <div class="prediction-content">
-                                    <p class="prediction-text">Calculate to see your admission chances.</p>
-                                </div>
+                                <div class="prediction-header"><h4>Admission Prediction</h4></div>
+                                <div class="prediction-content"><p class="prediction-text">Calculate to see your admission chances.</p></div>
                             </div>
-
-                            <!-- Formula Info -->
                             <div class="formula-card">
-                                <div class="formula-icon">∑</div>
-                                <p>Based on the FAST National University admission formula:<br>
-                                <strong>Matric (10%) + Intermediate (40%) + Entry Test (50%)</strong></p>
+                                <div class="formula-icon">&sum;</div>
+                                <p id="formulaText">Based on the admission formula</p>
                             </div>
-
-                            <!-- Action Buttons -->
                             <div class="results-actions">
-                                <button class="btn btn-outline magnetic-btn" id="editBtn">
-                                    <span class="btn-text">Edit Information</span>
-                                </button>
+                                <button class="btn btn-outline magnetic-btn" id="editBtn"><span class="btn-text">Edit Information</span></button>
                                 <a href="#" class="btn btn-outline magnetic-btn community-btn" target="_blank">
                                     <span class="btn-text">Join Community</span>
                                     <span class="btn-icon">&rarr;</span>
@@ -307,18 +234,12 @@
                         </div>
                     </div>
 
-                    <!-- Pattern Tab Content -->
                     <div class="calc-tab-content" id="pattern">
-                        <div class="pattern-container" id="patternContainer">
-                            <!-- Dynamically populated by calculator.js -->
-                        </div>
+                        <div class="pattern-container" id="patternContainer"></div>
                     </div>
 
-                    <!-- Merit Tab Content -->
                     <div class="calc-tab-content" id="merit">
-                        <div class="merit-container" id="meritContainer">
-                            <!-- Dynamically populated by calculator.js -->
-                        </div>
+                        <div class="merit-container" id="meritContainer"></div>
                     </div>
                 </div>
             </div>
@@ -332,8 +253,8 @@
                         <span class="footer-tagline">Your Merit Calculator</span>
                     </div>
                     <div class="footer-links">
-                        <a href="index.html#universities" class="footer-link">Universities</a>
-                        <a href="index.html#faq" class="footer-link">FAQ</a>
+                        <a href="../../index.html#universities" class="footer-link">Universities</a>
+                        <a href="../../index.html#faq" class="footer-link">FAQ</a>
                         <a href="mailto:hello@unicalc.pk" class="footer-link">Contact</a>
                     </div>
                     <div class="footer-credit">
@@ -344,11 +265,10 @@
         </footer>
     </main>
 
-    <script src="js/vanilla-tilt.js"></script>
-    <script src="js/meritData.js"></script>
-    <script src="js/testPatterns.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/calculator.js"></script>
+    <script src="../../js/vanilla-tilt.js"></script>
+    <script src="../../js/meritData.js"></script>
+    <script src="../../js/testPatterns.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculator.js"></script>
 </body>
 </html>
-
