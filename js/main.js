@@ -9,7 +9,6 @@ const universities = [
     { id: 'comsats', name: 'CUI', fullName: 'COMSATS University Islamabad', category: ['cs', 'engineering'] },
     { id: 'giki', name: 'GIKI', fullName: 'Ghulam Ishaq Khan Institute', category: ['engineering'] },
     { id: 'pieas', name: 'PIEAS', fullName: 'Pakistan Institute of Engineering & Applied Sciences', category: ['engineering'] },
-    { id: 'lums', name: 'LUMS', fullName: 'Lahore University of Management Sciences', category: ['cs', 'engineering'] },
     { id: 'uet', name: 'UET', fullName: 'University of Engineering & Technology', category: ['engineering'] },
     { id: 'ned', name: 'NED', fullName: 'NED University of Engineering & Technology', category: ['engineering'] },
     { id: 'ist', name: 'IST', fullName: 'Institute of Space Technology', category: ['engineering'] },
@@ -17,9 +16,7 @@ const universities = [
     { id: 'pucit', name: 'PUCIT', fullName: 'Punjab University College of IT', category: ['cs'] },
     { id: 'air', name: 'AIR', fullName: 'Air University', category: ['engineering', 'cs'] },
     { id: 'bahria', name: 'Bahria', fullName: 'Bahria University', category: ['cs', 'engineering'] },
-    { id: 'qau', name: 'QAU', fullName: 'Quaid-i-Azam University', category: ['cs'] },
     { id: 'iba', name: 'IBA', fullName: 'Institute of Business Administration', category: ['cs'] },
-    { id: 'iiu', name: 'IIUI', fullName: 'International Islamic University Islamabad', category: ['cs', 'engineering'] },
     { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['cs'] },
 ];
 

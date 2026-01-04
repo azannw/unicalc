@@ -531,7 +531,7 @@ function renderMeritData(universityId) {
     if (!uniMerit || !uniMerit.campuses || uniMerit.campuses.length === 0) {
         container.innerHTML = `
             <div class="merit-header">
-                <h3>2024 Merit Data</h3>
+                <h3>Merit Data</h3>
                 <p class="merit-subtitle">Merit data not available for this university</p>
             </div>
             <div class="merit-empty">
@@ -541,10 +541,13 @@ function renderMeritData(universityId) {
         return;
     }
 
+    const meritYear = uniMerit.year || 2024;
+    const meritTypeLabel = uniMerit.meritType === 'rank' ? 'Closing Rank' : 'Closing Aggregate';
+
     let html = `
         <div class="merit-header">
-            <h3>2024 Merit - ${uniMerit.name}</h3>
-            <p class="merit-subtitle">Closing aggregates for all campuses and programs</p>
+            <h3>${meritYear} Merit - ${uniMerit.name}</h3>
+            <p class="merit-subtitle">${meritTypeLabel} for all campuses and programs</p>
         </div>
     `;
 
@@ -587,7 +590,7 @@ function renderMeritData(universityId) {
 
     html += `
         <div class="merit-note">
-            <strong>Note:</strong> Merit data is from the 2024 admissions cycle. Actual merit may vary based on the number of applicants and seats available.
+            <strong>Note:</strong> Merit data is from the ${meritYear} admissions cycle. Actual merit may vary based on the number of applicants and seats available.
         </div>
     `;
 
