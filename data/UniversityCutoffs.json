@@ -337,67 +337,110 @@
     "Islamabad Campus": {
       "BS Bio Informatics": {
         "SP Merit 2026": "57.06",
-        "Merit Fall 2025": "70.12",
+        "1st Merit Fall 2025": "70.12",
+        "2nd Merit Fall 2025": "66.37",
+        "3rd Merit List 2025": "64.10",
+        "4th Merit List 2025": "63.02",
+        "5th Merit List 2025": "closed",
         "Merit Spring 2025": "56.38"
       },
       "BS Bio Science": {
         "SP Merit 2026": "50.91",
-        "Merit Fall 2025": "55.32",
+        "1st Merit Fall 2025": "55.32",
+        "2nd Merit Fall 2025": "55.32",
+        "3rd Merit Fall 2025": "closed",
         "Merit Spring 2025": "56.46"
       },
       "BS Chemistry": {
         "SP Merit 2026": "51.8",
-        "Merit Fall 2025": "50.29",
+        "1st Merit Fall 2025": "50.29",
+        "2nd Merit FAll 2025": "50.29",
+        "3rd Merit Fall 2025": "50.29",
+        "4th Merit Fall 2025": "50.29",
+        "5th Merit Fall 2025": "closed",
         "Merit Spring 2025": "55.47"
       },
       "BS Computer Science": {
         "SP Merit 2026": "86.48",
-        "Merit Fall 2025": "88.89",
+        "1st Merit Fall 2025": "88.89",
+        "2nd Merit Fall 2025": "88.56",
+        "3rd Merit Fall 2025": "88.42",
+        "4th Merit Fall 2025": "closed",
         "Merit Spring 2025": "88.26"
       },
       "BS Artificial Intelligence": {
         "SP Merit 2026": "86.01",
-        "Merit Fall 2025": "88.53",
+        "1st Merit Fall 2025": "88.53",
+        "2nd Merit Fall 2025": "88.14",
+        "3rd Merit Fall 2025": "87.87",
+        "4th Merit Fall 2025": "87.70",
+        "5th Merit Fall 2025": "87.62",
         "Merit Spring 2025": "87.69"
       },
       "BS Software Engineering": {
         "SP Merit 2026": "84.64",
-        "Merit Fall 2025": "86.69",
+        "1st Merit Fall 2025": "86.69",
+        "2nd Merit Fall 2025": "86.35",
+        "3rd Merit Fall 2025": "86.16",
+        "4th Merit Fall 2025": "85.96",
+        "5ht Merit Fall 2025": "85.86",
         "Merit Spring 2025": "87.2"
       },
       "BS Data Science": {
         "SP Merit 2026": "84.43",
-        "Merit Fall 2025": "87.11",
+        "1st Merit Fall 2025": "87.11",
+        "2nd Merit Fall 2025": "86.86",
+        "3rd Merit Fall 2025": "86.57",
+        "4th Merit Fall 2025": "86.37",
+        "5th Merit Fall 2025": "86.24",
         "Merit Spring 2025": "86.52"
       },
       "BS Cyber Security": {
         "SP Merit 2026": "84.92",
-        "Merit Fall 2025": "87.51",
+        "1st Merit Fall 2025": "87.51",
+        "2nd Merit Fall 2025": "87.25",
+        "3rd Merit Fall 2025": "86.77",
+        "4th Merit Fall 2025": "86.40",
+        "5th Merit Fall 2025": "86.28",
         "Merit Spring 2025": "86.74"
       },
       "BS Economics with Data Science": {
         "SP Merit 2026": "55.14",
-        "Merit Fall 2025": "65",
+        "1st Merit Fall 2025": "65",
+        "2nd Merit Fall 2025": "64.94",
+        "3rd Merit Fall 2025": "closed",
         "Merit Spring 2025": "52.56"
       },
       "BS Economics": {
         "SP Merit 2026": "50.1",
-        "Merit Fall 2025": "50.05",
+        "1st Merit Fall 2025": "50.05",
+        "2nd Merit Fall 2025": "50.05",
+        "3rd Merit Fall 2025": "50.05",
+        "4th Merit Fall 2025": "50.05",
+        "5th Merit Fall 2025": "closed",
         "Merit Spring 2025": "50.45"
       },
       "BS Electrical Engineering": {
         "SP Merit 2026": "",
-        "Merit Fall 2025": "70.68",
+        "1st Merit Fall 2025": "70.68",
+        "2nd Merit Fall 2025": "64.94",
+        "3rd Merit Fall 2025": "closed",
         "Merit Spring 2025": ""
       },
       "BS Electrical Electronic Engineering": {
         "SP Merit 2026": "",
-        "Merit Fall 2025": "67.16",
+        "1st Merit Fall 2025": "67.16",
+        "2nd Merit Fall 2025": "62.47",
+        "3rd Merit Fall 2025": "closed",
         "Merit Spring 2025": ""
       },
       "BS Computer Engineering": {
         "SP Merit 2026": "",
-        "Merit Fall 2025": "82.14",
+        "1st Merit Fall 2025": "82.14",
+        "2nd Merit Fall 2025": "80.38",
+        "3rd Merit Fall 2025": "80",
+        "4th Merit Fall 2025": "79.96",
+        "5th Merit Fall 2025": "closed",
         "Merit Spring 2025": ""
       },
       "BS International Relations": {
