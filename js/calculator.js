@@ -65,7 +65,7 @@ const calculatorConfigs = {
             'Computer Systems & AI',
             'Management Sciences'
         ],
-        weights: { matric: 0.10, inter: 0.00, test: 0.85 },
+        weights: { matric: 0.10, inter: 0.05, test: 0.85 },
         testMax: 200
     },
     pieas: {
@@ -81,23 +81,10 @@ const calculatorConfigs = {
         weights: { matric: 0.15, inter: 0.25, test: 0.60 },
         testMax: 100
     },
-    lums: {
-        shortName: 'LUMS',
-        longName: 'Lahore University of Management Sciences',
-        description: 'LUMS aggregate calculator blending academics with test scores.',
-        metaDescription: 'LUMS merit calculator for SSE and SDSB applicants.',
-        programs: [
-            'Syed Babar Ali School of Science & Engineering',
-            'SDSB Business & Accounting',
-            'Humanities & Social Sciences'
-        ],
-        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
-        testMax: 1600
-    },
     uet: {
         shortName: 'UET',
         longName: 'University of Engineering & Technology',
-        description: 'UET ECAT aggregate calculator with the official 17/50/33 formula.',
+        description: 'UET ECAT aggregate calculator with the official 17/50/33 formula for all campuses including Taxila.',
         metaDescription: 'UET merit calculator with ECAT weightings.',
         programs: [
             'Engineering Programs',
@@ -185,45 +172,6 @@ const calculatorConfigs = {
         weights: { matric: 0.00, inter: 0.50, test: 0.50 },
         testMax: 100
     },
-    qau: {
-        shortName: 'QAU',
-        longName: 'Quaid-i-Azam University',
-        description: 'QAU aggregate calculator with 30/70/0 formula (no entry test required).',
-        metaDescription: 'QAU merit calculator for BS programs.',
-        programs: [
-            'Natural Sciences',
-            'Computer & Mathematical Sciences',
-            'Management Sciences'
-        ],
-        weights: { matric: 0.30, inter: 0.70, test: 0.00 },
-        testMax: 0
-    },
-    iba: {
-        shortName: 'IBA',
-        longName: 'Institute of Business Administration',
-        description: 'IBA aggregate calculator for BBA, BS Economics and CS.',
-        metaDescription: 'IBA Karachi merit calculator with aptitude test weighting.',
-        programs: [
-            'Business Administration',
-            'Economics & Finance',
-            'Computer Science & Math'
-        ],
-        weights: { matric: 0.20, inter: 0.30, test: 0.50 },
-        testMax: 100
-    },
-    iiu: {
-        shortName: 'IIU',
-        longName: 'International Islamic University',
-        description: 'IIU aggregate calculator with the official 0/40/60 formula.',
-        metaDescription: 'IIUI merit calculator for all programs.',
-        programs: [
-            'Computer Science',
-            'Software Engineering',
-            'Information Technology'
-        ],
-        weights: { matric: 0.00, inter: 0.40, test: 0.60 },
-        testMax: 100
-    },
     pu: {
         shortName: 'PU',
         longName: 'University of the Punjab',
@@ -236,6 +184,32 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0.25, inter: 0.50, test: 0.25 },
         testMax: 100
+    },
+    uhs: {
+        shortName: 'UHS',
+        longName: 'University of Health Sciences',
+        description: 'Calculate your UHS/MDCAT aggregate for Punjab medical & dental colleges with the official 10/40/50 formula.',
+        metaDescription: 'UHS MDCAT merit calculator for all Punjab government and private medical colleges.',
+        programs: [
+            'MBBS',
+            'BDS'
+        ],
+        weights: { matric: 0.10, inter: 0.40, test: 0.50 },
+        testMax: 200,
+        hideTestTypePills: true
+    },
+    nums: {
+        shortName: 'NUMS',
+        longName: 'National University of Medical Sciences',
+        description: 'Calculate your NUMS aggregate for AMC and affiliated medical colleges with the 10/40/50 formula.',
+        metaDescription: 'NUMS merit calculator for Army Medical College and all affiliated colleges.',
+        programs: [
+            'MBBS',
+            'BDS'
+        ],
+        weights: { matric: 0.10, inter: 0.40, test: 0.50 },
+        testMax: 150,
+        hideTestTypePills: true
     }
 };
 
@@ -251,9 +225,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function resolveCalculatorConfig() {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('uni')?.toLowerCase();
-    return calculatorConfigs[slug] || calculatorConfigs.fast;
+    const uniId = getUniversityId();
+    return calculatorConfigs[uniId] || calculatorConfigs.fast;
 }
 
 // === Tab System ===
@@ -309,6 +282,12 @@ function applyCalculatorContent(config) {
         const base = config.testMax || 100;
         testTotalInput.value = base;
         testTotalInput.dataset.baseTotal = base;
+    }
+
+    // Hide test type pills for universities that use a single dedicated test (e.g. MDCAT, NUMS)
+    const testTypeSection = document.getElementById('testTypeSection');
+    if (testTypeSection) {
+        testTypeSection.style.display = config.hideTestTypePills ? 'none' : '';
     }
 }
 
@@ -506,17 +485,83 @@ function updatePrediction(aggregate, universityName = 'your target university') 
     const predictionContent = predictionCard.querySelector('.prediction-content');
     if (!predictionContent) return;
 
-    let predictionText;
-    if (aggregate >= 75) {
-        predictionText = `Excellent chances at ${universityName}.`;
-    } else if (aggregate >= 70) {
-        predictionText = `Good chances — ${universityName} is within reach.`;
-    } else if (aggregate >= 65) {
-        predictionText = `Borderline chances. Apply broadly and keep ${universityName} on the list.`;
-    } else {
-        predictionText = `Strengthen your profile or consider alternate campuses alongside ${universityName}.`;
+    const universityId = getUniversityId();
+    const uniMerit = getMeritDataById(universityId);
+
+    // Determine selected test type for filtering (NU/NTS for FAST etc.)
+    let selectedTestType = null;
+    if (uniMerit && uniMerit.hasTestTypes) {
+        const testTypeRadio = document.querySelector('input[name="testType"]:checked');
+        if (testTypeRadio) {
+            if (testTypeRadio.value === 'nat') selectedTestType = 'NTS';
+            else selectedTestType = 'NU'; // "uni" and "sat" both default to NU
+        }
     }
 
+    // Try to get program-level predictions for all programs
+    if (uniMerit && uniMerit.campuses && uniMerit.campuses.length > 0) {
+        let html = '';
+        let hasPredictions = false;
+
+        if (selectedTestType) {
+            html += `<div class="prediction-test-label">Showing predictions for <strong>${selectedTestType}</strong> test merits</div>`;
+        }
+
+        uniMerit.campuses.forEach(campus => {
+            const campusPredictions = [];
+            campus.programs.forEach(program => {
+                // Filter by test type if applicable
+                if (selectedTestType && program.testType && program.testType !== selectedTestType) return;
+
+                const prediction = calculateAdmissionPrediction(universityId, program.name, aggregate, campus.campus);
+                if (prediction && prediction.type === 'percentage') {
+                    campusPredictions.push({ program: program.name, shift: program.shift, category: program.category, testType: program.testType, ...prediction });
+                    hasPredictions = true;
+                }
+            });
+
+            if (campusPredictions.length > 0) {
+                html += `<div class="prediction-campus">
+                    <h5 class="prediction-campus-title">${campus.campus}</h5>
+                    <div class="prediction-programs">`;
+                campusPredictions.forEach(p => {
+                    let programLabel = p.program;
+                    if (p.shift) programLabel += ` (${p.shift})`;
+                    else if (p.category) programLabel += ` (${p.category})`;
+                    const statusClass = p.status;
+                    html += `<div class="prediction-program-row">
+                        <span class="prediction-program-name">${programLabel}</span>
+                        <span class="prediction-probability ${statusClass}">${p.label}</span>
+                    </div>`;
+                });
+                html += `</div></div>`;
+            }
+        });
+
+        if (hasPredictions) {
+            const trendNote = '<p class="prediction-note">Based on statistical analysis of historical merit trends.</p>';
+            predictionContent.innerHTML = html + trendNote;
+            return;
+        }
+
+        // Check if rank-based
+        if (uniMerit.meritType === 'rank') {
+            predictionContent.innerHTML = `<p class="prediction-text">This university uses rank-based merit. Compare your entry test rank against the closing ranks in the Merit tab.</p>`;
+            return;
+        }
+    }
+
+    // Fallback: generic prediction
+    let predictionText;
+    if (aggregate >= 85) {
+        predictionText = `Strong aggregate for ${universityName}. Check specific program cutoffs in the Merit tab.`;
+    } else if (aggregate >= 75) {
+        predictionText = `Competitive aggregate for ${universityName}. Check program-specific cutoffs.`;
+    } else if (aggregate >= 65) {
+        predictionText = `Borderline for top programs at ${universityName}. Consider multiple options.`;
+    } else {
+        predictionText = `Explore alternate campuses or programs at ${universityName}.`;
+    }
     predictionContent.innerHTML = `<p class="prediction-text">${predictionText}</p>`;
 }
 
@@ -543,41 +588,89 @@ function renderMeritData(universityId) {
 
     const meritYear = uniMerit.year || 2024;
     const meritTypeLabel = uniMerit.meritType === 'rank' ? 'Closing Rank' : 'Closing Aggregate';
+    const hasTestTypes = uniMerit.hasTestTypes || false;
+
+    // Determine max history length across all programs
+    let maxHistory = 1;
+    uniMerit.campuses.forEach(campus => {
+        campus.programs.forEach(program => {
+            if (program.history && program.history.length > maxHistory) {
+                maxHistory = Math.min(program.history.length, 3);
+            }
+        });
+    });
+
+    // Generate year headers
+    const yearHeaders = [];
+    for (let i = 0; i < maxHistory; i++) {
+        yearHeaders.push(meritYear - i);
+    }
+
+    // Build campus filter — use dropdown for many campuses, pills for few
+    const campusNames = uniMerit.campuses.map(c => c.campus);
+    let campusFilterHtml = '';
+    if (campusNames.length > 1 && campusNames.length <= 8) {
+        campusFilterHtml = `
+            <div class="merit-campus-filter">
+                <button class="merit-filter-btn active" data-campus="all">All Campuses</button>
+                ${campusNames.map(name => `<button class="merit-filter-btn" data-campus="${name}">${name}</button>`).join('')}
+            </div>
+        `;
+    } else if (campusNames.length > 8) {
+        campusFilterHtml = `
+            <div class="merit-campus-filter">
+                <div class="select-wrapper">
+                    <select class="merit-filter-select form-select" data-campus-select>
+                        <option value="all">All Colleges (${campusNames.length})</option>
+                        ${campusNames.map(name => `<option value="${name}">${name}</option>`).join('')}
+                    </select>
+                    <span class="select-arrow">&#9660;</span>
+                </div>
+            </div>
+        `;
+    }
 
     let html = `
         <div class="merit-header">
-            <h3>${meritYear} Merit - ${uniMerit.name}</h3>
-            <p class="merit-subtitle">${meritTypeLabel} for all campuses and programs</p>
+            <h3>Merit Data — ${uniMerit.name}</h3>
+            <p class="merit-subtitle">${meritTypeLabel} ${maxHistory > 1 ? `(${yearHeaders[yearHeaders.length - 1]}–${yearHeaders[0]})` : `(${meritYear})`}</p>
         </div>
+        ${campusFilterHtml}
     `;
 
     uniMerit.campuses.forEach(campus => {
+        const hasShift = campus.programs.some(p => p.shift);
+        const hasCategory = campus.programs.some(p => p.category);
+
         html += `
-            <div class="merit-campus-section">
+            <div class="merit-campus-section" data-campus-name="${campus.campus}">
                 <h4 class="merit-campus-title">${campus.campus}</h4>
                 <div class="merit-table-wrapper">
                     <table class="merit-table">
                         <thead>
                             <tr>
                                 <th>Program</th>
-                                <th>Merit</th>
-                                ${campus.programs.some(p => p.shift) ? '<th>Shift</th>' : ''}
-                                ${campus.programs.some(p => p.category) ? '<th>Category</th>' : ''}
+                                ${hasTestTypes ? '<th>Test</th>' : ''}
+                                ${hasShift ? '<th>Shift</th>' : ''}
+                                ${hasCategory ? '<th>Category</th>' : ''}
+                                ${yearHeaders.map(y => `<th>${y}</th>`).join('')}
                             </tr>
                         </thead>
                         <tbody>
         `;
 
         campus.programs.forEach(program => {
-            const meritValue = formatMeritDisplay(program.merit);
-            html += `
-                <tr>
+            const history = program.history || [program.merit];
+            html += `<tr>
                     <td>${program.name}</td>
-                    <td class="merit-value-cell">${meritValue}</td>
-                    ${campus.programs.some(p => p.shift) ? `<td>${program.shift || '-'}</td>` : ''}
-                    ${campus.programs.some(p => p.category) ? `<td>${program.category || '-'}</td>` : ''}
-                </tr>
-            `;
+                    ${hasTestTypes ? `<td><span class="merit-test-badge">${program.testType || '-'}</span></td>` : ''}
+                    ${hasShift ? `<td>${program.shift || '-'}</td>` : ''}
+                    ${hasCategory ? `<td>${program.category || '-'}</td>` : ''}`;
+            for (let i = 0; i < maxHistory; i++) {
+                const val = i < history.length ? formatMeritDisplay(history[i]) : '—';
+                html += `<td class="merit-value-cell">${val}</td>`;
+            }
+            html += `</tr>`;
         });
 
         html += `
@@ -590,11 +683,45 @@ function renderMeritData(universityId) {
 
     html += `
         <div class="merit-note">
-            <strong>Note:</strong> Merit data is from the ${meritYear} admissions cycle. Actual merit may vary based on the number of applicants and seats available.
+            <strong>Note:</strong> Merit shown is the closing merit from official records. Actual cutoffs may vary each year.
         </div>
     `;
 
     container.innerHTML = html;
+
+    // Attach campus filter handlers — pill buttons
+    const filterBtns = container.querySelectorAll('.merit-filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const selectedCampus = btn.dataset.campus;
+            const sections = container.querySelectorAll('.merit-campus-section');
+            sections.forEach(section => {
+                if (selectedCampus === 'all' || section.dataset.campusName === selectedCampus) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Attach campus filter handler — dropdown select
+    const filterSelect = container.querySelector('[data-campus-select]');
+    if (filterSelect) {
+        filterSelect.addEventListener('change', () => {
+            const selectedCampus = filterSelect.value;
+            const sections = container.querySelectorAll('.merit-campus-section');
+            sections.forEach(section => {
+                if (selectedCampus === 'all' || section.dataset.campusName === selectedCampus) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    }
 }
 
 function formatMeritDisplay(merit) {

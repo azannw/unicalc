@@ -169,19 +169,6 @@
     ]
   },
   {
-    "id": "qau",
-    "name": "Quaid-e-Azam University",
-    "campuses": [
-      {
-        "campus": "Islamabad",
-        "programs": [
-          { "name": "BS Computer Science", "merit": 93 },
-          { "name": "BS Information Technology", "merit": 92 }
-        ]
-      }
-    ]
-  },
-  {
     "id": "pu",
     "name": "Punjab University",
     "campuses": [
@@ -379,29 +366,15 @@
     ]
   },
   {
-    "id": "lums",
-    "name": "LUMS",
+    "id": "iiu",
+    "name": "International Islamic University",
     "campuses": [
       {
-        "campus": "Lahore",
+        "campus": "Islamabad",
         "programs": [
-          { "name": "BS Computer Science", "merit": "Top 5%" },
-          { "name": "BS Electrical Engineering", "merit": "Top 10%" },
-          { "name": "BSc (Hons) Economics", "merit": "Top 10%" }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "iba",
-    "name": "IBA Karachi",
-    "campuses": [
-      {
-        "campus": "Karachi",
-        "programs": [
-          { "name": "BBA", "merit": "85+" },
-          { "name": "BS Computer Science", "merit": "80+" },
-          { "name": "BS Economics", "merit": "82+" }
+          { "name": "BS Computer Science", "merit": 87 },
+          { "name": "BS Software Engineering", "merit": 86 },
+          { "name": "BS Information Technology", "merit": 82 }
         ]
       }
     ]

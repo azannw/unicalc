@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniCalc — The Future of Merit</title>
     <meta name="description"
-        content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 15+ universities.">
+        content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 16+ universities.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UniCalc — Pakistan's #1 Merit Calculator">
+    <meta property="og:description" content="The most accurate university merit calculator for Pakistani students. FAST, NUST, ITU, COMSATS and 16+ universities.">
+    <meta property="og:image" content="https://unicalc.pk/og-image.png">
+    <meta property="og:url" content="https://unicalc.pk/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UniCalc — Pakistan's #1 Merit Calculator">
+    <meta name="twitter:description" content="The most accurate university merit calculator for Pakistani students.">
+    <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +27,8 @@
         rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/home.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
@@ -40,6 +52,7 @@
                         <a href="#how-it-works" class="nav-link magnetic" data-text="Process">Process</a>
                         <a href="#universities" class="nav-link magnetic" data-text="Universities">Universities</a>
                         <a href="#faq" class="nav-link magnetic" data-text="FAQ">FAQ</a>
+                        <a href="contributors.html" class="nav-link magnetic" data-text="Contributors">Contributors</a>
                     </div>
                 </div>
 
@@ -157,7 +170,6 @@
                 <div class="marquee-track">
                     <span class="marquee-item">FAST-NUCES</span>
                     <span class="marquee-item">NUST</span>
-                    <span class="marquee-item">LUMS</span>
                     <span class="marquee-item">GIKI</span>
                     <span class="marquee-item">ITU</span>
                     <span class="marquee-item">COMSATS</span>
@@ -165,15 +177,14 @@
                     <span class="marquee-item">UET</span>
                     <span class="marquee-item">NED</span>
                     <span class="marquee-item">PUCIT</span>
-                    <span class="marquee-item">IBA</span>
                     <span class="marquee-item">NUTECH</span>
                     <span class="marquee-item">AIR</span>
                     <span class="marquee-item">BAHRIA</span>
                     <span class="marquee-item">IST</span>
+                    <span class="marquee-item">IIU</span>
                     <!-- Duplicate for seamless loop -->
                     <span class="marquee-item">FAST-NUCES</span>
                     <span class="marquee-item">NUST</span>
-                    <span class="marquee-item">LUMS</span>
                     <span class="marquee-item">GIKI</span>
                     <span class="marquee-item">ITU</span>
                     <span class="marquee-item">COMSATS</span>
@@ -181,11 +192,11 @@
                     <span class="marquee-item">UET</span>
                     <span class="marquee-item">NED</span>
                     <span class="marquee-item">PUCIT</span>
-                    <span class="marquee-item">IBA</span>
                     <span class="marquee-item">NUTECH</span>
                     <span class="marquee-item">AIR</span>
                     <span class="marquee-item">BAHRIA</span>
                     <span class="marquee-item">IST</span>
+                    <span class="marquee-item">IIU</span>
                 </div>
             </div>
         </section>
@@ -214,6 +225,25 @@
                         <h3>Analyze</h3>
                         <p>Get a precise aggregate breakdown and acceptance probability.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Universities Section -->
+        <section class="universities" id="universities">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="headline">ECOSYSTEM</h2>
+                    <div class="filter-container">
+                        <button class="filter-pill active magnetic" data-filter="all">All</button>
+                        <button class="filter-pill magnetic" data-filter="engineering">Engineering</button>
+                        <button class="filter-pill magnetic" data-filter="cs">Computing</button>
+                        <button class="filter-pill magnetic" data-filter="medical">Medical</button>
+                    </div>
+                </div>
+
+                <div class="uni-grid" id="uniGrid">
+                    <!-- Content via JS -->
                 </div>
             </div>
         </section>
@@ -318,25 +348,6 @@
                             </svg>
                         </button>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Universities Section -->
-        <section class="universities" id="universities">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="headline">ECOSYSTEM</h2>
-                    <div class="filter-container">
-                        <button class="filter-pill active magnetic" data-filter="all">All</button>
-                        <button class="filter-pill magnetic" data-filter="engineering">Engineering</button>
-                        <button class="filter-pill magnetic" data-filter="cs">Computing</button>
-                        <button class="filter-pill magnetic" data-filter="medical">Medical</button>
-                    </div>
-                </div>
-
-                <div class="uni-grid" id="uniGrid">
-                    <!-- Content via JS -->
                 </div>
             </div>
         </section>
@@ -449,6 +460,7 @@
                     <div class="footer-col">
                         <h4>Community</h4>
                         <a href="https://github.com" target="_blank" class="link-hover">GitHub</a>
+                        <a href="contributors.html" class="link-hover">Contributors</a>
                         <a href="#" class="link-hover">Discord</a>
                         <a href="mailto:hello@unicalc.pk" class="link-hover">Contact</a>
                     </div>

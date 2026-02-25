@@ -112,25 +112,6 @@
     }
   },
   {
-    "id": "qau",
-    "name": "QAU (NTS-NAT)",
-    "pattern": {
-      "totalMCQs": 100,
-      "duration": "2 hours",
-      "totalMarks": 100,
-      "isComputerBased": true,
-      "hasNegativeMarking": true,
-      "allowsCalculator": false,
-      "subjects": [
-        { "name": "Mathematics", "mcqs": 30 },
-        { "name": "Physics", "mcqs": 30 },
-        { "name": "English", "mcqs": 20 },
-        { "name": "IQ/General Knowledge", "mcqs": 20 }
-      ],
-      "notes": "Negative marking: 0.25 marks deducted for each wrong answer. The test is conducted by NTS."
-    }
-  },
-  {
     "id": "iiu",
     "name": "IIUI Entry Test",
     "pattern": {
@@ -295,38 +276,22 @@
     }
   },
   {
-    "id": "lums",
-    "name": "LUMS (SAT / LCAT)",
-    "pattern": {
-      "totalMCQs": 154,
-      "duration": "3 hours",
-      "totalMarks": 1600,
-      "isComputerBased": true,
-      "hasNegativeMarking": false,
-      "allowsCalculator": true,
-      "subjects": [
-        { "name": "Reading & Writing", "mcqs": 54 },
-        { "name": "Mathematics", "mcqs": 44 }
-      ],
-      "notes": "SAT scores required. LCAT is an alternative for Pakistani students. Calculator allowed for math section."
-    }
-  },
-  {
-    "id": "iba",
-    "name": "IBA Entry Test",
+    "id": "uet-taxila",
+    "name": "UET Taxila (ECAT)",
     "pattern": {
       "totalMCQs": 100,
-      "duration": "2 hours 30 minutes",
-      "totalMarks": 100,
-      "isComputerBased": true,
+      "duration": "1 hour 40 minutes",
+      "totalMarks": 400,
+      "isComputerBased": false,
       "hasNegativeMarking": true,
       "allowsCalculator": false,
       "subjects": [
-        { "name": "English", "mcqs": 35 },
-        { "name": "Mathematics", "mcqs": 35 },
-        { "name": "Analytical", "mcqs": 30 }
+        { "name": "Mathematics", "mcqs": 30 },
+        { "name": "Physics", "mcqs": 30 },
+        { "name": "Comp. / Chemistry", "mcqs": 30 },
+        { "name": "English", "mcqs": 10 }
       ],
-      "notes": "Negative marking: -0.25 for each wrong answer. SAT scores also accepted (min 1100)."
+      "notes": "Same ECAT paper as UET Lahore. Negative marking: -1 for each wrong answer."
     }
   }
 ]

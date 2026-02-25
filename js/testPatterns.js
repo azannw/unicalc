@@ -116,43 +116,6 @@ const testPatterns = [
     }
   },
   {
-    id: "qau",
-    name: "QAU (NTS-NAT)",
-    pattern: {
-      totalMCQs: 100,
-      duration: "2 hours",
-      totalMarks: 100,
-      isComputerBased: true,
-      hasNegativeMarking: true,
-      allowsCalculator: false,
-      subjects: [
-        { name: "Mathematics", mcqs: 30 },
-        { name: "Physics", mcqs: 30 },
-        { name: "English", mcqs: 20 },
-        { name: "IQ/General Knowledge", mcqs: 20 }
-      ],
-      notes: "Negative marking: 0.25 marks deducted for each wrong answer. The test is conducted by NTS."
-    }
-  },
-  {
-    id: "iiu",
-    name: "IIUI Entry Test",
-    pattern: {
-      totalMCQs: 100,
-      duration: "1 hour 40 minutes",
-      totalMarks: 100,
-      isComputerBased: false,
-      hasNegativeMarking: false,
-      allowsCalculator: false,
-      subjects: [
-        { name: "Subject Specific", mcqs: 40 },
-        { name: "English", mcqs: 30 },
-        { name: "Logical Reasoning", mcqs: 30 }
-      ],
-      notes: "Islamic Studies section may be included. Separate test dates for male and female campuses."
-    }
-  },
-  {
     id: "ist",
     name: "IST",
     pattern: {
@@ -299,38 +262,43 @@ const testPatterns = [
     }
   },
   {
-    id: "lums",
-    name: "LUMS (SAT / LCAT)",
+    id: "uhs",
+    name: "MDCAT (Medical & Dental College Admission Test)",
     pattern: {
-      totalMCQs: 154,
-      duration: "3 hours",
-      totalMarks: 1600,
+      totalMCQs: 200,
+      duration: "3 hours 30 minutes",
+      totalMarks: 200,
       isComputerBased: true,
       hasNegativeMarking: false,
-      allowsCalculator: true,
+      allowsCalculator: false,
       subjects: [
-        { name: "Reading & Writing", mcqs: 54 },
-        { name: "Mathematics", mcqs: 44 }
+        { name: "Biology", mcqs: 68 },
+        { name: "Chemistry", mcqs: 54 },
+        { name: "Physics", mcqs: 54 },
+        { name: "English", mcqs: 18 },
+        { name: "Logical Reasoning", mcqs: 6 }
       ],
-      notes: "SAT scores required. LCAT is an alternative for Pakistani students. Calculator allowed for math section."
+      notes: "Conducted by PMC (Pakistan Medical Commission). 1 mark per MCQ, no negative marking. Required for all Punjab medical/dental college admissions under UHS."
     }
   },
   {
-    id: "iba",
-    name: "IBA Entry Test",
+    id: "nums",
+    name: "NUMS Entry Test",
     pattern: {
-      totalMCQs: 100,
-      duration: "2 hours 30 minutes",
-      totalMarks: 100,
-      isComputerBased: true,
-      hasNegativeMarking: true,
+      totalMCQs: 200,
+      duration: "3 hours",
+      totalMarks: 200,
+      isComputerBased: false,
+      hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
-        { name: "English", mcqs: 35 },
-        { name: "Mathematics", mcqs: 35 },
-        { name: "Analytical", mcqs: 30 }
+        { name: "Biology", mcqs: 65 },
+        { name: "Chemistry", mcqs: 40 },
+        { name: "Physics", mcqs: 30 },
+        { name: "English", mcqs: 15 },
+        { name: "Psychological (Qualifying)", mcqs: 50 }
       ],
-      notes: "Negative marking: -0.25 for each wrong answer. SAT scores also accepted (min 1100)."
+      notes: "150 academic MCQs scored for aggregate + 50 psychological MCQs (pass/fail qualifying only, not counted in aggregate). Paper-based test. Only the 150 academic marks count toward the admission formula."
     }
   }
 ];

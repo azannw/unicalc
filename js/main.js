@@ -16,8 +16,9 @@ const universities = [
     { id: 'pucit', name: 'PUCIT', fullName: 'Punjab University College of IT', category: ['cs'] },
     { id: 'air', name: 'AIR', fullName: 'Air University', category: ['engineering', 'cs'] },
     { id: 'bahria', name: 'Bahria', fullName: 'Bahria University', category: ['cs', 'engineering'] },
-    { id: 'iba', name: 'IBA', fullName: 'Institute of Business Administration', category: ['cs'] },
     { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['cs'] },
+    { id: 'uhs', name: 'UHS', fullName: 'University of Health Sciences', category: ['medical'] },
+    { id: 'nums', name: 'NUMS', fullName: 'National University of Medical Sciences', category: ['medical'] },
 ];
 
 // === Render Universities (Grid Layout) ===

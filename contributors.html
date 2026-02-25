@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributors — UniCalc</title>
+    <meta name="description" content="Meet the people behind UniCalc. Join our community and help Pakistani students navigate university admissions.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contributors — UniCalc">
+    <meta property="og:description" content="Meet the people behind UniCalc. Join our community and help Pakistani students navigate university admissions.">
+    <meta property="og:image" content="https://unicalc.pk/og-image.png">
+    <meta property="og:url" content="https://unicalc.pk/contributors">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contributors — UniCalc">
+    <meta name="twitter:description" content="Meet the people behind UniCalc. Join our community.">
+    <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
+
+    <style>
+        .cp-page {
+            padding-top: calc(var(--header-height) + 64px);
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .cp-hero {
+            text-align: center;
+            padding-bottom: 72px;
+            position: relative;
+        }
+
+        .cp-hero-bg {
+            position: absolute;
+            inset: 0;
+            top: -80px;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .cp-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cp-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        .cp-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .cp-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+        }
+
+        .cp-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* Leaderboard */
+        .cp-lb-section {
+            padding-bottom: 96px;
+        }
+
+        .cp-section-eyebrow {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-tertiary);
+            margin-bottom: 10px;
+        }
+
+        .cp-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .cp-section-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 460px;
+        }
+
+        /* Leaderboard list */
+        .lb-list {
+            max-width: 620px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .lb-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.25s ease;
+            position: relative;
+        }
+
+        .lb-row:last-child {
+            border-bottom: none;
+        }
+
+        .lb-row:hover {
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .lb-row--gold {
+            border-left: 3px solid #eab308;
+            padding-left: 25px;
+        }
+
+        .lb-row--silver {
+            border-left: 3px solid #94a3b8;
+            padding-left: 25px;
+        }
+
+        .lb-row--bronze {
+            border-left: 3px solid #c49a6c;
+            padding-left: 25px;
+        }
+
+        .lb-rank {
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            min-width: 28px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .lb-row--gold .lb-rank { color: #eab308; }
+        .lb-row--silver .lb-rank { color: #94a3b8; }
+        .lb-row--bronze .lb-rank { color: #c49a6c; }
+
+        .lb-name {
+            flex: 1;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            min-width: 0;
+        }
+
+        .lb-row--gold .lb-name {
+            font-size: 1.08rem;
+            font-weight: 600;
+        }
+
+        .lb-social {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            color: var(--text-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .lb-social:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Contribute Section */
+        .cp-contribute-section {
+            padding: 0 0 100px;
+        }
+
+        .cp-contribute-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        .cp-contribute-card {
+            padding: 28px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .cp-contribute-icon {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .cp-contribute-card h3 {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .cp-contribute-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .cp-cta-box {
+            text-align: center;
+            padding: 36px 28px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            max-width: 720px;
+        }
+
+        .cp-cta-box p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0 auto 20px;
+        }
+
+        .cp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 100px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cp-btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .cp-btn-primary:hover {
+            background: #2563eb;
+            box-shadow: 0 0 24px rgba(59, 130, 246, 0.2);
+        }
+
+        .cp-btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cp-btn-outline:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.22);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cp-page {
+                padding-top: calc(var(--header-height) + 40px);
+            }
+
+            .cp-hero { padding-bottom: 48px; }
+            .cp-lb-section { padding-bottom: 64px; }
+            .lb-list { max-width: 100%; }
+            .cp-contribute-section { padding: 0 0 64px; }
+            .cp-contribute-grid { grid-template-columns: 1fr; gap: 12px; }
+            .cp-cta-box { padding: 28px 20px; }
+        }
+
+        @media (max-width: 576px) {
+            .cp-title {
+                font-size: clamp(1.75rem, 8vw, 2.4rem);
+            }
+
+            .lb-row {
+                padding: 16px 18px;
+                gap: 14px;
+            }
+
+            .lb-row--gold,
+            .lb-row--silver,
+            .lb-row--bronze {
+                padding-left: 15px;
+            }
+
+            .lb-name { font-size: 0.95rem; }
+            .lb-row--gold .lb-name { font-size: 1rem; }
+            .cp-cta-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cp-btn {
+                width: 100%;
+                max-width: 260px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container-fluid">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">UniCalc</span>
+                </a>
+                <div class="nav-center">
+                    <div class="nav-links" id="navLinks">
+                        <a href="index.html#universities" class="nav-link magnetic">Universities</a>
+                        <a href="contributors.html" class="nav-link magnetic" style="color: var(--text-primary)">Contributors</a>
+                        <a href="index.html#faq" class="nav-link magnetic">FAQ</a>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-primary btn-nav magnetic-btn">
+                        <span class="btn-text">Home</span>
+                        <span class="btn-icon">&larr;</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="cp-page">
+
+            <!-- Hero -->
+            <section class="cp-hero">
+                <div class="cp-hero-bg">
+                    <div class="bg-image"></div>
+                    <div class="bg-grid"></div>
+                    <div class="gradient-sphere"></div>
+                    <div class="gradient-sphere secondary"></div>
+                </div>
+                <div class="container">
+                    <div class="cp-eyebrow">
+                        <span class="cp-eyebrow-dot"></span>
+                        Our Team
+                    </div>
+                    <h1 class="cp-title">Contributors</h1>
+                    <p class="cp-subtitle">The people who make UniCalc possible. Merit data, development, and everything in between.</p>
+                </div>
+            </section>
+
+            <!-- Leaderboard -->
+            <section class="cp-lb-section">
+                <div class="container">
+                    <h2 class="cp-section-title">Leaderboard</h2>
+                    <p class="cp-section-desc">Ranked by impact. Thank you for making UniCalc better.</p>
+
+                    <div class="lb-list">
+
+                        <!-- #1 - Crown -->
+                        <div class="lb-row lb-row--gold">
+                            <span class="lb-rank" style="font-size: 1.1rem;">&#9819;</span>
+                            <span class="lb-name">Wasiq Manzoor</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- #2 -->
+                        <div class="lb-row lb-row--silver">
+                            <span class="lb-rank">#2</span>
+                            <span class="lb-name">Maria Tariq</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- #3 -->
+                        <div class="lb-row lb-row--bronze">
+                            <span class="lb-rank">#3</span>
+                            <span class="lb-name">Maryam Ahmad</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- #4 -->
+                        <div class="lb-row">
+                            <span class="lb-rank">#4</span>
+                            <span class="lb-name">Emad Adnan</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- #5 -->
+                        <div class="lb-row">
+                            <span class="lb-rank">#5</span>
+                            <span class="lb-name">Saad Shakeel</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- #6 -->
+                        <div class="lb-row">
+                            <span class="lb-rank">#6</span>
+                            <span class="lb-name">Iqra Tariq</span>
+                            <a href="#" class="lb-social" aria-label="LinkedIn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- How to Contribute -->
+            <section class="cp-contribute-section">
+                <div class="container">
+                    <h2 class="cp-section-title">How to Contribute</h2>
+                    <p class="cp-section-desc">UniCalc is built and maintained by students like you. Here are the ways you can help.</p>
+
+                    <div class="cp-contribute-grid">
+                        <div class="cp-contribute-card">
+                            <div class="cp-contribute-icon">%</div>
+                            <h3>Merit Data</h3>
+                            <p>Help us keep closing merits accurate and up-to-date. If you have verified merit data for any university, campus, or program — share it with us.</p>
+                        </div>
+                        <div class="cp-contribute-card">
+                            <div class="cp-contribute-icon">&Sigma;</div>
+                            <h3>Formulas & Patterns</h3>
+                            <p>Know the exact aggregate formula or test pattern for a university we haven't covered yet? Let us know and we'll add it.</p>
+                        </div>
+                        <div class="cp-contribute-card">
+                            <div class="cp-contribute-icon">&lt;/&gt;</div>
+                            <h3>Development</h3>
+                            <p>If you're a developer and want to help improve the platform — whether it's fixing bugs, adding features, or improving the UI — reach out.</p>
+                        </div>
+                    </div>
+
+                    <div class="cp-cta-box">
+                        <p>If you want to contribute in any way, drop me an email.</p>
+                        <a href="mailto:hi@azanw.com" class="cp-btn cp-btn-primary">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            hi@azanw.com
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- /.cp-page -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <h2 class="footer-headline">UNICALC</h2>
+                </div>
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Community</h4>
+                        <a href="https://github.com" target="_blank" class="link-hover">GitHub</a>
+                        <a href="contributors.html" class="link-hover">Contributors</a>
+                        <a href="#" class="link-hover">Discord</a>
+                        <a href="mailto:hello@unicalc.pk" class="link-hover">Contact</a>
+                    </div>
+                    <div class="footer-col subscribe">
+                        <h4>Stay Updated</h4>
+                        <p>New universities added weekly.</p>
+                        <div class="input-group">
+                            <input type="email" placeholder="Enter email" class="input-minimal">
+                            <button class="btn-arrow">&#8594;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">UniCalc - Your Merit Calculator</div>
+                    <div class="maker">Crafted by <a href="#" class="link-underline">Azan</a></div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navCenter = document.querySelector('.nav-center');
+        if (mobileToggle && navCenter) {
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('active');
+                navCenter.classList.toggle('mobile-open');
+                document.body.classList.toggle('menu-open');
+            });
+            navCenter.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    navCenter.classList.remove('mobile-open');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+        }
+
+    </script>
+</body>
+</html>

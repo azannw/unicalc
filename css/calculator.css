@@ -1,0 +1,1968 @@
+/* =====================================================
+   UniCalc — Calculator Page Styles
+   Only loaded on calculator pages
+   ===================================================== */
+
+.app-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* App Container */
+.app-container {
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Tabs */
+.app-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.tab-btn:hover:not(:disabled) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.tab-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Content Switching */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Forms */
+.form-section {
+    margin-bottom: 24px;
+}
+
+.section-label {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.form-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+}
+
+.toggle-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.toggle-option {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.toggle-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.toggle-option input:checked+.toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 16px 0;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.input-divider {
+    color: var(--text-secondary);
+    margin: 0 8px;
+}
+
+.field-hint {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.pill-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pill-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.pill-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.pill-option input:checked+.pill-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.nu-test-calculator-banner {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.nu-test-calculator-banner h4 {
+    margin-bottom: 4px;
+    font-size: 1rem;
+    color: var(--accent);
+}
+
+.nu-test-calculator-banner p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.calc-form .btn-block {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    width: auto;
+    min-width: 200px;
+    justify-content: center;
+}
+
+/* Results View */
+.aggregate-display {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.circular-progress-container {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
+}
+
+.circular-progress {
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+
+.circular-progress svg {
+    width: 160px;
+    height: 160px;
+    transform: rotate(-90deg);
+}
+
+.circular-progress circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 8;
+}
+
+.circular-progress .progress-ring {
+    stroke: var(--accent);
+    stroke-dasharray: 440;
+    stroke-dashoffset: var(--dash-offset, 440);
+    transition: stroke-dashoffset 1.5s ease-out;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.inner-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+}
+
+.score-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.breakdown-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breakdown-row:last-child {
+    border-bottom: none;
+}
+
+.breakdown-value {
+    font-family: monospace;
+    color: var(--accent);
+}
+
+.admission-prediction {
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.result-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Pattern Tab */
+.content-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 32px;
+    border-radius: 16px;
+}
+
+.pattern-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.pattern-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pattern-row span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.pattern-row strong {
+    font-size: 1.2rem;
+}
+
+.subject-table {
+    margin: 32px 0;
+}
+
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-row.header {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pattern-tags {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.tag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tag.negative {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.join-group-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 100;
+}
+
+.btn-success {
+    background: #10b981;
+    border: none;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+/* =====================================================
+   Calculator Page Styles
+   ===================================================== */
+
+.calculator-page {
+    min-height: 100vh;
+    padding: calc(var(--header-height) + 40px) 0 80px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.calc-page-header {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-link {
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: var(--text-primary);
+}
+
+.breadcrumb-sep {
+    color: var(--text-tertiary);
+}
+
+.breadcrumb-current {
+    color: var(--text-primary);
+}
+
+.calc-page-title {
+    font-size: clamp(3rem, 10vw, 5rem);
+    margin-bottom: 20px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.calc-page-subtitle {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main Calculator Container */
+.calc-main-container {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 0;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    overflow: visible;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* Tab Navigation */
+.calc-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 10, 0.5);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.calc-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.calc-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.calc-tab:hover:not(:disabled) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.calc-tab.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--accent);
+}
+
+.calc-tab:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.tab-label {
+    display: block;
+}
+
+/* Tab Content */
+.calc-tab-content {
+    display: none;
+    padding: 40px;
+    animation: fadeIn 0.4s ease;
+}
+
+.calc-tab-content.active {
+    display: block;
+}
+
+/* Form Styles */
+.calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+/* Select Wrapper */
+.select-wrapper {
+    position: relative;
+}
+
+.form-select {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-select:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.select-arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Toggle Group */
+.toggle-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.toggle-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.toggle-btn {
+    display: block;
+    padding: 12px 24px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.toggle-option input:checked+.toggle-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.toggle-option:hover .toggle-btn {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.input-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.5);
+}
+
+.input-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.input-weight {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    background: rgba(5, 5, 5, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input-total {
+    flex: 0 0 auto;
+    width: 90px;
+    min-width: 80px;
+    background: rgba(10, 10, 10, 0.8);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    text-align: center;
+}
+
+.input-separator {
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.input-hint {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+}
+
+/* Pill Group */
+.pill-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pill-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.pill-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pill-btn {
+    display: block;
+    padding: 10px 20px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.pill-option input:checked+.pill-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.pill-option:hover .pill-btn {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* NU Calculator Banner */
+.nu-calc-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    gap: 24px;
+    transition: all 0.3s ease;
+}
+
+.nu-calc-banner:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.banner-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.banner-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-block {
+    width: auto;
+    min-width: 220px;
+}
+
+/* Results Tab Styles */
+.results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.results-header h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.aggregate-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.aggregate-circle {
+    position: relative;
+    width: 240px;
+    height: 240px;
+}
+
+.progress-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-background {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+}
+
+.progress-ring-fill {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 534;
+    /* 2 * pi * 85 */
+    stroke-dashoffset: 534;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aggregate-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.aggregate-value {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.aggregate-unit {
+    font-size: 2rem;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.aggregate-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.aggregate-status {
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-badge.pending {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+.status-badge.low {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.status-badge.medium {
+    background: rgba(234, 179, 8, 0.2);
+    color: #eab308;
+}
+
+.status-badge.high {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+/* Breakdown Section */
+.breakdown-section h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+}
+
+.breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.breakdown-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.breakdown-label {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.breakdown-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.breakdown-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.breakdown-value {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Prediction Card */
+.prediction-card {
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.prediction-header h4 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.prediction-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Formula Card */
+.formula-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+}
+
+.formula-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.formula-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.formula-card strong {
+    color: var(--text-primary);
+}
+
+/* Results Actions */
+.results-actions {
+    display: flex;
+    gap: 16px;
+}
+
+/* Pattern Tab Styles */
+.pattern-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.pattern-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pattern-icon {
+    font-size: 2rem;
+}
+
+.pattern-header h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.pattern-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.pattern-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.pattern-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.subject-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subject-section h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+}
+
+.subject-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.subject-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.subject-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.subject-count {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.pattern-tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pattern-tag {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.pattern-tag.negative {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pattern-note {
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.pattern-note strong {
+    color: var(--text-primary);
+}
+
+/* Merit Tab Styles */
+.merit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.merit-header h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.merit-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Campus Filter */
+.merit-campus-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.merit-filter-btn {
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.merit-filter-btn:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.merit-filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.merit-filter-select {
+    width: 100%;
+    max-width: 360px;
+}
+
+.merit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.merit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.merit-item:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.5);
+}
+
+.merit-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.merit-program {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.merit-campus {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.merit-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Merit Campus Table Styles */
+.merit-campus-section {
+    margin-bottom: 32px;
+}
+
+.merit-campus-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.merit-table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.merit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.merit-table thead {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.merit-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.merit-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+}
+
+.merit-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.merit-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.merit-value-cell {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.merit-note {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.merit-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Pattern Tag Styles */
+.pattern-tag.positive {
+    background: rgba(34, 197, 94, 0.15);
+    color: rgb(34, 197, 94);
+}
+
+.pattern-tag.info {
+    background: rgba(59, 130, 246, 0.15);
+    color: rgb(59, 130, 246);
+}
+
+.pattern-no-test {
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.no-test-message {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.pattern-alt-note {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.pattern-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .merit-table th,
+    .merit-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .merit-campus-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Facts Tab Styles */
+.facts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.facts-header h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.fact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.fact-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.5);
+    transform: translateY(-2px);
+}
+
+.fact-icon {
+    font-size: 2.5rem;
+}
+
+.fact-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.fact-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =====================================================
+   CALCULATOR RESPONSIVE DESIGN
+   ===================================================== */
+
+/* Tablet Portrait (768px) */
+@media (max-width: 768px) {
+    /* Calculator Page */
+    .calculator-page {
+        padding: calc(var(--header-height) + 20px) 0 40px;
+    }
+
+    .calc-page-header {
+        margin-bottom: 40px;
+    }
+
+    .calc-page-title {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+
+    .calc-main-container {
+        border-radius: 16px;
+    }
+
+    .calc-tab {
+        padding: 14px 10px;
+        font-size: 0.8rem;
+        min-width: 80px;
+    }
+
+    .calc-tab-content {
+        padding: 24px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .input-card {
+        padding: 18px;
+    }
+
+    .nu-calc-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .aggregate-circle {
+        width: 180px;
+        height: 180px;
+    }
+
+    .aggregate-value {
+        font-size: 2.2rem;
+    }
+
+    .aggregate-unit {
+        font-size: 1.3rem;
+    }
+
+    .breakdown-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .breakdown-value {
+        text-align: left;
+    }
+
+    .results-actions {
+        flex-direction: column;
+    }
+
+    .pattern-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fact-card {
+        padding: 24px;
+    }
+}
+
+/* Mobile Large (576px) */
+@media (max-width: 576px) {
+    /* Input fixes for mobile */
+    .input-row {
+        gap: 8px;
+    }
+
+    .form-input-total {
+        width: 80px;
+        min-width: 70px;
+        padding: 12px 10px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    /* Calculator Page */
+    .calculator-page {
+        padding: calc(var(--header-height) + 16px) 0 30px;
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .calc-page-header {
+        margin-bottom: 30px;
+    }
+
+    .calc-page-title {
+        font-size: clamp(1.8rem, 12vw, 2.8rem);
+    }
+
+    .calc-page-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .calc-main-container {
+        border-radius: 12px;
+    }
+
+    .calc-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .calc-tab {
+        padding: 12px 8px;
+        font-size: 0.75rem;
+        min-width: 70px;
+    }
+
+    .calc-tab-content {
+        padding: 20px 14px;
+        padding-bottom: 30px;
+    }
+
+    .calc-form {
+        gap: 24px;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .toggle-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .toggle-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .input-card {
+        padding: 16px;
+    }
+
+    .input-label {
+        font-size: 0.9rem;
+    }
+
+    .input-weight {
+        font-size: 0.8rem;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    .pill-group {
+        gap: 8px;
+    }
+
+    .pill-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+
+    .nu-calc-banner {
+        padding: 16px;
+    }
+
+    .banner-content h4 {
+        font-size: 1rem;
+    }
+
+    .banner-content p {
+        font-size: 0.85rem;
+    }
+
+    .aggregate-circle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .aggregate-value {
+        font-size: 2rem;
+    }
+
+    .aggregate-unit {
+        font-size: 1.2rem;
+    }
+
+    .breakdown-section h4 {
+        font-size: 1.1rem;
+    }
+
+    .breakdown-item {
+        padding: 16px;
+    }
+
+    .breakdown-label {
+        font-size: 0.9rem;
+    }
+
+    .breakdown-value {
+        font-size: 1rem;
+    }
+
+    .pattern-card {
+        padding: 18px;
+    }
+
+    .pattern-label {
+        font-size: 0.85rem;
+    }
+
+    .pattern-value {
+        font-size: 1.3rem;
+    }
+
+    .subject-item {
+        padding: 14px 16px;
+    }
+
+    .fact-card {
+        padding: 20px;
+    }
+
+    .fact-icon {
+        font-size: 2rem;
+    }
+
+    .fact-card h4 {
+        font-size: 1.1rem;
+    }
+
+    .fact-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Calculator Form Actions - mobile */
+    .calc-form .form-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .calc-form .form-actions .btn-block {
+        width: auto;
+        min-width: 180px;
+        padding: 11px 28px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Mobile Small (400px and below) */
+@media (max-width: 400px) {
+    .calc-tab {
+        min-width: 60px;
+        font-size: 0.7rem;
+    }
+
+    /* Calculator Page - Extra small mobile */
+    .calc-tab-content {
+        padding: 16px 12px;
+    }
+
+    .input-card {
+        padding: 14px;
+    }
+
+    .input-row {
+        gap: 6px;
+    }
+
+    .form-input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .form-input-total {
+        width: 70px;
+        min-width: 60px;
+        padding: 10px 8px;
+        text-align: center;
+        font-size: 0.85rem;
+    }
+
+    .input-separator {
+        font-size: 0.85rem;
+    }
+}
+
+/* =====================================================
+   Prediction Model Output Styles
+   ===================================================== */
+
+.prediction-campus {
+    margin-bottom: 20px;
+}
+
+.prediction-campus:last-child {
+    margin-bottom: 0;
+}
+
+.prediction-campus-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.prediction-programs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prediction-program-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    gap: 12px;
+}
+
+.prediction-program-name {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prediction-probability {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.prediction-probability.high {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.prediction-probability.good {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.prediction-probability.low {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.prediction-probability.poor {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.prediction-note {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.prediction-test-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: 8px;
+}
+
+.merit-test-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Mobile responsiveness for prediction */
+@media (max-width: 576px) {
+    .prediction-program-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 10px 12px;
+    }
+
+    .prediction-program-name {
+        font-size: 0.85rem;
+    }
+
+    .prediction-probability {
+        font-size: 0.85rem;
+        padding: 3px 10px;
+    }
+
+    .prediction-campus-title {
+        font-size: 0.85rem;
+    }
+}
+
+/* =====================================================
+   Merit Table Mobile Responsiveness
+   ===================================================== */
+
+.merit-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -4px;
+    padding: 0 4px;
+}
+
+@media (max-width: 576px) {
+    .merit-table {
+        font-size: 0.85rem;
+    }
+
+    .merit-table th,
+    .merit-table td {
+        padding: 10px 8px;
+    }
+
+    .merit-campus-title {
+        font-size: 1rem;
+    }
+
+    .merit-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .merit-subtitle {
+        font-size: 0.85rem;
+    }
+}

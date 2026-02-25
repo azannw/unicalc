@@ -74,18 +74,6 @@
     "defaultTestTotal": 100
   },
   {
-    "id": "qau",
-    "name": "Quaid-e-Azam University",
-    "shortName": "QAU",
-    "formula": {
-      "matric": 10,
-      "inter": 40,
-      "test": 50
-    },
-    "testTypes": ["nat", "nts"],
-    "defaultTestTotal": 100
-  },
-  {
     "id": "pu",
     "name": "Punjab University",
     "shortName": "PU",
@@ -206,28 +194,15 @@
     "defaultTestTotal": 100
   },
   {
-    "id": "lums",
-    "name": "LUMS",
-    "shortName": "LUMS",
+    "id": "uet-taxila",
+    "name": "UET Taxila",
+    "shortName": "UET Taxila",
     "formula": {
-      "matric": 0,
-      "inter": 0,
-      "test": 100
+      "matric": 17,
+      "inter": 50,
+      "test": 33
     },
-    "testTypes": ["sat", "lcat"],
-    "defaultTestTotal": 1600,
-    "notes": "Holistic admission process"
-  },
-  {
-    "id": "iba",
-    "name": "IBA Karachi",
-    "shortName": "IBA",
-    "formula": {
-      "matric": 10,
-      "inter": 40,
-      "test": 50
-    },
-    "testTypes": ["iba", "sat"],
-    "defaultTestTotal": 100
+    "testTypes": ["ecat"],
+    "defaultTestTotal": 400
   }
 ]
