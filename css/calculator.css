@@ -1968,3 +1968,129 @@
         font-size: 0.85rem;
     }
 }
+
+/* =====================================================
+   LIGHT THEME OVERRIDES — Calculator
+   ===================================================== */
+[data-theme="light"] .app-container,
+[data-theme="light"] .calc-main-container {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .app-tabs,
+[data-theme="light"] .calc-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .tab-btn:hover:not(:disabled),
+[data-theme="light"] .calc-tab:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .input-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .form-input {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+[data-theme="light"] .form-input:focus {
+    border-color: var(--accent);
+    background: #ffffff;
+}
+[data-theme="light"] .form-select {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+[data-theme="light"] .toggle-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: transparent;
+    color: var(--text-secondary);
+}
+[data-theme="light"] .toggle-option input:checked + .toggle-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+[data-theme="light"] .pill-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+}
+[data-theme="light"] .pill-option input:checked + .pill-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+[data-theme="light"] .aggregate-display {
+    background: transparent;
+}
+[data-theme="light"] .progress-ring-background {
+    stroke: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .breakdown-item {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .breakdown-bar {
+    background: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .prediction-card {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .formula-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .nu-calc-banner {
+    background: rgba(37, 99, 235, 0.04);
+    border-color: rgba(37, 99, 235, 0.12);
+}
+[data-theme="light"] .merit-table th {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .merit-table td {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .merit-table tr:hover td {
+    background: rgba(0, 0, 0, 0.02);
+}
+[data-theme="light"] .merit-campus-section {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .prediction-program-row {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .prediction-campus-title {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .pattern-section {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .pattern-table th {
+    background: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .pattern-table td,
+[data-theme="light"] .pattern-table th {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .calc-page-header .breadcrumb-link {
+    color: var(--text-secondary);
+}
+[data-theme="light"] .hero-bg .bg-image {
+    opacity: 0.15;
+}
+[data-theme="light"] .gradient-sphere {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+}
+[data-theme="light"] .gradient-sphere.secondary {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+}
+[data-theme="light"] .bg-grid {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}

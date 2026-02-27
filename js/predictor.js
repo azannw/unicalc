@@ -581,21 +581,60 @@ function shareWhatsApp() {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
 }
 
+// Lazy-load export libraries on first use
+let _html2canvasLoaded = false;
+let _jspdfLoaded = false;
+
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+    });
+}
+
+async function ensureHtml2Canvas() {
+    if (typeof html2canvas !== 'undefined') return;
+    if (!_html2canvasLoaded) {
+        _html2canvasLoaded = true;
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    }
+}
+
+async function ensureJsPDF() {
+    if (typeof jspdf !== 'undefined') return;
+    if (!_jspdfLoaded) {
+        _jspdfLoaded = true;
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    }
+}
+
 async function captureCard() {
     const card = document.getElementById('resultCard');
-    if (!card || typeof html2canvas === 'undefined') return null;
-    return html2canvas(card, { backgroundColor: '#0a0a0a', scale: 2, useCORS: true, logging: false });
+    if (!card) return null;
+    await ensureHtml2Canvas();
+    if (typeof html2canvas === 'undefined') return null;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    return html2canvas(card, { backgroundColor: isLight ? '#ffffff' : '#0a0a0a', scale: 2, useCORS: true, logging: false });
 }
 
 async function downloadPDF() {
+    await ensureJsPDF();
     const canvas = await captureCard();
     if (!canvas || typeof jspdf === 'undefined') return;
     const { jsPDF } = jspdf;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
     const imgData = canvas.toDataURL('image/png');
     const pdfImgWidth = 170;
     const pdfImgHeight = (canvas.height / canvas.width) * pdfImgWidth;
     const pdf = new jsPDF('p', 'mm', 'a4');
-    pdf.setFillColor(10, 10, 10);
+    if (isLight) {
+        pdf.setFillColor(255, 255, 255);
+    } else {
+        pdf.setFillColor(10, 10, 10);
+    }
     pdf.rect(0, 0, 210, 297, 'F');
     pdf.addImage(imgData, 'PNG', 20, 20, pdfImgWidth, pdfImgHeight);
     pdf.setFontSize(9);

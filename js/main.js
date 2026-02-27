@@ -1,6 +1,41 @@
 // =====================================================
-// UniCalc — Interaction Engine v3.1
+// UniCalc — Interaction Engine v3.2
 // =====================================================
+
+// === Theme Toggle ===
+(function initTheme() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    function getPreferredTheme() {
+        const stored = localStorage.getItem('unicalc-theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('unicalc-theme', theme);
+    }
+
+    // Apply on load (head script already handles flash prevention, this syncs the toggle)
+    applyTheme(getPreferredTheme());
+
+    toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('unicalc-theme')) {
+            applyTheme(e.matches ? 'light' : 'dark');
+        }
+    });
+})();
+
+// === Touch Device Detection ===
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
 const universities = [
     { id: 'fast', name: 'FAST', fullName: 'National University of Computer & Emerging Sciences', category: ['cs', 'engineering'] },
@@ -95,7 +130,7 @@ function animateCounter(el, target) {
 // === Custom 3D Tilt Effect with Mathematical Functions ===
 const meritEngine = document.getElementById('meritEngine');
 
-if (meritEngine) {
+if (meritEngine && !isTouchDevice) {
     let isHovering = false;
     let currentX = 0;
     let currentY = 0;
@@ -321,59 +356,64 @@ faqItems.forEach(item => {
     });
 });
 
-// === Mouse Move Parallax for Hero Spheres ===
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    
-    const spheres = document.querySelectorAll('.gradient-sphere');
-    spheres.forEach((sphere, index) => {
-        const speed = (index + 1) * 20;
-        const moveX = (x * speed) - (speed / 2);
-        const moveY = (y * speed) - (speed / 2);
-        
-        sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    });
-    
-    const grid = document.querySelector('.bg-grid');
-    if (grid) {
-        const gridX = (x * 10) - 5;
-        const gridY = (y * 10) - 5;
-        grid.style.transform = `perspective(500px) rotateX(20deg) translateY(-100px) scale(1.5) translate(${gridX}px, ${gridY}px)`;
-    }
-});
+// === Mouse Move Parallax for Hero Spheres (skip on touch devices) ===
+if (!isTouchDevice) {
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
 
-// === Magnetic Button Effect ===
-const magneticButtons = document.querySelectorAll('.magnetic, .magnetic-btn');
+        const spheres = document.querySelectorAll('.gradient-sphere');
+        spheres.forEach((sphere, index) => {
+            const speed = (index + 1) * 20;
+            const moveX = (x * speed) - (speed / 2);
+            const moveY = (y * speed) - (speed / 2);
 
-magneticButtons.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const strength = btn.classList.contains('magnetic-btn') ? 0.3 : 0.15;
-        
-        btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-    });
-    
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0)';
-    });
-});
+            sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
 
-// === Card Glow Effect ===
+        const grid = document.querySelector('.bg-grid');
+        if (grid) {
+            const gridX = (x * 10) - 5;
+            const gridY = (y * 10) - 5;
+            grid.style.transform = `perspective(500px) rotateX(20deg) translateY(-100px) scale(1.5) translate(${gridX}px, ${gridY}px)`;
+        }
+    }, { passive: true });
+}
+
+// === Magnetic Button Effect (desktop only) ===
+if (!isTouchDevice) {
+    const magneticButtons = document.querySelectorAll('.magnetic, .magnetic-btn');
+
+    magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const strength = btn.classList.contains('magnetic-btn') ? 0.3 : 0.15;
+
+            btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+        }, { passive: true });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// === Card Glow Effect (desktop only) ===
 function initCardGlow() {
+    if (isTouchDevice) return;
     const cards = document.querySelectorAll('.uni-card, .process-card, .testimonial-card');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             card.style.setProperty('--x', `${x}px`);
             card.style.setProperty('--y', `${y}px`);
-        });
+        }, { passive: true });
     });
 }
 

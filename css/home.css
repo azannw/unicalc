@@ -2138,6 +2138,125 @@
     }
 }
 
+/* =====================================================
+   LIGHT THEME OVERRIDES — Homepage
+   ===================================================== */
+[data-theme="light"] .btn-glass-outline {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-secondary);
+}
+[data-theme="light"] .btn-glass-outline:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-primary);
+}
+[data-theme="light"] .bg-grid {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+[data-theme="light"] .calculator-window {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .calculator-window:hover {
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.14), 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .window-header {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .input-mock {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .input-mock.active {
+    background: rgba(37, 99, 235, 0.05);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+[data-theme="light"] .bar {
+    background: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .calc-divider {
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+[data-theme="light"] .process-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .process-card:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .card-number {
+    color: rgba(0, 0, 0, 0.15);
+}
+[data-theme="light"] .uni-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .uni-card:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .filter-pill {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+    background: transparent;
+}
+[data-theme="light"] .filter-pill:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+[data-theme="light"] .filter-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+[data-theme="light"] .coverflow-card .card-glass {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .coverflow-btn {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+}
+[data-theme="light"] .coverflow-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .feature-strip {
+    background: var(--text-primary);
+}
+[data-theme="light"] .strip-text {
+    color: #ffffff;
+}
+[data-theme="light"] .strip-dot {
+    color: rgba(255, 255, 255, 0.3);
+}
+[data-theme="light"] .marquee-item {
+    color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .faq-item {
+    border-color: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.01);
+}
+[data-theme="light"] .faq-item.active {
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.08);
+}
+[data-theme="light"] .gradient-sphere {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+}
+[data-theme="light"] .gradient-sphere.secondary {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+}
+[data-theme="light"] .hero-bg .bg-image {
+    opacity: 0.15;
+}
+[data-theme="light"] .window-reflection {
+    display: none;
+}
+
 /* Print styles for homepage */
 @media print {
     .hero-bg,

@@ -21,6 +21,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/calculator.css">
+    <script>
+        (function(){var t=localStorage.getItem('unicalc-theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)})();
+    </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 
     <style>
@@ -46,7 +49,7 @@
             background: var(--bg-base);
         }
         .summary-stat .stat-value { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
-        .summary-stat .stat-label { font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+        .summary-stat .stat-label { font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
 
         /* Category tabs */
         .category-tabs {
@@ -72,7 +75,7 @@
         .category-tab:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.08); }
         .category-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
         .category-tab.active { background: rgba(255,255,255,0.08); color: var(--text-primary); }
-        .category-tab .tab-count { opacity: 0.5; font-size: 0.72em; margin-left: 4px; }
+        .category-tab .tab-count { opacity: 0.5; font-size: 0.8em; margin-left: 4px; }
 
         /* Filter pills */
         .filter-bar { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -82,7 +85,7 @@
             border: 1px solid rgba(255,255,255,0.06);
             background: transparent;
             color: var(--text-tertiary);
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -102,7 +105,7 @@
         .uni-grid-heading {
             display: block;
             font-family: var(--font-display);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-tertiary);
             text-transform: uppercase;
@@ -190,12 +193,12 @@
 
         .uni-card-info { flex: 1; min-width: 0; }
         .uni-long-name { font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .uni-card-meta { font-size: 0.72rem; color: var(--text-tertiary); margin-top: 1px; }
+        .uni-card-meta { font-size: 0.8rem; color: var(--text-tertiary); margin-top: 1px; }
 
         .chance-badge {
             padding: 3px 10px;
             border-radius: 4px;
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -213,7 +216,7 @@
         .uni-expand-icon {
             width: 24px; height: 24px;
             display: flex; align-items: center; justify-content: center;
-            color: var(--text-tertiary); font-size: 0.7rem;
+            color: var(--text-tertiary); font-size: 0.8rem;
             transition: transform 0.2s ease; flex-shrink: 0;
         }
         .uni-card.expanded .uni-expand-icon { transform: rotate(180deg); }
@@ -228,7 +231,7 @@
         .campus-group { margin-top: 14px; }
         .campus-group-title {
             font-family: var(--font-display);
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--accent);
             text-transform: uppercase;
@@ -250,12 +253,12 @@
 
         .prog-info { flex: 1; min-width: 0; }
         .prog-name-text { font-size: 0.82rem; font-weight: 500; color: var(--text-primary); }
-        .prog-meta { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 1px; }
+        .prog-meta { font-size: 0.8rem; color: var(--text-tertiary); margin-top: 1px; }
         .prog-test-badge {
             display: inline-block;
             padding: 1px 6px;
             border-radius: 3px;
-            font-size: 0.62rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.04em;
             background: rgba(59,130,246,0.1);
@@ -272,7 +275,7 @@
             text-align: right;
             flex-shrink: 0;
         }
-        .prog-marks-total { font-weight: 400; font-size: 0.72rem; color: var(--text-tertiary); }
+        .prog-marks-total { font-weight: 400; font-size: 0.8rem; color: var(--text-tertiary); }
 
         .prog-chance {
             flex-shrink: 0;
@@ -282,7 +285,7 @@
 
         .detail-formula {
             margin-top: 12px;
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             color: var(--text-tertiary);
             padding: 8px 10px;
             background: rgba(255,255,255,0.015);
@@ -316,10 +319,10 @@
             margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .result-card-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
-        .result-card-title { font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
+        .result-card-title { font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
         .result-card-marks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
         .result-mark-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 12px; }
-        .result-mark-label { font-size: 0.68rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-mark-label { font-size: 0.8rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
         .result-mark-value { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-top: 1px; }
         .result-card-unis { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
         .result-uni-row {
@@ -327,10 +330,10 @@
             background: rgba(255,255,255,0.02); border-radius: 8px; gap: 8px;
         }
         .result-uni-name { font-weight: 600; font-size: 0.82rem; min-width: 48px; }
-        .result-uni-info { flex: 1; font-size: 0.72rem; color: var(--text-tertiary); text-align: right; }
+        .result-uni-info { flex: 1; font-size: 0.8rem; color: var(--text-tertiary); text-align: right; }
         .result-card-footer {
             text-align: center; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
-            font-size: 0.78rem; color: var(--text-tertiary);
+            font-size: 0.8rem; color: var(--text-tertiary);
         }
         .result-card-footer strong { color: var(--accent); }
 
@@ -341,7 +344,7 @@
         .share-btn {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 8px 16px; border-radius: 8px;
-            font-weight: 500; font-size: 0.78rem;
+            font-weight: 500; font-size: 0.8rem;
             border: 1px solid rgba(255,255,255,0.08);
             background: transparent; color: var(--text-secondary);
             cursor: pointer; transition: all 0.2s ease;
@@ -365,7 +368,7 @@
         .restore-banner-text { font-size: 0.82rem; color: var(--text-secondary); }
         .restore-banner-actions { display: flex; gap: 6px; }
         .restore-btn {
-            padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+            padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;
             border: none; cursor: pointer; font-family: var(--font-body);
         }
         .restore-btn-yes { background: var(--accent); color: #fff; }
@@ -379,7 +382,7 @@
             .results-summary { grid-template-columns: repeat(2, 1fr); }
             .summary-stat { padding: 12px 8px; }
             .summary-stat .stat-value { font-size: 1.05rem; }
-            .summary-stat .stat-label { font-size: 0.6rem; }
+            .summary-stat .stat-label { font-size: 0.8rem; }
 
             .category-tabs { width: 100%; display: flex; }
             .category-tab { flex: 1; text-align: center; padding: 9px 12px; font-size: 0.78rem; }
@@ -387,8 +390,8 @@
             .uni-card-header { padding: 12px 14px; gap: 8px; }
             .uni-short-name { font-size: 0.95rem; min-width: 40px; }
             .uni-long-name { font-size: 0.75rem; }
-            .uni-card-meta { font-size: 0.68rem; }
-            .uni-card-header .chance-badge { font-size: 0.58rem; padding: 2px 7px; letter-spacing: 0; }
+            .uni-card-meta { font-size: 0.8rem; }
+            .uni-card-header .chance-badge { font-size: 0.8rem; padding: 3px 8px; letter-spacing: 0; }
 
             .uni-detail-inner { padding: 0 14px 14px; }
             .program-row { gap: 6px; padding: 8px 0; flex-wrap: wrap; }
@@ -402,7 +405,7 @@
             .result-card-marks { grid-template-columns: 1fr 1fr; gap: 6px; }
 
             .share-buttons { gap: 6px; }
-            .share-btn { padding: 7px 12px; font-size: 0.72rem; }
+            .share-btn { padding: 7px 12px; font-size: 0.8rem; }
 
             .btn-calc-link { width: 100%; justify-content: center; font-size: 0.78rem; }
 
@@ -413,6 +416,39 @@
             .results-summary { grid-template-columns: repeat(2, 1fr); }
             .summary-stat .stat-value { font-size: 0.95rem; }
         }
+
+        /* Light theme overrides for predictor */
+        [data-theme="light"] .results-summary { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .summary-stat { background: var(--bg-base); }
+        [data-theme="light"] .category-tabs { border-color: rgba(0,0,0,0.1); }
+        [data-theme="light"] .category-tab:not(:last-child) { border-right-color: rgba(0,0,0,0.1); }
+        [data-theme="light"] .category-tab:hover { background: rgba(0,0,0,0.03); }
+        [data-theme="light"] .category-tab.active { background: rgba(0,0,0,0.06); }
+        [data-theme="light"] .filter-pill { border-color: rgba(0,0,0,0.08); color: var(--text-secondary); }
+        [data-theme="light"] .filter-pill:hover { border-color: rgba(0,0,0,0.15); }
+        [data-theme="light"] .filter-pill.active { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.12); }
+        [data-theme="light"] .uni-card { background: rgba(0,0,0,0.01); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .uni-card:hover { border-color: rgba(0,0,0,0.12); }
+        [data-theme="light"] .uni-card.expanded { border-color: rgba(37,99,235,0.3); }
+        [data-theme="light"] .uni-card-detail { }
+        [data-theme="light"] .uni-detail-inner { border-top-color: rgba(0,0,0,0.06); }
+        [data-theme="light"] .campus-group-title { border-bottom-color: rgba(0,0,0,0.06); }
+        [data-theme="light"] .program-row { border-bottom-color: rgba(0,0,0,0.04); }
+        [data-theme="light"] .detail-formula { background: rgba(0,0,0,0.02); }
+        [data-theme="light"] .btn-calc-link { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .btn-calc-link:hover { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.12); }
+        [data-theme="light"] .result-card { background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .result-card-header { border-bottom-color: rgba(0,0,0,0.06); }
+        [data-theme="light"] .result-mark-item { background: rgba(0,0,0,0.02); }
+        [data-theme="light"] .result-uni-row { background: rgba(0,0,0,0.02); }
+        [data-theme="light"] .result-card-footer { border-top-color: rgba(0,0,0,0.06); }
+        [data-theme="light"] .share-btn { border-color: rgba(0,0,0,0.1); color: var(--text-secondary); }
+        [data-theme="light"] .share-btn:hover { background: rgba(0,0,0,0.03); }
+        [data-theme="light"] .restore-banner { background: rgba(37,99,235,0.04); border-color: rgba(37,99,235,0.1); }
+        [data-theme="light"] .restore-btn-no { background: rgba(0,0,0,0.04); color: var(--text-secondary); }
+        [data-theme="light"] .uni-grid-btn { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.01); color: var(--text-secondary); }
+        [data-theme="light"] .uni-grid-btn:hover { border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.03); }
+        [data-theme="light"] .uni-grid-btn.active { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.25); color: #2563eb; }
     </style>
 </head>
 <body>
@@ -430,6 +466,10 @@
                     </div>
                 </div>
                 <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
                     <a href="../index.html" class="btn btn-primary btn-nav magnetic-btn">
                         <span class="btn-text">Home</span>
                         <span class="btn-icon">&larr;</span>
@@ -576,9 +616,6 @@
         </footer>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-    <script src="../js/vanilla-tilt.js"></script>
     <script src="../js/meritData.js"></script>
     <script src="../js/universityConfigs.js"></script>
     <script src="../js/main.js"></script>
