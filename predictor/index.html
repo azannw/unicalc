@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Predictor — UniCalc</title>
+    <meta name="description" content="Enter your matric and intermediate marks to see which Pakistani universities you can target. Get required entry test marks for every program.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Admission Predictor — UniCalc">
+    <meta property="og:description" content="Enter your marks and see which universities you can get into. Required entry test marks for 15+ universities.">
+    <meta property="og:image" content="https://unicalc.pk/og-image.png">
+    <meta property="og:url" content="https://unicalc.pk/predictor/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Admission Predictor — UniCalc">
+    <meta name="twitter:description" content="Enter your marks and see which universities you can get into.">
+    <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/calculator.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
+
+    <style>
+        /* ---- Predictor Results ---- */
+        .predictor-results { display: none; margin-top: 40px; }
+        .predictor-results.visible { display: block; animation: fadeSlideUp 0.4s ease; }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Summary bar */
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .summary-stat {
+            padding: 16px 12px;
+            text-align: center;
+            background: var(--bg-base);
+        }
+        .summary-stat .stat-value { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+        .summary-stat .stat-label { font-size: 0.65rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+
+        /* Category tabs */
+        .category-tabs {
+            display: inline-flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .category-tab {
+            padding: 9px 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .category-tab:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.08); }
+        .category-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+        .category-tab.active { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+        .category-tab .tab-count { opacity: 0.5; font-size: 0.72em; margin-left: 4px; }
+
+        /* Filter pills */
+        .filter-bar { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-pill {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: transparent;
+            color: var(--text-tertiary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-body);
+        }
+        .filter-pill:hover { border-color: rgba(255,255,255,0.15); color: var(--text-secondary); }
+        .filter-pill.active { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: var(--text-primary); }
+        .filter-pill .filter-count { opacity: 0.5; margin-left: 3px; font-size: 0.85em; }
+
+        /* University Grid Selector */
+        .uni-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .uni-grid-btn {
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.02);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .uni-grid-btn:hover {
+            border-color: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+        }
+        .uni-grid-btn.active {
+            background: rgba(59,130,246,0.15);
+            border-color: rgba(59,130,246,0.35);
+            color: #93b5f7;
+            font-weight: 600;
+        }
+        .uni-grid-btn.active:hover {
+            background: rgba(59,130,246,0.22);
+        }
+
+        /* University cards grid */
+        .uni-cards-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        @media (min-width: 768px) { .uni-cards-grid { grid-template-columns: 1fr 1fr; } }
+
+        /* University card */
+        .uni-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+        .uni-card:hover { border-color: rgba(255,255,255,0.1); }
+        .uni-card.expanded { grid-column: 1 / -1; border-color: rgba(59,130,246,0.25); }
+        .uni-card.rank-card { border-color: rgba(139,92,246,0.2); }
+
+        .uni-card-header {
+            width: 100%;
+            padding: 14px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            -webkit-tap-highlight-color: transparent;
+            background: transparent;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+            color: inherit;
+            outline: none;
+        }
+        .uni-card-header:focus-visible {
+            box-shadow: inset 0 0 0 2px var(--accent);
+            border-radius: 12px;
+        }
+        .uni-short-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 48px;
+            flex-shrink: 0;
+        }
+        .rank-card .uni-short-name { color: #8b5cf6; }
+
+        .uni-card-info { flex: 1; min-width: 0; }
+        .uni-long-name { font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .uni-card-meta { font-size: 0.72rem; color: var(--text-tertiary); margin-top: 1px; }
+
+        .chance-badge {
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .chance-safe { background: rgba(34,197,94,0.12); color: #22c55e; }
+        .chance-very-likely { background: rgba(59,130,246,0.12); color: #3b82f6; }
+        .chance-achievable { background: rgba(6,182,212,0.12); color: #06b6d4; }
+        .chance-challenging { background: rgba(245,158,11,0.12); color: #f59e0b; }
+        .chance-stretch { background: rgba(249,115,22,0.12); color: #f97316; }
+        .chance-not-achievable { background: rgba(239,68,68,0.1); color: #ef4444; }
+        .chance-rank { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+
+        .uni-expand-icon {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-tertiary); font-size: 0.7rem;
+            transition: transform 0.2s ease; flex-shrink: 0;
+        }
+        .uni-card.expanded .uni-expand-icon { transform: rotate(180deg); }
+
+        /* Expanded detail */
+        .uni-card-detail { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .uni-card.expanded .uni-card-detail { max-height: 5000px; }
+
+        .uni-detail-inner { padding: 0 16px 16px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        /* Campus group in expanded detail */
+        .campus-group { margin-top: 14px; }
+        .campus-group-title {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 6px;
+        }
+
+        /* Program row */
+        .program-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.025);
+        }
+        .program-row:last-child { border-bottom: none; }
+
+        .prog-info { flex: 1; min-width: 0; }
+        .prog-name-text { font-size: 0.82rem; font-weight: 500; color: var(--text-primary); }
+        .prog-meta { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 1px; }
+        .prog-test-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            background: rgba(59,130,246,0.1);
+            color: var(--accent);
+            vertical-align: middle;
+        }
+
+        .prog-marks {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            min-width: 44px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .prog-marks-total { font-weight: 400; font-size: 0.72rem; color: var(--text-tertiary); }
+
+        .prog-chance {
+            flex-shrink: 0;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .detail-formula {
+            margin-top: 12px;
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.015);
+            border-radius: 6px;
+        }
+        .detail-actions { margin-top: 12px; }
+
+        .rank-message { padding: 14px 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+
+        /* Calculator link button */
+        .btn-calc-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 8px;
+            font-weight: 600; font-size: 0.8rem; font-family: var(--font-body);
+            background: rgba(255,255,255,0.05); color: var(--text-secondary);
+            text-decoration: none; border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.2s ease;
+        }
+        .btn-calc-link:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); border-color: rgba(255,255,255,0.15); }
+
+        /* Result card */
+        .result-card-section { display: none; margin-top: 40px; }
+        .result-card-section.visible { display: block; animation: fadeSlideUp 0.4s ease 0.1s both; }
+        .result-card {
+            background: linear-gradient(145deg, #0a0a0a 0%, #111111 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 28px; max-width: 520px; margin: 0 auto;
+        }
+        .result-card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .result-card-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+        .result-card-title { font-size: 0.72rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
+        .result-card-marks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+        .result-mark-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 12px; }
+        .result-mark-label { font-size: 0.68rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+        .result-mark-value { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-top: 1px; }
+        .result-card-unis { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+        .result-uni-row {
+            display: flex; align-items: center; padding: 8px 10px;
+            background: rgba(255,255,255,0.02); border-radius: 8px; gap: 8px;
+        }
+        .result-uni-name { font-weight: 600; font-size: 0.82rem; min-width: 48px; }
+        .result-uni-info { flex: 1; font-size: 0.72rem; color: var(--text-tertiary); text-align: right; }
+        .result-card-footer {
+            text-align: center; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.78rem; color: var(--text-tertiary);
+        }
+        .result-card-footer strong { color: var(--accent); }
+
+        /* Share buttons */
+        .share-buttons {
+            display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+        }
+        .share-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 8px;
+            font-weight: 500; font-size: 0.78rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: transparent; color: var(--text-secondary);
+            cursor: pointer; transition: all 0.2s ease;
+            font-family: var(--font-body);
+        }
+        .share-btn:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); border-color: rgba(255,255,255,0.15); }
+        .share-btn-whatsapp { color: #25D366; border-color: rgba(37,211,102,0.2); }
+        .share-btn-whatsapp:hover { background: rgba(37,211,102,0.08); }
+        .share-btn-pdf { color: #ef4444; border-color: rgba(239,68,68,0.15); }
+        .share-btn-pdf:hover { background: rgba(239,68,68,0.06); }
+        .share-btn-image { color: #3b82f6; border-color: rgba(59,130,246,0.15); }
+        .share-btn-image:hover { background: rgba(59,130,246,0.06); }
+
+        /* Restore banner */
+        .restore-banner {
+            background: rgba(59,130,246,0.04); border: 1px solid rgba(59,130,246,0.1);
+            border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            flex-wrap: wrap; animation: fadeSlideUp 0.3s ease;
+        }
+        .restore-banner-text { font-size: 0.82rem; color: var(--text-secondary); }
+        .restore-banner-actions { display: flex; gap: 6px; }
+        .restore-btn {
+            padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+            border: none; cursor: pointer; font-family: var(--font-body);
+        }
+        .restore-btn-yes { background: var(--accent); color: #fff; }
+        .restore-btn-no { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+
+        /* Section heading for result card */
+        .section-heading { text-align: center; font-size: 0.88rem; color: var(--text-tertiary); margin-bottom: 16px; font-weight: 500; }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 576px) {
+            .results-summary { grid-template-columns: repeat(2, 1fr); }
+            .summary-stat { padding: 12px 8px; }
+            .summary-stat .stat-value { font-size: 1.05rem; }
+            .summary-stat .stat-label { font-size: 0.6rem; }
+
+            .category-tabs { width: 100%; display: flex; }
+            .category-tab { flex: 1; text-align: center; padding: 9px 12px; font-size: 0.78rem; }
+
+            .uni-card-header { padding: 12px 14px; gap: 8px; }
+            .uni-short-name { font-size: 0.95rem; min-width: 40px; }
+            .uni-long-name { font-size: 0.75rem; }
+            .uni-card-meta { font-size: 0.68rem; }
+            .uni-card-header .chance-badge { font-size: 0.58rem; padding: 2px 7px; letter-spacing: 0; }
+
+            .uni-detail-inner { padding: 0 14px 14px; }
+            .program-row { gap: 6px; padding: 8px 0; flex-wrap: wrap; }
+            .prog-info { flex: 1; min-width: 0; }
+            .prog-name-text { font-size: 0.78rem; }
+            .prog-marks { font-size: 0.88rem; min-width: 38px; }
+            .prog-chance { min-width: auto; }
+            .program-row { flex-wrap: nowrap; }
+
+            .result-card { padding: 20px 16px; }
+            .result-card-marks { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+            .share-buttons { gap: 6px; }
+            .share-btn { padding: 7px 12px; font-size: 0.72rem; }
+
+            .btn-calc-link { width: 100%; justify-content: center; font-size: 0.78rem; }
+
+            #predictorForm { padding: 20px !important; }
+        }
+
+        @media (max-width: 400px) {
+            .results-summary { grid-template-columns: repeat(2, 1fr); }
+            .summary-stat .stat-value { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <header class="header" id="header">
+        <div class="container-fluid">
+            <nav class="nav">
+                <a href="../index.html" class="logo"><span class="logo-text">UniCalc</span></a>
+                <div class="nav-center">
+                    <div class="nav-links">
+                        <a href="../index.html#universities" class="nav-link magnetic">Universities</a>
+                        <a href="./" class="nav-link magnetic" style="color:var(--text-primary)">Predictor</a>
+                        <a href="../contributors.html" class="nav-link magnetic">Contributors</a>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <a href="../index.html" class="btn btn-primary btn-nav magnetic-btn">
+                        <span class="btn-text">Home</span>
+                        <span class="btn-icon">&larr;</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="hero-bg">
+                <div class="bg-image"></div>
+                <div class="bg-grid"></div>
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere secondary"></div>
+            </div>
+            <div class="container">
+                <div class="calc-page-header reveal-text">
+                    <div class="breadcrumb">
+                        <a href="../index.html" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-sep">&rarr;</span>
+                        <span class="breadcrumb-current">Admission Predictor</span>
+                    </div>
+                    <h1 class="calc-page-title">
+                        <span class="line-wrapper"><span class="line-reveal">Admission</span></span>
+                        <span class="line-wrapper"><span class="line-reveal text-outline">Predictor</span></span>
+                    </h1>
+                    <p class="calc-page-subtitle reveal-text delay-1">
+                        Enter your matric &amp; intermediate marks to see which universities you can target and how much you need in the entry test.
+                    </p>
+                </div>
+
+                <div class="restore-banner" id="restoreBanner" style="display:none">
+                    <span class="restore-banner-text">Previous calculation saved. Restore?</span>
+                    <div class="restore-banner-actions">
+                        <button class="restore-btn restore-btn-yes" id="restoreYes">Restore</button>
+                        <button class="restore-btn restore-btn-no" id="restoreNo">Dismiss</button>
+                    </div>
+                </div>
+
+                <div class="calc-main-container reveal-scale">
+                    <form id="predictorForm" class="calc-form" style="padding: 32px;">
+                        <div class="form-section">
+                            <label class="form-label">Education System</label>
+                            <div class="toggle-group">
+                                <label class="toggle-option">
+                                    <input type="radio" name="eduSystem" value="fsc" checked>
+                                    <span class="toggle-btn">FSc / Matric</span>
+                                </label>
+                                <label class="toggle-option">
+                                    <input type="radio" name="eduSystem" value="alevel">
+                                    <span class="toggle-btn">O/A-Levels</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="input-card">
+                                <div class="input-header">
+                                    <label class="input-label">Matric / O-Level Marks</label>
+                                </div>
+                                <div class="input-row">
+                                    <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="0" required>
+                                    <span class="input-separator">/</span>
+                                    <input type="number" value="1100" class="form-input form-input-total" id="matricTotal">
+                                </div>
+                                <p class="input-hint" id="hintMatric">SSC / O-Level marks (or HEC equivalence)</p>
+                            </div>
+                            <div class="input-card">
+                                <div class="input-header">
+                                    <label class="input-label">Intermediate / A-Level Marks</label>
+                                </div>
+                                <div class="input-row">
+                                    <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0" required>
+                                    <span class="input-separator">/</span>
+                                    <input type="number" value="1100" class="form-input form-input-total" id="interTotal">
+                                </div>
+                                <p class="input-hint" id="hintInter">HSSC / A-Level marks (or HEC equivalence)</p>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <label class="form-label">Universities</label>
+                            <p class="input-hint" style="margin-bottom:10px;">Tap to select. Leave all unselected to predict for every university.</p>
+                            <div class="uni-grid" id="uniGrid"></div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span class="btn-text">Predict My Chances</span>
+                                <span class="btn-icon">&rarr;</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="predictor-results" id="predictorResults">
+                    <div class="results-summary" id="resultsSummary"></div>
+                    <div class="category-tabs" id="categoryTabs"></div>
+                    <div class="filter-bar" id="filterBar"></div>
+                    <div class="uni-cards-grid" id="uniCardsGrid"></div>
+                </div>
+
+                <div class="result-card-section" id="resultCardSection">
+                    <p class="section-heading">Your Prediction Report</p>
+                    <div class="result-card" id="resultCard"></div>
+                    <div class="share-buttons" id="shareButtons">
+                        <button class="share-btn share-btn-whatsapp" id="shareWhatsApp">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp
+                        </button>
+                        <button class="share-btn share-btn-pdf" id="downloadPDF">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                            PDF
+                        </button>
+                        <button class="share-btn share-btn-image" id="saveImage">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer calculator-footer">
+            <div class="container">
+                <div class="footer-compact">
+                    <div class="footer-brand">
+                        <span class="footer-logo">UniCalc</span>
+                        <span class="footer-tagline">Your Merit Calculator</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="../index.html#universities" class="footer-link">Universities</a>
+                        <a href="./" class="footer-link">Predictor</a>
+                        <a href="mailto:hello@unicalc.pk" class="footer-link">Contact</a>
+                    </div>
+                    <div class="footer-credit">
+                        Crafted by <a href="#" class="link-underline">Azan</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="../js/vanilla-tilt.js"></script>
+    <script src="../js/meritData.js"></script>
+    <script src="../js/universityConfigs.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/predictor.js"></script>
+</body>
+</html>

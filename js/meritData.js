@@ -483,103 +483,109 @@ const meritData = [
   {
     id: "uhs",
     name: "UHS (Punjab Medical Colleges)",
-    year: 2024,
+    year: 2025,
     campuses: [
       // ---- Government Medical Colleges ----
       {
-        campus: "King Edward Medical University, Lahore",
+        campus: "King Edward Medical University (KEMU), Lahore",
         programs: [
-          { name: "MBBS", merit: 93.53, category: "Government", history: [93.53] }
+          { name: "MBBS", merit: 94.9167, category: "Government", history: [94.9167, 96.0591, 93.6773] }
         ]
       },
       {
-        campus: "Rawalpindi Medical University",
+        campus: "Allama Iqbal Medical College (AIMC), Lahore",
         programs: [
-          { name: "MBBS", merit: 93.19, category: "Government", history: [93.19] }
+          { name: "MBBS", merit: 94.2727, category: "Government", history: [94.2727, 95.5955, 92.9364] }
         ]
       },
       {
-        campus: "Allama Iqbal Medical College, Lahore",
+        campus: "Services Institute of Medical Sciences (SIMS), Lahore",
         programs: [
-          { name: "MBBS", merit: 92.60, category: "Government", history: [92.60] }
+          { name: "MBBS", merit: 94.2727, category: "Government", history: [94.2727, 95.2682, 92.3864] }
         ]
       },
       {
-        campus: "Services Institute (SIMS), Lahore",
+        campus: "Ameer ud Din Medical College (AMC), Lahore",
         programs: [
-          { name: "MBBS", merit: 92.05, category: "Government", history: [92.05] }
+          { name: "MBBS", merit: 94.0788, category: "Government", history: [94.0788, 94.7309, 91.9364] }
         ]
       },
       {
-        campus: "Ameer-ud-Din Medical College, Lahore",
+        campus: "Rawalpindi Medical College (RMC), Rawalpindi",
         programs: [
-          { name: "MBBS", merit: 91.73, category: "Government", history: [91.73] }
+          { name: "MBBS", merit: 93.997, category: "Government", history: [93.997, 94.7364, 92.35] }
         ]
       },
       {
-        campus: "Nishtar Medical University, Multan",
+        campus: "Fatima Jinnah Medical University (FJMC), Lahore",
         programs: [
-          { name: "MBBS", merit: 91.44, category: "Government", history: [91.44] }
+          { name: "MBBS", merit: 93.8697, category: "Government", history: [93.8697, 94.6652, 91.65] }
         ]
       },
       {
-        campus: "Fatima Jinnah Medical University, Lahore",
+        campus: "Punjab Medical College (PMC), Faisalabad",
         programs: [
-          { name: "MBBS", merit: 91.30, category: "Government", history: [91.30] }
+          { name: "MBBS", merit: 93.8652, category: "Government", history: [93.8652, 94.5818, 91.6] }
         ]
       },
       {
-        campus: "Punjab Medical College (FMU), Faisalabad",
+        campus: "Quaid-e-Azam Medical College (QAMC), Bahawalpur",
         programs: [
-          { name: "MBBS", merit: 91.12, category: "Government", history: [91.12] }
+          { name: "MBBS", merit: 93.811, category: "Government", history: [93.811, 94.5485, 91.5] }
         ]
       },
       {
-        campus: "Gujranwala Medical College",
+        campus: "Gujranwala Medical College (GMC), Gujranwala",
         programs: [
-          { name: "MBBS", merit: 90.97, category: "Government", history: [90.97] }
+          { name: "MBBS", merit: 93.7879, category: "Government", history: [93.7879, 94.4864, 91.4682] }
         ]
       },
       {
-        campus: "Quaid-e-Azam Medical College, Bahawalpur",
+        campus: "Sahiwal Medical College (SLMC), Sahiwal",
         programs: [
-          { name: "MBBS", merit: 90.75, category: "Government", history: [90.75] }
+          { name: "MBBS", merit: 93.7636, category: "Government", history: [93.7636, 94.4364, 91.3364] }
         ]
       },
       {
-        campus: "Khawaja M. Safdar Medical College, Sialkot",
+        campus: "Khawaja Muhammad Safdar Medical College, Sialkot",
         programs: [
-          { name: "MBBS", merit: 90.70, category: "Government", history: [90.70] }
+          { name: "MBBS", merit: 93.7364, category: "Government", history: [93.7364, 94.4273, 91.4] }
         ]
       },
       {
-        campus: "Nawaz Sharif Medical College, Gujrat",
+        campus: "Nawaz Sharif Medical College (NSMC), Gujrat",
         programs: [
-          { name: "MBBS", merit: 90.64, category: "Government", history: [90.64] }
+          { name: "MBBS", merit: 93.7091, category: "Government", history: [93.7091, 94.3697, 91.3227] }
         ]
       },
       {
-        campus: "Sargodha Medical College",
+        campus: "Sargodha Medical College (SMC), Sargodha",
         programs: [
-          { name: "MBBS", merit: 90.60, category: "Government", history: [90.60] }
+          { name: "MBBS", merit: 93.6899, category: "Government", history: [93.6899, 94.3652, 91.2864] }
         ]
       },
       {
-        campus: "Sahiwal Medical College",
+        campus: "D.G. Khan Medical College (DGMC), D.G. Khan",
         programs: [
-          { name: "MBBS", merit: 90.60, category: "Government", history: [90.60] }
+          { name: "MBBS", merit: 93.6596, category: "Government", history: [93.6596, 94.3258, 91.2045] }
         ]
       },
       {
-        campus: "Sheikh Zayed Medical College, RYK",
+        campus: "Sheikh Zayed Medical College (SZMC), Rahim Yar Khan",
         programs: [
-          { name: "MBBS", merit: 90.50, category: "Government", history: [90.50] }
+          { name: "MBBS", merit: 93.6394, category: "Government", history: [93.6394, 94.3409, 91.2136] }
         ]
       },
       {
-        campus: "DG Khan Medical College",
+        campus: "Nishtar Medical College (NMC), Multan",
         programs: [
-          { name: "MBBS", merit: 90.49, category: "Government", history: [90.49] }
+          { name: "MBBS", merit: 93.6273, category: "Government", history: [93.6273, 95.1409, 91.2091] }
+        ]
+      },
+      {
+        campus: "Narowal Medical College, Narowal",
+        programs: [
+          { name: "MBBS", merit: 93.6273, category: "Government", history: [93.6273, 94.2727] }
         ]
       },
       // ---- Private Medical Colleges ----
@@ -651,33 +657,48 @@ const meritData = [
   {
     id: "nums",
     name: "NUMS (National University of Medical Sciences)",
-    year: 2024,
+    year: 2025,
     campuses: [
       {
-        campus: "Army Medical College (AMC), Rawalpindi",
+        campus: "Army Medical College, Rawalpindi",
         programs: [
-          { name: "MBBS", merit: 95.20, history: [95.20] },
-          { name: "BDS", merit: 95.10, history: [95.10] }
+          { name: "MBBS", merit: "Closed for civilians", history: [95.20, 94.2608, 95.2035] }
         ]
       },
       {
-        campus: "CMH Bahawalpur (CIMS)",
+        campus: "CMH Institute of Medical Sciences, Bahawalpur Cantt",
         programs: [
-          { name: "MBBS", merit: 92.98, history: [92.98] }
+          { name: "MBBS", merit: 84.8045, history: [84.8045, 84.0653, 92.9799] }
         ]
       },
       {
-        campus: "CMH Multan (CIMS)",
+        campus: "CMH Multan Institute of Medical Sciences, Multan Cantt",
         programs: [
-          { name: "MBBS", merit: 92.25, history: [92.25] },
-          { name: "BDS", merit: 89.88, history: [89.88] }
+          { name: "MBBS", merit: 86.538, history: [86.538, 86.5182, 92.2742] }
         ]
       },
       {
-        campus: "CMH Lahore Medical College",
+        campus: "CMH Lahore Medical College and Institute of Dentistry, Lahore Cantt",
         programs: [
-          { name: "MBBS", merit: 91.99, history: [91.99] },
-          { name: "BDS", merit: 87.15, history: [87.15] }
+          { name: "MBBS", merit: 85.3227, history: [85.3227, 85.9998, 91.9942] }
+        ]
+      },
+      {
+        campus: "CMH Kharian Medical College, Kharian Cantt",
+        programs: [
+          { name: "MBBS", merit: 84.3277, history: [84.3277, 85.9998, 91.9415] }
+        ]
+      },
+      {
+        campus: "Wah Medical College, Wah Cantt",
+        programs: [
+          { name: "MBBS", merit: 84.1045, history: [84.1045, 83.5199, 90.9799] }
+        ]
+      },
+      {
+        campus: "HITEC Institute of Medical Sciences, Taxila Cantt",
+        programs: [
+          { name: "MBBS", merit: 83.9712, history: [83.9712, 83.4574, 89.8814] }
         ]
       },
       {
@@ -688,28 +709,9 @@ const meritData = [
         ]
       },
       {
-        campus: "CMH Kharian Medical College",
-        programs: [
-          { name: "MBBS", merit: 90.72, history: [90.72] }
-        ]
-      },
-      {
-        campus: "Wah Medical College",
-        programs: [
-          { name: "MBBS", merit: 90.56, history: [90.56] }
-        ]
-      },
-      {
         campus: "Fazaia Medical College, Islamabad",
         programs: [
           { name: "MBBS", merit: 89.93, history: [89.93] }
-        ]
-      },
-      {
-        campus: "HITEC IMS, Taxila",
-        programs: [
-          { name: "MBBS", merit: 89.72, history: [89.72] },
-          { name: "BDS", merit: 83.32, history: [83.32] }
         ]
       },
       {
