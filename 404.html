@@ -3,140 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 — UniCalc</title>
+    <title>Page Not Found | UniCalc</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --bg: #050505;
-            --accent: #3b82f6;
-        }
         body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: #e5e7eb;
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
+        }
+        .error-wrapper {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 120px 24px 80px;
+        }
+        .error-content {
             text-align: center;
-            overflow: hidden;
-            position: relative;
+            max-width: 480px;
         }
-        .bg-grid {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.5;
-        }
-        .glow {
-            position: fixed; width: 500px; height: 500px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-            filter: blur(80px); top: 50%; left: 50%;
-            transform: translate(-50%, -50%); z-index: 0; pointer-events: none;
-        }
-        .content {
-            position: relative; z-index: 1;
-            max-width: 520px; padding: 40px 24px;
-        }
-        .code {
+        .error-code {
             font-family: var(--font-display);
-            font-size: clamp(6rem, 18vw, 10rem);
+            font-size: clamp(5rem, 15vw, 8rem);
             font-weight: 700;
             letter-spacing: -0.04em;
             line-height: 1;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #3b82f6 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradShift 4s ease-in-out infinite;
-            margin-bottom: 16px;
+            color: var(--text-primary);
+            opacity: 0.12;
+            margin-bottom: 8px;
             user-select: none;
         }
-        @keyframes gradShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .tagline {
+        .error-title {
             font-family: var(--font-display);
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-size: clamp(1.15rem, 3vw, 1.5rem);
             font-weight: 600;
-            color: #f3f4f6;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
-        .message {
-            font-size: 0.95rem;
-            color: #9ca3af;
+        .error-message {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 32px;
         }
-        .timer {
-            font-size: 0.82rem;
-            color: #6b7280;
-            margin-bottom: 24px;
+        .error-timer {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
         }
-        .timer span {
+        .error-timer span {
             font-family: var(--font-display);
             font-weight: 600;
             color: var(--accent);
         }
-        .btn {
+        .error-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 13px 28px;
+            padding: 12px 28px;
             border-radius: 10px;
             font-family: var(--font-display);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             text-decoration: none;
             background: var(--accent);
             color: #fff;
             border: none;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
         }
-        .btn:hover {
+        .error-btn:hover {
             background: #2563eb;
-            box-shadow: 0 4px 24px rgba(59,130,246,0.3);
-            transform: translateY(-2px);
-        }
-        .float-emoji {
-            position: fixed;
-            font-size: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 0;
-            animation: floatUp 6s ease-in-out infinite;
-        }
-        @keyframes floatUp {
-            0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-10vh) rotate(360deg); }
+            box-shadow: 0 4px 20px rgba(59,130,246,0.25);
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="glow"></div>
 
-    <div class="content">
-        <div class="code">404</div>
-        <h1 class="tagline">This page didn't make the merit list.</h1>
-        <p class="message">
-            Looks like this page got a lower aggregate than expected.
-            Even the predictor couldn't save it. But hey, your chances are still fine — let's get you back on track.
-        </p>
-        <p class="timer">Redirecting in <span id="countdown">8</span> seconds…</p>
-        <a href="index.html" class="btn">Take Me Home &rarr;</a>
+    <header class="header" id="header">
+        <div class="container-fluid">
+            <nav class="nav">
+                <a href="index.html" class="logo"><span class="logo-text">UniCalc</span></a>
+                <div class="nav-center">
+                    <div class="nav-links">
+                        <a href="index.html#universities" class="nav-link magnetic">Universities</a>
+                        <a href="predictor/" class="nav-link magnetic">Predictor</a>
+                        <a href="contributors.html" class="nav-link magnetic">Contributors</a>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="noise-overlay"></div>
+
+    <div class="error-wrapper">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-title">This page didn't make the merit list</h1>
+            <p class="error-message">
+                Looks like this page scored a lower aggregate than expected.
+                Even the predictor couldn't save it. But hey, your chances are still fine.
+                Let's get you back on track.
+            </p>
+            <p class="error-timer">Redirecting in <span id="countdown">8</span> seconds</p>
+            <a href="index.html" class="error-btn">Back to Home &rarr;</a>
+        </div>
     </div>
 
     <script>
@@ -151,15 +133,13 @@
             }
         }, 1000);
 
-        const emojis = ['📚', '🎓', '📝', '💀', '🫠', '😭', '🧮', '❌'];
-        for (let i = 0; i < 8; i++) {
-            const span = document.createElement('span');
-            span.className = 'float-emoji';
-            span.textContent = emojis[i % emojis.length];
-            span.style.left = (8 + Math.random() * 84) + '%';
-            span.style.animationDelay = (i * 0.8) + 's';
-            span.style.animationDuration = (5 + Math.random() * 3) + 's';
-            document.body.appendChild(span);
+        const toggle = document.getElementById('mobileToggle');
+        const links = document.querySelector('.nav-links');
+        if (toggle && links) {
+            toggle.addEventListener('click', () => {
+                links.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
         }
     </script>
 </body>

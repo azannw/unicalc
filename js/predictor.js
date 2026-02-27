@@ -49,10 +49,30 @@ function initUniPicker() {
     const grid = document.getElementById('uniGrid');
     if (!grid) return;
 
-    grid.innerHTML = Object.entries(calculatorConfigs).map(([id, cfg]) => {
+    const entries = Object.entries(calculatorConfigs);
+    const engEntries = entries.filter(([id]) => !MEDICAL_IDS.includes(id));
+    const medEntries = entries.filter(([id]) => MEDICAL_IDS.includes(id));
+
+    let html = '';
+    html += '<div class="uni-grid-section"><span class="uni-grid-heading">Engineering & CS</span>';
+    html += '<div class="uni-grid-buttons">';
+    html += engEntries.map(([id, cfg]) => {
         const active = selectedUniversities.has(id) ? ' active' : '';
         return `<button type="button" class="uni-grid-btn${active}" data-uid="${id}">${cfg.shortName}</button>`;
     }).join('');
+    html += '</div></div>';
+
+    if (medEntries.length > 0) {
+        html += '<div class="uni-grid-section"><span class="uni-grid-heading">Medical</span>';
+        html += '<div class="uni-grid-buttons">';
+        html += medEntries.map(([id, cfg]) => {
+            const active = selectedUniversities.has(id) ? ' active' : '';
+            return `<button type="button" class="uni-grid-btn${active}" data-uid="${id}">${cfg.shortName}</button>`;
+        }).join('');
+        html += '</div></div>';
+    }
+
+    grid.innerHTML = html;
 
     grid.querySelectorAll('.uni-grid-btn').forEach(btn => {
         btn.addEventListener('click', () => {
