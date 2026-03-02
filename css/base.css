@@ -226,37 +226,11 @@ a {
 }
 
 .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    cursor: pointer;
-    padding: 8px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    color: var(--text-secondary);
-}
-
-.theme-toggle:hover {
-    background: var(--glass-surface);
-    border-color: var(--glass-border-hover);
-    color: var(--text-primary);
-}
-
-.theme-toggle svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
+    display: none;
 }
 
 .theme-icon-sun,
 .theme-icon-moon { display: none; }
-
-[data-theme="dark"] .theme-icon-sun { display: block; }
-[data-theme="light"] .theme-icon-moon { display: block; }
 
 /* Buttons */
 .btn {
@@ -563,12 +537,12 @@ a {
 
     .nav-links {
         flex-direction: column;
-        gap: 24px;
+        gap: 28px;
         align-items: center;
     }
 
     .nav-link {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
     }
 
     .btn-nav {
@@ -582,7 +556,7 @@ a {
         background: none;
         border: none;
         cursor: pointer;
-        padding: 8px;
+        padding: 10px;
         z-index: 101;
     }
 
@@ -660,6 +634,10 @@ a {
 
 /* Mobile Large (576px) */
 @media (max-width: 576px) {
+    html {
+        font-size: 17px;
+    }
+
     :root {
         --header-height: 56px;
     }
@@ -694,17 +672,21 @@ a {
 
     .footer-col a,
     .footer-col p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .footer-bottom {
         margin-top: 40px;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
 
 /* Mobile Small (400px and below) */
 @media (max-width: 400px) {
+    html {
+        font-size: 17px;
+    }
+
     .container {
         padding: 0 12px;
     }
@@ -723,6 +705,7 @@ a {
     .mobile-toggle,
     .theme-toggle {
         min-height: 44px;
+        min-width: 44px;
     }
 
     .filter-pill,
@@ -731,6 +714,12 @@ a {
         min-height: 44px;
         display: inline-flex;
         align-items: center;
+    }
+
+    .form-input,
+    .form-select {
+        font-size: 1rem;
+        min-height: 44px;
     }
 
     .noise-overlay {

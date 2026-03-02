@@ -1060,7 +1060,7 @@
     }
 
     .author-uni {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
 
     /* Hide side cards on mobile - show only center */
@@ -1121,7 +1121,7 @@
     }
 
     .card-quote {
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.5;
     }
 
@@ -1627,13 +1627,13 @@
     }
 
     .btn-hero-primary {
-        padding: 11px 24px;
-        font-size: 0.875rem;
+        padding: 13px 26px;
+        font-size: 0.9rem;
     }
 
     .btn-glass-outline {
-        padding: 11px 24px;
-        font-size: 0.875rem;
+        padding: 13px 26px;
+        font-size: 0.9rem;
     }
 
     /* Calculator Window - Leave margins on mobile */
@@ -1811,11 +1811,10 @@
     }
 
     .hero-label {
-        font-size: 0.75rem;
-        gap: 8px;
-        margin-bottom: 16px;
+        font-size: 0.8rem;
+        gap: 10px;
+        margin-bottom: 20px;
         margin-top: 17px;
-
     }
 
     .label-line {
@@ -1823,20 +1822,20 @@
     }
 
     .hero-title {
-        font-size: clamp(2rem, 14vw, 3rem);
-        margin-bottom: 20px;
+        font-size: clamp(2.2rem, 14vw, 3rem);
+        margin-bottom: 24px;
     }
 
     .hero-description {
-        font-size: 0.95rem;
-        margin-bottom: 28px;
-        line-height: 1.6;
+        font-size: 1rem;
+        margin-bottom: 32px;
+        line-height: 1.7;
     }
 
     .hero-actions {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
     }
 
     .btn-lg {
@@ -1845,13 +1844,13 @@
     }
 
     .btn-hero-primary {
-        padding: 10px 22px;
-        font-size: 0.85rem;
+        padding: 13px 26px;
+        font-size: 0.9rem;
     }
 
     .btn-glass-outline {
-        padding: 10px 22px;
-        font-size: 0.85rem;
+        padding: 13px 26px;
+        font-size: 0.9rem;
     }
 
     /* Calculator Window - Mobile margins */
@@ -1938,7 +1937,7 @@
     }
 
     .card-number {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 
     .process-card h3 {
@@ -1946,7 +1945,7 @@
     }
 
     .process-card p {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     /* Testimonials */
@@ -2018,8 +2017,8 @@
     }
 
     .filter-pill {
-        padding: 8px 16px;
-        font-size: 0.85rem;
+        padding: 10px 18px;
+        font-size: 0.9rem;
     }
 
     .uni-grid {
@@ -2039,7 +2038,7 @@
     }
 
     .uni-type {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     /* Feature Strip - Mobile fix */
@@ -2075,8 +2074,8 @@
     }
 
     .faq-trigger {
-        font-size: 0.95rem;
-        padding: 18px 16px;
+        font-size: 1rem;
+        padding: 20px 16px;
     }
 
     .faq-icon {
@@ -2085,14 +2084,14 @@
 
     .faq-inner {
         padding: 0 16px 18px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 }
 
 /* Mobile Small (400px and below) */
 @media (max-width: 400px) {
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     /* Calculator Window - Extra small mobile */

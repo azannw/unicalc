@@ -147,6 +147,10 @@
     margin-bottom: 24px;
 }
 
+.form-grid > * {
+    min-width: 0;
+}
+
 .full-width {
     grid-column: span 2;
 }
@@ -516,9 +520,7 @@
         0 20px 40px rgba(0, 0, 0, 0.4),
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    overflow-x: hidden;
-    overflow-y: visible;
-    transform-style: preserve-3d;
+    overflow: clip;
     position: relative;
 }
 
@@ -586,6 +588,8 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .form-section {
@@ -697,6 +701,8 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     transition: all 0.3s ease;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .input-card:hover {
@@ -1506,9 +1512,9 @@
     }
 
     .calc-tab {
-        padding: 14px 10px;
-        font-size: 0.8rem;
-        min-width: 80px;
+        padding: 16px 12px;
+        font-size: 0.85rem;
+        min-width: 90px;
     }
 
     .calc-tab-content {
@@ -1578,11 +1584,11 @@
     }
 
     .form-input-total {
-        width: 80px;
-        min-width: 70px;
-        padding: 12px 10px;
+        width: 82px;
+        min-width: 72px;
+        padding: 14px 10px;
         text-align: center;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     /* Calculator Page */
@@ -1591,7 +1597,7 @@
     }
 
     .breadcrumb {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         gap: 8px;
         margin-bottom: 24px;
     }
@@ -1605,7 +1611,7 @@
     }
 
     .calc-page-subtitle {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .calc-main-container {
@@ -1618,9 +1624,9 @@
     }
 
     .calc-tab {
-        padding: 12px 8px;
-        font-size: 0.75rem;
-        min-width: 70px;
+        padding: 14px 10px;
+        font-size: 0.82rem;
+        min-width: 80px;
     }
 
     .calc-tab-content {
@@ -1633,7 +1639,7 @@
     }
 
     .form-label {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .toggle-group {
@@ -1642,8 +1648,8 @@
     }
 
     .toggle-btn {
-        padding: 10px 16px;
-        font-size: 0.85rem;
+        padding: 12px 18px;
+        font-size: 0.9rem;
         text-align: center;
     }
 
@@ -1652,7 +1658,7 @@
     }
 
     .input-label {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .input-weight {
@@ -1660,8 +1666,8 @@
     }
 
     .form-input {
-        padding: 12px 14px;
-        font-size: 0.95rem;
+        padding: 14px 14px;
+        font-size: 1rem;
     }
 
     .pill-group {
@@ -1669,8 +1675,8 @@
     }
 
     .pill-btn {
-        padding: 8px 14px;
-        font-size: 0.85rem;
+        padding: 10px 16px;
+        font-size: 0.9rem;
     }
 
     .nu-calc-banner {
@@ -1755,16 +1761,16 @@
     .calc-form .form-actions .btn-block {
         width: auto;
         min-width: 180px;
-        padding: 11px 28px;
-        font-size: 0.875rem;
+        padding: 13px 30px;
+        font-size: 0.9rem;
     }
 }
 
 /* Mobile Small (400px and below) */
 @media (max-width: 400px) {
     .calc-tab {
-        min-width: 60px;
-        font-size: 0.7rem;
+        min-width: 65px;
+        font-size: 0.75rem;
     }
 
     /* Calculator Page - Extra small mobile */
@@ -1773,7 +1779,7 @@
     }
 
     .input-card {
-        padding: 14px;
+        padding: 16px;
     }
 
     .input-row {
@@ -1781,16 +1787,16 @@
     }
 
     .form-input {
-        padding: 10px 12px;
-        font-size: 0.9rem;
+        padding: 12px 12px;
+        font-size: 0.95rem;
     }
 
     .form-input-total {
-        width: 70px;
+        width: 72px;
         min-width: 60px;
         padding: 10px 8px;
         text-align: center;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .input-separator {
@@ -1922,16 +1928,16 @@
     }
 
     .prediction-program-name {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .prediction-probability {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         padding: 3px 10px;
     }
 
     .prediction-campus-title {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -1948,7 +1954,7 @@
 
 @media (max-width: 576px) {
     .merit-table {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 
     .merit-table th,
@@ -1965,7 +1971,7 @@
     }
 
     .merit-subtitle {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
 

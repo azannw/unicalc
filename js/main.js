@@ -2,37 +2,9 @@
 // UniCalc — Interaction Engine v3.2
 // =====================================================
 
-// === Theme Toggle ===
-(function initTheme() {
-    const toggle = document.getElementById('themeToggle');
-    if (!toggle) return;
-
-    function getPreferredTheme() {
-        const stored = localStorage.getItem('unicalc-theme');
-        if (stored) return stored;
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('unicalc-theme', theme);
-    }
-
-    // Apply on load (head script already handles flash prevention, this syncs the toggle)
-    applyTheme(getPreferredTheme());
-
-    toggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('unicalc-theme')) {
-            applyTheme(e.matches ? 'light' : 'dark');
-        }
-    });
-})();
+// === Theme: Force Dark ===
+document.documentElement.setAttribute('data-theme', 'dark');
+localStorage.removeItem('unicalc-theme');
 
 // === Touch Device Detection ===
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
@@ -54,6 +26,8 @@ const universities = [
     { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['cs'] },
     { id: 'uhs', name: 'UHS', fullName: 'University of Health Sciences', category: ['medical'] },
     { id: 'nums', name: 'NUMS', fullName: 'National University of Medical Sciences', category: ['medical'] },
+    { id: 'iiu', name: 'IIU', fullName: 'International Islamic University', category: ['engineering', 'cs'] },
+    { id: 'uet-taxila', name: 'UET Taxila', fullName: 'University of Engineering & Technology Taxila', category: ['engineering'] },
 ];
 
 // === Render Universities (Grid Layout) ===
@@ -67,7 +41,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="calculator/${uni.id}/" class="uni-card">
+        <a href="calculator/${uni.id}/index.html" class="uni-card">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>

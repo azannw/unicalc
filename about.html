@@ -14,7 +14,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/base.css">
     <script>
-        (function(){var t=localStorage.getItem('unicalc-theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)})();
+        (function(){document.documentElement.setAttribute('data-theme','dark')})();
     </script>
 
     <!-- Favicon -->
@@ -27,7 +27,7 @@
     <!-- Header -->
     <header class="header">
         <div class="container header-content">
-            <a href="/" class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
@@ -41,8 +41,8 @@
             </a>
             
             <nav class="nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/about.html" class="nav-link active">About</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
             </nav>
             
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -58,8 +58,8 @@
         
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/about.html" class="nav-link active">About</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
         </div>
     </header>
 
@@ -183,7 +183,7 @@
                     Start calculating your university admission merit today and take the first step 
                     towards your academic future.
                 </p>
-                <a href="/" class="cta-button">
+                <a href="index.html" class="cta-button">
                     Get Started
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -241,18 +241,8 @@
 
     <!-- Scripts -->
     <script>
-        // Theme toggle for about page
-        (function() {
-            var toggle = document.getElementById('themeToggle');
-            if (toggle) {
-                toggle.addEventListener('click', function() {
-                    var current = document.documentElement.getAttribute('data-theme') || 'dark';
-                    var next = current === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', next);
-                    localStorage.setItem('unicalc-theme', next);
-                });
-            }
-        })();
+        // Theme: Force dark
+        document.documentElement.setAttribute('data-theme', 'dark');
     </script>
     <script src="js/about.js"></script>
 </body>
