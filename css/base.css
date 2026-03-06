@@ -12,8 +12,8 @@
     --bg-base: #050505;
     --bg-surface: #0a0a0a;
     --text-primary: #ededed;
-    --text-secondary: #888888;
-    --text-tertiary: #444444;
+    --text-secondary: #9a9a9a;
+    --text-tertiary: #666666;
     --accent: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.5);
     --border: #222222;
@@ -51,7 +51,7 @@
     --glass-border-hover: rgba(255, 255, 255, 0.2);
     --glass-surface: rgba(255, 255, 255, 0.03);
     --glass-surface-hover: rgba(255, 255, 255, 0.06);
-    --glass-divider: rgba(255, 255, 255, 0.05);
+    --glass-divider: rgba(255, 255, 255, 0.08);
     --shadow-color: rgba(0, 0, 0, 0.5);
     --header-bg: rgba(5, 5, 5, 0.7);
     --mobile-menu-bg: rgba(5, 5, 5, 0.98);
@@ -723,7 +723,30 @@ a {
     }
 
     .noise-overlay {
-        opacity: 0.06;
+        display: none;
+    }
+
+    /* Reduce backdrop-filter on mobile for performance */
+    .header {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .calc-main-container {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    /* Disable expensive gradient sphere animations on mobile */
+    .gradient-sphere,
+    .gradient-sphere.secondary {
+        animation: none;
+        filter: blur(40px);
+    }
+
+    /* Reduce box-shadow complexity on mobile */
+    .calc-main-container {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 }
 

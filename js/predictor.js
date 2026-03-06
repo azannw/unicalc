@@ -485,16 +485,14 @@ function renderExpandedDetail(result) {
             let metaParts = [];
             if (p.shift) metaParts.push(p.shift);
             if (p.category) metaParts.push(p.category);
-            metaParts.push(`Cutoff ${p.predictedMerit.toFixed(1)}%`);
-            const metaStr = metaParts.join(' · ');
+            const metaStr = metaParts.length > 0 ? metaParts.join(' · ') : '';
 
             html += `<div class="program-row">
                 <div class="prog-info">
                     <div class="prog-name-text">${p.program}${testBadge}</div>
-                    <div class="prog-meta">${metaStr}</div>
+                    ${metaStr ? `<div class="prog-meta">${metaStr}</div>` : ''}
                 </div>
                 <div style="text-align:right;flex-shrink:0;">${marksHtml}</div>
-                <div class="prog-chance"><span class="chance-badge chance-${p.chance}">${CHANCE_LABELS[p.chance]}</span></div>
             </div>`;
         });
 

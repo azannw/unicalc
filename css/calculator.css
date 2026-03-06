@@ -520,7 +520,7 @@
         0 20px 40px rgba(0, 0, 0, 0.4),
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    overflow: clip;
+    overflow: hidden;
     position: relative;
 }
 
@@ -573,14 +573,19 @@
 }
 
 /* Tab Content */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .calc-tab-content {
     display: none;
     padding: 40px;
-    animation: fadeIn 0.4s ease;
 }
 
 .calc-tab-content.active {
     display: block;
+    animation: fadeIn 0.3s ease;
 }
 
 /* Form Styles */

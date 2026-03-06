@@ -257,42 +257,6 @@ if (meritEngine && !isTouchDevice) {
         targetY = 0;
         animate(); // Start reset animation
     });
-    
-    // Touch support for mobile
-    meritEngine.addEventListener('touchstart', (e) => {
-        if (!animationStarted) return;
-        isHovering = true;
-        animate();
-    }, { passive: true });
-    
-    meritEngine.addEventListener('touchmove', (e) => {
-        if (!animationStarted) return;
-        
-        const touch = e.touches[0];
-        const rect = meritEngine.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const mouseX = (touch.clientX - centerX) / (rect.width / 2);
-        const mouseY = (touch.clientY - centerY) / (rect.height / 2);
-        
-        targetX = Math.tanh(mouseX * 1.2) / Math.tanh(1.2);
-        targetY = Math.tanh(mouseY * 1.2) / Math.tanh(1.2);
-        
-        if (!isHovering) {
-            isHovering = true;
-            animate();
-        }
-    }, { passive: true });
-    
-    meritEngine.addEventListener('touchend', () => {
-        isHovering = false;
-        targetX = 0;
-        targetY = 0;
-        animate();
-    });
-    
-    console.log('3D Tilt Effect initialized for merit_engine.exe');
 }
 
 // === FAQ Accordion Logic ===
@@ -332,24 +296,31 @@ faqItems.forEach(item => {
 
 // === Mouse Move Parallax for Hero Spheres (skip on touch devices) ===
 if (!isTouchDevice) {
+    let parallaxRafId = null;
+    let parallaxX = 0, parallaxY = 0;
+    const spheres = document.querySelectorAll('.gradient-sphere');
+    const grid = document.querySelector('.bg-grid');
+
     document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
+        parallaxX = e.clientX / window.innerWidth;
+        parallaxY = e.clientY / window.innerHeight;
 
-        const spheres = document.querySelectorAll('.gradient-sphere');
-        spheres.forEach((sphere, index) => {
-            const speed = (index + 1) * 20;
-            const moveX = (x * speed) - (speed / 2);
-            const moveY = (y * speed) - (speed / 2);
+        if (!parallaxRafId) {
+            parallaxRafId = requestAnimationFrame(() => {
+                spheres.forEach((sphere, index) => {
+                    const speed = (index + 1) * 20;
+                    const moveX = (parallaxX * speed) - (speed / 2);
+                    const moveY = (parallaxY * speed) - (speed / 2);
+                    sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
 
-            sphere.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-
-        const grid = document.querySelector('.bg-grid');
-        if (grid) {
-            const gridX = (x * 10) - 5;
-            const gridY = (y * 10) - 5;
-            grid.style.transform = `perspective(500px) rotateX(20deg) translateY(-100px) scale(1.5) translate(${gridX}px, ${gridY}px)`;
+                if (grid) {
+                    const gridX = (parallaxX * 10) - 5;
+                    const gridY = (parallaxY * 10) - 5;
+                    grid.style.transform = `perspective(500px) rotateX(20deg) translateY(-100px) scale(1.5) translate(${gridX}px, ${gridY}px)`;
+                }
+                parallaxRafId = null;
+            });
         }
     }, { passive: true });
 }
@@ -478,16 +449,22 @@ if (coverflowCarousel) {
         goToSlide(currentIndex - 1);
     }
     
-    // Auto-play functionality
+    // Auto-play functionality — pauses when off-screen
+    let isCarouselVisible = true;
+    const carouselObserver = new IntersectionObserver((entries) => {
+        isCarouselVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    carouselObserver.observe(coverflowCarousel);
+
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(() => {
-            if (!isPaused) {
+            if (!isPaused && isCarouselVisible) {
                 nextSlide();
             }
         }, autoPlayDelay);
     }
-    
+
     function resetAutoPlay() {
         startAutoPlay();
     }
@@ -581,7 +558,6 @@ if (coverflowCarousel) {
     updatePositions();
     startAutoPlay();
     
-    console.log('3D Cover Flow Carousel initialized.');
 }
 
 // === Footer Letter Hover ===
@@ -601,4 +577,3 @@ function initFooterWordHover() {
 
 initFooterWordHover();
 
-console.log('UniCalc Engine v3.1 Initialized.');

@@ -721,4 +721,3 @@ function updateNuCalcBanner(universityId) {
 // Call initDynamicContent after DOM loads
 document.addEventListener('DOMContentLoaded', initDynamicContent);
 
-console.log('Calculator Engine v3 Initialized.');

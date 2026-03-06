@@ -88,6 +88,7 @@
     height: 100%;
     z-index: 0;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .bg-image {
@@ -515,7 +516,7 @@
     display: flex;
     gap: 60px;
     animation: scroll 30s linear infinite;
-    will-change: transform;
+    transform: translateZ(0);
 }
 
 .marquee-item {
@@ -1063,21 +1064,22 @@
         font-size: 0.8rem;
     }
 
-    /* Hide side cards on mobile - show only center */
+    /* Simplify side cards on mobile - reduce blur for performance */
     .coverflow-card[data-position="-1"],
     .coverflow-card[data-position="1"] {
-        opacity: 0.4;
-        transform: translateX(-50%) translateZ(-100px) scale(0.8);
-        filter: blur(3px);
+        opacity: 0.3;
+        transform: translateX(-50%) scale(0.8);
+        filter: none;
     }
 
     .coverflow-card[data-position="1"] {
-        transform: translateX(50%) translateZ(-100px) scale(0.8);
+        transform: translateX(50%) scale(0.8);
     }
 
     .coverflow-card[data-position="-2"],
     .coverflow-card[data-position="2"] {
         opacity: 0;
+        filter: none;
     }
 
     .coverflow-nav {
@@ -1180,9 +1182,9 @@
 }
 
 .filter-pill {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 999px;
     padding: 10px 22px;
     font-size: 0.95rem;
@@ -1608,12 +1610,12 @@
     }
 
     .hero-title {
-        font-size: clamp(2.2rem, 12vw, 3.5rem);
+        font-size: clamp(2.5rem, 13vw, 4rem);
         margin-bottom: 24px;
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-bottom: 32px;
     }
 
@@ -1822,13 +1824,13 @@
     }
 
     .hero-title {
-        font-size: clamp(2.2rem, 14vw, 3rem);
-        margin-bottom: 24px;
+        font-size: clamp(2.8rem, 15vw, 3.5rem);
+        margin-bottom: 20px;
     }
 
     .hero-description {
-        font-size: 1rem;
-        margin-bottom: 32px;
+        font-size: 0.95rem;
+        margin-bottom: 28px;
         line-height: 1.7;
     }
 
@@ -1862,6 +1864,15 @@
 
     .calculator-window {
         padding: 16px;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        will-change: auto;
+        transform-style: flat;
+    }
+
+    .calculator-window:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .window-controls {
@@ -2012,13 +2023,18 @@
     }
 
     .filter-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 8px;
-        justify-content: center;
+        width: 100%;
     }
 
     .filter-pill {
-        padding: 10px 18px;
+        padding: 10px 16px;
         font-size: 0.9rem;
+        text-align: center;
+        justify-content: center;
+        border-radius: 10px;
     }
 
     .uni-grid {
@@ -2091,7 +2107,7 @@
 /* Mobile Small (400px and below) */
 @media (max-width: 400px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(2.3rem, 14vw, 2.8rem);
     }
 
     /* Calculator Window - Extra small mobile */
