@@ -1643,27 +1643,39 @@
       "BS Applied Psychology": {
         "Merit 2025": "",
         "Merit 2024": "open:78.14|self:57.28"
+      },
+      "BS Computer Science": {
+        "Merit 2025": "86.49"
+      },
+      "BS Software Engineering": {
+        "Merit 2025": "86.34"
+      },
+      "BS IT": {
+        "Merit 2025": "85.9"
+      },
+      "BS Data Science": {
+        "Merit 2025": "86.83"
       }
     },
     "Allama Iqbal (Old) Campus - Lahore": {
       "BS Computer Science": {
-        "Merit 2025": "",
+        "Merit 2025": "87.26",
         "Merit 2024": "open:90.26|self:85-86"
       },
       "BS Software Engineering": {
-        "Merit 2025": "",
+        "Merit 2025": "83.28",
         "Merit 2024": "open:89.56| Self: 85.27"
       },
       "BS IT": {
-        "Merit 2025": "",
+        "Merit 2025": "83.33",
         "Merit 2024": "open:89.68|self:83-85"
       },
       "BS Data Science": {
-        "Merit 2025": "",
+        "Merit 2025": "82.38",
         "Merit 2024": "open:87.51|self:84.62"
       },
       "BS Artificial Intelligence": {
-        "Merit 2025": "",
+        "Merit 2025": "86.38",
         "Merit 2024": "open:89.20|self:84.80"
       }
     },
