@@ -90,7 +90,7 @@
     <header class="header" id="header">
         <div class="container-fluid">
             <nav class="nav">
-                <a href="index.html" class="logo"><span class="logo-text">UniCalc</span></a>
+                <a href="index.html" class="logo"><span class="logo-text">UniCalc®</span></a>
                 <div class="nav-center">
                     <div class="nav-links">
                         <a href="index.html#universities" class="nav-link magnetic">Universities</a>
@@ -144,11 +144,12 @@
         document.documentElement.setAttribute('data-theme', 'dark');
 
         const toggle = document.getElementById('mobileToggle');
-        const links = document.querySelector('.nav-links');
-        if (toggle && links) {
+        const navCenter = document.querySelector('.nav-center');
+        if (toggle && navCenter) {
             toggle.addEventListener('click', () => {
-                links.classList.toggle('active');
+                navCenter.classList.toggle('mobile-open');
                 toggle.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
             });
         }
     </script>

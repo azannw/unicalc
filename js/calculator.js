@@ -27,12 +27,23 @@ function initTabs() {
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.disabled) return;
+            const tabId = btn.dataset.tab;
+            const content = document.getElementById(tabId);
+            if (!content) return;
+
             tabBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
             btn.classList.add('active');
-            const tabId = btn.dataset.tab;
-            const content = document.getElementById(tabId);
-            content?.classList.add('active');
+            content.classList.add('active');
+
+            // On mobile, scroll to the top of the calculator container to prevent glitch
+            const calcContainer = document.querySelector('.calc-main-container');
+            if (calcContainer && window.innerWidth <= 768) {
+                requestAnimationFrame(() => {
+                    calcContainer.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    window.scrollBy(0, -80);
+                });
+            }
         });
     });
 }
@@ -78,6 +89,40 @@ function applyCalculatorContent(config) {
     const testTypeSection = document.getElementById('testTypeSection');
     if (testTypeSection) {
         testTypeSection.style.display = config.hideTestTypePills ? 'none' : '';
+    }
+
+    // Adjust A-Level options: show Immediate/Gap Year split only for universities that differentiate
+    const toggleGroup = document.querySelector('.toggle-group');
+    if (toggleGroup) {
+        if (config.hasALevelSplit) {
+            // Show separate Immediate and Gap Year options
+            toggleGroup.innerHTML = `
+                <label class="toggle-option">
+                    <input type="radio" name="eduSystem" value="fsc" checked>
+                    <span class="toggle-btn">FSc</span>
+                </label>
+                <label class="toggle-option">
+                    <input type="radio" name="eduSystem" value="alevel-immediate">
+                    <span class="toggle-btn">A-Levels (Immediate)</span>
+                </label>
+                <label class="toggle-option">
+                    <input type="radio" name="eduSystem" value="alevel-gap">
+                    <span class="toggle-btn">A-Levels (Gap Year)</span>
+                </label>
+            `;
+        } else {
+            // Single A/O-Levels option
+            toggleGroup.innerHTML = `
+                <label class="toggle-option">
+                    <input type="radio" name="eduSystem" value="fsc" checked>
+                    <span class="toggle-btn">FSc</span>
+                </label>
+                <label class="toggle-option">
+                    <input type="radio" name="eduSystem" value="alevel">
+                    <span class="toggle-btn">A/O-Levels</span>
+                </label>
+            `;
+        }
     }
 }
 
@@ -154,6 +199,12 @@ function calculateAggregate() {
 
     const testObtained = parseFloat(document.getElementById('testObtained')?.value) || 0;
     const testTotal = parseFloat(document.getElementById('testTotal')?.value) || 100;
+
+    // Validate that at least one mark is entered
+    if (matricObtained === 0 && interObtained === 0 && testObtained === 0) {
+        showCalcWarning('Please enter your marks before calculating.');
+        return;
+    }
 
     const matricPerc = (matricObtained / Math.max(matricTotal, 1)) * 100;
     const interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
@@ -674,25 +725,47 @@ function updateBreakdownLabels(config) {
     if (testLabel) testLabel.textContent = `Entry Test (${test}%)`;
 }
 
-// Get the university ID from URL (supports both ?uni=fast and /calculator/fast/ paths)
+// Get the university ID from URL (supports ?uni=fast, /fast/, and legacy /calculator/fast/ paths)
 function getUniversityId() {
     // First check query parameter
     const params = new URLSearchParams(window.location.search);
     const uniParam = params.get('uni')?.toLowerCase();
     if (uniParam) return uniParam;
 
-    // Then check URL path (e.g., /calculator/fast/)
-    const pathParts = window.location.pathname.split('/').filter(p => p);
+    const pathParts = window.location.pathname.split('/').filter(p => p && p !== 'index.html');
+
+    // Check new URL structure (e.g., /fast/)
+    if (pathParts.length >= 1) {
+        const uniFromPath = pathParts[0].toLowerCase();
+        if (uniFromPath !== 'nu-marks' && calculatorConfigs[uniFromPath]) {
+            return uniFromPath;
+        }
+    }
+
+    // Legacy: check /calculator/fast/ path
     const calcIndex = pathParts.indexOf('calculator');
     if (calcIndex !== -1 && pathParts[calcIndex + 1]) {
         const uniFromPath = pathParts[calcIndex + 1].toLowerCase();
-        // Exclude special pages like nu-marks
         if (uniFromPath !== 'nu-marks' && calculatorConfigs[uniFromPath]) {
             return uniFromPath;
         }
     }
 
     return 'fast';
+}
+
+// Show warning message in the calculator form
+function showCalcWarning(message) {
+    let warning = document.getElementById('calcWarning');
+    if (!warning) {
+        warning = document.createElement('div');
+        warning.id = 'calcWarning';
+        warning.style.cssText = 'background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#eab308;padding:12px 16px;border-radius:10px;font-size:0.9rem;text-align:center;margin-bottom:16px;animation:fadeIn 0.3s ease;';
+        const formActions = document.querySelector('.form-actions');
+        if (formActions) formActions.parentNode.insertBefore(warning, formActions);
+    }
+    warning.textContent = message;
+    setTimeout(() => { if (warning) warning.remove(); }, 4000);
 }
 
 // Initialize dynamic content

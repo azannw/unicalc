@@ -14,20 +14,19 @@ const universities = [
     { id: 'nust', name: 'NUST', fullName: 'National University of Sciences & Technology', category: ['engineering', 'cs'] },
     { id: 'itu', name: 'ITU', fullName: 'Information Technology University', category: ['cs'] },
     { id: 'comsats', name: 'CUI', fullName: 'COMSATS University Islamabad', category: ['cs', 'engineering'] },
-    { id: 'giki', name: 'GIKI', fullName: 'Ghulam Ishaq Khan Institute', category: ['engineering'] },
-    { id: 'pieas', name: 'PIEAS', fullName: 'Pakistan Institute of Engineering & Applied Sciences', category: ['engineering'] },
-    { id: 'uet', name: 'UET', fullName: 'University of Engineering & Technology', category: ['engineering'] },
-    { id: 'ned', name: 'NED', fullName: 'NED University of Engineering & Technology', category: ['engineering'] },
-    { id: 'ist', name: 'IST', fullName: 'Institute of Space Technology', category: ['engineering'] },
+    { id: 'giki', name: 'GIKI', fullName: 'Ghulam Ishaq Khan Institute', category: ['engineering', 'cs'] },
+    { id: 'pieas', name: 'PIEAS', fullName: 'Pakistan Institute of Engineering & Applied Sciences', category: ['engineering', 'cs'] },
+    { id: 'uet', name: 'UET', fullName: 'University of Engineering & Technology', category: ['engineering', 'cs'] },
+    { id: 'ned', name: 'NED', fullName: 'NED University of Engineering & Technology', category: ['engineering', 'cs'] },
+    { id: 'ist', name: 'IST', fullName: 'Institute of Space Technology', category: ['engineering', 'cs'] },
     { id: 'nutech', name: 'NUTECH', fullName: 'National University of Technology', category: ['engineering', 'cs'] },
     { id: 'pucit', name: 'PUCIT', fullName: 'Punjab University College of IT', category: ['cs'] },
     { id: 'air', name: 'AIR', fullName: 'Air University', category: ['engineering', 'cs'] },
     { id: 'bahria', name: 'Bahria', fullName: 'Bahria University', category: ['cs', 'engineering'] },
-    { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['cs'] },
+    { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['engineering'] },
     { id: 'uhs', name: 'UHS', fullName: 'University of Health Sciences', category: ['medical'] },
     { id: 'nums', name: 'NUMS', fullName: 'National University of Medical Sciences', category: ['medical'] },
     { id: 'iiu', name: 'IIU', fullName: 'International Islamic University', category: ['engineering', 'cs'] },
-    { id: 'uet-taxila', name: 'UET Taxila', fullName: 'University of Engineering & Technology Taxila', category: ['engineering'] },
 ];
 
 // === Render Universities (Grid Layout) ===
@@ -41,7 +40,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="calculator/${uni.id}/index.html" class="uni-card">
+        <a href="${uni.id}/index.html" class="uni-card">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>

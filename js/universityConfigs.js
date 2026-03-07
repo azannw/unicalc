@@ -15,12 +15,13 @@ const calculatorConfigs = {
             'Business Programs (BBA, AFM)'
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
-        testMax: 100
+        testMax: 100,
+        hasALevelSplit: true
     },
     nust: {
         shortName: 'NUST',
         longName: 'National University of Sciences & Technology',
-        description: 'Compute your NET / SAT aggregate for NUST engineering, SEECS and business schools.',
+        description: 'Compute your NET aggregate for NUST engineering, SEECS and business schools.',
         metaDescription: 'NUST NET calculator with the official 10/15/75 weighting.',
         programs: [
             'Engineering Schools (SMME, CEME, SEECS)',
@@ -28,7 +29,9 @@ const calculatorConfigs = {
             'Business & Social Sciences'
         ],
         weights: { matric: 0.10, inter: 0.15, test: 0.75 },
-        testMax: 200
+        testMax: 200,
+        hideTestTypePills: true,
+        hasALevelSplit: true
     },
     itu: {
         shortName: 'ITU',
@@ -59,15 +62,16 @@ const calculatorConfigs = {
     giki: {
         shortName: 'GIKI',
         longName: 'Ghulam Ishaq Khan Institute',
-        description: 'GIKI aggregate calculator with the 10/0/85 matric and admission test formula (no inter weightage).',
+        description: 'GIKI aggregate calculator with the 85/15 entry test and HSSC formula.',
         metaDescription: 'GIKI merit calculator with admission test weightage.',
         programs: [
             'Engineering & Sciences',
             'Computer Systems & AI',
             'Management Sciences'
         ],
-        weights: { matric: 0.10, inter: 0.05, test: 0.85 },
-        testMax: 200
+        weights: { matric: 0, inter: 0.15, test: 0.85 },
+        testMax: 200,
+        hideTestTypePills: true
     },
     pieas: {
         shortName: 'PIEAS',
@@ -98,28 +102,30 @@ const calculatorConfigs = {
     ned: {
         shortName: 'NED',
         longName: 'NED University of Engineering & Technology',
-        description: 'NED aggregate calculator with the official 0/40/60 formula.',
+        description: 'NED aggregate calculator with the official 50/50 inter and entry test formula.',
         metaDescription: 'NED engineering merit calculator.',
         programs: [
             'Engineering Programs',
             'Technology Programs',
             'Architecture & Planning'
         ],
-        weights: { matric: 0.00, inter: 0.40, test: 0.60 },
-        testMax: 100
+        weights: { matric: 0, inter: 0.50, test: 0.50 },
+        testMax: 100,
+        hideTestTypePills: true
     },
     ist: {
         shortName: 'IST',
         longName: 'Institute of Space Technology',
-        description: 'IST aggregate calculator with the 40/60/0 formula (no entry test for BS CS).',
-        metaDescription: 'IST merit calculator - matric and inter based.',
+        description: 'IST aggregate calculator with the official 20/40/40 formula. IST does not conduct its own entry test but accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
+        metaDescription: 'IST merit calculator with matric, inter, and entry test weightage.',
         programs: [
             'BS Computer Science',
             'Aerospace & Avionics',
             'Space Science & Engineering'
         ],
-        weights: { matric: 0.40, inter: 0.60, test: 0.00 },
-        testMax: 0
+        weights: { matric: 0.20, inter: 0.40, test: 0.40 },
+        testMax: 100,
+        hideTestTypePills: true
     },
     nutech: {
         shortName: 'NUTECH',
@@ -132,20 +138,22 @@ const calculatorConfigs = {
             'Business & Management'
         ],
         weights: { matric: 0.10, inter: 0.20, test: 0.70 },
-        testMax: 200
+        testMax: 200,
+        hideTestTypePills: true
     },
     pucit: {
         shortName: 'PUCIT',
         longName: 'Punjab University College of Information Technology',
-        description: 'PUCIT aggregate calculator for CS, SE and IT aspirants.',
+        description: 'PUCIT aggregate calculator with the official 25/35/40 formula for BS programs.',
         metaDescription: 'PUCIT merit calculator for main and new campus.',
         programs: [
             'Computer Science (Hons)',
             'Software Engineering',
             'Information Technology'
         ],
-        weights: { matric: 0.20, inter: 0.30, test: 0.50 },
-        testMax: 100
+        weights: { matric: 0.25, inter: 0.35, test: 0.40 },
+        testMax: 100,
+        hideTestTypePills: true
     },
     air: {
         shortName: 'AIR',
@@ -163,14 +171,14 @@ const calculatorConfigs = {
     bahria: {
         shortName: 'Bahria',
         longName: 'Bahria University',
-        description: 'Bahria University aggregate calculator with the official 0/50/50 formula.',
+        description: 'Bahria University aggregate calculator with the official 10/30/60 formula.',
         metaDescription: 'Bahria merit calculator for engineering, computing and business.',
         programs: [
             'Engineering & Maritime Studies',
             'Computing & AI',
             'Business & Media Studies'
         ],
-        weights: { matric: 0.00, inter: 0.50, test: 0.50 },
+        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
         testMax: 100
     },
     pu: {
@@ -210,6 +218,20 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
         testMax: 150,
+        hideTestTypePills: true
+    },
+    iiu: {
+        shortName: 'IIU',
+        longName: 'International Islamic University',
+        description: 'IIU aggregate calculator with the official 20/40/40 formula.',
+        metaDescription: 'IIU merit calculator for engineering and computing programs.',
+        programs: [
+            'Engineering Programs',
+            'Computing Programs',
+            'Business Programs'
+        ],
+        weights: { matric: 0.20, inter: 0.40, test: 0.40 },
+        testMax: 100,
         hideTestTypePills: true
     }
 };

@@ -29,16 +29,15 @@ const testPatterns = [
       totalMCQs: 100,
       duration: "2 hours",
       totalMarks: 100,
-      isComputerBased: true,
-      hasNegativeMarking: true,
+      isComputerBased: false,
+      hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
-        { name: "Mathematics", mcqs: 40 },
-        { name: "Physics", mcqs: 30 },
-        { name: "English", mcqs: 20 },
-        { name: "IQ/General Knowledge", mcqs: 10 }
+        { name: "Verbal Reasoning", mcqs: 20 },
+        { name: "Quantitative Reasoning", mcqs: 20 },
+        { name: "Subject Portion", mcqs: 60 }
       ],
-      notes: "Negative marking: 0.25 marks deducted for each wrong answer. The test is conducted online."
+      notes: "No negative marking. Answers are marked on bubble sheets (paper-based). A minimum 50% score in the entry test is generally required to qualify."
     }
   },
   {
@@ -52,9 +51,9 @@ const testPatterns = [
       hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
-        { name: "Mathematics", mcqs: 80 },
+        { name: "Mathematics", mcqs: 100 },
         { name: "Physics", mcqs: 60 },
-        { name: "English", mcqs: 60 }
+        { name: "English", mcqs: 40 }
       ],
       notes: "Computer-based test. No negative marking. Test centers available across Pakistan."
     }
@@ -63,18 +62,18 @@ const testPatterns = [
     id: "giki",
     name: "GIKI Entry Test",
     pattern: {
-      totalMCQs: 90,
+      totalMCQs: 80,
       duration: "2 hours",
       totalMarks: 200,
       isComputerBased: true,
-      hasNegativeMarking: true,
+      hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
         { name: "Mathematics", mcqs: 30 },
         { name: "Physics", mcqs: 30 },
-        { name: "English", mcqs: 30 }
+        { name: "English", mcqs: 20 }
       ],
-      notes: "Negative marking applies. Each correct answer: 2.22 marks. Each incorrect: -0.55 marks."
+      notes: "Each correct answer: 2.5 marks. No negative marking. No penalty for skipped questions."
     }
   },
   {
@@ -126,7 +125,7 @@ const testPatterns = [
       hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [],
-      notes: "No entry test required for BS Computer Science. Accepts NET, NTS, HAT, ECAT, ETEA, ACT, NED, and MUET scores for other programs."
+      notes: "IST does not conduct its own entry test. However, the following 8 entry tests are accepted for admission: NAT (NTS), HAT (ETC-HEC), NET (NUST), ECAT (UET Lahore), ETEA (UET Peshawar), MUET (Jamshoro), NED Entry Test, and ACT (USA). Applicants must score a minimum of 33% in the entry test."
     }
   },
   {
@@ -171,19 +170,19 @@ const testPatterns = [
     id: "fast",
     name: "FAST Entry Test (NU Test)",
     pattern: {
-      totalMCQs: 100,
+      totalMCQs: 120,
       duration: "2 hours",
       totalMarks: 100,
       isComputerBased: true,
       hasNegativeMarking: true,
       allowsCalculator: false,
       subjects: [
-        { name: "Advanced Mathematics", mcqs: 40 },
-        { name: "Basic Mathematics", mcqs: 15 },
-        { name: "Analytical", mcqs: 15 },
+        { name: "Advanced Mathematics", mcqs: 50 },
+        { name: "Basic Mathematics", mcqs: 20 },
+        { name: "IQ", mcqs: 20 },
         { name: "English", mcqs: 30 }
       ],
-      notes: "Negative marking: -0.25 for each wrong answer. NAT/SAT scores also accepted."
+      notes: "Negative marking: -0.125 for English, -0.25 for all other sections. NAT/SAT scores also accepted."
     }
   },
   {
@@ -233,7 +232,7 @@ const testPatterns = [
       duration: "1 hour 40 minutes",
       totalMarks: 400,
       isComputerBased: false,
-      hasNegativeMarking: true,
+      hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
         { name: "Mathematics", mcqs: 30 },
@@ -241,14 +240,14 @@ const testPatterns = [
         { name: "Comp. / Chemistry", mcqs: 30 },
         { name: "English", mcqs: 10 }
       ],
-      notes: "Negative marking: -1 for each wrong answer. Each correct answer carries 4 marks."
+      notes: "Each correct answer carries 4 marks. No negative marking."
     }
   },
   {
     id: "itu",
     name: "ITU Entry Test",
     pattern: {
-      totalMCQs: 60,
+      totalMCQs: 50,
       duration: "90 minutes",
       totalMarks: 100,
       isComputerBased: true,
@@ -256,7 +255,7 @@ const testPatterns = [
       allowsCalculator: false,
       subjects: [
         { name: "Analytical", mcqs: 20 },
-        { name: "Mathematics", mcqs: 40 }
+        { name: "Mathematics", mcqs: 30 }
       ],
       notes: "SAT-I and NTS scores also accepted. Focus on analytical and mathematical reasoning."
     }
