@@ -28,7 +28,6 @@ let selectedUniversities = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
     initForm();
-    initMobileMenu();
     initUniPicker();
     checkSavedData();
     document.getElementById('shareWhatsApp')?.addEventListener('click', shareWhatsApp);
@@ -91,17 +90,6 @@ function initUniPicker() {
                 renderCards();
             }
         });
-    });
-}
-
-function initMobileMenu() {
-    const toggle = document.getElementById('mobileToggle');
-    const navCenter = document.querySelector('.nav-center');
-    if (!toggle || !navCenter) return;
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        navCenter.classList.toggle('mobile-open');
-        document.body.classList.toggle('menu-open');
     });
 }
 

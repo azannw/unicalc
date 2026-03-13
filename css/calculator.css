@@ -1686,7 +1686,6 @@
 
     .calc-tabs {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .calc-tab {
@@ -2013,7 +2012,6 @@
 
 .merit-table-wrapper {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     margin: 0 -4px;
     padding: 0 4px;
 }
@@ -2165,4 +2163,76 @@
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* =====================================================
+   MOBILE PERFORMANCE OVERRIDES
+   Must be at the END of calculator.css to win the cascade
+   over non-media-query rules defined earlier in this file.
+   ===================================================== */
+
+@media (max-width: 768px) {
+    /* Fix cascade: earlier backdrop-filter/box-shadow rules override base.css mobile fixes */
+    .calc-main-container {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Remove expensive bg-grid (200% × 200% with perspective transform) */
+    .calculator-page > .hero-bg .bg-grid {
+        display: none;
+    }
+
+    /* Simplify gradient spheres — blur(60px) is very expensive on mobile GPUs */
+    .calculator-page > .hero-bg .gradient-sphere,
+    .calculator-page > .hero-bg .gradient-sphere.secondary {
+        filter: blur(30px);
+        opacity: 0.4;
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Make tab taps reliable: prevent touch delay, avoid animating layout props */
+    .calc-tab {
+        transition: color 0.15s ease, border-color 0.15s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        min-width: 0; /* Let flex: 1 distribute space — prevents scroll on ~360px phones */
+    }
+
+    /* Prevent scroll-vs-tap conflict — scrollable containers eat taps on real phones */
+    .calc-tabs {
+        -webkit-overflow-scrolling: auto;
+        overflow-x: visible;
+    }
+
+    /* Skip fadeIn animation on tab switch to reduce jank */
+    .calc-tab-content.active {
+        animation: none;
+    }
+
+    /* CSS containment for merit sections — helps browser optimize reflows */
+    .merit-campus-section {
+        contain: layout style;
+    }
+}
+
+@media (max-width: 576px) {
+    .calc-tabs {
+        -webkit-overflow-scrolling: auto;
+        overflow-x: visible;
+    }
+
+    .calc-tab {
+        min-width: 0;
+    }
+
+    /* Ensure gradient spheres stay simple on small phones */
+    .calculator-page > .hero-bg .gradient-sphere,
+    .calculator-page > .hero-bg .gradient-sphere.secondary {
+        width: 150px;
+        height: 150px;
+        filter: blur(20px);
+    }
 }

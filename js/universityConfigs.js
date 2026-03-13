@@ -30,7 +30,7 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0.10, inter: 0.15, test: 0.75 },
         testMax: 200,
-        hideTestTypePills: true,
+        hideTestTypePills: false,
         hasALevelSplit: true
     },
     itu: {
@@ -71,7 +71,7 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0, inter: 0.15, test: 0.85 },
         testMax: 200,
-        hideTestTypePills: true
+        hideTestTypePills: false
     },
     pieas: {
         shortName: 'PIEAS',
@@ -184,15 +184,15 @@ const calculatorConfigs = {
     pu: {
         shortName: 'PU',
         longName: 'University of the Punjab',
-        description: 'PU aggregate calculator with the official 25/50/25 formula.',
+        description: 'PU aggregate calculator with the official 25/35/40 formula.',
         metaDescription: 'Punjab University merit calculator for all programs.',
         programs: [
-            'Computing Programs',
             'Engineering Programs',
-            'Business Programs'
+            'Science Programs'
         ],
-        weights: { matric: 0.25, inter: 0.50, test: 0.25 },
-        testMax: 100
+        weights: { matric: 0.25, inter: 0.35, test: 0.40 },
+        testMax: 100,
+        hideTestTypePills: true
     },
     uhs: {
         shortName: 'UHS',
@@ -223,14 +223,14 @@ const calculatorConfigs = {
     iiu: {
         shortName: 'IIU',
         longName: 'International Islamic University',
-        description: 'IIU aggregate calculator with the official 20/40/40 formula.',
+        description: 'IIU aggregate calculator with the official 15/25/60 formula.',
         metaDescription: 'IIU merit calculator for engineering and computing programs.',
         programs: [
             'Engineering Programs',
             'Computing Programs',
             'Business Programs'
         ],
-        weights: { matric: 0.20, inter: 0.40, test: 0.40 },
+        weights: { matric: 0.15, inter: 0.25, test: 0.60 },
         testMax: 100,
         hideTestTypePills: true
     }

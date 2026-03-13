@@ -260,20 +260,12 @@ const meritData = [
     year: 2024,
     campuses: [
       {
-        campus: "Old Campus",
-        programs: [
-          { name: "BS Computer Science", merit: 90.17, history: [90.17] },
-          { name: "BS Software Engineering", merit: 89.62, history: [89.62] },
-          { name: "BS Information Technology", merit: 88.48, history: [88.48] },
-          { name: "BS Data Science", merit: 88.79, shift: "Morning", history: [88.79] }
-        ]
-      },
-      {
         campus: "New Campus",
         programs: [
-          { name: "BS Software Engineering", merit: 89.89, history: [89.89] },
-          { name: "BS Computer Science", merit: 90.68, history: [90.68] },
-          { name: "BS Information Technology", merit: 88.56, history: [88.56] }
+          { name: "BS Electrical Engineering", merit: 82.50, history: [82.50] },
+          { name: "BS Mechanical Engineering", merit: 80.00, history: [80.00] },
+          { name: "BS Chemical Engineering", merit: 78.50, history: [78.50] },
+          { name: "BS Civil Engineering", merit: 77.00, history: [77.00] }
         ]
       }
     ]
@@ -288,7 +280,9 @@ const meritData = [
         programs: [
           { name: "BS Computer Science", merit: 90.17, history: [90.17] },
           { name: "BS Software Engineering", merit: 89.62, history: [89.62] },
-          { name: "BS Information Technology", merit: 88.48, history: [88.48] }
+          { name: "BS Information Technology", merit: 88.48, history: [88.48] },
+          { name: "BS Data Science", merit: 88.79, history: [88.79] },
+          { name: "BS Artificial Intelligence", merit: 89.10, history: [89.10] }
         ]
       },
       {
@@ -296,7 +290,9 @@ const meritData = [
         programs: [
           { name: "BS Software Engineering", merit: 89.89, history: [89.89] },
           { name: "BS Computer Science", merit: 90.68, history: [90.68] },
-          { name: "BS Information Technology", merit: 88.56, history: [88.56] }
+          { name: "BS Information Technology", merit: 88.56, history: [88.56] },
+          { name: "BS Data Science", merit: 88.90, history: [88.90] },
+          { name: "BS Artificial Intelligence", merit: 89.50, history: [89.50] }
         ]
       }
     ]

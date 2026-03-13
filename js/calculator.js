@@ -23,27 +23,76 @@ function resolveCalculatorConfig() {
 function initTabs() {
     const tabBtns = document.querySelectorAll('.calc-tab');
     const tabContents = document.querySelectorAll('.calc-tab-content');
+    let meritRendered = false;
+    let patternRendered = false;
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (btn.disabled) return;
-            const tabId = btn.dataset.tab;
-            const content = document.getElementById(tabId);
-            if (!content) return;
+    function switchTab(btn) {
+        if (btn.disabled) return;
+        const tabId = btn.dataset.tab;
+        const content = document.getElementById(tabId);
+        if (!content) return;
 
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-            content.classList.add('active');
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        content.classList.add('active');
 
-            // On mobile, scroll to the top of the calculator container to prevent glitch
+        // Lazy-load merit data on first click to avoid blocking initial page load
+        if (tabId === 'merit' && !meritRendered) {
+            meritRendered = true;
+            setTimeout(() => renderMeritData(getUniversityId()), 0);
+        }
+
+        // Lazy-load pattern data on first click
+        if (tabId === 'pattern' && !patternRendered) {
+            patternRendered = true;
+            setTimeout(() => renderTestPattern(getUniversityId()), 0);
+        }
+
+        // On mobile, scroll to the top of the calculator container to prevent glitch
+        if (window.innerWidth <= 768) {
             const calcContainer = document.querySelector('.calc-main-container');
-            if (calcContainer && window.innerWidth <= 768) {
+            if (calcContainer) {
                 requestAnimationFrame(() => {
-                    calcContainer.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    window.scrollBy(0, -80);
+                    const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+                    const top = calcContainer.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+                    window.scrollTo({ top, behavior: 'instant' });
                 });
             }
+        }
+    }
+
+    tabBtns.forEach(btn => {
+        // Direct touch handling: on real phones, taps inside scrollable containers
+        // (overflow-x: auto) can be swallowed as scroll gestures, killing the click event.
+        // Detect taps via touchstart/touchend and fire immediately.
+        let touchStartX, touchStartY;
+        let touchHandled = false;
+
+        btn.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchHandled = false;
+        }, { passive: true });
+
+        btn.addEventListener('touchend', (e) => {
+            if (touchStartX === undefined) return;
+            const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+            const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+            // Finger moved < 10px = tap, not scroll
+            if (dx < 10 && dy < 10) {
+                touchHandled = true;
+                switchTab(btn);
+                // Reset flag after the delayed click event window
+                setTimeout(() => { touchHandled = false; }, 400);
+            }
+            touchStartX = undefined;
+        }, { passive: true });
+
+        // Fallback: standard click for desktop and non-touch devices
+        btn.addEventListener('click', () => {
+            if (touchHandled) return;
+            switchTab(btn);
         });
     });
 }
@@ -178,6 +227,8 @@ function setupInputListeners() {
             if (!testTotalInput) return;
             if (input.value === 'sat') {
                 testTotalInput.value = 1600;
+            } else if (input.value === 'act') {
+                testTotalInput.value = 36;
             } else if (input.value === 'nat') {
                 testTotalInput.value = 100;
             } else {
@@ -240,19 +291,15 @@ function displayResults(total, matric, inter, test) {
     if (resultsTabBtn) {
         resultsTabBtn.disabled = false;
         resultsTabBtn.click();
-        
-        // Scroll to top of calculator container to show results
+
+        // Scroll to calculator container on mobile to show results
         const calcContainer = document.querySelector('.calc-main-container');
         if (calcContainer) {
-            // Small delay to ensure tab switch is complete
-            setTimeout(() => {
-                calcContainer.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-                // Offset for fixed header
-                window.scrollBy(0, -100);
-            }, 100);
+            requestAnimationFrame(() => {
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+                const top = calcContainer.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+                window.scrollTo({ top, behavior: 'smooth' });
+            });
         }
     }
 
@@ -771,8 +818,7 @@ function showCalcWarning(message) {
 // Initialize dynamic content
 function initDynamicContent() {
     const universityId = getUniversityId();
-    renderMeritData(universityId);
-    renderTestPattern(universityId);
+    // Merit and pattern data are lazy-loaded on first tab click (see initTabs)
     updateFormulaCard(currentCalculatorConfig);
     updateBreakdownLabels(currentCalculatorConfig);
     updateNuCalcBanner(universityId);

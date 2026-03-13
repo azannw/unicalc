@@ -8,18 +8,17 @@ const testPatterns = [
     name: "PU Entry Test",
     pattern: {
       totalMCQs: 100,
-      duration: "1 hour 30 minutes",
+      duration: "2 hours",
       totalMarks: 100,
-      isComputerBased: true,
-      hasNegativeMarking: true,
+      isComputerBased: false,
+      hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
-        { name: "Mathematics", mcqs: 30 },
-        { name: "Physics", mcqs: 30 },
-        { name: "English", mcqs: 20 },
-        { name: "IQ/General Knowledge", mcqs: 20 }
+        { name: "Verbal Reasoning", mcqs: 20 },
+        { name: "Quantitative Reasoning", mcqs: 20 },
+        { name: "Subject Portion", mcqs: 60 }
       ],
-      notes: "Negative marking: -0.25 for each incorrect answer. Calculators are not allowed. Original CNIC/B-Form is mandatory for the test."
+      notes: "No negative marking. Answers are marked on bubble sheets (paper-based). A minimum 50% score in the entry test is generally required to qualify."
     }
   },
   {
@@ -231,7 +230,7 @@ const testPatterns = [
       totalMCQs: 100,
       duration: "1 hour 40 minutes",
       totalMarks: 400,
-      isComputerBased: false,
+      isComputerBased: true,
       hasNegativeMarking: false,
       allowsCalculator: false,
       subjects: [
@@ -240,7 +239,7 @@ const testPatterns = [
         { name: "Comp. / Chemistry", mcqs: 30 },
         { name: "English", mcqs: 10 }
       ],
-      notes: "Each correct answer carries 4 marks. No negative marking."
+      notes: "Computer-based test conducted on campus labs. Each correct answer carries 4 marks. No negative marking."
     }
   },
   {
@@ -298,6 +297,45 @@ const testPatterns = [
         { name: "Psychological (Qualifying)", mcqs: 50 }
       ],
       notes: "150 academic MCQs scored for aggregate + 50 psychological MCQs (pass/fail qualifying only, not counted in aggregate). Paper-based test. Only the 150 academic marks count toward the admission formula."
+    }
+  },
+  {
+    id: "iiu",
+    name: "IIU Entry Test",
+    pattern: {
+      totalMCQs: 100,
+      duration: "2 hours",
+      totalMarks: 100,
+      isComputerBased: false,
+      hasNegativeMarking: false,
+      allowsCalculator: false,
+      subjects: [
+        { name: "Physics", mcqs: 40 },
+        { name: "Mathematics", mcqs: 40 },
+        { name: "English", mcqs: 10 },
+        { name: "Chemistry", mcqs: 10 }
+      ],
+      testTypes: [
+        {
+          type: "Engineering (BS EE/ME/CE)",
+          subjects: [
+            { name: "Physics", percentage: "40%" },
+            { name: "Mathematics", percentage: "40%" },
+            { name: "English", percentage: "10%" },
+            { name: "Chemistry", percentage: "10%" }
+          ]
+        },
+        {
+          type: "Computer Science / AI / Software Engineering",
+          subjects: [
+            { name: "English", percentage: "30%" },
+            { name: "Analytical", percentage: "20%" },
+            { name: "Physics", percentage: "25%" },
+            { name: "Mathematics (SSC level)", percentage: "25%" }
+          ]
+        }
+      ],
+      notes: "100 MCQs in 2 hours. Engineering test focuses on Physics and Mathematics. CS/AI/SE test focuses on English, Analytical reasoning, Physics and SSC-level Mathematics."
     }
   }
 ];
