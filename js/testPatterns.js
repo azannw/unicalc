@@ -285,18 +285,38 @@ const testPatterns = [
     pattern: {
       totalMCQs: 200,
       duration: "3 hours",
-      totalMarks: 200,
+      totalMarksLabel: "Percentile",
+      totalMarks: 100,
       isComputerBased: false,
       hasNegativeMarking: false,
       allowsCalculator: false,
-      subjects: [
-        { name: "Biology", mcqs: 65 },
-        { name: "Chemistry", mcqs: 40 },
-        { name: "Physics", mcqs: 30 },
-        { name: "English", mcqs: 15 },
-        { name: "Psychological (Qualifying)", mcqs: 50 }
+      sections: [
+        {
+          name: "Academic (95% of NUMS Score)",
+          mcqs: 150,
+          subjects: [
+            { name: "Biology", mcqs: 60 },
+            { name: "Chemistry", mcqs: 38 },
+            { name: "Physics", mcqs: 37 },
+            { name: "English", mcqs: 15 }
+          ]
+        },
+        {
+          name: "Psychological (5% of NUMS Score)",
+          mcqs: 50,
+          subjects: [
+            { name: "Psychology", mcqs: 50 }
+          ]
+        }
       ],
-      notes: "150 academic MCQs scored for aggregate + 50 psychological MCQs (pass/fail qualifying only, not counted in aggregate). Paper-based test. Only the 150 academic marks count toward the admission formula."
+      subjects: [
+        { name: "Biology", mcqs: 60 },
+        { name: "Chemistry", mcqs: 38 },
+        { name: "Physics", mcqs: 37 },
+        { name: "English", mcqs: 15 },
+        { name: "Psychological", mcqs: 50 }
+      ],
+      notes: "NUMS test has 2 portions: Academic (150 MCQs, contributes 95% to score) and Psychological (50 MCQs, contributes 5% to score). Final NUMS score is displayed as a percentile out of 100."
     }
   },
   {

@@ -663,7 +663,21 @@ function renderTestPattern(universityId) {
     }
 
     let subjectListHtml = '';
-    if (testData.subjects && testData.subjects.length > 0) {
+    if (testData.sections && testData.sections.length > 0) {
+        subjectListHtml = testData.sections.map(section => `
+            <div class="subject-section">
+                <h4>${section.name} — ${section.mcqs} MCQs</h4>
+                <div class="subject-list">
+                    ${section.subjects.map(subject => `
+                        <div class="subject-item">
+                            <span class="subject-name">${subject.name}</span>
+                            <span class="subject-count">${subject.mcqs} MCQs</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    } else if (testData.subjects && testData.subjects.length > 0) {
         subjectListHtml = `
             <div class="subject-section">
                 <h4>Subject Distribution</h4>
@@ -714,7 +728,7 @@ function renderTestPattern(universityId) {
                 <span class="pattern-value">${testData.duration}</span>
             </div>
             <div class="pattern-card">
-                <span class="pattern-label">Total Marks</span>
+                <span class="pattern-label">${testData.totalMarksLabel || 'Total Marks'}</span>
                 <span class="pattern-value">${testData.totalMarks}</span>
             </div>
         </div>

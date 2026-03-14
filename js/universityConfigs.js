@@ -217,7 +217,7 @@ const calculatorConfigs = {
             'BDS'
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
-        testMax: 150,
+        testMax: 100,
         hideTestTypePills: true
     },
     iiu: {
