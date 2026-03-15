@@ -143,7 +143,7 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0.10, inter: 0.20, test: 0.70 },
         testMax: 200,
-        hideTestTypePills: true
+        hideTestTypePills: false
     },
     pucit: {
         shortName: 'PUCIT',
