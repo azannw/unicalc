@@ -116,7 +116,7 @@ const calculatorConfigs = {
     ist: {
         shortName: 'IST',
         longName: 'Institute of Space Technology',
-        description: 'IST aggregate calculator with the official 20/40/40 formula. IST does not conduct its own entry test but accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
+        description: 'IST aggregate calculator with 20/40/40 for FSc and 0/40/60 for A-Levels. IST does not conduct its own entry test but accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
         metaDescription: 'IST merit calculator with matric, inter, and entry test weightage.',
         programs: [
             'BS Computer Science',
@@ -124,6 +124,10 @@ const calculatorConfigs = {
             'Space Science & Engineering'
         ],
         weights: { matric: 0.20, inter: 0.40, test: 0.40 },
+        eduSystemWeights: {
+            'fsc': { matric: 0.20, inter: 0.40, test: 0.40 },
+            'alevel': { matric: 0.00, inter: 0.40, test: 0.60 }
+        },
         testMax: 100,
         hideTestTypePills: true
     },
@@ -158,14 +162,19 @@ const calculatorConfigs = {
     air: {
         shortName: 'AIR',
         longName: 'Air University',
-        description: 'Air University aggregate calculator with the official 15/35/50 formula for CS programs.',
+        description: 'Air University aggregate calculator with 10/50/40 for Engineering and 15/35/50 for Non-Engineering programs.',
         metaDescription: 'Air University merit calculator with AU admission test support.',
         programs: [
             'Engineering & Avionics',
             'Computing & Cyber Security',
             'Management Sciences'
         ],
-        weights: { matric: 0.15, inter: 0.35, test: 0.50 },
+        weights: { matric: 0.10, inter: 0.50, test: 0.40 },
+        programWeights: {
+            0: { matric: 0.10, inter: 0.50, test: 0.40 },
+            1: { matric: 0.15, inter: 0.35, test: 0.50 },
+            2: { matric: 0.15, inter: 0.35, test: 0.50 }
+        },
         testMax: 100
     },
     bahria: {

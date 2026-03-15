@@ -236,6 +236,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .nu-test-calculator-banner h4 {
@@ -355,18 +357,19 @@
     display: flex;
     gap: 16px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Pattern Tab */
 .content-card {
     background: rgba(255, 255, 255, 0.03);
-    padding: 32px;
+    padding: clamp(16px, 4vw, 32px);
     border-radius: 16px;
 }
 
 .pattern-info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 16px;
     margin: 24px 0;
     text-align: center;
@@ -399,6 +402,8 @@
     justify-content: space-between;
     padding: 12px 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .table-row.header {
@@ -412,6 +417,7 @@
     display: flex;
     gap: 12px;
     margin-top: 24px;
+    flex-wrap: wrap;
 }
 
 .tag {
@@ -429,9 +435,10 @@
 
 .join-group-float {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
+    bottom: 20px;
+    right: 16px;
     z-index: 100;
+    max-width: calc(100vw - 32px);
 }
 
 .btn-success {
@@ -631,6 +638,9 @@
 
 .tab-label {
     display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Tab Content */
@@ -756,6 +766,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+}
+
+.form-grid > * {
+    min-width: 0;
 }
 
 .input-card {
@@ -898,6 +912,7 @@
     border-radius: 16px;
     gap: 24px;
     transition: all 0.3s ease;
+    flex-wrap: wrap;
 }
 
 .nu-calc-banner:hover {
@@ -928,6 +943,7 @@
 .btn-block {
     width: auto;
     min-width: 220px;
+    max-width: 100%;
 }
 
 /* Results Tab Styles */
@@ -939,8 +955,11 @@
 
 .results-header h3 {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 5vw, 2rem);
     margin-bottom: 0;
+    padding: 0 4px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .aggregate-display {
@@ -952,8 +971,8 @@
 
 .aggregate-circle {
     position: relative;
-    width: 240px;
-    height: 240px;
+    width: min(240px, 65vw);
+    height: min(240px, 65vw);
 }
 
 .progress-ring {
@@ -985,25 +1004,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 85%;
+    max-width: 100%;
 }
 
 .aggregate-value {
     font-family: var(--font-display);
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 10vw, 3.5rem);
     font-weight: 700;
     line-height: 1;
     color: var(--text-primary);
 }
 
 .aggregate-unit {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 5vw, 2rem);
     color: var(--text-secondary);
     margin-left: 4px;
 }
 
 .aggregate-label {
     display: block;
-    font-size: 0.9rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
     color: var(--text-secondary);
     margin-top: 8px;
     text-transform: uppercase;
@@ -1047,8 +1068,9 @@
 /* Breakdown Section */
 .breakdown-section h4 {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
     margin-bottom: 24px;
+    overflow-wrap: break-word;
 }
 
 .breakdown-list {
@@ -1133,6 +1155,7 @@
     background: rgba(59, 130, 246, 0.05);
     border: 1px solid rgba(59, 130, 246, 0.1);
     border-radius: 12px;
+    flex-wrap: wrap;
 }
 
 .formula-icon {
@@ -1144,6 +1167,9 @@
     margin: 0;
     color: var(--text-secondary);
     line-height: 1.6;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .formula-card strong {
@@ -1154,6 +1180,7 @@
 .results-actions {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 /* Pattern Tab Styles */
@@ -1167,6 +1194,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .pattern-icon {
@@ -1175,13 +1203,15 @@
 
 .pattern-header h3 {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 5vw, 2rem);
     margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .pattern-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 20px;
 }
 
@@ -1232,11 +1262,15 @@
     background: rgba(10, 10, 10, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
+    gap: 12px;
 }
 
 .subject-name {
     color: var(--text-primary);
     font-weight: 500;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .subject-count {
@@ -1251,16 +1285,17 @@
 }
 
 .pattern-tag {
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: none;
 }
 
 .pattern-tag.negative {
-    background: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.08);
     color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .pattern-note {
@@ -1285,8 +1320,10 @@
 
 .merit-header h3 {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 5vw, 2rem);
     margin-bottom: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .merit-subtitle {
@@ -1346,6 +1383,7 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     transition: all 0.3s ease;
+    gap: 16px;
 }
 
 .merit-item:hover {
@@ -1357,11 +1395,14 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
 }
 
 .merit-program {
     font-weight: 600;
     color: var(--text-primary);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .merit-campus {
@@ -1457,12 +1498,12 @@
 
 /* Pattern Tag Styles */
 .pattern-tag.positive {
-    background: rgba(34, 197, 94, 0.15);
+    background: rgba(34, 197, 94, 0.08);
     color: rgb(34, 197, 94);
 }
 
 .pattern-tag.info {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(59, 130, 246, 0.08);
     color: rgb(59, 130, 246);
 }
 
@@ -1512,12 +1553,14 @@
 
 .facts-header h3 {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .facts-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
 }
 
@@ -1757,16 +1800,20 @@
     }
 
     .aggregate-circle {
-        width: 160px;
-        height: 160px;
+        width: 180px;
+        height: 180px;
     }
 
     .aggregate-value {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .aggregate-unit {
         font-size: 1.2rem;
+    }
+
+    .aggregate-label {
+        font-size: 0.75rem;
     }
 
     .breakdown-section h4 {
@@ -1917,6 +1964,7 @@
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    overflow-wrap: break-word;
 }
 
 .prediction-probability {
@@ -1969,6 +2017,8 @@
     background: rgba(59, 130, 246, 0.06);
     border: 1px solid rgba(59, 130, 246, 0.1);
     border-radius: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .merit-test-badge {
@@ -2199,12 +2249,14 @@
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
         min-width: 0; /* Let flex: 1 distribute space — prevents scroll on ~360px phones */
+        flex: 1 1 0;
+        text-align: center;
     }
 
     /* Prevent scroll-vs-tap conflict — scrollable containers eat taps on real phones */
     .calc-tabs {
         -webkit-overflow-scrolling: auto;
-        overflow-x: visible;
+        overflow-x: hidden;
     }
 
     /* Skip fadeIn animation on tab switch to reduce jank */
@@ -2221,11 +2273,13 @@
 @media (max-width: 576px) {
     .calc-tabs {
         -webkit-overflow-scrolling: auto;
-        overflow-x: visible;
+        overflow-x: hidden;
     }
 
     .calc-tab {
         min-width: 0;
+        flex: 1 1 0;
+        text-align: center;
     }
 
     /* Ensure gradient spheres stay simple on small phones */
@@ -2234,5 +2288,146 @@
         width: 150px;
         height: 150px;
         filter: blur(20px);
+    }
+}
+
+/* Very small phones (320px) */
+@media (max-width: 340px) {
+    .calc-tab {
+        padding: 12px 6px;
+        font-size: 0.72rem;
+    }
+
+    .calc-tab-content {
+        padding: 14px 10px;
+    }
+
+    .input-card {
+        padding: 14px;
+    }
+
+    .input-row {
+        gap: 4px;
+    }
+
+    .form-input {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+
+    .form-input-total {
+        width: 60px;
+        min-width: 54px;
+        padding: 10px 6px;
+        font-size: 0.85rem;
+    }
+
+    .toggle-btn {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+
+    .pill-btn {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+
+    .aggregate-circle {
+        width: min(160px, 55vw);
+        height: min(160px, 55vw);
+    }
+
+    .aggregate-value {
+        font-size: 1.8rem;
+    }
+
+    .aggregate-unit {
+        font-size: 1rem;
+    }
+
+    .results-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .breakdown-item {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .breakdown-label {
+        font-size: 0.82rem;
+    }
+
+    .breakdown-value {
+        font-size: 0.9rem;
+        min-width: 60px;
+    }
+
+    .pattern-card {
+        padding: 14px;
+    }
+
+    .pattern-value {
+        font-size: 1.1rem;
+    }
+
+    .merit-header h3 {
+        font-size: 1rem;
+    }
+
+    .merit-item {
+        padding: 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .merit-value {
+        font-size: 1.2rem;
+    }
+
+    .fact-card {
+        padding: 16px;
+    }
+
+    .fact-card h4 {
+        font-size: 1rem;
+    }
+
+    .calc-form .form-actions .btn-block {
+        min-width: 160px;
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+
+    .prediction-program-row {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .prediction-program-name {
+        font-size: 0.82rem;
+    }
+
+    .nu-calc-banner {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .banner-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .banner-content p {
+        font-size: 0.8rem;
+    }
+
+    .calc-page-title {
+        font-size: clamp(1.5rem, 11vw, 2.2rem);
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem;
+        gap: 6px;
+        margin-bottom: 20px;
     }
 }

@@ -187,6 +187,8 @@
     text-rendering: optimizeLegibility;
     transform: translateZ(0);
     backface-visibility: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .line-wrapper {
@@ -570,6 +572,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .headline {
@@ -2147,6 +2151,118 @@
     .strip-content {
         gap: 12px;
         padding: 0 10px;
+    }
+}
+
+/* Very small phones (320px) */
+@media (max-width: 340px) {
+    .hero-title {
+        font-size: clamp(2rem, 13vw, 2.4rem);
+    }
+
+    .hero-label {
+        font-size: 0.7rem;
+        gap: 8px;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    .hero-visual {
+        width: 90%;
+        max-width: 280px;
+    }
+
+    .calculator-window {
+        padding: 10px;
+    }
+
+    .result-value {
+        font-size: 1.5rem;
+    }
+
+    .result-unit {
+        font-size: 0.85rem;
+    }
+
+    .result-label {
+        font-size: 0.6rem;
+    }
+
+    .input-mock {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+
+    .calc-grid {
+        gap: 10px;
+    }
+
+    .calc-item label {
+        font-size: 0.65rem;
+    }
+
+    .uni-card {
+        padding: 20px 16px;
+    }
+
+    .uni-initial {
+        font-size: 1.2rem;
+    }
+
+    .uni-type {
+        font-size: 0.82rem;
+    }
+
+    .process-card {
+        padding: 20px;
+    }
+
+    .process-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .faq-trigger {
+        font-size: 0.9rem;
+        padding: 16px 14px;
+    }
+
+    .faq-inner {
+        padding: 0 14px 14px;
+        font-size: 0.9rem;
+    }
+
+    .faq-icon {
+        font-size: 1rem;
+    }
+
+    .btn-hero-primary,
+    .btn-glass-outline {
+        padding: 12px 20px;
+        font-size: 0.82rem;
+    }
+
+    .marquee-item {
+        font-size: 1.8rem;
+        gap: 20px;
+    }
+
+    .marquee-track {
+        gap: 24px;
+    }
+
+    .headline {
+        font-size: clamp(1.5rem, 12vw, 2.2rem);
+    }
+
+    .filter-pill {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+
+    .filter-container {
+        gap: 6px;
     }
 }
 

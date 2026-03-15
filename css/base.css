@@ -310,6 +310,9 @@ a {
     color: var(--glass-divider);
     display: inline-flex;
     gap: clamp(0.2rem, 0.6vw, 0.6rem);
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
 }
 
 .footer-headline span {
@@ -486,7 +489,9 @@ a {
     }
 
     .footer-links {
-        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 16px;
     }
 }
 
@@ -688,7 +693,32 @@ a {
     }
 
     .container {
+        padding: 0 16px;
+    }
+}
+
+/* Very small phones (320px) */
+@media (max-width: 340px) {
+    .container {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .container-fluid {
+        width: 100%;
         padding: 0 12px;
+    }
+
+    .logo {
+        font-size: 1.15rem;
+    }
+
+    .footer-links {
+        gap: 10px 14px;
+    }
+
+    .footer-link {
+        font-size: 0.82rem;
     }
 }
 
@@ -703,14 +733,17 @@ a {
     .calc-tab,
     .category-tab,
     .mobile-toggle,
-    .theme-toggle {
+    .theme-toggle,
+    .merit-filter-btn,
+    .faq-trigger {
         min-height: 44px;
         min-width: 44px;
     }
 
     .filter-pill,
     .toggle-btn,
-    .pill-btn {
+    .pill-btn,
+    .merit-filter-btn {
         min-height: 44px;
         display: inline-flex;
         align-items: center;

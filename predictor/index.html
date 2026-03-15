@@ -332,6 +332,7 @@
         .result-uni-row {
             display: flex; align-items: center; padding: 8px 10px;
             background: rgba(255,255,255,0.02); border-radius: 8px; gap: 8px;
+            flex-wrap: wrap;
         }
         .result-uni-name { font-weight: 600; font-size: 0.82rem; min-width: 48px; }
         .result-uni-info { flex: 1; font-size: 0.8rem; color: var(--text-tertiary); text-align: right; }
@@ -344,6 +345,7 @@
         /* Share buttons */
         .share-buttons {
             display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+            flex-wrap: wrap;
         }
         .share-btn {
             display: inline-flex; align-items: center; gap: 6px;
@@ -420,6 +422,23 @@
             .results-summary { grid-template-columns: repeat(2, 1fr); }
             .summary-stat .stat-value { font-size: 0.95rem; }
             #predictorForm { padding: 16px !important; }
+        }
+
+        @media (max-width: 340px) {
+            .summary-stat { padding: 10px 6px; }
+            .summary-stat .stat-value { font-size: 0.88rem; }
+            .summary-stat .stat-label { font-size: 0.72rem; }
+            .category-tab { padding: 8px 8px; font-size: 0.75rem; }
+            .uni-card-header { padding: 12px; gap: 6px; }
+            .uni-short-name { font-size: 0.85rem; min-width: 36px; }
+            .uni-long-name { font-size: 0.75rem; }
+            .chance-badge { font-size: 0.7rem; padding: 2px 6px; }
+            .result-card { padding: 16px 12px; }
+            .share-buttons { flex-wrap: wrap; }
+            .share-btn { padding: 6px 10px; font-size: 0.75rem; flex: 1 1 auto; justify-content: center; }
+            #predictorForm { padding: 14px !important; }
+            .uni-grid-btn { padding: 7px 12px; font-size: 0.8rem; }
+            .filter-pill { padding: 7px 12px; font-size: 0.8rem; }
         }
 
         /* Light theme overrides for predictor */

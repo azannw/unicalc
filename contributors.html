@@ -147,6 +147,7 @@
         .lb-name {
             flex: 1; font-family: var(--font-display);
             font-size: 1.05rem; font-weight: 500; color: var(--text-primary); min-width: 0;
+            overflow-wrap: break-word; word-break: break-word;
         }
         .lb-row--gold .lb-name { font-size: 1.15rem; font-weight: 600; }
 
@@ -208,25 +209,6 @@
         .cp-btn-primary { background: var(--accent); color: #fff; }
         .cp-btn-primary:hover { background: #2563eb; box-shadow: 0 4px 20px rgba(59,130,246,0.25); transform: translateY(-1px); }
 
-        /* Footer compact for contributors */
-        .cp-footer {
-            border-top: 1px solid rgba(255,255,255,0.04);
-            padding: 32px 0;
-        }
-        .cp-footer-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 16px;
-        }
-        .cp-footer-brand { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
-        .cp-footer-links { display: flex; gap: 20px; }
-        .cp-footer-links a {
-            font-size: 0.85rem; color: var(--text-secondary);
-            text-decoration: none; transition: color 0.2s ease;
-        }
-        .cp-footer-links a:hover { color: var(--text-primary); }
-        .cp-footer-credit { font-size: 0.82rem; color: var(--text-tertiary); }
-        .cp-footer-credit a { color: var(--text-secondary); text-decoration: none; }
-        .cp-footer-credit a:hover { color: var(--accent); }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -262,7 +244,6 @@
         [data-theme="light"] .cp-contribute-card { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.01); }
         [data-theme="light"] .cp-contribute-card:hover { border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.02); }
         [data-theme="light"] .cp-cta-box { background: rgba(0,0,0,0.01); border-color: rgba(0,0,0,0.08); }
-        [data-theme="light"] .cp-footer { border-top-color: rgba(0,0,0,0.06); }
 
         @media (max-width: 576px) {
             .cp-title { font-size: clamp(1.85rem, 8vw, 2.4rem); }
@@ -271,7 +252,25 @@
             .lb-name { font-size: 0.95rem; }
             .lb-row--gold .lb-name { font-size: 1rem; }
             .cp-btn { width: 100%; max-width: 280px; justify-content: center; }
-            .cp-footer-inner { flex-direction: column; align-items: center; text-align: center; }
+            .cp-contribute-card { padding: 24px 20px; }
+            .cp-contribute-card h3 { font-size: 0.95rem; }
+            .cp-contribute-card p { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 340px) {
+            .cp-title { font-size: clamp(1.5rem, 10vw, 2rem); }
+            .cp-subtitle { font-size: 0.9rem; }
+            .lb-row { padding: 14px 14px; gap: 10px; }
+            .lb-row--gold, .lb-row--silver, .lb-row--bronze { padding-left: 11px; }
+            .lb-rank { font-size: 0.8rem; min-width: 24px; }
+            .lb-name { font-size: 0.88rem; overflow-wrap: break-word; word-break: break-word; }
+            .lb-row--gold .lb-name { font-size: 0.92rem; }
+            .lb-social { width: 30px; height: 30px; }
+            .cp-section-title { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .cp-section-desc { font-size: 0.88rem; }
+            .cp-cta-box { padding: 24px 16px; }
+            .cp-cta-box p { font-size: 0.9rem; }
+            .cp-contribute-card { padding: 20px 16px; }
         }
     </style>
 </head>
@@ -427,18 +426,23 @@
 
         </div>
 
-        <footer class="cp-footer">
+        <footer class="footer calculator-footer">
             <div class="container">
-                <div class="cp-footer-inner">
-                    <span class="cp-footer-brand">UniCalc</span>
-                    <div class="cp-footer-links">
-                        <a href="index.html#universities">Universities</a>
-                        <a href="predictor/index.html">Predictor</a>
-                        <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer">Discord</a>
-                        <a href="mailto:hello@unicalc.pk">Contact</a>
-                        <a href="https://chat.whatsapp.com/K1vRPmsHIgxJY842UPUjoB" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <div class="footer-compact">
+                    <div class="footer-brand">
+                        <span class="footer-logo">UniCalc</span>
+                        <span class="footer-tagline">Your Merit Calculator</span>
                     </div>
-                    <div class="cp-footer-credit">Crafted by <a href="https://azanw.com" target="_blank">Azan</a></div>
+                    <div class="footer-links">
+                        <a href="index.html#universities" class="footer-link">Universities</a>
+                        <a href="predictor/" class="footer-link">Predictor</a>
+                        <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
+                        <a href="mailto:hello@unicalc.pk" class="footer-link">Contact</a>
+                        <a href="https://chat.whatsapp.com/K1vRPmsHIgxJY842UPUjoB" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+                    </div>
+                    <div class="footer-credit">
+                        Crafted by <a href="https://azanw.com" target="_blank" class="link-underline">Azan</a>
+                    </div>
                 </div>
             </div>
         </footer>

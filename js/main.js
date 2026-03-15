@@ -40,7 +40,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="${uni.id}/index.html" class="uni-card">
+        <a href="${uni.id}/" class="uni-card">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>

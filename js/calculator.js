@@ -237,6 +237,65 @@ function setupInputListeners() {
             }
         });
     });
+
+    // Switch weights when program changes (for universities with per-program weights)
+    const programSelect = document.getElementById('programSelect');
+    if (programSelect && currentCalculatorConfig?.programWeights) {
+        programSelect.addEventListener('change', () => {
+            const index = programSelect.selectedIndex;
+            const weights = currentCalculatorConfig.programWeights[index] || currentCalculatorConfig.weights || defaultWeights;
+            currentCalculatorConfig.weights = weights;
+            applyWeightLabels(weights);
+            updateBreakdownLabels(currentCalculatorConfig);
+            updateFormulaCard(currentCalculatorConfig);
+        });
+    }
+
+    // Switch weights when education system changes (for universities with edu-system-specific weights)
+    const eduSystemInputs = document.querySelectorAll('input[name="eduSystem"]');
+    if (eduSystemInputs.length && currentCalculatorConfig?.eduSystemWeights) {
+        eduSystemInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                const system = input.value;
+                const key = system.startsWith('alevel') ? 'alevel' : system;
+                const weights = currentCalculatorConfig.eduSystemWeights[key] || currentCalculatorConfig.weights || defaultWeights;
+                currentCalculatorConfig.weights = weights;
+                applyWeightLabels(weights);
+                updateBreakdownLabels(currentCalculatorConfig);
+                updateFormulaCard(currentCalculatorConfig);
+            });
+        });
+    }
+
+    // Real-time validation: clamp obtained marks to total marks
+    const markPairs = [
+        { obtained: 'matricObtained', total: 'matricTotal' },
+        { obtained: 'interObtained', total: 'interTotal' },
+        { obtained: 'testObtained', total: 'testTotal' }
+    ];
+    markPairs.forEach(pair => {
+        const obtainedInput = document.getElementById(pair.obtained);
+        const totalInput = document.getElementById(pair.total);
+        if (!obtainedInput || !totalInput) return;
+
+        function validatePair() {
+            const obtained = parseFloat(obtainedInput.value);
+            const total = parseFloat(totalInput.value);
+            if (isNaN(obtained) || isNaN(total)) return;
+            if (obtained > total) {
+                obtainedInput.style.borderColor = '#ef4444';
+                obtainedInput.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+            } else {
+                obtainedInput.style.borderColor = '';
+                obtainedInput.style.boxShadow = '';
+            }
+            if (obtained < 0) {
+                obtainedInput.value = 0;
+            }
+        }
+        obtainedInput.addEventListener('input', validatePair);
+        totalInput.addEventListener('input', validatePair);
+    });
 }
 
 function calculateAggregate() {
@@ -254,6 +313,31 @@ function calculateAggregate() {
     // Validate that at least one mark is entered
     if (matricObtained === 0 && interObtained === 0 && testObtained === 0) {
         showCalcWarning('Please enter your marks before calculating.');
+        return;
+    }
+
+    // Validate no negative values
+    if (matricObtained < 0 || interObtained < 0 || testObtained < 0) {
+        showCalcWarning('Marks cannot be negative.');
+        return;
+    }
+
+    if (matricTotal <= 0 || interTotal <= 0 || testTotal <= 0) {
+        showCalcWarning('Total marks must be greater than zero.');
+        return;
+    }
+
+    // Validate obtained does not exceed total
+    if (matricObtained > matricTotal) {
+        showCalcWarning('Matric obtained marks cannot exceed total marks.');
+        return;
+    }
+    if (interObtained > interTotal) {
+        showCalcWarning('Intermediate obtained marks cannot exceed total marks.');
+        return;
+    }
+    if (testObtained > testTotal) {
+        showCalcWarning('Entry test obtained marks cannot exceed total marks.');
         return;
     }
 
