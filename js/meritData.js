@@ -257,15 +257,39 @@ const meritData = [
   {
     id: "pu",
     name: "Punjab University",
-    year: 2024,
+    year: 2025,
     campuses: [
       {
-        campus: "New Campus",
+        campus: "Quaid-e-Azam (New) Campus — Lahore",
         programs: [
-          { name: "BS Electrical Engineering", merit: 82.50, history: [82.50] },
-          { name: "BS Mechanical Engineering", merit: 80.00, history: [80.00] },
-          { name: "BS Chemical Engineering", merit: 78.50, history: [78.50] },
-          { name: "BS Civil Engineering", merit: 77.00, history: [77.00] }
+          { name: "BS Electrical Engineering", merit: '-', history: ['-', 78.30] },
+          { name: "BS Chemical Engineering", merit: '-', history: ['-', 79.10] },
+          { name: "BS Metallurgy", merit: '-', history: ['-', 67.50] },
+          { name: "BBA", merit: '-', history: ['-', 82.91] },
+          { name: "BS Banking & Finance", merit: '-', history: ['-', 73.77] },
+          { name: "BS Commerce", merit: '-', history: ['-', 63.44] },
+          { name: "BS Accounting & Finance", merit: '-', history: ['-', 80.95] },
+          { name: "Doctor of Pharmacy", merit: '-', history: ['-', 92.36] },
+          { name: "BS Psychology", merit: '-', history: ['-', 83.71] },
+          { name: "BS Applied Psychology", merit: '-', history: ['-', 78.14] }
+        ]
+      },
+      {
+        campus: "Gujranwala Campus",
+        programs: [
+          { name: "BS Commerce", merit: 67.04, history: [67.04, 40] },
+          { name: "BS Accounting & Finance", merit: 85.50, history: [85.50, 64.86] },
+          { name: "BBA (Hons)", merit: 72.30, history: [72.30, 65.04] },
+          { name: "BS English", merit: 77.29, history: [77.29, 75.13] }
+        ]
+      },
+      {
+        campus: "Jhelum Campus",
+        programs: [
+          { name: "BBA", merit: '-', history: ['-', 48.42] },
+          { name: "BS Commerce", merit: '-', history: ['-', 29.19] },
+          { name: "BS Mathematics", merit: '-', history: ['-', 49.10] },
+          { name: "BS English", merit: '-', history: ['-', 45.96] }
         ]
       }
     ]
@@ -273,26 +297,32 @@ const meritData = [
   {
     id: "pucit",
     name: "Punjab University College of IT",
-    year: 2024,
+    year: 2025,
     campuses: [
       {
-        campus: "Old Campus",
+        campus: "Allama Iqbal (Old) Campus",
         programs: [
-          { name: "BS Computer Science", merit: 90.17, history: [90.17] },
-          { name: "BS Software Engineering", merit: 89.62, history: [89.62] },
-          { name: "BS Information Technology", merit: 88.48, history: [88.48] },
-          { name: "BS Data Science", merit: 88.79, history: [88.79] },
-          { name: "BS Artificial Intelligence", merit: 89.10, history: [89.10] }
+          { name: "BS Computer Science", merit: 87.26, history: [87.26, 90.17] },
+          { name: "BS Software Engineering", merit: 83.28, history: [83.28, 89.62] },
+          { name: "BS Information Technology", merit: 83.33, history: [83.33, 88.48] },
+          { name: "BS Data Science", merit: 82.38, history: [82.38, 88.79] },
+          { name: "BS Artificial Intelligence", merit: 86.38, history: [86.38, 89.10] }
         ]
       },
       {
-        campus: "New Campus",
+        campus: "Quaid-e-Azam (New) Campus",
         programs: [
-          { name: "BS Software Engineering", merit: 89.89, history: [89.89] },
-          { name: "BS Computer Science", merit: 90.68, history: [90.68] },
-          { name: "BS Information Technology", merit: 88.56, history: [88.56] },
-          { name: "BS Data Science", merit: 88.90, history: [88.90] },
-          { name: "BS Artificial Intelligence", merit: 89.50, history: [89.50] }
+          { name: "BS Computer Science", merit: 86.49, history: [86.49, 90.68] },
+          { name: "BS Software Engineering", merit: 86.34, history: [86.34, 89.89] },
+          { name: "BS Information Technology", merit: 85.90, history: [85.90, 88.56] },
+          { name: "BS Data Science", merit: 86.83, history: [86.83, 88.90] }
+        ]
+      },
+      {
+        campus: "Gujranwala Campus",
+        programs: [
+          { name: "BS Computer Science", merit: 85.56, history: [85.56, 87] },
+          { name: "BS Information Technology", merit: 83.93, history: [83.93, 85] }
         ]
       }
     ]
