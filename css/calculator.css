@@ -2089,6 +2089,22 @@
     }
 }
 
+/* Tab scroll fade hint on mobile */
+@media (max-width: 768px) {
+    .app-tabs { position: relative; }
+    .app-tabs::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        background: linear-gradient(to right, transparent, var(--bg-base));
+        pointer-events: none;
+        z-index: 2;
+    }
+}
+
 /* =====================================================
    LIGHT THEME OVERRIDES — Calculator
    ===================================================== */

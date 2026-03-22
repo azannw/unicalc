@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - UniCalc</title>
     <meta name="description" content="Learn about UniCalc - the free university admission calculator for Pakistani students.">
-    
+
+    <link rel="canonical" href="https://unicalc.pk/about.html">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +16,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/base.css">
     <script>
-        (function(){document.documentElement.setAttribute('data-theme','dark')})();
+        (function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('unicalc_theme')||'dark')})();
     </script>
 
     <!-- Favicon -->
@@ -36,6 +38,7 @@
                         <a href="index.html#universities" class="nav-link magnetic">Universities</a>
                         <a href="predictor/index.html" class="nav-link magnetic">Predictor</a>
                         <a href="contributors.html" class="nav-link magnetic">Contributors</a>
+                        <a href="about.html" class="nav-link magnetic" style="color: var(--text-primary)">About</a>
                     </div>
                 </div>
                 <div class="nav-actions">
@@ -61,7 +64,7 @@
                 </h1>
                 <p class="about-description">
                     UniCalc is a free, comprehensive platform designed to help Pakistani students 
-                    calculate their university admission merit accurately. We support 15+ top universities 
+                    calculate their university admission merit accurately. We support 17+ top universities 
                     and provide precise aggregate calculations for both FSc and A-Level students.
                 </p>
             </div>
@@ -90,8 +93,8 @@
                 <div class="about-card">
                     <div class="about-card-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 11.08V12C21.99 14.81 20.99 17.52 19.17 19.67C17.35 21.82 14.82 23.26 12.01 23.74C9.2 24.22 6.31 23.71 3.88 22.29C1.45 20.87 -0.35 18.63 -1.14 16C-1.93 13.37 -1.64 10.55 -0.34 8.11C0.97 5.67 3.18 3.78 5.88 2.81C8.58 1.84 11.55 1.86 14.23 2.87" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <h3 class="about-card-title">Accuracy</h3>
@@ -131,7 +134,7 @@
                 <div class="feature-item">
                     <span class="feature-number">01</span>
                     <div class="feature-content">
-                        <h3>15+ Universities Supported</h3>
+                        <h3>17+ Universities Supported</h3>
                         <p>From FAST to NUST, ITU to COMSATS - we cover all major Pakistani universities with their specific merit formulas.</p>
                     </div>
                 </div>

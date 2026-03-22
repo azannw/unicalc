@@ -16,8 +16,8 @@ const CHANCE_LABELS = {
 const STORAGE_KEY = 'unicalc_predictor';
 const MEDICAL_IDS = ['uhs', 'nums'];
 const SHORT_LABELS = {
-    'safe': 'Safe', 'very-likely': 'Likely', 'achievable': 'Achiev.',
-    'challenging': 'Tough', 'stretch': 'Stretch', 'not-achievable': 'Hard', 'rank': 'Rank'
+    'safe': '\u2713 Safe', 'very-likely': '\u2191 Likely', 'achievable': '\u2022 Achiev.',
+    'challenging': '\u25B3 Tough', 'stretch': '\u25BD Stretch', 'not-achievable': '\u2717 Hard', 'rank': 'Rank'
 };
 
 let currentResults = null;
@@ -125,24 +125,34 @@ function runPrediction() {
 
     const eduSystem = document.querySelector('input[name="eduSystem"]:checked')?.value || 'fsc';
     currentInputs = { matricObtained, matricTotal, interObtained, interTotal, eduSystem };
-    currentResults = calculatePredictions(matricObtained, matricTotal, interObtained, interTotal);
-    currentFilter = 'all';
 
-    const hasEngineering = currentResults.some(r => !MEDICAL_IDS.includes(r.id));
-    const hasMedical = currentResults.some(r => MEDICAL_IDS.includes(r.id));
-    currentCategory = hasEngineering ? 'engineering' : (hasMedical ? 'medical' : 'engineering');
-
-    saveToStorage();
-    renderAll();
-
+    // Show loading state
+    const loadingEl = document.getElementById('predictorLoading');
     const resultsEl = document.getElementById('predictorResults');
-    if (resultsEl) {
-        resultsEl.classList.add('visible');
-        setTimeout(() => resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-    }
+    if (loadingEl) loadingEl.classList.add('visible');
+    if (resultsEl) resultsEl.classList.remove('visible');
+
+    // Defer calculation to allow loading UI to paint
+    requestAnimationFrame(() => {
+        currentResults = calculatePredictions(matricObtained, matricTotal, interObtained, interTotal, eduSystem);
+        currentFilter = 'all';
+
+        const hasEngineering = currentResults.some(r => !MEDICAL_IDS.includes(r.id));
+        const hasMedical = currentResults.some(r => MEDICAL_IDS.includes(r.id));
+        currentCategory = hasEngineering ? 'engineering' : (hasMedical ? 'medical' : 'engineering');
+
+        saveToStorage();
+        renderAll();
+
+        if (loadingEl) loadingEl.classList.remove('visible');
+        if (resultsEl) {
+            resultsEl.classList.add('visible');
+            setTimeout(() => resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+        }
+    });
 }
 
-function calculatePredictions(matricObtained, matricTotal, interObtained, interTotal) {
+function calculatePredictions(matricObtained, matricTotal, interObtained, interTotal, eduSystem) {
     const matricPerc = (matricObtained / Math.max(matricTotal, 1)) * 100;
     const interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
     const results = [];
@@ -160,15 +170,35 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
             continue;
         }
 
-        const partialAggregate = (matricPerc * config.weights.matric) + (interPerc * config.weights.inter);
+        // Determine base weights (education-system-specific override for IST etc.)
+        let baseWeights = config.weights;
+        if (config.eduSystemWeights && config.eduSystemWeights[eduSystem]) {
+            baseWeights = config.eduSystemWeights[eduSystem];
+        }
+
+        const basePartial = (matricPerc * baseWeights.matric) + (interPerc * baseWeights.inter);
         const programs = [];
 
         uniMerit.campuses.forEach(campus => {
             campus.programs.forEach(program => {
+                // Skip programs marked as closed to applicants
+                if (typeof program.merit === 'string' && /closed/i.test(program.merit)) return;
+
                 const predicted = getPredictedMerit(program);
                 if (predicted === null) return;
 
-                if (config.weights.test === 0) {
+                // Determine program-specific weights (AIR: engineering vs computing)
+                let weights = baseWeights;
+                let partialAggregate = basePartial;
+                if (config.programWeights) {
+                    const idx = program.name.startsWith('BE ') ? 0 : 1;
+                    if (config.programWeights[idx]) {
+                        weights = config.programWeights[idx];
+                        partialAggregate = (matricPerc * weights.matric) + (interPerc * weights.inter);
+                    }
+                }
+
+                if (weights.test === 0) {
                     programs.push({
                         campus: campus.campus, program: program.name,
                         category: program.category || null, shift: program.shift || null,
@@ -179,7 +209,7 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
                         chance: partialAggregate >= predicted ? 'safe' : 'not-achievable'
                     });
                 } else {
-                    const requiredTestPerc = (predicted - partialAggregate) / config.weights.test;
+                    const requiredTestPerc = (predicted - partialAggregate) / weights.test;
                     const requiredTestMarks = (requiredTestPerc / 100) * config.testMax;
                     programs.push({
                         campus: campus.campus, program: program.name,
@@ -196,10 +226,11 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
         });
 
         results.push({
-            id: uniId, config, type: 'percentage', partialAggregate, programs,
+            id: uniId, config, type: 'percentage', partialAggregate: basePartial, programs,
             overallChance: getOverallChance(programs),
             achievableCount: programs.filter(p => p.chance !== 'not-achievable').length,
-            totalCount: programs.length
+            totalCount: programs.length,
+            baseWeights
         });
     }
 
@@ -460,11 +491,13 @@ function renderExpandedDetail(result) {
                 marksHtml = p.chance === 'safe'
                     ? '<span style="color:#22c55e;font-weight:600;font-size:0.82rem;">Qualified</span>'
                     : '<span style="color:#ef4444;font-weight:600;font-size:0.82rem;">Below</span>';
+            } else if (p.chance === 'safe') {
+                marksHtml = '<span style="color:#22c55e;font-weight:600;font-size:0.82rem;">Safe</span>';
+            } else if (p.chance === 'not-achievable') {
+                marksHtml = `<span class="prog-marks" style="color:#ef4444;">&gt;${p.testMax}</span>`;
             } else {
                 const marks = Math.ceil(Math.min(p.requiredTestMarks, p.testMax));
-                marksHtml = p.chance === 'not-achievable'
-                    ? `<span class="prog-marks" style="color:#ef4444;">&gt;${p.testMax}</span>`
-                    : `<span class="prog-marks">${marks}</span><span class="prog-marks-total">/${p.testMax}</span>`;
+                marksHtml = `<span class="prog-marks">${marks}</span><span class="prog-marks-total">/${p.testMax}</span>`;
             }
 
             let testBadge = '';
@@ -487,7 +520,9 @@ function renderExpandedDetail(result) {
         html += '</div>';
     }
 
-    const weightStr = `Matric ${Math.round(result.config.weights.matric * 100)}% + Inter ${Math.round(result.config.weights.inter * 100)}% + Test ${Math.round(result.config.weights.test * 100)}%`;
+    const w = result.baseWeights || result.config.weights;
+    let weightStr = `Matric ${Math.round(w.matric * 100)}% + Inter ${Math.round(w.inter * 100)}% + Test ${Math.round(w.test * 100)}%`;
+    if (result.config.programWeights) weightStr += ' (varies by program)';
     html += `<div class="detail-formula">${weightStr} &nbsp;·&nbsp; Your partial: ${result.partialAggregate.toFixed(2)}%</div>`;
     html += `<div class="detail-actions"><a href="../calculator/${result.id}/index.html" class="btn-calc-link">Open ${result.config.shortName} Calculator &rarr;</a></div>`;
     html += '</div>';
@@ -514,6 +549,7 @@ function renderResultCard() {
             .sort((a, b) => a.requiredTestPerc - b.requiredTestPerc)[0];
         let info = '';
         if (best && best.noTest) info = 'No test needed';
+        else if (best && best.chance === 'safe') info = 'Safe';
         else if (best) info = `Need ${Math.ceil(best.requiredTestMarks)}/${best.testMax}`;
 
         return `<div class="result-uni-row">
@@ -543,7 +579,7 @@ function renderResultCard() {
             </div>
         </div>
         <div class="result-card-unis">${uniRows}${noResults}</div>
-        <div class="result-card-footer">Calculate yours at <strong>unicalc.vercel.app</strong></div>`;
+        <div class="result-card-footer">Calculate yours at <strong>unicalc.pk</strong></div>`;
 }
 
 // =====================================================
@@ -559,11 +595,11 @@ function shareWhatsApp() {
 
     currentResults.filter(r => r.type === 'percentage' && r.overallChance !== 'not-achievable').slice(0, 6).forEach(r => {
         const best = r.programs.filter(p => p.chance !== 'not-achievable').sort((a, b) => a.requiredTestPerc - b.requiredTestPerc)[0];
-        const marks = best && !best.noTest ? `Need ${Math.ceil(best.requiredTestMarks)}/${best.testMax}` : 'Qualified';
+        const marks = (!best || best.noTest) ? 'Qualified' : (best.chance === 'safe' ? 'Safe' : `Need ${Math.ceil(best.requiredTestMarks)}/${best.testMax}`);
         text += `${r.config.shortName} — ${CHANCE_LABELS[r.overallChance]} (${marks})\n`;
     });
 
-    text += `\nCalculate yours: https://unicalc.vercel.app/predictor/`;
+    text += `\nCalculate yours: https://unicalc.pk/predictor/`;
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
 }
 
@@ -625,7 +661,7 @@ async function downloadPDF() {
     pdf.addImage(imgData, 'PNG', 20, 20, pdfImgWidth, pdfImgHeight);
     pdf.setFontSize(9);
     pdf.setTextColor(100);
-    pdf.text('Generated by UniCalc — unicalc.vercel.app', 105, 287, { align: 'center' });
+    pdf.text('Generated by UniCalc — unicalc.pk', 105, 287, { align: 'center' });
     pdf.save('unicalc-prediction.pdf');
 }
 

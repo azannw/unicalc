@@ -766,6 +766,27 @@ const meritData = [
         ]
       }
     ]
+  },
+  // =====================================================
+  // IIU — International Islamic University
+  // =====================================================
+  {
+    id: "iiu",
+    name: "International Islamic University",
+    year: 2025,
+    campuses: [
+      {
+        campus: "Islamabad",
+        programs: [
+          { name: "BS Computer Science", merit: 80, history: [80] },
+          { name: "BS Software Engineering", merit: 81, history: [81] },
+          { name: "BS Information Technology", merit: 73.5, history: [73.5] },
+          { name: "BS Electrical Engineering", merit: 71, history: [71] },
+          { name: "BS Mechanical Engineering", merit: 71, history: [71] },
+          { name: "BS Civil Engineering", merit: 71, history: [71] }
+        ]
+      }
+    ]
   }
 ];
 

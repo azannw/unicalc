@@ -2,28 +2,39 @@
 // UniCalc — Interaction Engine v3.2
 // =====================================================
 
-// === Theme: Force Dark ===
-document.documentElement.setAttribute('data-theme', 'dark');
-localStorage.removeItem('unicalc-theme');
+// === Theme ===
+const savedTheme = localStorage.getItem('unicalc_theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('unicalc_theme', next);
+    });
+}
 
 // === Touch Device Detection ===
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
 const universities = [
-    { id: 'fast', name: 'FAST', fullName: 'National University of Computer & Emerging Sciences', category: ['cs', 'engineering'] },
+    { id: 'fast', name: 'FAST', fullName: 'FAST National University', category: ['cs', 'engineering'] },
     { id: 'nust', name: 'NUST', fullName: 'National University of Sciences & Technology', category: ['engineering', 'cs'] },
     { id: 'itu', name: 'ITU', fullName: 'Information Technology University', category: ['cs'] },
-    { id: 'comsats', name: 'CUI', fullName: 'COMSATS University Islamabad', category: ['cs', 'engineering'] },
+    { id: 'comsats', name: 'COMSATS', fullName: 'COMSATS University Islamabad', category: ['cs', 'engineering'] },
     { id: 'giki', name: 'GIKI', fullName: 'Ghulam Ishaq Khan Institute', category: ['engineering', 'cs'] },
     { id: 'pieas', name: 'PIEAS', fullName: 'Pakistan Institute of Engineering & Applied Sciences', category: ['engineering', 'cs'] },
     { id: 'uet', name: 'UET', fullName: 'University of Engineering & Technology', category: ['engineering', 'cs'] },
+    { id: 'uet-taxila', name: 'UET Taxila', fullName: 'UET Taxila', category: ['engineering', 'cs'] },
     { id: 'ned', name: 'NED', fullName: 'NED University of Engineering & Technology', category: ['engineering', 'cs'] },
     { id: 'ist', name: 'IST', fullName: 'Institute of Space Technology', category: ['engineering', 'cs'] },
     { id: 'nutech', name: 'NUTECH', fullName: 'National University of Technology', category: ['engineering', 'cs'] },
     { id: 'pucit', name: 'PUCIT', fullName: 'Punjab University College of IT', category: ['cs'] },
     { id: 'air', name: 'AIR', fullName: 'Air University', category: ['engineering', 'cs'] },
     { id: 'bahria', name: 'Bahria', fullName: 'Bahria University', category: ['cs', 'engineering'] },
-    { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['engineering'] },
+    { id: 'pu', name: 'PU', fullName: 'University of the Punjab', category: ['engineering', 'cs'] },
     { id: 'uhs', name: 'UHS', fullName: 'University of Health Sciences', category: ['medical'] },
     { id: 'nums', name: 'NUMS', fullName: 'National University of Medical Sciences', category: ['medical'] },
     { id: 'iiu', name: 'IIU', fullName: 'International Islamic University', category: ['engineering', 'cs'] },
@@ -40,7 +51,7 @@ function renderUniversities(filter = 'all') {
         : universities.filter(uni => uni.category.includes(filter));
     
     uniGrid.innerHTML = filtered.map(uni => `
-        <a href="${uni.id}/" class="uni-card">
+        <a href="${uni.id}/" class="uni-card" aria-label="${uni.fullName}">
             <div class="uni-initial">${uni.name}</div>
             <div class="uni-meta">
                 <span class="uni-type">${uni.category.join(' / ')}</span>
@@ -275,20 +286,24 @@ faqItems.forEach(item => {
                 other.classList.remove('active');
                 const otherContent = other.querySelector('.faq-content');
                 const otherIcon = other.querySelector('.faq-icon');
+                const otherTrigger = other.querySelector('.faq-trigger');
                 if (otherContent) otherContent.style.maxHeight = null;
                 if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
             }
         });
-        
+
         // Toggle current
         if (isOpen) {
             item.classList.remove('active');
             content.style.maxHeight = null;
             if (icon) icon.style.transform = 'rotate(0deg)';
+            trigger.setAttribute('aria-expanded', 'false');
         } else {
             item.classList.add('active');
             content.style.maxHeight = content.scrollHeight + "px";
-            if (icon) icon.style.transform = 'rotate(180deg)';
+            if (icon) icon.style.transform = 'rotate(45deg)';
+            trigger.setAttribute('aria-expanded', 'true');
         }
     });
 });
@@ -348,7 +363,7 @@ if (!isTouchDevice) {
 // === Card Glow Effect (desktop only) ===
 function initCardGlow() {
     if (isTouchDevice) return;
-    const cards = document.querySelectorAll('.uni-card, .process-card, .testimonial-card');
+    const cards = document.querySelectorAll('.uni-card, .process-card');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -383,180 +398,17 @@ if (mobileToggle && navCenter) {
             document.body.classList.remove('menu-open');
         });
     });
-}
 
-// === 3D Cover Flow Testimonial Carousel ===
-const coverflowCarousel = document.getElementById('coverflowCarousel');
-
-if (coverflowCarousel) {
-    const cards = coverflowCarousel.querySelectorAll('.coverflow-card');
-    const dots = coverflowCarousel.querySelectorAll('.coverflow-dot');
-    const prevBtn = coverflowCarousel.querySelector('.coverflow-prev');
-    const nextBtn = coverflowCarousel.querySelector('.coverflow-next');
-    
-    let currentIndex = 0;
-    let autoPlayInterval = null;
-    let isPaused = false;
-    const totalCards = cards.length;
-    const autoPlayDelay = 2500; // 2.5 seconds
-    
-    // Update card positions for 3D Cover Flow effect
-    function updatePositions() {
-        cards.forEach((card, i) => {
-            // Calculate relative position from center
-            let position = i - currentIndex;
-            
-            // Handle infinite loop wrapping
-            if (position > Math.floor(totalCards / 2)) {
-                position -= totalCards;
-            } else if (position < -Math.floor(totalCards / 2)) {
-                position += totalCards;
-            }
-            
-            // Clamp position for visible range
-            const clampedPosition = Math.max(-2, Math.min(2, position));
-            card.setAttribute('data-position', clampedPosition);
-        });
-        
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-    
-    // Navigate to specific index
-    function goToSlide(index) {
-        // Wrap around for infinite loop
-        if (index >= totalCards) {
-            currentIndex = 0;
-        } else if (index < 0) {
-            currentIndex = totalCards - 1;
-        } else {
-            currentIndex = index;
-        }
-        
-        updatePositions();
-    }
-    
-    // Next slide
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        goToSlide(currentIndex - 1);
-    }
-    
-    // Auto-play functionality — pauses when off-screen
-    let isCarouselVisible = true;
-    const carouselObserver = new IntersectionObserver((entries) => {
-        isCarouselVisible = entries[0].isIntersecting;
-    }, { threshold: 0.1 });
-    carouselObserver.observe(coverflowCarousel);
-
-    function startAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(() => {
-            if (!isPaused && isCarouselVisible) {
-                nextSlide();
-            }
-        }, autoPlayDelay);
-    }
-
-    function resetAutoPlay() {
-        startAutoPlay();
-    }
-    
-    // Event Listeners - Navigation buttons
-    prevBtn?.addEventListener('click', () => {
-        prevSlide();
-        resetAutoPlay();
-    });
-    
-    nextBtn?.addEventListener('click', () => {
-        nextSlide();
-        resetAutoPlay();
-    });
-    
-    // Dot click handlers
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.dataset.index);
-            goToSlide(index);
-            resetAutoPlay();
-        });
-    });
-    
-    // Card click - go to that card
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const index = parseInt(card.dataset.index);
-            if (index !== currentIndex) {
-                goToSlide(index);
-                resetAutoPlay();
-            }
-        });
-    });
-    
-    // Pause on hover
-    coverflowCarousel.addEventListener('mouseenter', () => {
-        isPaused = true;
-    });
-    
-    coverflowCarousel.addEventListener('mouseleave', () => {
-        isPaused = false;
-    });
-    
-    // Touch swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    coverflowCarousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        isPaused = true;
-    }, { passive: true });
-    
-    coverflowCarousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        isPaused = false;
-    }, { passive: true });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-            resetAutoPlay();
-        }
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        const rect = coverflowCarousel.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isVisible) {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-                resetAutoPlay();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                resetAutoPlay();
-            }
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navCenter.classList.contains('mobile-open') &&
+            !navCenter.contains(e.target) &&
+            !mobileToggle.contains(e.target)) {
+            mobileToggle.classList.remove('active');
+            navCenter.classList.remove('mobile-open');
+            document.body.classList.remove('menu-open');
         }
     });
-    
-    // Initialize
-    updatePositions();
-    startAutoPlay();
-    
 }
 
 // === Footer Letter Hover ===

@@ -19,6 +19,8 @@
     <meta name="twitter:description" content="The most accurate university merit calculator for Pakistani students.">
     <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
 
+    <link rel="canonical" href="https://unicalc.pk/">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,15 +34,32 @@
 
     <!-- Theme flash prevention -->
     <script>
-        (function(){document.documentElement.setAttribute('data-theme','dark')})();
+        (function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('unicalc_theme')||'dark')})();
     </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "UniCalc",
+        "url": "https://unicalc.pk",
+        "description": "The most accurate university merit calculator for Pakistani students. Supports 17+ universities.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PKR" },
+        "author": { "@type": "Person", "name": "Azan", "url": "https://azanw.com" }
+    }
+    </script>
 </head>
 
 <body>
+    <a href="#universities" class="skip-to-content">Skip to content</a>
+
     <!-- Noise Overlay for Texture -->
     <div class="noise-overlay"></div>
 
@@ -57,6 +76,7 @@
                         <a href="#universities" class="nav-link magnetic" data-text="Universities">Universities</a>
                         <a href="predictor/index.html" class="nav-link magnetic" data-text="Predictor">Predictor</a>
                         <a href="contributors.html" class="nav-link magnetic" data-text="Contributors">Contributors</a>
+                        <a href="about.html" class="nav-link magnetic" data-text="About">About</a>
                     </div>
                 </div>
 
@@ -100,7 +120,7 @@
                         </h1>
 
                         <p class="hero-description reveal-text delay-1">
-                            Forget the guesswork. We engineered the ultimate tool for FAST, NUST, and COMSATS aspirants.
+                            Forget the guesswork. We engineered the ultimate tool for 17+ Pakistani universities.
                             Accurate. Instant. Essential.
                         </p>
 
@@ -161,7 +181,7 @@
                                 <div class="calc-divider"></div>
                                 <div class="calc-result">
                                     <span class="result-label">AGGREGATE</span>
-                                    <span class="result-value counter" data-target="87.41">0.00</span>
+                                    <span class="result-value counter" data-target="81.21">—</span>
                                     <span class="result-unit">%</span>
                                 </div>
                             </div>
@@ -176,7 +196,7 @@
         <section class="marquee-section">
             <div class="marquee-wrapper">
                 <div class="marquee-track">
-                    <span class="marquee-item">FAST-NUCES</span>
+                    <span class="marquee-item">FAST</span>
                     <span class="marquee-item">NUST</span>
                     <span class="marquee-item">GIKI</span>
                     <span class="marquee-item">ITU</span>
@@ -190,8 +210,11 @@
                     <span class="marquee-item">BAHRIA</span>
                     <span class="marquee-item">IST</span>
                     <span class="marquee-item">IIU</span>
+                    <span class="marquee-item">PU</span>
+                    <span class="marquee-item">UHS</span>
+                    <span class="marquee-item">NUMS</span>
                     <!-- Duplicate for seamless loop -->
-                    <span class="marquee-item">FAST-NUCES</span>
+                    <span class="marquee-item">FAST</span>
                     <span class="marquee-item">NUST</span>
                     <span class="marquee-item">GIKI</span>
                     <span class="marquee-item">ITU</span>
@@ -205,6 +228,9 @@
                     <span class="marquee-item">BAHRIA</span>
                     <span class="marquee-item">IST</span>
                     <span class="marquee-item">IIU</span>
+                    <span class="marquee-item">PU</span>
+                    <span class="marquee-item">UHS</span>
+                    <span class="marquee-item">NUMS</span>
                 </div>
             </div>
         </section>
@@ -241,7 +267,7 @@
         <section class="universities" id="universities">
             <div class="container">
                 <div class="section-head">
-                    <h2 class="headline">ECOSYSTEM</h2>
+                    <h2 class="headline">UNIVERSITIES</h2>
                     <div class="filter-container">
                         <button class="filter-pill active magnetic" data-filter="all">All</button>
                         <button class="filter-pill magnetic" data-filter="engineering">Engineering</button>
@@ -294,13 +320,13 @@
         <section class="faq-section" id="faq">
             <div class="container">
                 <div class="section-head">
-                    <h2 class="headline">QUERIES</h2>
+                    <h2 class="headline">FAQ</h2>
                     <p class="sub-headline">Everything you need to know.</p>
                 </div>
 
                 <div class="faq-grid">
                     <div class="faq-item">
-                        <button class="faq-trigger">
+                        <button class="faq-trigger" aria-expanded="false">
                             How accurate is the calculator?
                             <span class="faq-icon">+</span>
                         </button>
@@ -313,7 +339,7 @@
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-trigger">
+                        <button class="faq-trigger" aria-expanded="false">
                             Do you support A-Level students?
                             <span class="faq-icon">+</span>
                         </button>
@@ -326,7 +352,7 @@
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-trigger">
+                        <button class="faq-trigger" aria-expanded="false">
                             Is UniCalc actually free?
                             <span class="faq-icon">+</span>
                         </button>
@@ -339,14 +365,14 @@
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-trigger">
+                        <button class="faq-trigger" aria-expanded="false">
                             How often are universities updated?
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-content">
                             <div class="faq-inner">
-                                We push updates weekly. If a university changes its policy (like FAST recently did), we
-                                update the algorithm within 24 hours.
+                                We update data every admission cycle. If a university changes its policy, we
+                                update the algorithm as soon as the new criteria are confirmed.
                             </div>
                         </div>
                     </div>
@@ -355,23 +381,23 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer">
+        <footer class="footer calculator-footer">
             <div class="container">
-                <div class="footer-top">
-                    <h2 class="footer-headline">UNICALC</h2>
-                </div>
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>Community</h4>
-                        <a href="contributors.html" class="link-hover">Contributors</a>
-                        <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer" class="link-hover">Discord</a>
-                        <a href="mailto:hello@unicalc.pk" class="link-hover">Contact</a>
-                        <a href="https://chat.whatsapp.com/K1vRPmsHIgxJY842UPUjoB" target="_blank" rel="noopener noreferrer" class="link-hover">WhatsApp</a>
+                <div class="footer-compact">
+                    <div class="footer-brand">
+                        <span class="footer-logo">UniCalc</span>
+                        <span class="footer-tagline">Your Merit Calculator</span>
                     </div>
-                </div>
-                <div class="footer-bottom">
-                    <div class="copyright">UniCalc - Your Merit Calculator</div>
-                    <div class="maker">Crafted by <a href="https://azanw.com" target="_blank" class="link-underline">Azan</a></div>
+                    <div class="footer-links">
+                        <a href="index.html#universities" class="footer-link">Universities</a>
+                        <a href="predictor/" class="footer-link">Predictor</a>
+                        <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
+                        <a href="mailto:hello@unicalc.pk" class="footer-link">Contact</a>
+                        <a href="https://chat.whatsapp.com/K1vRPmsHIgxJY842UPUjoB" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+                    </div>
+                    <div class="footer-credit">
+                        Crafted by <a href="https://azanw.com" target="_blank" class="link-underline">Azan</a>
+                    </div>
                 </div>
             </div>
         </footer>

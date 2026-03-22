@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <script>
-        (function(){document.documentElement.setAttribute('data-theme','dark')})();
+        (function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('unicalc_theme')||'dark')})();
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
     <style>
@@ -96,6 +96,7 @@
                         <a href="index.html#universities" class="nav-link magnetic">Universities</a>
                         <a href="predictor/index.html" class="nav-link magnetic">Predictor</a>
                         <a href="contributors.html" class="nav-link magnetic">Contributors</a>
+                        <a href="about.html" class="nav-link magnetic">About</a>
                     </div>
                 </div>
                 <div class="nav-actions">
@@ -124,9 +125,17 @@
                 Let's get you back on track.
             </p>
             <p class="error-timer">Redirecting in <span id="countdown">8</span> seconds</p>
-            <a href="index.html" class="error-btn">Back to Home &rarr;</a>
+            <a href="/" class="error-btn">Back to Home &rarr;</a>
         </div>
     </div>
+
+    <footer class="footer calculator-footer" style="padding:20px 0;">
+        <div class="container">
+            <div style="text-align:center;font-size:0.85rem;color:var(--text-tertiary);">
+                UniCalc — Your Merit Calculator
+            </div>
+        </div>
+    </footer>
 
     <script>
         let sec = 8;
@@ -136,12 +145,12 @@
             if (el) el.textContent = sec;
             if (sec <= 0) {
                 clearInterval(interval);
-                window.location.href = 'index.html';
+                window.location.href = '/';
             }
         }, 1000);
 
-        // Theme: Force dark
-        document.documentElement.setAttribute('data-theme', 'dark');
+        // Theme
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('unicalc_theme') || 'dark');
 
         const toggle = document.getElementById('mobileToggle');
         const navCenter = document.querySelector('.nav-center');

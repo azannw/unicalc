@@ -155,20 +155,6 @@
     ]
   },
   {
-    "id": "iiu",
-    "name": "International Islamic University",
-    "campuses": [
-      {
-        "campus": "Islamabad",
-        "programs": [
-          { "name": "BS Computer Science", "merit": "85-88" },
-          { "name": "BS Software Engineering", "merit": "83-88" },
-          { "name": "BS Information Technology", "merit": "80-83" }
-        ]
-      }
-    ]
-  },
-  {
     "id": "pu",
     "name": "Punjab University",
     "campuses": [

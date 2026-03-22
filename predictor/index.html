@@ -16,17 +16,27 @@
     <meta name="twitter:description" content="Enter your marks and see which universities you can get into.">
     <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
 
+    <link rel="canonical" href="https://unicalc.pk/predictor/">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/calculator.css">
     <script>
-        (function(){document.documentElement.setAttribute('data-theme','dark')})();
+        (function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('unicalc_theme')||'dark')})();
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 
     <style>
+        /* ---- Loading spinner ---- */
+        .predictor-loading { display: none; text-align: center; padding: 40px 16px; }
+        .predictor-loading.visible { display: block; }
+        .predictor-loading .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .predictor-loading .spinner-text { display: block; margin-top: 12px; font-size: 0.85rem; color: var(--text-tertiary); }
+
         /* ---- Predictor Results ---- */
         .predictor-results { display: none; margin-top: 40px; }
         .predictor-results.visible { display: block; animation: fadeSlideUp 0.4s ease; }
@@ -487,6 +497,7 @@
                         <a href="../index.html#universities" class="nav-link magnetic">Universities</a>
                         <a href="index.html" class="nav-link magnetic" style="color:var(--text-primary)">Predictor</a>
                         <a href="../contributors.html" class="nav-link magnetic">Contributors</a>
+                        <a href="../about.html" class="nav-link magnetic" data-text="About">About</a>
                     </div>
                 </div>
                 <div class="nav-actions">
@@ -517,11 +528,13 @@
             </div>
             <div class="container">
                 <div class="calc-page-header reveal-text">
-                    <div class="breadcrumb">
-                        <a href="../index.html" class="breadcrumb-link">Home</a>
-                        <span class="breadcrumb-sep">&rarr;</span>
-                        <span class="breadcrumb-current">Admission Predictor</span>
-                    </div>
+                    <nav aria-label="Breadcrumb">
+                        <div class="breadcrumb">
+                            <a href="../index.html" class="breadcrumb-link">Home</a>
+                            <span class="breadcrumb-sep">&rarr;</span>
+                            <span class="breadcrumb-current">Admission Predictor</span>
+                        </div>
+                    </nav>
                     <h1 class="calc-page-title">
                         <span class="line-wrapper"><span class="line-reveal">Admission</span></span>
                         <span class="line-wrapper"><span class="line-reveal text-outline">Predictor</span></span>
@@ -560,9 +573,9 @@
                                     <label class="input-label">Matric / O-Level Marks</label>
                                 </div>
                                 <div class="input-row">
-                                    <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="0" required>
+                                    <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="1" required>
                                     <span class="input-separator">/</span>
-                                    <input type="number" value="1100" class="form-input form-input-total" id="matricTotal">
+                                    <input type="number" value="1100" class="form-input form-input-total" id="matricTotal" min="1">
                                 </div>
                                 <p class="input-hint" id="hintMatric">SSC / O-Level marks (or HEC equivalence)</p>
                             </div>
@@ -571,9 +584,9 @@
                                     <label class="input-label">Intermediate / A-Level Marks</label>
                                 </div>
                                 <div class="input-row">
-                                    <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0" required>
+                                    <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="1" required>
                                     <span class="input-separator">/</span>
-                                    <input type="number" value="1100" class="form-input form-input-total" id="interTotal">
+                                    <input type="number" value="1100" class="form-input form-input-total" id="interTotal" min="1">
                                 </div>
                                 <p class="input-hint" id="hintInter">HSSC / A-Level marks (or HEC equivalence)</p>
                             </div>
@@ -590,6 +603,11 @@
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <div class="predictor-loading" id="predictorLoading">
+                    <div class="spinner"></div>
+                    <span class="spinner-text">Calculating predictions...</span>
                 </div>
 
                 <div class="predictor-results" id="predictorResults">

@@ -158,29 +158,31 @@ section('Rank-Based Universities');
     assert(giki.type === 'rank', 'GIKI should return rank type');
 }
 
-section('No-Test University (IST)');
+section('IST (20/40/40 FSc weights)');
 
 {
-    // IST: weights matric=0.40, inter=0.60, test=0.00
+    // IST: weights matric=0.20, inter=0.40, test=0.40
     // matric 950/1100 → 86.36%, inter 980/1100 → 89.09%
-    // aggregate = 86.36*0.40 + 89.09*0.60 = 34.545 + 53.454 = 88.0
+    // partial = 86.36*0.20 + 89.09*0.40 = 17.27 + 35.64 = 52.91
     const ist = reverseCalculate('ist', 950, 1100, 980, 1100);
     assert(ist !== null, 'IST result should not be null');
     assert(ist.type === 'percentage', 'IST should be percentage type');
-    assert(Math.abs(ist.partialAggregate - 88.0) < 0.1, `IST aggregate should be ~88.0, got ${ist.partialAggregate.toFixed(2)}`);
+    assert(Math.abs(ist.partialAggregate - 52.91) < 0.1, `IST partial should be ~52.91, got ${ist.partialAggregate.toFixed(2)}`);
 
-    // IST BS CS merit is 90.25, so 88.0 < 90.25 → not-achievable
+    // IST BS CS merit is 90.25, testMax 100
+    // requiredTestPerc = (90.25 - 52.91) / 0.40 = 93.35 → stretch
     const bscs = ist.results.find(p => p.program === 'BS Computer Science');
     assert(bscs !== null, 'Should find IST BS CS');
     if (bscs) {
-        assert(bscs.noTest === true, 'IST programs should have noTest=true');
-        assert(bscs.chance === 'not-achievable', `IST BS CS with 88% should be not-achievable (cutoff 90.25), got ${bscs.chance}`);
+        assert(!bscs.noTest, 'IST programs should have a test component (test weight 0.40)');
+        assert(bscs.chance === 'stretch', `IST BS CS should be stretch (need ~93% test), got ${bscs.chance}`);
     }
 
-    // IST BS Data Science merit is 85.25, so 88.0 > 85.25 → safe
+    // IST BS Data Science merit is 85.25
+    // requiredTestPerc = (85.25 - 52.91) / 0.40 = 80.85 → challenging
     const bsds = ist.results.find(p => p.program === 'BS Data Science');
     if (bsds) {
-        assert(bsds.chance === 'safe', `IST BS DS with 88% should be safe (cutoff 85.25), got ${bsds.chance}`);
+        assert(bsds.chance === 'challenging', `IST BS DS should be challenging (need ~81% test), got ${bsds.chance}`);
     }
 }
 
@@ -278,7 +280,7 @@ section('Medical Universities (UHS, NUMS)');
     assert(nums !== null && nums.type === 'percentage', 'NUMS should return percentage');
     assert(nums.results.length > 0, 'NUMS should have program results');
     const first = nums.results[0];
-    assert(first.testMax === 150, `NUMS testMax should be 150, got ${first.testMax}`);
+    assert(first.testMax === 200, `NUMS testMax should be 200 (MDCAT), got ${first.testMax}`);
 }
 
 section('All Universities Produce Valid Results');

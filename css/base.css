@@ -46,7 +46,7 @@
     --mobile-menu-bg: rgba(255, 255, 255, 0.98);
 }
 
-:root {
+[data-theme="dark"] {
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-border-hover: rgba(255, 255, 255, 0.2);
     --glass-surface: rgba(255, 255, 255, 0.03);
@@ -79,8 +79,6 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 body {
@@ -98,8 +96,6 @@ body {
 main {
     display: block;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: visible;
     position: relative;
     z-index: 10;
 }
@@ -117,6 +113,10 @@ main {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 180px 180px;
+}
+
+@media (max-width: 768px) {
+    .noise-overlay { display: none; }
 }
 
 /* Typography Utility */

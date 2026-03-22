@@ -33,3 +33,19 @@ function createStars() {
 }
 
 createStars();
+
+// Pause star animations when the tab is hidden to save resources
+document.addEventListener('visibilitychange', () => {
+    if (!starsContainer) return;
+    if (document.hidden) {
+        starsContainer.style.animationPlayState = 'paused';
+        starsContainer.querySelectorAll('.star').forEach(star => {
+            star.style.animationPlayState = 'paused';
+        });
+    } else {
+        starsContainer.style.animationPlayState = 'running';
+        starsContainer.querySelectorAll('.star').forEach(star => {
+            star.style.animationPlayState = 'running';
+        });
+    }
+});
