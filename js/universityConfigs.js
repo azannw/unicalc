@@ -148,13 +148,17 @@ const calculatorConfigs = {
     pucit: {
         shortName: 'PUCIT',
         longName: 'Punjab University College of Information Technology',
-        description: 'PUCIT aggregate calculator with the official 25/35/40 formula for BS programs.',
+        description: 'PUCIT aggregate calculator with the official PU academic pool formula for BS programs.',
         metaDescription: 'PUCIT merit calculator for main and new campus.',
         programs: [
             'Computer Science (Hons)',
             'Software Engineering',
             'Information Technology'
         ],
+        useAcademicPoolFormula: true,
+        academicWeightage: 0.75,
+        testWeightage: 0.25,
+        matricPoolFraction: 0.25,
         weights: { matric: 0.25, inter: 0.35, test: 0.40 },
         testMax: 100,
         hideTestTypePills: true
@@ -193,12 +197,16 @@ const calculatorConfigs = {
     pu: {
         shortName: 'PU',
         longName: 'University of the Punjab',
-        description: 'PU aggregate calculator with the official 25/35/40 formula.',
+        description: 'PU aggregate calculator with the official academic pool formula (1/4 matric + full inter).',
         metaDescription: 'Punjab University merit calculator for all programs.',
         programs: [
             'Engineering Programs',
             'Science Programs'
         ],
+        useAcademicPoolFormula: true,
+        academicWeightage: 0.75,
+        testWeightage: 0.25,
+        matricPoolFraction: 0.25,
         weights: { matric: 0.25, inter: 0.35, test: 0.40 },
         testMax: 100,
         hideTestTypePills: true

@@ -1434,6 +1434,7 @@
 
 .merit-table-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -2212,6 +2213,26 @@
 [data-theme="light"] .pattern-table td,
 [data-theme="light"] .pattern-table th {
     border-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .pattern-note {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .pattern-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .pattern-tag.negative {
+    background: rgba(239, 68, 68, 0.08);
+    color: #dc2626;
+}
+[data-theme="light"] .pattern-tag.positive {
+    background: rgba(34, 197, 94, 0.08);
+    color: #16a34a;
+}
+[data-theme="light"] .pattern-tag.info {
+    background: rgba(59, 130, 246, 0.08);
+    color: #2563eb;
 }
 [data-theme="light"] .calc-page-header .breadcrumb-link {
     color: var(--text-secondary);

@@ -127,6 +127,31 @@ function applyCalculatorContent(config) {
 
     applyWeightLabels(config.weights || defaultWeights);
 
+    // Academic pool formula: override labels and show extra sections (PU/PUCIT)
+    if (config.useAcademicPoolFormula) {
+        const acadPct = Math.round((config.academicWeightage || 0.75) * 100);
+        const testPct = Math.round((config.testWeightage || 0.25) * 100);
+
+        const wM = document.getElementById('weightMatric');
+        const wI = document.getElementById('weightInter');
+        const wT = document.getElementById('weightTest');
+        if (wM) wM.textContent = '\u00D71/4';
+        if (wI) wI.textContent = '100%';
+        if (wT) wT.textContent = testPct + '%';
+
+        const hM = document.getElementById('hintMatric');
+        const hI = document.getElementById('hintInter');
+        const hT = document.getElementById('hintTest');
+        if (hM) hM.textContent = 'Only 1/4 of matric marks count in academic pool (' + acadPct + '% weightage)';
+        if (hI) hI.textContent = 'Full inter marks count in academic pool (' + acadPct + '% weightage)';
+        if (hT) hT.textContent = 'Contributes ' + testPct + '% to your final aggregate';
+
+        const addSection = document.getElementById('additionalMarksSection');
+        const lateSection = document.getElementById('lateYearsSection');
+        if (addSection) addSection.style.display = '';
+        if (lateSection) lateSection.style.display = '';
+    }
+
     const testTotalInput = document.getElementById('testTotal');
     if (testTotalInput) {
         const base = config.testMax || 100;
@@ -173,6 +198,10 @@ function applyCalculatorContent(config) {
             `;
         }
     }
+
+    // Set breakdown labels and formula text on initial load
+    updateBreakdownLabels(config);
+    updateFormulaCard(config);
 }
 
 function applyWeightLabels(weights) {
@@ -244,7 +273,7 @@ function setupInputListeners() {
         programSelect.addEventListener('change', () => {
             const index = programSelect.selectedIndex;
             const weights = currentCalculatorConfig.programWeights[index] || currentCalculatorConfig.weights || defaultWeights;
-            currentCalculatorConfig.weights = weights;
+            currentCalculatorConfig = { ...currentCalculatorConfig, weights: { ...weights } };
             applyWeightLabels(weights);
             updateBreakdownLabels(currentCalculatorConfig);
             updateFormulaCard(currentCalculatorConfig);
@@ -259,7 +288,7 @@ function setupInputListeners() {
                 const system = input.value;
                 const key = system.startsWith('alevel') ? 'alevel' : system;
                 const weights = currentCalculatorConfig.eduSystemWeights[key] || currentCalculatorConfig.weights || defaultWeights;
-                currentCalculatorConfig.weights = weights;
+                currentCalculatorConfig = { ...currentCalculatorConfig, weights: { ...weights } };
                 applyWeightLabels(weights);
                 updateBreakdownLabels(currentCalculatorConfig);
                 updateFormulaCard(currentCalculatorConfig);
@@ -299,7 +328,8 @@ function setupInputListeners() {
 }
 
 function calculateAggregate() {
-    const weights = currentCalculatorConfig?.weights || defaultWeights;
+    const config = currentCalculatorConfig;
+    const weights = config?.weights || defaultWeights;
 
     const matricObtained = parseFloat(document.getElementById('matricObtained')?.value) || 0;
     const matricTotal = parseFloat(document.getElementById('matricTotal')?.value) || 1100;
@@ -341,16 +371,46 @@ function calculateAggregate() {
         return;
     }
 
-    const matricPerc = (matricObtained / Math.max(matricTotal, 1)) * 100;
-    const interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
-    const testPerc = (testObtained / Math.max(testTotal, 1)) * 100;
+    if (config?.useAcademicPoolFormula) {
+        // PU/PUCIT Academic Pool Formula
+        // B = ((1/4 × Matric) + Inter + Additional) / ((1/4 × MatricTotal) + InterTotal)
+        const fraction = config.matricPoolFraction || 0.25;
+        const acadWeight = config.academicWeightage || 0.75;
+        const testWeight = config.testWeightage || 0.25;
 
-    const aggMatric = matricPerc * (weights.matric ?? defaultWeights.matric);
-    const aggInter = interPerc * (weights.inter ?? defaultWeights.inter);
-    const aggTest = testPerc * (weights.test ?? defaultWeights.test);
+        let additionalMarks = 0;
+        if (document.getElementById('hafizQuran')?.checked) additionalMarks += 20;
 
-    const totalAggregate = aggMatric + aggInter + aggTest;
-    displayResults(totalAggregate, aggMatric, aggInter, aggTest);
+        const lateYears = Math.min(Math.max(parseInt(document.getElementById('lateYears')?.value) || 0, 0), 5);
+
+        const numerator = (fraction * matricObtained) + interObtained + additionalMarks;
+        const denominator = (fraction * matricTotal) + interTotal;
+        const B = numerator / Math.max(denominator, 1);
+
+        // Academic percentage (out of 100), with late-year deduction
+        let academicPercentage = B * 100;
+        academicPercentage = Math.max(0, academicPercentage - (2 * lateYears));
+
+        // Apply weightages
+        const aggAcademic = academicPercentage * acadWeight;
+        const testPerc = (testObtained / Math.max(testTotal, 1)) * 100;
+        const aggTest = testPerc * testWeight;
+
+        const totalAggregate = aggAcademic + aggTest;
+        displayResults(totalAggregate, aggAcademic, 0, aggTest);
+    } else {
+        // Standard weighted percentage formula
+        const matricPerc = (matricObtained / Math.max(matricTotal, 1)) * 100;
+        const interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
+        const testPerc = (testObtained / Math.max(testTotal, 1)) * 100;
+
+        const aggMatric = matricPerc * (weights.matric ?? defaultWeights.matric);
+        const aggInter = interPerc * (weights.inter ?? defaultWeights.inter);
+        const aggTest = testPerc * (weights.test ?? defaultWeights.test);
+
+        const totalAggregate = aggMatric + aggInter + aggTest;
+        displayResults(totalAggregate, aggMatric, aggInter, aggTest);
+    }
 }
 
 function displayResults(total, matric, inter, test) {
@@ -838,6 +898,15 @@ function updateFormulaCard(config) {
     const formulaCard = document.querySelector('.formula-card p');
     if (!formulaCard || !config) return;
 
+    if (config.useAcademicPoolFormula) {
+        const acadPct = Math.round((config.academicWeightage || 0.75) * 100);
+        const testPct = Math.round((config.testWeightage || 0.25) * 100);
+        formulaCard.innerHTML = 'Based on the ' + config.longName + ' admission formula:<br>' +
+            '<strong>Academic (' + acadPct + '%) + Entry Test (' + testPct + '%)</strong><br>' +
+            '<small style="opacity:0.7;">Academic = (\u00BC \u00D7 Matric + Inter + Additional) \u00F7 (\u00BC \u00D7 Matric Total + Inter Total) \u00D7 ' + acadPct + '</small>';
+        return;
+    }
+
     const matric = Math.round((config.weights.matric || 0) * 100);
     const inter = Math.round((config.weights.inter || 0) * 100);
     const test = Math.round((config.weights.test || 0) * 100);
@@ -858,14 +927,25 @@ function updateBreakdownLabels(config) {
     if (!config) return;
 
     const matricLabel = document.querySelector('.breakdown-item:nth-child(1) .breakdown-label');
-    const interLabel = document.querySelector('.breakdown-item:nth-child(2) .breakdown-label');
+    const interItem = document.querySelector('.breakdown-item:nth-child(2)');
+    const interLabel = interItem?.querySelector('.breakdown-label');
     const testLabel = document.querySelector('.breakdown-item:nth-child(3) .breakdown-label');
+
+    if (config.useAcademicPoolFormula) {
+        const acadPct = Math.round((config.academicWeightage || 0.75) * 100);
+        const testPct = Math.round((config.testWeightage || 0.25) * 100);
+        if (matricLabel) matricLabel.textContent = `Academic Score (${acadPct}%)`;
+        if (interItem) interItem.style.display = 'none';
+        if (testLabel) testLabel.textContent = `Entry Test (${testPct}%)`;
+        return;
+    }
 
     const matric = Math.round((config.weights.matric || 0) * 100);
     const inter = Math.round((config.weights.inter || 0) * 100);
     const test = Math.round((config.weights.test || 0) * 100);
 
     if (matricLabel) matricLabel.textContent = `Matric (${matric}%)`;
+    if (interItem) interItem.style.display = '';
     if (interLabel) interLabel.textContent = `Intermediate (${inter}%)`;
     if (testLabel) testLabel.textContent = `Entry Test (${test}%)`;
 }
@@ -900,17 +980,28 @@ function getUniversityId() {
 }
 
 // Show warning message in the calculator form
+let _calcWarningTimeout = null;
 function showCalcWarning(message) {
+    if (_calcWarningTimeout) clearTimeout(_calcWarningTimeout);
     let warning = document.getElementById('calcWarning');
     if (!warning) {
         warning = document.createElement('div');
         warning.id = 'calcWarning';
         warning.style.cssText = 'background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#eab308;padding:12px 16px;border-radius:10px;font-size:0.9rem;text-align:center;margin-bottom:16px;animation:fadeIn 0.3s ease;';
         const formActions = document.querySelector('.form-actions');
-        if (formActions) formActions.parentNode.insertBefore(warning, formActions);
+        if (formActions) {
+            formActions.parentNode.insertBefore(warning, formActions);
+        } else {
+            const form = document.getElementById('calcForm');
+            if (form) form.appendChild(warning);
+        }
     }
     warning.textContent = message;
-    setTimeout(() => { if (warning) warning.remove(); }, 4000);
+    _calcWarningTimeout = setTimeout(() => {
+        const el = document.getElementById('calcWarning');
+        if (el) el.remove();
+        _calcWarningTimeout = null;
+    }, 4000);
 }
 
 // Initialize dynamic content

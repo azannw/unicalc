@@ -176,7 +176,22 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
             baseWeights = config.eduSystemWeights[eduSystem];
         }
 
-        const basePartial = (matricPerc * baseWeights.matric) + (interPerc * baseWeights.inter);
+        // Academic pool formula (PU/PUCIT): partial aggregate uses (1/4 matric + inter) pool
+        let basePartial;
+        let effectiveTestWeight;
+        if (config.useAcademicPoolFormula) {
+            const fraction = config.matricPoolFraction || 0.25;
+            const acadWeight = config.academicWeightage || 0.75;
+            effectiveTestWeight = config.testWeightage || 0.25;
+            const numerator = (fraction * matricObtained) + interObtained;
+            const denominator = (fraction * matricTotal) + interTotal;
+            const B = numerator / Math.max(denominator, 1);
+            basePartial = (B * 100) * acadWeight;
+        } else {
+            basePartial = (matricPerc * baseWeights.matric) + (interPerc * baseWeights.inter);
+            effectiveTestWeight = baseWeights.test;
+        }
+
         const programs = [];
 
         uniMerit.campuses.forEach(campus => {
@@ -188,17 +203,18 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
                 if (predicted === null) return;
 
                 // Determine program-specific weights (AIR: engineering vs computing)
-                let weights = baseWeights;
+                let testWeight = effectiveTestWeight;
                 let partialAggregate = basePartial;
-                if (config.programWeights) {
+                if (!config.useAcademicPoolFormula && config.programWeights) {
                     const idx = program.name.startsWith('BE ') ? 0 : 1;
                     if (config.programWeights[idx]) {
-                        weights = config.programWeights[idx];
+                        const weights = config.programWeights[idx];
                         partialAggregate = (matricPerc * weights.matric) + (interPerc * weights.inter);
+                        testWeight = weights.test;
                     }
                 }
 
-                if (weights.test === 0) {
+                if (testWeight === 0) {
                     programs.push({
                         campus: campus.campus, program: program.name,
                         category: program.category || null, shift: program.shift || null,
@@ -209,7 +225,7 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
                         chance: partialAggregate >= predicted ? 'safe' : 'not-achievable'
                     });
                 } else {
-                    const requiredTestPerc = (predicted - partialAggregate) / weights.test;
+                    const requiredTestPerc = (predicted - partialAggregate) / testWeight;
                     const requiredTestMarks = (requiredTestPerc / 100) * config.testMax;
                     programs.push({
                         campus: campus.campus, program: program.name,
@@ -520,9 +536,16 @@ function renderExpandedDetail(result) {
         html += '</div>';
     }
 
-    const w = result.baseWeights || result.config.weights;
-    let weightStr = `Matric ${Math.round(w.matric * 100)}% + Inter ${Math.round(w.inter * 100)}% + Test ${Math.round(w.test * 100)}%`;
-    if (result.config.programWeights) weightStr += ' (varies by program)';
+    let weightStr;
+    if (result.config.useAcademicPoolFormula) {
+        const acadPct = Math.round((result.config.academicWeightage || 0.75) * 100);
+        const testPct = Math.round((result.config.testWeightage || 0.25) * 100);
+        weightStr = `Academic Pool ${acadPct}% (\u00BC Matric + Inter) + Test ${testPct}%`;
+    } else {
+        const w = result.baseWeights || result.config.weights;
+        weightStr = `Matric ${Math.round(w.matric * 100)}% + Inter ${Math.round(w.inter * 100)}% + Test ${Math.round(w.test * 100)}%`;
+        if (result.config.programWeights) weightStr += ' (varies by program)';
+    }
     html += `<div class="detail-formula">${weightStr} &nbsp;·&nbsp; Your partial: ${result.partialAggregate.toFixed(2)}%</div>`;
     html += `<div class="detail-actions"><a href="../calculator/${result.id}/index.html" class="btn-calc-link">Open ${result.config.shortName} Calculator &rarr;</a></div>`;
     html += '</div>';

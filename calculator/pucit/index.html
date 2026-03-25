@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUCIT Aggregate Calculator - UniCalc</title>
     <meta name="description" content="Calculate your PUCIT aggregate score with UniCalc.">
+    <link rel="canonical" href="https://unicalc.pk/pucit/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -138,6 +139,28 @@
                                         <input type="number" value="1100" class="form-input form-input-total" id="interTotal">
                                     </div>
                                     <p class="input-hint" id="hintInter">Contributes to your aggregate score</p>
+                                </div>
+                                <div class="input-card full-width" id="additionalMarksSection" style="display: none;">
+                                    <div class="input-header">
+                                        <label class="input-label">Additional Marks</label>
+                                    </div>
+                                    <div class="pill-group">
+                                        <label class="pill-option">
+                                            <input type="checkbox" id="hafizQuran">
+                                            <span class="pill-btn">Hafiz-e-Quran (+20)</span>
+                                        </label>
+                                    </div>
+                                    <p class="input-hint" id="hintAdditional">Added to your academic score numerator (requires original Sanad)</p>
+                                </div>
+                                <div class="input-card" id="lateYearsSection" style="display: none;">
+                                    <div class="input-header">
+                                        <label class="input-label">Gap / Late Years</label>
+                                        <span class="input-weight" id="weightLateYears">&minus;2/yr</span>
+                                    </div>
+                                    <div class="input-row">
+                                        <input type="number" value="0" class="form-input" id="lateYears" min="0" max="5" step="1">
+                                    </div>
+                                    <p class="input-hint" id="hintLateYears">2 marks deducted from academic % per late year (max 5)</p>
                                 </div>
                                 <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>
@@ -273,7 +296,6 @@
                     <div class="footer-links">
                         <a href="../../index.html#universities" class="footer-link">Universities</a>
                         <a href="../../predictor/" class="footer-link">Predictor</a>
-                        <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
                         <a href="https://discord.com/invite/eUF3qK3AMW" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
                         <a href="mailto:hello@unicalc.pk" class="footer-link">Contact</a>
                         <a href="https://chat.whatsapp.com/K1vRPmsHIgxJY842UPUjoB" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
