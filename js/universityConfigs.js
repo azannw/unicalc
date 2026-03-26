@@ -240,15 +240,16 @@ const calculatorConfigs = {
     iiu: {
         shortName: 'IIU',
         longName: 'International Islamic University',
-        description: 'IIU aggregate calculator with the official 15/25/60 formula.',
+        description: 'IIU aggregate calculator with the official 10/20/70 formula.',
         metaDescription: 'IIU merit calculator for engineering and computing programs.',
         programs: [
             'Engineering Programs',
             'Computing Programs',
             'Business Programs'
         ],
-        weights: { matric: 0.15, inter: 0.25, test: 0.60 },
+        weights: { matric: 0.10, inter: 0.20, test: 0.70 },
         testMax: 100,
-        hideTestTypePills: true
+        hideTestTypePills: true,
+        hasALevelSplit: true
     }
 };
