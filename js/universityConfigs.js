@@ -7,28 +7,38 @@ const calculatorConfigs = {
     fast: {
         shortName: 'FAST',
         longName: 'FAST National University',
-        description: 'Calculate your FAST aggregate with the verified 10/40/50 matric, inter and NU test split.',
-        metaDescription: 'FAST merit calculator covering all campuses and programs with the official 10/40/50 weighting.',
+        description: 'Calculate your FAST aggregate with the verified formula. Computing: 10/40/50, Engineering: 17/50/33 (SSC/HSSC/Test).',
+        metaDescription: 'FAST merit calculator covering all campuses and programs with official weighting — Computing 10/40/50, Engineering 17/50/33.',
         programs: [
             'Computing Programs (CS, SE, AI, DS, Cyber)',
-            'Engineering Programs (EE, Civil, Power)',
+            'Engineering Programs (EE, CE, EL, Civil)',
             'Business Programs (BBA, AFM)'
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
+        programWeights: {
+            0: { matric: 0.10, inter: 0.40, test: 0.50 }, // Computing: 10% SSC / 40% HSSC / 50% Test
+            1: { matric: 0.17, inter: 0.50, test: 0.33 }, // Engineering: 17% SSC / 50% HSSC / 33% Test
+            2: { matric: 0.10, inter: 0.40, test: 0.50 }  // Business: 10% SSC / 40% HSSC / 50% Test
+        },
         testMax: 100,
         hasALevelSplit: true
     },
     nust: {
         shortName: 'NUST',
         longName: 'National University of Sciences & Technology',
-        description: 'Compute your NET aggregate for NUST engineering, SEECS and business schools.',
-        metaDescription: 'NUST NET calculator with the official 10/15/75 weighting.',
+        description: 'Compute your NET aggregate for NUST. FSc/Gap-Year A-Level: 10% SSC / 15% HSSC / 75% NET. Immediate A-Level: 25% O-Level / 0% A-Level / 75% NET.',
+        metaDescription: 'NUST NET calculator with the official 10/15/75 weighting (FSc/Gap) and 25/0/75 for Immediate A-Level students.',
         programs: [
             'Engineering Schools (SMME, CEME, SEECS)',
             'Computing & AI Programs',
             'Business & Social Sciences'
         ],
         weights: { matric: 0.10, inter: 0.15, test: 0.75 },
+        eduSystemWeights: {
+            'fsc':              { matric: 0.10, inter: 0.15, test: 0.75 }, // Standard FSc: 10% SSC / 15% HSSC / 75% NET
+            'alevel-immediate': { matric: 0.25, inter: 0.00, test: 0.75 }, // Immediate A-Level: 25% O-Level / 0% A-Level / 75% NET
+            'alevel-gap':       { matric: 0.10, inter: 0.15, test: 0.75 }  // Gap-Year A-Level: treated same as FSc
+        },
         testMax: 200,
         hideTestTypePills: false,
         hasALevelSplit: true
@@ -36,15 +46,21 @@ const calculatorConfigs = {
     itu: {
         shortName: 'ITU',
         longName: 'Information Technology University',
-        description: 'Plan your admission strategy for ITU Lahore with the 15/35/50 split.',
-        metaDescription: 'ITU merit calculator for CS, DS and EE programs.',
+        description: 'ITU Lahore: FSc/Gap-Year A-Level: 15% SSC / 35% HSSC / 50% Test. Immediate A-Level: 35% O-Level / 0% A-Level / 65% Test. Accepts ITU Test, NAT, SAT & ECAT.',
+        metaDescription: 'ITU merit calculator — FSc 15/35/50, Immediate A-Level 35/0/65, Gap-Year A-Level 15/35/50. Accepts ECAT, NAT, SAT.',
         programs: [
             'Computer Science & Data Science',
             'Electrical Engineering',
             'Business & Management'
         ],
         weights: { matric: 0.15, inter: 0.35, test: 0.50 },
-        testMax: 100
+        eduSystemWeights: {
+            'fsc':              { matric: 0.15, inter: 0.35, test: 0.50 }, // FSc: 15% SSC / 35% HSSC / 50% Test
+            'alevel-immediate': { matric: 0.35, inter: 0.00, test: 0.65 }, // Immediate A-Level: 35% O-Level / 0% A-Level / 65% Test
+            'alevel-gap':       { matric: 0.15, inter: 0.35, test: 0.50 }  // Gap-Year A-Level: same as FSc
+        },
+        testMax: 100,
+        hasALevelSplit: true
     },
     comsats: {
         shortName: 'COMSATS',
@@ -76,15 +92,21 @@ const calculatorConfigs = {
     pieas: {
         shortName: 'PIEAS',
         longName: 'Pakistan Institute of Engineering & Applied Sciences',
-        description: 'PIEAS merit calculator using the official 15/25/60 distribution.',
-        metaDescription: 'PIEAS aggregate calculator for engineering and applied sciences.',
+        description: 'PIEAS: FSc/Completed A-Level: 15% Matric / 25% HSSC or A-Level / 60% Test. Result-Awaited A-Level: 40% O-Level / 0% A-Level / 60% Test.',
+        metaDescription: 'PIEAS aggregate calculator — FSc 15/25/60, Result-Awaited A-Level 40/0/60, Completed A-Level 15/25/60.',
         programs: [
             'Engineering Disciplines',
             'Applied & Nuclear Sciences',
             'Computer & Information Sciences'
         ],
         weights: { matric: 0.15, inter: 0.25, test: 0.60 },
-        testMax: 100
+        eduSystemWeights: {
+            'fsc':              { matric: 0.15, inter: 0.25, test: 0.60 }, // FSc: 15% Matric / 25% HSSC / 60% Test
+            'alevel-immediate': { matric: 0.40, inter: 0.00, test: 0.60 }, // Result-Awaited A-Level: 40% O-Level / 0% A-Level / 60% Test
+            'alevel-gap':       { matric: 0.15, inter: 0.25, test: 0.60 }  // Completed A-Level: 15% O-Level / 25% A-Level / 60% Test
+        },
+        testMax: 100,
+        hasALevelSplit: true
     },
     uet: {
         shortName: 'UET',

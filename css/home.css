@@ -187,8 +187,6 @@
     text-rendering: optimizeLegibility;
     transform: translateZ(0);
     backface-visibility: hidden;
-    overflow-wrap: break-word;
-    word-break: break-word;
 }
 
 .line-wrapper {
@@ -198,6 +196,7 @@
 
 .line-reveal {
     display: block;
+    white-space: nowrap;
     transform: translateY(100%);
     animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

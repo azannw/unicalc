@@ -260,6 +260,8 @@ function setupInputListeners() {
                 testTotalInput.value = 36;
             } else if (input.value === 'nat') {
                 testTotalInput.value = 100;
+            } else if (input.value === 'ecat') {
+                testTotalInput.value = 400;
             } else {
                 const base = testTotalInput.dataset.baseTotal || currentCalculatorConfig?.testMax || 100;
                 testTotalInput.value = base;
@@ -286,8 +288,13 @@ function setupInputListeners() {
         eduSystemInputs.forEach(input => {
             input.addEventListener('change', () => {
                 const system = input.value;
-                const key = system.startsWith('alevel') ? 'alevel' : system;
-                const weights = currentCalculatorConfig.eduSystemWeights[key] || currentCalculatorConfig.weights || defaultWeights;
+                // Use the exact system value as key first (e.g. 'alevel-immediate', 'alevel-gap'),
+                // then fall back to the generic 'alevel' key (for universities with a single A-Level weight),
+                // then fall back to the default weights.
+                const weights = currentCalculatorConfig.eduSystemWeights[system]
+                    || currentCalculatorConfig.eduSystemWeights['alevel']
+                    || currentCalculatorConfig.weights
+                    || defaultWeights;
                 currentCalculatorConfig = { ...currentCalculatorConfig, weights: { ...weights } };
                 applyWeightLabels(weights);
                 updateBreakdownLabels(currentCalculatorConfig);

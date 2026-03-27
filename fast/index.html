@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAST Aggregate Calculator - UniCalc</title>
-    <meta name="description" content="Calculate your FAST National University aggregate with the official 10/40/50 formula.">
+    <meta name="description" content="Calculate your FAST National University aggregate. Computing programs use 10/40/50, Engineering programs use 17/50/33 (SSC/HSSC/Test).">
     <link rel="canonical" href="https://unicalc.pk/fast/">
 
     <!-- Open Graph -->
@@ -126,7 +126,7 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="matricTotal">
                                     </div>
-                                    <p class="input-hint" id="hintMatric">Contributes 10% to your aggregate score</p>
+                                     <p class="input-hint" id="hintMatric">Weightage varies by program (e.g., 10% for CS, 17% for Engineering)</p>
                                 </div>
                                 <div class="input-card">
                                     <div class="input-header">
@@ -138,7 +138,7 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="interTotal">
                                     </div>
-                                    <p class="input-hint" id="hintInter">Contributes 40% to your aggregate score</p>
+                                     <p class="input-hint" id="hintInter">Weightage varies by program (e.g., 40% for CS, 50% for Engineering)</p>
                                 </div>
                                 <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>
@@ -167,7 +167,7 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="100" class="form-input form-input-total" id="testTotal">
                                     </div>
-                                    <p class="input-hint" id="hintTest">Contributes 50% to your aggregate score</p>
+                                     <p class="input-hint" id="hintTest">Weightage varies by program (e.g., 50% for CS, 33% for Engineering)</p>
                                 </div>
                             </div>
                             <div class="nu-calc-banner" id="nuCalcBanner">
@@ -238,7 +238,7 @@
                             </div>
                             <div class="formula-card">
                                 <div class="formula-icon">&sum;</div>
-                                <p id="formulaText">Based on the FAST National University admission formula:<br><strong>Matric (10%) + Intermediate (40%) + Entry Test (50%)</strong></p>
+                                <p id="formulaText">Based on the FAST National University admission formula:<br><strong id="formulaDetail">Matric (10%) + Intermediate (40%) + Entry Test (50%)</strong><br><small style="opacity:0.7">Engineering programs: Matric (17%) + Intermediate (50%) + Entry Test (33%)</small></p>
                             </div>
                             <div class="results-actions">
                                 <button class="btn btn-outline magnetic-btn" id="editBtn"><span class="btn-text">Edit Information</span></button>
