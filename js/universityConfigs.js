@@ -124,22 +124,30 @@ const calculatorConfigs = {
     ned: {
         shortName: 'NED',
         longName: 'NED University of Engineering & Technology',
-        description: 'NED aggregate calculator with the official 50/50 inter and entry test formula.',
-        metaDescription: 'NED engineering merit calculator.',
+        description: 'NED aggregate calculator: 0% Matric / 40% Inter / 60% Entry Test. Gap-year students get a 0.91% aggregate deduction. Hafiz-e-Quran bonus: +1.82% on HSSC equivalency.',
+        metaDescription: 'NED merit calculator with the official 0/40/60 formula, gap-year deduction, and Hafiz-e-Quran bonus.',
         programs: [
             'Engineering Programs',
             'Technology Programs',
             'Architecture & Planning'
         ],
-        weights: { matric: 0, inter: 0.50, test: 0.50 },
+        weights: { matric: 0, inter: 0.40, test: 0.60 },
+        eduSystemWeights: {
+            'fsc':              { matric: 0, inter: 0.40, test: 0.60 },
+            'alevel-immediate': { matric: 0, inter: 0.40, test: 0.60 },
+            'alevel-gap':       { matric: 0, inter: 0.40, test: 0.60 }  // Same weights, 0.91% deducted from total
+        },
         testMax: 100,
-        hideTestTypePills: true
+        hideTestTypePills: true,
+        hasALevelSplit: true,
+        gapYearDeduction: 0.91,       // Deducted from total aggregate for gap-year students (FSc or A-Level)
+        hafizHsscBonus: 1.82          // Added to HSSC/A-Level equivalency percentage (not total aggregate)
     },
     ist: {
         shortName: 'IST',
         longName: 'Institute of Space Technology',
-        description: 'IST aggregate calculator with 20/40/40 for FSc and 0/40/60 for A-Levels. IST does not conduct its own entry test but accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
-        metaDescription: 'IST merit calculator with matric, inter, and entry test weightage.',
+        description: 'IST aggregate calculator with 20/40/40 for FSc. A-Level: 40% O-Level equivalency / 0% A-Level / 60% Test. Accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
+        metaDescription: 'IST merit calculator — FSc 20/40/40, A-Level 40/0/60.',
         programs: [
             'BS Computer Science',
             'Aerospace & Avionics',
@@ -147,11 +155,13 @@ const calculatorConfigs = {
         ],
         weights: { matric: 0.20, inter: 0.40, test: 0.40 },
         eduSystemWeights: {
-            'fsc': { matric: 0.20, inter: 0.40, test: 0.40 },
-            'alevel': { matric: 0.00, inter: 0.40, test: 0.60 }
+            'fsc':              { matric: 0.20, inter: 0.40, test: 0.40 }, // FSc: 20% Matric / 40% HSSC / 40% Test
+            'alevel-immediate': { matric: 0.40, inter: 0.00, test: 0.60 }, // A-Level Immediate: 40% O-Level / 0% A-Level / 60% Test
+            'alevel-gap':       { matric: 0.40, inter: 0.00, test: 0.60 }  // A-Level Gap Year: same as Immediate
         },
         testMax: 100,
-        hideTestTypePills: true
+        hideTestTypePills: true,
+        hasALevelSplit: true
     },
     nutech: {
         shortName: 'NUTECH',

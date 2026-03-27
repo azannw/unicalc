@@ -408,14 +408,28 @@ function calculateAggregate() {
     } else {
         // Standard weighted percentage formula
         const matricPerc = (matricObtained / Math.max(matricTotal, 1)) * 100;
-        const interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
+        let interPerc = (interObtained / Math.max(interTotal, 1)) * 100;
         const testPerc = (testObtained / Math.max(testTotal, 1)) * 100;
+
+        // Hafiz-e-Quran bonus: add configured percentage to HSSC/A-Level equivalency (not total aggregate)
+        if (config?.hafizHsscBonus && document.getElementById('hafizQuranNed')?.checked) {
+            interPerc += config.hafizHsscBonus;
+        }
 
         const aggMatric = matricPerc * (weights.matric ?? defaultWeights.matric);
         const aggInter = interPerc * (weights.inter ?? defaultWeights.inter);
         const aggTest = testPerc * (weights.test ?? defaultWeights.test);
 
-        const totalAggregate = aggMatric + aggInter + aggTest;
+        let totalAggregate = aggMatric + aggInter + aggTest;
+
+        // Gap-year deduction: subtract configured percentage from total aggregate
+        if (config?.gapYearDeduction) {
+            const eduRadio = document.querySelector('input[name="eduSystem"]:checked');
+            if (eduRadio && eduRadio.value === 'alevel-gap') {
+                totalAggregate = Math.max(0, totalAggregate - config.gapYearDeduction);
+            }
+        }
+
         displayResults(totalAggregate, aggMatric, aggInter, aggTest);
     }
 }

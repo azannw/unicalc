@@ -119,18 +119,18 @@
                                 <div class="input-card">
                                     <div class="input-header">
                                         <label class="input-label">Matric Marks</label>
-                                        <span class="input-weight" id="weightMatric">10%</span>
+                                        <span class="input-weight" id="weightMatric">0%</span>
                                     </div>
                                     <div class="input-row">
                                         <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="0">
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="matricTotal">
                                     </div>
-                                    <p class="input-hint" id="hintMatric">Contributes to your aggregate score</p>
+                                    <p class="input-hint" id="hintMatric">Not used in NED aggregate (0% weight)</p>
                                 </div>
                                 <div class="input-card">
                                     <div class="input-header">
-                                        <label class="input-label">Intermediate Marks</label>
+                                        <label class="input-label">Intermediate / A-Level Marks</label>
                                         <span class="input-weight" id="weightInter">40%</span>
                                     </div>
                                     <div class="input-row">
@@ -138,36 +138,35 @@
                                         <span class="input-separator">/</span>
                                         <input type="number" value="1100" class="form-input form-input-total" id="interTotal">
                                     </div>
-                                    <p class="input-hint" id="hintInter">Contributes to your aggregate score</p>
+                                    <p class="input-hint" id="hintInter">Contributes 40% to your aggregate score</p>
                                 </div>
-                                <div class="input-card full-width" id="testTypeSection">
+                                <div class="input-card full-width" id="testTypeSection" style="display:none;">
                                     <label class="input-label">Entry Test Type</label>
                                     <div class="pill-group">
                                         <label class="pill-option">
                                             <input type="radio" name="testType" value="uni" checked>
-                                            <span class="pill-btn">University Test</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="radio" name="testType" value="nat">
-                                            <span class="pill-btn">NAT</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="radio" name="testType" value="sat">
-                                            <span class="pill-btn">SAT</span>
+                                            <span class="pill-btn">NED Test</span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="input-card full-width" id="testMarksSection">
                                     <div class="input-header">
                                         <label class="input-label">Entry Test Marks</label>
-                                        <span class="input-weight" id="weightTest">50%</span>
+                                        <span class="input-weight" id="weightTest">60%</span>
                                     </div>
                                     <div class="input-row">
                                         <input type="number" placeholder="Obtained" class="form-input" id="testObtained" min="0">
                                         <span class="input-separator">/</span>
                                         <input type="number" value="100" class="form-input form-input-total" id="testTotal">
                                     </div>
-                                    <p class="input-hint" id="hintTest">Contributes to your aggregate score</p>
+                                    <p class="input-hint" id="hintTest">Contributes 60% to your aggregate score</p>
+                                </div>
+                                <div class="input-card full-width" id="hafizSection">
+                                    <label class="checkbox-label" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                                        <input type="checkbox" id="hafizQuranNed" style="width:18px;height:18px;accent-color:var(--accent);cursor:pointer;">
+                                        <span class="input-label" style="margin:0;cursor:pointer;">Check if you are a Hafiz-e-Quran</span>
+                                    </label>
+                                    <p class="input-hint" style="margin-top:6px;">+1.82% added to your HSSC/A-Level equivalency marks (not total aggregate)</p>
                                 </div>
                             </div>
                             <div class="nu-calc-banner" id="nuCalcBanner">
