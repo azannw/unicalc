@@ -143,33 +143,39 @@
                                 </div>
                                 <div class="input-card full-width" id="additionalMarksSection" style="display: none;">
                                     <div class="input-header">
-                                        <label class="input-label">Additional Marks</label>
+                                        <label class="input-label">Hafiz-e-Quran</label>
                                     </div>
                                     <div class="pill-group">
                                         <label class="pill-option">
                                             <input type="checkbox" id="hafizQuran">
-                                            <span class="pill-btn">Hafiz-e-Quran (+20)</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="checkbox" id="electivesBonus">
-                                            <span class="pill-btn">Electives (+20)</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="checkbox" id="diplomaBonus">
-                                            <span class="pill-btn">Diploma (+20)</span>
+                                            <span class="pill-btn">Yes, I am Hafiz-e-Quran</span>
                                         </label>
                                     </div>
-                                    <p class="input-hint" id="hintAdditional">Added to your academic score numerator</p>
+                                    <p class="input-hint" id="hintAdditional">20 marks are added to your academic score, not total aggregate (requires original Sanad)</p>
                                 </div>
-                                <div class="input-card" id="lateYearsSection" style="display: none;">
+                                <div class="input-card full-width" id="lateYearsSection" style="display: none;">
                                     <div class="input-header">
-                                        <label class="input-label">Gap / Late Years</label>
-                                        <span class="input-weight" id="weightLateYears">&minus;2/yr</span>
+                                        <label class="input-label">FSc / A-Levels Completion Year</label>
                                     </div>
-                                    <div class="input-row">
-                                        <input type="number" value="0" class="form-input" id="lateYears" min="0" max="5" step="1">
+                                    <div class="pill-group">
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="0" checked>
+                                            <span class="pill-btn">2026 (This Year)</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="2">
+                                            <span class="pill-btn">2025</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="4">
+                                            <span class="pill-btn">2024</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="6">
+                                            <span class="pill-btn">2023</span>
+                                        </label>
                                     </div>
-                                    <p class="input-hint" id="hintLateYears">2 marks deducted from academic % per late year (max 5)</p>
+                                    <p class="input-hint" id="hintLateYears">2 marks are deducted for each gap year from your academic score, not total aggregate</p>
                                 </div>
                                 <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>

@@ -398,18 +398,17 @@ function calculateAggregate() {
 
         let additionalMarks = 0;
         if (document.getElementById('hafizQuran')?.checked) additionalMarks += 20;
-        if (document.getElementById('electivesBonus')?.checked) additionalMarks += 20;
-        if (document.getElementById('diplomaBonus')?.checked) additionalMarks += 20;
 
-        const lateYears = Math.min(Math.max(parseInt(document.getElementById('lateYears')?.value) || 0, 0), 5);
+        const completionYearRadio = document.querySelector('input[name="completionYear"]:checked');
+        const gapDeduction = parseInt(completionYearRadio?.value) || 0;
 
         const numerator = (fraction * matricObtained) + interObtained + additionalMarks;
         const denominator = (fraction * matricTotal) + interTotal;
         const B = numerator / Math.max(denominator, 1);
 
-        // Academic percentage (out of 100), with late-year deduction
+        // Academic percentage (out of 100), with gap year deduction
         let academicPercentage = B * 100;
-        academicPercentage = Math.max(0, academicPercentage - (2 * lateYears));
+        academicPercentage = Math.max(0, academicPercentage - gapDeduction);
 
         // Apply weightages
         const aggAcademic = academicPercentage * acadWeight;
