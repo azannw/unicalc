@@ -478,10 +478,16 @@ const meritData = [
       {
         campus: "KSK Campus",
         programs: [
-          { name: "BS Computer Science", merit: 77.44, category: "Open Merit", history: [77.44] },
-          { name: "BS Computer Science", merit: 66.11, category: "Non-Merit", history: [66.11] },
-          { name: "BS Software Engineering", merit: 81.04, category: "Open Merit", history: [81.04] },
-          { name: "BS Software Engineering", merit: 59.21, category: "Non-Merit", history: [59.21] }
+          { name: "Biomedical Engineering", merit: 78.93, category: "A1-M", history: [78.93] },
+          { name: "Biomedical Engineering", merit: 73.17, category: "A2-M", history: [73.17] },
+          { name: "Energy Systems & Management", merit: 70.41, history: [70.41] },
+          { name: "Electrical Engineering", merit: 68.70, history: [68.70] },
+          { name: "Chemical Engineering", merit: 67.73, history: [67.73] },
+          { name: "Chemical Engineering", merit: 65.21, category: "A2", history: [65.21] },
+          { name: "Biomedical Engineering", merit: 65.45, history: [65.45] },
+          { name: "BBA", merit: 60.41, history: [60.41] },
+          { name: "Chemistry", merit: 55.72, history: [55.72] },
+          { name: "Electrical Engineering", merit: 50.57, category: "Self-Finance", history: [50.57] }
         ]
       },
       {
