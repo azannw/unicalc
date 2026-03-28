@@ -4,453 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - UniCalc</title>
-    <meta name="description" content="UniCalc is Pakistan's free, accurate university merit calculator. 17+ universities, FSc & A-Level support, merit prediction, built by students, for students.">
+    <meta name="description" content="UniCalc is Pakistan's first open-source university merit calculator. 17+ universities, FSc and A-Level support, built by students, for students.">
 
     <link rel="canonical" href="https://unicalc.pk/about.html">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="About - UniCalc">
-    <meta property="og:description" content="UniCalc is Pakistan's free, accurate university merit calculator. Built by students, for students.">
+    <meta property="og:description" content="UniCalc is Pakistan's first open-source university merit calculator. Built by students, for students.">
     <meta property="og:image" content="https://unicalc.pk/og-image.png">
     <meta property="og:url" content="https://unicalc.pk/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About - UniCalc">
-    <meta name="twitter:description" content="UniCalc is Pakistan's free, accurate university merit calculator. Built by students, for students.">
+    <meta name="twitter:description" content="UniCalc is Pakistan's first open-source university merit calculator. Built by students, for students.">
     <meta name="twitter:image" content="https://unicalc.pk/og-image.png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="css/base.css">
     <script>
         (function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('unicalc_theme')||'dark')})();
     </script>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23050505'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='60' fill='%23ffffff' font-family='Space Grotesk'%3EU%3C/text%3E%3C/svg%3E">
 
     <style>
-        /* Background */
-        .ab-hero-bg {
-            position: absolute;
-            inset: 0;
-            top: -80px;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .ab-hero-bg .bg-image {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.1) 0%, transparent 50%);
-            opacity: 0.3;
-        }
-        .ab-hero-bg .bg-grid {
-            position: absolute; top: 0; left: 0; width: 200%; height: 200%;
-            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(20deg) translateY(-100px) scale(1.5);
-            opacity: 0.6;
-        }
-        .ab-hero-bg .gradient-sphere {
-            position: absolute; width: 400px; height: 400px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-            filter: blur(60px); animation: abFloat 20s ease-in-out infinite;
-            top: -100px; right: -100px;
-        }
-        .ab-hero-bg .gradient-sphere.secondary {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
-            animation-delay: -10s; top: auto; bottom: -50px; left: -80px; right: auto;
-        }
-        @keyframes abFloat {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
-
-        /* Page Layout */
         .ab-page {
             padding-top: calc(var(--header-height) + 64px);
-            min-height: 100vh;
-        }
-
-        /* Hero */
-        .ab-hero {
-            text-align: center;
-            padding-bottom: 80px;
-            position: relative;
-        }
-
-        .ab-hero .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .ab-eyebrow {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em;
-            color: var(--text-tertiary); margin-bottom: 24px;
-        }
-        .ab-eyebrow-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent); flex-shrink: 0;
+            max-width: 720px;
+            margin: 0 auto;
+            padding-bottom: 40px;
         }
 
         .ab-title {
             font-family: var(--font-display);
-            font-size: clamp(2.2rem, 6vw, 3.8rem);
-            font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
-            color: var(--text-primary); margin-bottom: 20px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 32px;
         }
 
-        .ab-subtitle {
-            font-size: clamp(0.95rem, 2vw, 1.15rem);
-            color: var(--text-secondary); max-width: 580px;
-            margin: 0 auto; line-height: 1.75;
-        }
-
-        /* Story Section */
-        .ab-story-section {
-            padding-bottom: 80px;
-        }
-
-        .ab-story-content {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .ab-story-content p {
+        .ab-content p {
             font-size: 1.05rem;
             color: var(--text-secondary);
             line-height: 1.85;
             margin-bottom: 24px;
         }
 
-        .ab-story-content p:last-child {
+        .ab-content p:last-child {
             margin-bottom: 0;
         }
 
-        .ab-story-content strong {
+        .ab-content strong {
             color: var(--text-primary);
             font-weight: 600;
         }
 
-        /* Section Header */
-        .ab-section-header {
-            max-width: 720px;
-            margin: 0 auto 44px;
-        }
-
-        .ab-section-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            font-weight: 700; letter-spacing: -0.02em;
-            color: var(--text-primary); margin-bottom: 10px;
-        }
-
-        .ab-section-desc {
-            font-size: 1rem; color: var(--text-secondary);
-            line-height: 1.7; max-width: 560px;
-        }
-
-        /* Feature Grid */
-        .ab-features-section {
-            padding-bottom: 80px;
-        }
-
-        .ab-features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
-        .ab-feature-card {
-            padding: 32px 26px;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            background: rgba(255,255,255,0.015);
-            transition: border-color 0.25s ease, background 0.25s ease;
-        }
-
-        .ab-feature-card:hover {
-            border-color: rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.03);
-        }
-
-        .ab-feature-icon {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
+        .ab-content a {
             color: var(--accent);
-            margin-bottom: 16px;
+            text-decoration: none;
         }
 
-        .ab-feature-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
+        .ab-content a:hover {
+            text-decoration: underline;
         }
 
-        .ab-feature-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Numbers Strip */
-        .ab-numbers-section {
-            padding-bottom: 80px;
-        }
-
-        .ab-numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
-        .ab-number-card {
-            text-align: center;
-            padding: 28px 16px;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            background: rgba(255,255,255,0.015);
-        }
-
-        .ab-number-value {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .ab-number-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* How it Works */
-        .ab-how-section {
-            padding-bottom: 80px;
-        }
-
-        .ab-steps-list {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .ab-step {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            padding: 24px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .ab-step:last-child {
-            border-bottom: none;
-        }
-
-        .ab-step-number {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent);
-            min-width: 32px;
-            flex-shrink: 0;
-            padding-top: 2px;
-        }
-
-        .ab-step h3 {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .ab-step p {
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* CTA */
-        .ab-cta-section {
-            padding-bottom: 100px;
-        }
-
-        .ab-cta-box {
-            text-align: center;
-            padding: 48px 36px;
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .ab-cta-box h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .ab-cta-box p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin: 0 auto 24px;
-            max-width: 480px;
-        }
-
-        .ab-cta-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .ab-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 24px; border-radius: 10px;
-            font-family: var(--font-display); font-weight: 600;
-            font-size: 0.9rem; text-decoration: none;
-            border: none; cursor: pointer; transition: all 0.25s ease;
-        }
-
-        .ab-btn-primary {
-            background: var(--accent); color: #fff;
-        }
-        .ab-btn-primary:hover {
-            background: #2563eb;
-            box-shadow: 0 4px 20px rgba(59,130,246,0.25);
-            transform: translateY(-1px);
-        }
-
-        .ab-btn-outline {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-        .ab-btn-outline:hover {
-            color: var(--text-primary);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        /* Responsive - Tablet */
         @media (max-width: 768px) {
-            .ab-page { padding-top: calc(var(--header-height) + 40px); }
-            .ab-hero { padding-bottom: 56px; }
-            .ab-story-section { padding-bottom: 56px; }
-            .ab-features-section { padding-bottom: 56px; }
-            .ab-numbers-section { padding-bottom: 56px; }
-            .ab-how-section { padding-bottom: 56px; }
-            .ab-cta-section { padding-bottom: 64px; }
-
-            .ab-features-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                max-width: 100%;
+            .ab-page {
+                padding-top: calc(var(--header-height) + 40px);
             }
 
-            .ab-numbers-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-                max-width: 100%;
-            }
-
-            .ab-story-content { max-width: 100%; }
-            .ab-section-header { max-width: 100%; }
-            .ab-steps-list { max-width: 100%; }
-            .ab-cta-box { padding: 32px 20px; max-width: 100%; }
-
-            .ab-story-content p {
+            .ab-content p {
                 font-size: 1rem;
             }
         }
 
-        /* Responsive - Small phones */
         @media (max-width: 576px) {
-            .ab-title { font-size: clamp(1.85rem, 8vw, 2.4rem); }
+            .ab-title {
+                font-size: clamp(1.7rem, 8vw, 2.2rem);
+            }
 
-            .ab-feature-card { padding: 24px 20px; }
-            .ab-feature-card h3 { font-size: 0.95rem; }
-            .ab-feature-card p { font-size: 0.85rem; }
-
-            .ab-number-card { padding: 20px 12px; }
-            .ab-number-value { font-size: clamp(1.6rem, 6vw, 2.2rem); }
-            .ab-number-label { font-size: 0.8rem; }
-
-            .ab-step { gap: 16px; padding: 20px 0; }
-            .ab-step h3 { font-size: 0.95rem; }
-            .ab-step p { font-size: 0.88rem; }
-
-            .ab-cta-box { padding: 28px 16px; }
-            .ab-cta-box h2 { font-size: clamp(1.3rem, 5vw, 1.6rem); }
-            .ab-cta-box p { font-size: 0.92rem; }
-
-            .ab-btn { width: 100%; max-width: 280px; justify-content: center; }
-
-            .ab-story-content p {
+            .ab-content p {
                 font-size: 0.95rem;
                 line-height: 1.75;
             }
         }
-
-        /* Responsive - Very small phones */
-        @media (max-width: 340px) {
-            .ab-title { font-size: clamp(1.5rem, 10vw, 2rem); }
-            .ab-subtitle { font-size: 0.9rem; }
-            .ab-section-title { font-size: clamp(1.3rem, 5vw, 1.8rem); }
-            .ab-section-desc { font-size: 0.88rem; }
-            .ab-cta-box { padding: 24px 14px; }
-            .ab-cta-box p { font-size: 0.88rem; }
-            .ab-numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .ab-number-card { padding: 16px 10px; }
-        }
-
-        /* Light Theme */
-        [data-theme="light"] .ab-hero-bg .bg-grid {
-            background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-        }
-        [data-theme="light"] .ab-hero-bg .bg-image {
-            background: radial-gradient(circle at 30% 50%, rgba(37,99,235,0.06) 0%, transparent 50%);
-        }
-        [data-theme="light"] .ab-hero-bg .gradient-sphere {
-            background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
-        }
-        [data-theme="light"] .ab-hero-bg .gradient-sphere.secondary {
-            background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
-        }
-        [data-theme="light"] .ab-feature-card { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.01); }
-        [data-theme="light"] .ab-feature-card:hover { border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.02); }
-        [data-theme="light"] .ab-number-card { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.01); }
-        [data-theme="light"] .ab-step { border-bottom-color: rgba(0,0,0,0.06); }
-        [data-theme="light"] .ab-cta-box { background: rgba(0,0,0,0.01); border-color: rgba(0,0,0,0.08); }
-        [data-theme="light"] .ab-btn-outline { border-color: rgba(0,0,0,0.12); }
-        [data-theme="light"] .ab-btn-outline:hover { border-color: rgba(0,0,0,0.25); color: var(--text-primary); }
     </style>
 </head>
 <body>
-    <div class="noise-overlay"></div>
-
-    <!-- Header -->
     <header class="header" id="header">
         <div class="container-fluid">
             <nav class="nav">
@@ -480,157 +123,31 @@
     </header>
 
     <main>
-        <div class="ab-page">
+        <div class="ab-page container">
+            <h1 class="ab-title">About UniCalc</h1>
 
-            <!-- Hero -->
-            <section class="ab-hero">
-                <div class="ab-hero-bg">
-                    <div class="bg-image"></div>
-                    <div class="bg-grid"></div>
-                    <div class="gradient-sphere"></div>
-                    <div class="gradient-sphere secondary"></div>
-                </div>
-                <div class="container">
-                    <div class="ab-eyebrow">
-                        <span class="ab-eyebrow-dot"></span>
-                        About
-                    </div>
-                    <h1 class="ab-title">The story behind UniCalc</h1>
-                    <p class="ab-subtitle">We got tired of Googling merit formulas and getting wrong answers. So we built the thing we wished existed.</p>
-                </div>
-            </section>
-
-            <!-- Story -->
-            <section class="ab-story-section">
-                <div class="container">
-                    <div class="ab-story-content">
-                        <p>
-                            If you've ever applied to a Pakistani university, you know the drill. Every university has its own merit formula. Some weight your Matric at 10%, others at 40%. Some convert A-Level grades differently. And good luck finding the actual formula. You'll get five different answers from five different sources.
-                        </p>
-                        <p>
-                            UniCalc started because of that exact frustration. Instead of sharing screenshots of Excel sheets in WhatsApp groups, we thought: <strong>why not just build one place that does it all, correctly?</strong>
-                        </p>
-                        <p>
-                            So that's what this is. A single calculator that knows the official merit formula for every major university in Pakistan. You punch in your marks, pick your university, and get your aggregate. No guesswork, no outdated PDFs, no "bhai ye formula sahi hai?" in group chats.
-                        </p>
-                        <p>
-                            We update the formulas every admission cycle. The merit data comes from verified sources and is cross-checked by contributors who've actually been through the process. And the whole thing is free. No sign-ups, no paywalls, nothing.
-                        </p>
-                        <p>
-                            UniCalc is also <strong>Pakistan's first open-source university merit calculator</strong>. The entire codebase is public. Anyone can inspect, contribute, or suggest improvements. We believe transparency builds trust, especially when students are making decisions that shape their future.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Numbers -->
-            <section class="ab-numbers-section">
-                <div class="container">
-                    <div class="ab-numbers-grid">
-                        <div class="ab-number-card">
-                            <div class="ab-number-value">17+</div>
-                            <div class="ab-number-label">Universities covered</div>
-                        </div>
-                        <div class="ab-number-card">
-                            <div class="ab-number-value">2</div>
-                            <div class="ab-number-label">Systems supported (FSc & A-Level)</div>
-                        </div>
-                        <div class="ab-number-card">
-                            <div class="ab-number-value">0</div>
-                            <div class="ab-number-label">Sign-ups required</div>
-                        </div>
-                        <div class="ab-number-card">
-                            <div class="ab-number-value">0</div>
-                            <div class="ab-number-label">Rupees charged</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- What's Inside -->
-            <section class="ab-features-section">
-                <div class="container">
-                    <div class="ab-section-header">
-                        <h2 class="ab-section-title">What you get</h2>
-                        <p class="ab-section-desc">Everything a student needs to figure out where they stand, in one place.</p>
-                    </div>
-
-                    <div class="ab-features-grid">
-                        <div class="ab-feature-card">
-                            <div class="ab-feature-icon">&Sigma;</div>
-                            <h3>Accurate Aggregates</h3>
-                            <p>Each university has its own merit formula pulled from official sources. FAST, NUST, COMSATS, ITU, GIKI, LUMS. We've got the real ones, not approximations.</p>
-                        </div>
-                        <div class="ab-feature-card">
-                            <div class="ab-feature-icon">A*</div>
-                            <h3>A-Level Conversion</h3>
-                            <p>A-Level students don't have to manually convert grades. Select your grades, and the calculator handles the equivalence for each university automatically.</p>
-                        </div>
-                        <div class="ab-feature-card">
-                            <div class="ab-feature-icon">%</div>
-                            <h3>Merit Predictor</h3>
-                            <p>Not sure if your aggregate is competitive? The predictor shows you past closing merits so you can gauge your chances before applying.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How it Works -->
-            <section class="ab-how-section">
-                <div class="container">
-                    <div class="ab-section-header">
-                        <h2 class="ab-section-title">How it works</h2>
-                        <p class="ab-section-desc">Three steps. No account needed.</p>
-                    </div>
-
-                    <div class="ab-steps-list">
-                        <div class="ab-step">
-                            <span class="ab-step-number">01</span>
-                            <div>
-                                <h3>Pick your university</h3>
-                                <p>Choose from 17+ supported universities. Each one has its exact official formula built in.</p>
-                            </div>
-                        </div>
-                        <div class="ab-step">
-                            <span class="ab-step-number">02</span>
-                            <div>
-                                <h3>Enter your marks</h3>
-                                <p>Matric, Inter/A-Level, test scores. Fill in what you have. FSc and A-Level inputs are handled separately with proper conversions.</p>
-                            </div>
-                        </div>
-                        <div class="ab-step">
-                            <span class="ab-step-number">03</span>
-                            <div>
-                                <h3>Get your aggregate</h3>
-                                <p>Your calculated merit shows up instantly. Compare it against past closing merits to see where you stand.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA -->
-            <section class="ab-cta-section">
-                <div class="container">
-                    <div class="ab-cta-box">
-                        <h2>Ready to check your merit?</h2>
-                        <p>Pick a university and find out where you stand. It takes less than a minute.</p>
-                        <div class="ab-cta-actions">
-                            <a href="index.html#universities" class="ab-btn ab-btn-primary">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                Start Calculating
-                            </a>
-                            <a href="contributors.html" class="ab-btn ab-btn-outline">
-                                Meet the Team
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            <div class="ab-content">
+                <p>
+                    Every university in Pakistan has its own merit formula. Some weight Matric at 10%, others at 40%. Some convert A-Level grades differently. Finding the actual formula usually means getting five different answers from five different sources.
+                </p>
+                <p>
+                    UniCalc exists to fix that. One calculator that knows the official merit formula for every major university. Enter your marks, pick your university, get your aggregate. No guesswork, no outdated PDFs.
+                </p>
+                <p>
+                    We cover <strong>17+ universities</strong> including NUST, FAST, GIKI, ITU, COMSATS, UET, NED, PIEAS, and more. Both FSc and A-Level systems are supported with proper weight handling for each.
+                </p>
+                <p>
+                    UniCalc is <strong>Pakistan's first open-source university merit calculator</strong>. The entire codebase is public on <a href="https://github.com/azannw/unicalc" target="_blank">GitHub</a>. Anyone can inspect it, contribute, or suggest improvements.
+                </p>
+                <p>
+                    Formulas are updated every admission cycle. Merit data comes from verified sources and is cross-checked by contributors who have been through the process. The whole thing is free, no sign-ups, no paywalls.
+                </p>
+                <p>
+                    Built and maintained by <a href="https://azanw.com" target="_blank">Azan</a> and <a href="contributors.html">contributors</a>. For questions or feedback, reach out at <a href="mailto:hi@azanw.com">hi@azanw.com</a>.
+                </p>
+            </div>
         </div>
 
-        <!-- Footer -->
         <footer class="footer-minimal">
             <div class="container">
                 <div class="footer-minimal-inner">
@@ -643,7 +160,6 @@
                 </div>
             </div>
         </footer>
-
     </main>
 
     <script src="js/main.js"></script>
