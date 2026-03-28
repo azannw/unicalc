@@ -474,6 +474,33 @@ const meritData = [
           { name: "BS Industrial Engineering", merit: 55.57, history: [55.57] },
           { name: "BS Environmental Engineering", merit: 53.07, history: [53.07] }
         ]
+      },
+      {
+        campus: "KSK Campus",
+        programs: [
+          { name: "BS Computer Science", merit: 77.44, category: "Open Merit", history: [77.44] },
+          { name: "BS Computer Science", merit: 66.11, category: "Non-Merit", history: [66.11] },
+          { name: "BS Software Engineering", merit: 81.04, category: "Open Merit", history: [81.04] },
+          { name: "BS Software Engineering", merit: 59.21, category: "Non-Merit", history: [59.21] }
+        ]
+      },
+      {
+        campus: "Faisalabad Campus",
+        programs: [
+          { name: "BS Computer Science", merit: 76.31, category: "Open Merit", history: [76.31] }
+        ]
+      },
+      {
+        campus: "Narowal Campus",
+        programs: [
+          { name: "BS Computer Science", merit: 72.30, category: "Open Merit", history: [72.3] }
+        ]
+      },
+      {
+        campus: "RCET Gujranwala",
+        programs: [
+          { name: "BS Computer Science", merit: 72.04, category: "Open Merit", history: [72.04] }
+        ]
       }
     ]
   },

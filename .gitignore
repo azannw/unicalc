@@ -1,0 +1,16 @@
+# Data files (merit data, cutoffs, university configs)
+data/*.json
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code
+.claude/
+
+# Misc
+*.csv
