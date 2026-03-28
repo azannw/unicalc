@@ -282,23 +282,32 @@ function setupInputListeners() {
         });
     }
 
-    // Switch weights when education system changes (for universities with edu-system-specific weights)
+    // Switch weights and labels when education system changes
     const eduSystemInputs = document.querySelectorAll('input[name="eduSystem"]');
-    if (eduSystemInputs.length && currentCalculatorConfig?.eduSystemWeights) {
+    if (eduSystemInputs.length) {
         eduSystemInputs.forEach(input => {
             input.addEventListener('change', () => {
                 const system = input.value;
-                // Use the exact system value as key first (e.g. 'alevel-immediate', 'alevel-gap'),
-                // then fall back to the generic 'alevel' key (for universities with a single A-Level weight),
-                // then fall back to the default weights.
-                const weights = currentCalculatorConfig.eduSystemWeights[system]
-                    || currentCalculatorConfig.eduSystemWeights['alevel']
-                    || currentCalculatorConfig.weights
-                    || defaultWeights;
-                currentCalculatorConfig = { ...currentCalculatorConfig, weights: { ...weights } };
-                applyWeightLabels(weights);
-                updateBreakdownLabels(currentCalculatorConfig);
-                updateFormulaCard(currentCalculatorConfig);
+                const isALevel = system === 'alevel' || system === 'alevel-immediate' || system === 'alevel-gap';
+                // Update marks box labels based on education system
+                const labelMatric = document.getElementById('labelMatric');
+                const labelInter = document.getElementById('labelInter');
+                if (labelMatric) labelMatric.textContent = isALevel ? 'O-Levels Marks' : 'Matric Marks';
+                if (labelInter) labelInter.textContent = isALevel ? 'A-Levels Marks' : 'Intermediate Marks';
+                // Switch weights for universities with edu-system-specific weights
+                if (currentCalculatorConfig?.eduSystemWeights) {
+                    // Use the exact system value as key first (e.g. 'alevel-immediate', 'alevel-gap'),
+                    // then fall back to the generic 'alevel' key (for universities with a single A-Level weight),
+                    // then fall back to the default weights.
+                    const weights = currentCalculatorConfig.eduSystemWeights[system]
+                        || currentCalculatorConfig.eduSystemWeights['alevel']
+                        || currentCalculatorConfig.weights
+                        || defaultWeights;
+                    currentCalculatorConfig = { ...currentCalculatorConfig, weights: { ...weights } };
+                    applyWeightLabels(weights);
+                    updateBreakdownLabels(currentCalculatorConfig);
+                    updateFormulaCard(currentCalculatorConfig);
+                }
             });
         });
     }
@@ -365,12 +374,14 @@ function calculateAggregate() {
     }
 
     // Validate obtained does not exceed total
+    const wEduRadio = document.querySelector('input[name="eduSystem"]:checked');
+    const wIsALevel = wEduRadio && (wEduRadio.value === 'alevel' || wEduRadio.value === 'alevel-immediate' || wEduRadio.value === 'alevel-gap');
     if (matricObtained > matricTotal) {
-        showCalcWarning('Matric obtained marks cannot exceed total marks.');
+        showCalcWarning(`${wIsALevel ? 'O-Levels' : 'Matric'} obtained marks cannot exceed total marks.`);
         return;
     }
     if (interObtained > interTotal) {
-        showCalcWarning('Intermediate obtained marks cannot exceed total marks.');
+        showCalcWarning(`${wIsALevel ? 'A-Levels' : 'Intermediate'} obtained marks cannot exceed total marks.`);
         return;
     }
     if (testObtained > testTotal) {
@@ -935,8 +946,14 @@ function updateFormulaCard(config) {
     let formulaText = `Based on the ${config.longName} admission formula:<br><strong>`;
 
     const parts = [];
-    if (matric > 0) parts.push(`Matric (${matric}%)`);
-    if (inter > 0) parts.push(`Intermediate (${inter}%)`);
+    const eduRadio = document.querySelector('input[name="eduSystem"]:checked');
+    const eduSystem = eduRadio?.value || 'fsc';
+    const isALevel = eduSystem === 'alevel' || eduSystem === 'alevel-immediate' || eduSystem === 'alevel-gap';
+    const matricName = isALevel ? 'O-Levels' : 'Matric';
+    const interName = isALevel ? 'A-Levels' : 'Intermediate';
+
+    if (matric > 0) parts.push(`${matricName} (${matric}%)`);
+    if (inter > 0) parts.push(`${interName} (${inter}%)`);
     if (test > 0) parts.push(`Entry Test (${test}%)`);
 
     formulaText += parts.join(' + ') + '</strong>';
@@ -965,9 +982,15 @@ function updateBreakdownLabels(config) {
     const inter = Math.round((config.weights.inter || 0) * 100);
     const test = Math.round((config.weights.test || 0) * 100);
 
-    if (matricLabel) matricLabel.textContent = `Matric (${matric}%)`;
+    const bEduRadio = document.querySelector('input[name="eduSystem"]:checked');
+    const bEduSystem = bEduRadio?.value || 'fsc';
+    const bIsALevel = bEduSystem === 'alevel' || bEduSystem === 'alevel-immediate' || bEduSystem === 'alevel-gap';
+    const bMatricName = bIsALevel ? 'O-Levels' : 'Matric';
+    const bInterName = bIsALevel ? 'A-Levels' : 'Intermediate';
+
+    if (matricLabel) matricLabel.textContent = `${bMatricName} (${matric}%)`;
     if (interItem) interItem.style.display = '';
-    if (interLabel) interLabel.textContent = `Intermediate (${inter}%)`;
+    if (interLabel) interLabel.textContent = `${bInterName} (${inter}%)`;
     if (testLabel) testLabel.textContent = `Entry Test (${test}%)`;
 }
 
