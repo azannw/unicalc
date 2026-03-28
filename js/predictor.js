@@ -99,14 +99,12 @@ function handleEduSystemChange(e) {
     const interTotal = document.getElementById('interTotal');
     const matricHint = document.getElementById('hintMatric');
     const interHint = document.getElementById('hintInter');
+    matricTotal.value = ''; matricTotal.placeholder = 'Total';
+    interTotal.value = ''; interTotal.placeholder = 'Total';
     if (isALevel) {
-        matricTotal.value = ''; matricTotal.placeholder = 'Total (600)';
-        interTotal.value = ''; interTotal.placeholder = 'Total (600)';
         if (matricHint) matricHint.textContent = 'HEC equivalence of your O-Level marks';
         if (interHint) interHint.textContent = 'HEC equivalence of your A-Level marks';
     } else {
-        matricTotal.value = ''; matricTotal.placeholder = 'Total (1100)';
-        interTotal.value = ''; interTotal.placeholder = 'Total (1100)';
         if (matricHint) matricHint.textContent = 'SSC / O-Level marks (or HEC equivalence)';
         if (interHint) interHint.textContent = 'HSSC / A-Level marks (or HEC equivalence)';
     }

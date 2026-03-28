@@ -958,19 +958,19 @@ function calculateAdmissionPrediction(universityId, programName, userAggregate, 
   let status, label, message;
   if (probabilityPercent >= 80) {
     status = 'high';
-    label = 'High Chance';
+    label = 'High';
     message = `Strong chances! Your aggregate is well above the projected cutoff of ~${predictedMerit.toFixed(1)}%.`;
   } else if (probabilityPercent >= 55) {
     status = 'good';
-    label = 'Good Chance';
+    label = 'Good';
     message = `Good chances. Your aggregate is above the projected cutoff of ~${predictedMerit.toFixed(1)}%.`;
   } else if (probabilityPercent >= 30) {
     status = 'low';
-    label = 'Low Chance';
+    label = 'Low';
     message = `Borderline. Your aggregate is near the projected cutoff of ~${predictedMerit.toFixed(1)}%. Apply and prepare backup options.`;
   } else {
     status = 'poor';
-    label = 'Poor Chance';
+    label = 'Poor';
     message = `Unlikely. The projected cutoff is ~${predictedMerit.toFixed(1)}%. Consider alternate campuses or programs.`;
   }
 
