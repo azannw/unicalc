@@ -776,18 +776,12 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 24px;
-    background: rgba(10, 10, 10, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    transition: all 0.3s ease;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
     min-width: 0;
     overflow: hidden;
-}
-
-.input-card:hover {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(10, 10, 10, 0.5);
 }
 
 .input-card.full-width {
@@ -844,9 +838,6 @@
     flex: 0 0 auto;
     width: 90px;
     min-width: 80px;
-    background: rgba(10, 10, 10, 0.8);
-    color: var(--text-secondary);
-    cursor: not-allowed;
     text-align: center;
 }
 
@@ -907,17 +898,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    gap: 16px;
-    transition: all 0.3s ease;
-}
-
-.nu-calc-banner:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
+    padding: 16px 0;
+    gap: 12px;
 }
 
 .banner-content h4 {
@@ -1636,12 +1618,12 @@
     }
 
     .input-card {
-        padding: 18px;
+        padding: 0;
     }
 
 
     .nu-calc-banner {
-        padding: 20px;
+        padding: 12px 0;
     }
 
     .aggregate-circle {
@@ -1761,7 +1743,7 @@
     }
 
     .input-card {
-        padding: 16px;
+        padding: 0;
     }
 
     .input-label {
@@ -1787,7 +1769,7 @@
     }
 
     .nu-calc-banner {
-        padding: 16px;
+        padding: 8px 0;
     }
 
     .banner-content h4 {
@@ -1890,7 +1872,7 @@
     }
 
     .input-card {
-        padding: 16px;
+        padding: 0;
     }
 
     .input-row {
@@ -2122,8 +2104,8 @@
     background: rgba(0, 0, 0, 0.04);
 }
 [data-theme="light"] .input-card {
-    background: rgba(0, 0, 0, 0.02);
-    border-color: rgba(0, 0, 0, 0.08);
+    background: none;
+    border: none;
 }
 [data-theme="light"] .form-input {
     background: rgba(0, 0, 0, 0.03);
@@ -2179,8 +2161,8 @@
     border-color: rgba(0, 0, 0, 0.08);
 }
 [data-theme="light"] .nu-calc-banner {
-    background: rgba(37, 99, 235, 0.04);
-    border-color: rgba(37, 99, 235, 0.12);
+    background: none;
+    border: none;
 }
 [data-theme="light"] .merit-table th {
     background: rgba(0, 0, 0, 0.03);
@@ -2338,7 +2320,7 @@
     }
 
     .input-card {
-        padding: 14px;
+        padding: 0;
     }
 
     .input-row {
@@ -2444,8 +2426,8 @@
     }
 
     .nu-calc-banner {
-        padding: 14px;
-        gap: 10px;
+        padding: 8px 0;
+        gap: 8px;
     }
 
     .banner-content h4 {
