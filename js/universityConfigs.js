@@ -283,6 +283,11 @@ const calculatorConfigs = {
             'Business Programs'
         ],
         weights: { matric: 0.10, inter: 0.20, test: 0.70 },
+        eduSystemWeights: {
+            'fsc':              { matric: 0.10, inter: 0.20, test: 0.70 }, // 10% Matric / 20% First Year / 70% Test
+            'alevel-immediate': { matric: 0.30, inter: 0.00, test: 0.70 }, // 30% O-Level (10% + 20% proxy) / 0% A-Level / 70% Test
+            'alevel-gap':       { matric: 0.10, inter: 0.20, test: 0.70 }  // 10% O-Level / 20% A-Level / 70% Test
+        },
         testMax: 100,
         hideTestTypePills: true,
         hasALevelSplit: true
