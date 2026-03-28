@@ -852,6 +852,20 @@
     margin-top: 4px;
 }
 
+.input-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    padding: 4px 2px 0;
+}
+
+.input-labels span:last-child {
+    text-align: right;
+    width: 90px;
+    min-width: 80px;
+}
+
 /* Pill Group */
 .pill-group {
     display: flex;
