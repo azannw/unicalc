@@ -379,7 +379,7 @@ function calculateAggregate() {
     }
 
     if (matricTotal > 1500 || interTotal > 1500) {
-        showCalcWarning('Please enter valid total marks (max 1500).');
+        showCalcWarning('Please enter valid total marks.');
         return;
     }
 
