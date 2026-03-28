@@ -219,11 +219,14 @@ const calculatorConfigs = {
         description: 'Calculate your Bahria University aggregate with the verified formula.',
         metaDescription: 'Bahria merit calculator for engineering, computing and business.',
         programs: [
-            'Engineering & Maritime Studies',
-            'Computing & AI',
-            'Business & Media Studies'
+            'Computing & Sciences',
+            'Engineering'
         ],
         weights: { matric: 0.10, inter: 0.30, test: 0.60 },
+        programWeights: {
+            0: { matric: 0.10, inter: 0.30, test: 0.60 }, // Computing/Sciences: 10% SSC / 30% HSSC / 60% Test
+            1: { matric: 0.10, inter: 0.40, test: 0.50 }  // Engineering: 10% SSC / 40% HSSC / 50% Test
+        },
         testMax: 100
     },
     pu: {
