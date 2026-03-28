@@ -398,6 +398,8 @@ function calculateAggregate() {
 
         let additionalMarks = 0;
         if (document.getElementById('hafizQuran')?.checked) additionalMarks += 20;
+        if (document.getElementById('electivesBonus')?.checked) additionalMarks += 20;
+        if (document.getElementById('diplomaBonus')?.checked) additionalMarks += 20;
 
         const lateYears = Math.min(Math.max(parseInt(document.getElementById('lateYears')?.value) || 0, 0), 5);
 
