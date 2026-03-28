@@ -672,6 +672,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--glass-divider);
 }
 
 .form-label {
@@ -882,12 +884,22 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0;
+    padding: 0 0 20px;
     background: none;
     border: none;
+    border-bottom: 1px solid var(--glass-divider);
     border-radius: 0;
     min-width: 0;
     overflow: hidden;
+}
+
+.input-card.full-width {
+    padding-bottom: 20px;
+}
+
+.input-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .input-card.full-width {

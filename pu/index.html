@@ -131,6 +131,42 @@
                                     </div>
                                     <div class="input-row"><input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0"><span class="input-separator">/</span><input type="number" placeholder="Total" class="form-input form-input-total" id="interTotal"></div>
                                 </div>
+                                <div class="input-card full-width" id="additionalMarksSection" style="display: none;">
+                                    <div class="input-header">
+                                        <label class="input-label">Hafiz-e-Quran</label>
+                                    </div>
+                                    <div class="pill-group">
+                                        <label class="pill-option">
+                                            <input type="checkbox" id="hafizQuran">
+                                            <span class="pill-btn">Yes, I am Hafiz-e-Quran</span>
+                                        </label>
+                                    </div>
+                                    <p class="input-hint" id="hintAdditional">20 marks are added to your academic score, not total aggregate (requires original Sanad)</p>
+                                </div>
+                                <div class="input-card full-width" id="lateYearsSection" style="display: none;">
+                                    <div class="input-header">
+                                        <label class="input-label">FSc / A-Levels Completion Year</label>
+                                    </div>
+                                    <div class="pill-group">
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="0" checked>
+                                            <span class="pill-btn">2026 (This Year)</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="2">
+                                            <span class="pill-btn">2025</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="4">
+                                            <span class="pill-btn">2024</span>
+                                        </label>
+                                        <label class="pill-option">
+                                            <input type="radio" name="completionYear" value="6">
+                                            <span class="pill-btn">2023</span>
+                                        </label>
+                                    </div>
+                                    <p class="input-hint" id="hintLateYears">2 marks are deducted for each gap year from your academic score, not total aggregate</p>
+                                </div>
                                 <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>
                                     <div class="pill-group">
