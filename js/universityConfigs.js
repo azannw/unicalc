@@ -7,7 +7,7 @@ const calculatorConfigs = {
     fast: {
         shortName: 'FAST',
         longName: 'FAST National University',
-        description: 'Calculate your FAST aggregate with the verified formula. Computing: 10/40/50, Engineering: 17/50/33 (SSC/HSSC/Test).',
+        description: 'Calculate your FAST aggregate with the verified formula.',
         metaDescription: 'FAST merit calculator covering all campuses and programs with official weighting — Computing 10/40/50, Engineering 17/50/33.',
         programs: [
             'Computing Programs (CS, SE, AI, DS, Cyber)',
@@ -26,7 +26,7 @@ const calculatorConfigs = {
     nust: {
         shortName: 'NUST',
         longName: 'National University of Sciences & Technology',
-        description: 'Compute your NET aggregate for NUST. FSc/Gap-Year A-Level: 10% SSC / 15% HSSC / 75% NET. Immediate A-Level: 25% O-Level / 0% A-Level / 75% NET.',
+        description: 'Compute your NET aggregate for NUST with the verified formula.',
         metaDescription: 'NUST NET calculator with the official 10/15/75 weighting (FSc/Gap) and 25/0/75 for Immediate A-Level students.',
         programs: [
             'Engineering Schools (SMME, CEME, SEECS)',
@@ -46,7 +46,7 @@ const calculatorConfigs = {
     itu: {
         shortName: 'ITU',
         longName: 'Information Technology University',
-        description: 'ITU Lahore: FSc/Gap-Year A-Level: 15% SSC / 35% HSSC / 50% Test. Immediate A-Level: 35% O-Level / 0% A-Level / 65% Test. Accepts ITU Test, NAT, SAT & ECAT.',
+        description: 'Calculate your ITU aggregate with the verified formula.',
         metaDescription: 'ITU merit calculator — FSc 15/35/50, Immediate A-Level 35/0/65, Gap-Year A-Level 15/35/50. Accepts ECAT, NAT, SAT.',
         programs: [
             'Computer Science & Data Science',
@@ -78,7 +78,7 @@ const calculatorConfigs = {
     giki: {
         shortName: 'GIKI',
         longName: 'Ghulam Ishaq Khan Institute',
-        description: 'GIKI aggregate calculator with the 85/15 entry test and HSSC formula.',
+        description: 'Calculate your GIKI aggregate with the verified formula.',
         metaDescription: 'GIKI merit calculator with admission test weightage.',
         programs: [
             'Engineering & Sciences',
@@ -92,7 +92,7 @@ const calculatorConfigs = {
     pieas: {
         shortName: 'PIEAS',
         longName: 'Pakistan Institute of Engineering & Applied Sciences',
-        description: 'PIEAS: FSc/Completed A-Level: 15% Matric / 25% HSSC or A-Level / 60% Test. Result-Awaited A-Level: 40% O-Level / 0% A-Level / 60% Test.',
+        description: 'Calculate your PIEAS aggregate with the verified formula.',
         metaDescription: 'PIEAS aggregate calculator — FSc 15/25/60, Result-Awaited A-Level 40/0/60, Completed A-Level 15/25/60.',
         programs: [
             'Engineering Disciplines',
@@ -111,7 +111,7 @@ const calculatorConfigs = {
     uet: {
         shortName: 'UET',
         longName: 'University of Engineering & Technology',
-        description: 'UET ECAT aggregate calculator with the official 17/50/33 formula for all campuses including Taxila.',
+        description: 'Calculate your UET ECAT aggregate with the verified formula.',
         metaDescription: 'UET merit calculator with ECAT weightings.',
         programs: [
             'Engineering Programs',
@@ -124,7 +124,7 @@ const calculatorConfigs = {
     ned: {
         shortName: 'NED',
         longName: 'NED University of Engineering & Technology',
-        description: 'NED aggregate calculator: 0% Matric / 40% Inter / 60% Entry Test. Gap-year students get a 0.91% aggregate deduction. Hafiz-e-Quran bonus: +1.82% on HSSC equivalency.',
+        description: 'Calculate your NED aggregate with the verified formula.',
         metaDescription: 'NED merit calculator with the official 0/40/60 formula, gap-year deduction, and Hafiz-e-Quran bonus.',
         programs: [
             'Engineering Programs',
@@ -146,7 +146,7 @@ const calculatorConfigs = {
     ist: {
         shortName: 'IST',
         longName: 'Institute of Space Technology',
-        description: 'IST aggregate calculator with 20/40/40 for FSc. A-Level: 40% O-Level equivalency / 0% A-Level / 60% Test. Accepts NAT, HAT, NET, ECAT, ETEA, MUET, NED, and ACT scores.',
+        description: 'Calculate your IST aggregate with the verified formula.',
         metaDescription: 'IST merit calculator — FSc 20/40/40, A-Level 40/0/60.',
         programs: [
             'BS Computer Science',
@@ -166,7 +166,7 @@ const calculatorConfigs = {
     nutech: {
         shortName: 'NUTECH',
         longName: 'National University of Technology',
-        description: 'NUTECH aggregate calculator with the official 10/20/70 formula.',
+        description: 'Calculate your NUTECH aggregate with the verified formula.',
         metaDescription: 'NUTECH merit calculator for technology-driven programs.',
         programs: [
             'Engineering Technologies',
@@ -180,7 +180,7 @@ const calculatorConfigs = {
     pucit: {
         shortName: 'PUCIT',
         longName: 'Punjab University College of Information Technology',
-        description: 'PUCIT aggregate calculator with the official PU academic pool formula for BS programs.',
+        description: 'Calculate your PUCIT aggregate with the verified formula.',
         metaDescription: 'PUCIT merit calculator for main and new campus.',
         programs: [
             'Computer Science (Hons)',
@@ -198,7 +198,7 @@ const calculatorConfigs = {
     air: {
         shortName: 'AIR',
         longName: 'Air University',
-        description: 'Air University aggregate calculator with 10/50/40 for Engineering and 15/35/50 for Non-Engineering programs.',
+        description: 'Calculate your Air University aggregate with the verified formula.',
         metaDescription: 'Air University merit calculator with AU admission test support.',
         programs: [
             'Engineering & Avionics',
@@ -216,7 +216,7 @@ const calculatorConfigs = {
     bahria: {
         shortName: 'Bahria',
         longName: 'Bahria University',
-        description: 'Bahria University aggregate calculator with the official 10/30/60 formula.',
+        description: 'Calculate your Bahria University aggregate with the verified formula.',
         metaDescription: 'Bahria merit calculator for engineering, computing and business.',
         programs: [
             'Engineering & Maritime Studies',
@@ -229,7 +229,7 @@ const calculatorConfigs = {
     pu: {
         shortName: 'PU',
         longName: 'University of the Punjab',
-        description: 'PU aggregate calculator with the official academic pool formula (1/4 matric + full inter).',
+        description: 'Calculate your PU aggregate with the verified formula.',
         metaDescription: 'Punjab University merit calculator for all programs.',
         programs: [
             'Engineering Programs',
@@ -246,7 +246,7 @@ const calculatorConfigs = {
     uhs: {
         shortName: 'UHS',
         longName: 'University of Health Sciences',
-        description: 'Calculate your UHS/MDCAT aggregate for Punjab medical & dental colleges with the official 10/40/50 formula.',
+        description: 'Calculate your UHS/MDCAT aggregate with the verified formula.',
         metaDescription: 'UHS MDCAT merit calculator for all Punjab government and private medical colleges.',
         programs: [
             'MBBS',
@@ -259,7 +259,7 @@ const calculatorConfigs = {
     nums: {
         shortName: 'NUMS',
         longName: 'National University of Medical Sciences',
-        description: 'Calculate your NUMS aggregate for AMC and affiliated medical colleges with the 10/40/50 formula.',
+        description: 'Calculate your NUMS aggregate with the verified formula.',
         metaDescription: 'NUMS merit calculator for Army Medical College and all affiliated colleges.',
         programs: [
             'MBBS',
@@ -272,7 +272,7 @@ const calculatorConfigs = {
     iiu: {
         shortName: 'IIU',
         longName: 'International Islamic University',
-        description: 'IIU aggregate calculator with the official 10/20/70 formula.',
+        description: 'Calculate your IIU aggregate with the verified formula.',
         metaDescription: 'IIU merit calculator for engineering and computing programs.',
         programs: [
             'Engineering Programs',

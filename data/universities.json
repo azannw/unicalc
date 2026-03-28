@@ -158,18 +158,6 @@
     "defaultTestTotal": 100
   },
   {
-    "id": "uet-taxila",
-    "name": "UET Taxila",
-    "shortName": "UET Taxila",
-    "formula": {
-      "matric": 17,
-      "inter": 50,
-      "test": 33
-    },
-    "testTypes": ["ecat"],
-    "defaultTestTotal": 400
-  },
-  {
     "id": "uet",
     "name": "UET Lahore",
     "shortName": "UET",
@@ -192,17 +180,5 @@
     },
     "testTypes": ["itu", "sat", "nts"],
     "defaultTestTotal": 100
-  },
-  {
-    "id": "uet-taxila",
-    "name": "UET Taxila",
-    "shortName": "UET Taxila",
-    "formula": {
-      "matric": 17,
-      "inter": 50,
-      "test": 33
-    },
-    "testTypes": ["ecat"],
-    "defaultTestTotal": 400
   }
 ]

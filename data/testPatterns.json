@@ -274,24 +274,5 @@
       ],
       "notes": "SAT-I and NTS scores also accepted. Focus on analytical and mathematical reasoning."
     }
-  },
-  {
-    "id": "uet-taxila",
-    "name": "UET Taxila (ECAT)",
-    "pattern": {
-      "totalMCQs": 100,
-      "duration": "1 hour 40 minutes",
-      "totalMarks": 400,
-      "isComputerBased": false,
-      "hasNegativeMarking": true,
-      "allowsCalculator": false,
-      "subjects": [
-        { "name": "Mathematics", "mcqs": 30 },
-        { "name": "Physics", "mcqs": 30 },
-        { "name": "Comp. / Chemistry", "mcqs": 30 },
-        { "name": "English", "mcqs": 10 }
-      ],
-      "notes": "Same ECAT paper as UET Lahore. Negative marking: -1 for each wrong answer."
-    }
   }
 ]

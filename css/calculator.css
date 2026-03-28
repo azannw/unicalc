@@ -904,15 +904,15 @@
 /* NU Calculator Banner */
 .nu-calc-banner {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     padding: 24px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    gap: 24px;
+    gap: 16px;
     transition: all 0.3s ease;
-    flex-wrap: wrap;
 }
 
 .nu-calc-banner:hover {
@@ -935,7 +935,6 @@
 
 /* Form Actions */
 .form-actions {
-    margin-top: 16px;
     display: flex;
     justify-content: center;
 }
@@ -1640,9 +1639,8 @@
         padding: 18px;
     }
 
+
     .nu-calc-banner {
-        flex-direction: column;
-        text-align: center;
         padding: 20px;
     }
 

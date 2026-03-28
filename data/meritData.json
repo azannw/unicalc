@@ -279,21 +279,6 @@
     ]
   },
   {
-    "id": "uet-taxila",
-    "name": "UET Taxila",
-    "campuses": [
-      {
-        "campus": "Main Campus",
-        "programs": [
-          { "name": "BS Software Engineering", "merit": 79.43 },
-          { "name": "BS Computer Science", "merit": 77.97 },
-          { "name": "BS Computer", "merit": 75.05 },
-          { "name": "BS Computer Science (Pre-Medical)", "merit": 78.18 }
-        ]
-      }
-    ]
-  },
-  {
     "id": "uet",
     "name": "UET Lahore",
     "campuses": [
