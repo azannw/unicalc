@@ -432,53 +432,47 @@ const meritData = [
   {
     id: "uet",
     name: "UET (University of Engineering & Technology)",
-    year: 2024,
+    year: 2025,
     campuses: [
       {
         campus: "Lahore (Main Campus)",
         programs: [
-          { name: "BS Computer Science", merit: 81.83, category: "Open Merit", history: [81.83] },
-          { name: "BS Computer Science", merit: 66.40, category: "Non-Merit", history: [66.4] },
-          { name: "BS Artificial Intelligence", merit: 71.29, history: [71.29] },
-          { name: "BS Data Science", merit: 54.37, history: [54.37] },
-          { name: "BS Information Systems Technology", merit: 56.18, history: [56.18] },
-          { name: "BS Applied Computing", merit: 55.76, history: [55.76] }
-        ]
-      },
-      {
-        campus: "KSK Campus",
-        programs: [
-          { name: "BS Computer Science", merit: 77.44, category: "Open Merit", history: [77.44] },
-          { name: "BS Computer Science", merit: 66.11, category: "Non-Merit", history: [66.11] },
-          { name: "BS Software Engineering", merit: 81.04, category: "Open Merit", history: [81.04] },
-          { name: "BS Software Engineering", merit: 59.21, category: "Non-Merit", history: [59.21] }
+          { name: "BS Computer Science", merit: 81.13, history: [81.83, 81.13] },
+          { name: "BS Data Science", merit: 79.52, history: [54.37, 79.52] },
+          { name: "BS Artificial Intelligence", merit: 78.0, history: [71.29, 78.0] },
+          { name: "BS Cyber Security", merit: 77.0, history: [77.0] },
+          { name: "BS Computer Engineering", merit: 76.25, history: [76.25] },
+          { name: "Architecture", merit: 76.01, history: [76.01] },
+          { name: "BS Architectural Engineering", merit: 74.32, history: [74.32] },
+          { name: "BS Mechanical Engineering", merit: 74.04, history: [74.04] },
+          { name: "BS Electrical Engineering", merit: 73.27, history: [73.27] },
+          { name: "BS Civil Engineering", merit: 73.21, history: [73.21] },
+          { name: "BS Mechatronics & Control Engineering", merit: 73.06, history: [73.06] },
+          { name: "BS Chemical Engineering", merit: 70.77, history: [70.77] },
+          { name: "BS Automotive Engineering", merit: 70.29, history: [70.29] },
+          { name: "BS Petroleum & Gas Engineering", merit: 69.83, history: [69.83] },
+          { name: "BS City & Regional Planning", merit: 66.48, history: [66.48] },
+          { name: "BS Industrial & Manufacturing Engineering", merit: 65.27, history: [65.27] },
+          { name: "BS Metallurgical & Materials Engineering", merit: 63.32, history: [63.32] },
+          { name: "BS Environmental Engineering", merit: 62.77, history: [62.77] },
+          { name: "BS Product & Industrial Design", merit: 62.18, history: [62.18] },
+          { name: "BS Geological Engineering", merit: 50.81, history: [50.81] }
         ]
       },
       {
         campus: "Taxila Campus",
         programs: [
-          { name: "BS Software Engineering", merit: 79.43, history: [79.43] },
-          { name: "BS Computer Science", merit: 77.97, history: [77.97] },
-          { name: "BS Computer", merit: 75.05, history: [75.05] },
-          { name: "BS Computer Science (Pre-Medical)", merit: 78.18, history: [78.18] }
-        ]
-      },
-      {
-        campus: "Faisalabad Campus",
-        programs: [
-          { name: "BS Computer Science", merit: 76.31, category: "Open Merit", history: [76.31] }
-        ]
-      },
-      {
-        campus: "Narowal Campus",
-        programs: [
-          { name: "BS Computer Science", merit: 72.30, category: "Open Merit", history: [72.3] }
-        ]
-      },
-      {
-        campus: "RCET Gujranwala",
-        programs: [
-          { name: "BS Computer Science", merit: 72.04, category: "Open Merit", history: [72.04] }
+          { name: "BS Software Engineering", merit: 79.44, history: [79.43, 79.44] },
+          { name: "BS Computer Science", merit: 77.98, history: [77.97, 77.98] },
+          { name: "BS Computer Engineering", merit: 75.07, history: [75.05, 75.07] },
+          { name: "BS Mechatronics Engineering", merit: 69.79, history: [69.79] },
+          { name: "BS Mechanical Engineering", merit: 67.76, history: [67.76] },
+          { name: "BS Civil Engineering", merit: 65.52, history: [65.52] },
+          { name: "BS Electrical Engineering", merit: 63.07, history: [63.07] },
+          { name: "BS Electronics Engineering", merit: 62.33, history: [62.33] },
+          { name: "BS Telecommunication Engineering", merit: 59.55, history: [59.55] },
+          { name: "BS Industrial Engineering", merit: 55.57, history: [55.57] },
+          { name: "BS Environmental Engineering", merit: 53.07, history: [53.07] }
         ]
       }
     ]
