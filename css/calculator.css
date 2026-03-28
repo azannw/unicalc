@@ -672,7 +672,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--glass-divider);
 }
 
@@ -2232,6 +2232,10 @@
 [data-theme="light"] .input-card {
     background: none;
     border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .input-card:last-child {
+    border-bottom: none;
 }
 [data-theme="light"] .form-input {
     background: rgba(0, 0, 0, 0.03);
