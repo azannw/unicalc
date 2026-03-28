@@ -150,7 +150,11 @@ function applyCalculatorContent(config) {
         const addSection = document.getElementById('additionalMarksSection');
         const lateSection = document.getElementById('lateYearsSection');
         if (addSection) addSection.style.display = '';
-        if (lateSection) lateSection.style.display = '';
+        if (lateSection) {
+            lateSection.style.display = '';
+            const yearSelect = document.getElementById('completionYearSelect');
+            if (yearSelect) initCustomDropdown(yearSelect);
+        }
     }
 
     const testTotalInput = document.getElementById('testTotal');
@@ -1079,7 +1083,6 @@ document.addEventListener('DOMContentLoaded', initDynamicContent);
 function initCustomDropdown(selectEl) {
     if (!selectEl || selectEl.dataset.customized) return;
     selectEl.dataset.customized = 'true';
-    selectEl.style.display = 'none';
 
     const wrapper = selectEl.closest('.select-wrapper');
     if (!wrapper) return;

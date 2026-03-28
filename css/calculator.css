@@ -685,6 +685,10 @@
 }
 
 /* Select Wrapper */
+.form-select[data-customized] {
+    display: none !important;
+}
+
 /* Custom Dropdown */
 .custom-dropdown {
     position: relative;
