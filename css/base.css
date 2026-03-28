@@ -528,8 +528,9 @@ a {
 
 .footer-minimal-left {
     font-family: var(--font-display);
+    font-size: 1.15rem;
     font-weight: 700;
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 .footer-minimal-center {
@@ -549,12 +550,19 @@ a {
 }
 
 .footer-minimal-right {
+    font-size: 0.85rem;
     color: var(--text-tertiary);
 }
 
 .footer-minimal-right a {
-    color: var(--text-secondary);
+    color: var(--accent-blue, #6C8EEF);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-minimal-right a:hover {
+    color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
