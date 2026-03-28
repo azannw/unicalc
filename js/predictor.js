@@ -100,11 +100,13 @@ function handleEduSystemChange(e) {
     const matricHint = document.getElementById('hintMatric');
     const interHint = document.getElementById('hintInter');
     if (isALevel) {
-        matricTotal.value = 600; interTotal.value = 600;
+        matricTotal.value = ''; matricTotal.placeholder = 'Total (600)';
+        interTotal.value = ''; interTotal.placeholder = 'Total (600)';
         if (matricHint) matricHint.textContent = 'HEC equivalence of your O-Level marks';
         if (interHint) interHint.textContent = 'HEC equivalence of your A-Level marks';
     } else {
-        matricTotal.value = 1100; interTotal.value = 1100;
+        matricTotal.value = ''; matricTotal.placeholder = 'Total (1100)';
+        interTotal.value = ''; interTotal.placeholder = 'Total (1100)';
         if (matricHint) matricHint.textContent = 'SSC / O-Level marks (or HEC equivalence)';
         if (interHint) interHint.textContent = 'HSSC / A-Level marks (or HEC equivalence)';
     }
@@ -115,15 +117,16 @@ function handleEduSystemChange(e) {
 // =====================================================
 
 function runPrediction() {
+    const eduSystem = document.querySelector('input[name="eduSystem"]:checked')?.value || 'fsc';
+    const defaultTotal = eduSystem === 'alevel' ? 600 : 1100;
     const matricObtained = parseFloat(document.getElementById('matricObtained')?.value) || 0;
-    const matricTotal = parseFloat(document.getElementById('matricTotal')?.value) || 1100;
+    const matricTotal = parseFloat(document.getElementById('matricTotal')?.value) || defaultTotal;
     const interObtained = parseFloat(document.getElementById('interObtained')?.value) || 0;
-    const interTotal = parseFloat(document.getElementById('interTotal')?.value) || 1100;
+    const interTotal = parseFloat(document.getElementById('interTotal')?.value) || defaultTotal;
 
     if (matricObtained <= 0 || interObtained <= 0) return;
     if (matricObtained > matricTotal || interObtained > interTotal) return;
 
-    const eduSystem = document.querySelector('input[name="eduSystem"]:checked')?.value || 'fsc';
     currentInputs = { matricObtained, matricTotal, interObtained, interTotal, eduSystem };
 
     // Show loading state
@@ -724,25 +727,16 @@ function loadFromStorage() {
 function checkSavedData() {
     const saved = loadFromStorage();
     if (!saved) return;
-    const banner = document.getElementById('restoreBanner');
-    if (!banner) return;
-    banner.style.display = 'flex';
-
-    document.getElementById('restoreYes')?.addEventListener('click', () => {
-        const inp = saved.inputs;
-        const eduRadio = document.querySelector(`input[name="eduSystem"][value="${inp.eduSystem}"]`);
-        if (eduRadio) { eduRadio.checked = true; eduRadio.dispatchEvent(new Event('change')); }
-        document.getElementById('matricObtained').value = inp.matricObtained;
-        document.getElementById('matricTotal').value = inp.matricTotal;
-        document.getElementById('interObtained').value = inp.interObtained;
-        document.getElementById('interTotal').value = inp.interTotal;
-        if (saved.selectedUnis && Array.isArray(saved.selectedUnis)) {
-            selectedUniversities = new Set(saved.selectedUnis);
-            initUniPicker();
-        }
-        banner.style.display = 'none';
-        runPrediction();
-    });
-
-    document.getElementById('restoreNo')?.addEventListener('click', () => { banner.style.display = 'none'; });
+    const inp = saved.inputs;
+    const eduRadio = document.querySelector(`input[name="eduSystem"][value="${inp.eduSystem}"]`);
+    if (eduRadio) { eduRadio.checked = true; eduRadio.dispatchEvent(new Event('change')); }
+    document.getElementById('matricObtained').value = inp.matricObtained;
+    document.getElementById('matricTotal').value = inp.matricTotal;
+    document.getElementById('interObtained').value = inp.interObtained;
+    document.getElementById('interTotal').value = inp.interTotal;
+    if (saved.selectedUnis && Array.isArray(saved.selectedUnis)) {
+        selectedUniversities = new Set(saved.selectedUnis);
+        initUniPicker();
+    }
+    runPrediction();
 }

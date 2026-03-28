@@ -374,29 +374,6 @@
         .share-btn-image { color: #3b82f6; border-color: rgba(59,130,246,0.15); }
         .share-btn-image:hover { background: rgba(59,130,246,0.06); }
 
-        /* Restore banner */
-        .restore-banner {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-divider);
-            border-radius: 12px;
-            padding: 14px 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .restore-banner-text { font-size: 0.85rem; color: var(--text-secondary); }
-        .restore-banner-actions { display: flex; gap: 8px; }
-        .restore-btn {
-            padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
-            border: none; cursor: pointer; font-family: var(--font-display); transition: all 0.2s ease;
-        }
-        .restore-btn-yes { background: var(--accent); color: #fff; }
-        .restore-btn-yes:hover { background: #2563eb; }
-        .restore-btn-no { background: transparent; color: var(--text-tertiary); border: 1px solid var(--glass-divider); }
-        .restore-btn-no:hover { color: var(--text-secondary); border-color: rgba(255,255,255,0.15); }
 
         /* Section heading for result card */
         .section-heading { text-align: center; font-size: 0.88rem; color: var(--text-tertiary); margin-bottom: 16px; font-weight: 500; }
@@ -552,12 +529,7 @@
                     </p>
                 </div>
 
-                <div class="restore-banner" id="restoreBanner" style="display:none">
-                    <span class="restore-banner-text">Previous calculation saved. Restore?</span>
-                    <div class="restore-banner-actions">
-                        <button class="restore-btn restore-btn-yes" id="restoreYes">Restore</button>
-                        <button class="restore-btn restore-btn-no" id="restoreNo">Dismiss</button>
-                    </div>
+                <div id="restoreBanner" style="display:none">
                 </div>
 
                 <div class="calc-main-container reveal-scale">
