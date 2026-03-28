@@ -521,37 +521,52 @@ a {
 .footer-minimal-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     font-size: 0.85rem;
     color: var(--text-tertiary);
 }
 
-.footer-minimal-brand {
+.footer-minimal-left {
     font-family: var(--font-display);
     font-weight: 700;
     color: var(--text-secondary);
 }
 
-.footer-minimal-sep {
-    opacity: 0.4;
+.footer-minimal-center {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.footer-minimal-inner a {
+.footer-minimal-center a {
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.footer-minimal-inner a:hover {
+.footer-minimal-center a:hover {
     color: var(--text-primary);
+}
+
+.footer-minimal-right {
+    color: var(--text-tertiary);
+}
+
+.footer-minimal-right a {
+    color: var(--text-secondary);
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {
     .footer-minimal {
         margin-top: 60px;
         padding: 20px 0;
+    }
+
+    .footer-minimal-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
     }
 }
 
