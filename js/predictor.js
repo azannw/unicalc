@@ -477,7 +477,7 @@ function renderExpandedDetail(result) {
                 Your entry test rank determines admission. Use the full calculator to compare your rank.
             </div>
             <div class="detail-actions">
-                <a href="../calculator/${result.id}/index.html" class="btn-calc-link">
+                <a href="../${result.id}/" class="btn-calc-link">
                     Open ${result.config.shortName} Calculator &rarr;
                 </a>
             </div>
@@ -548,7 +548,7 @@ function renderExpandedDetail(result) {
         if (result.config.programWeights) weightStr += ' (varies by program)';
     }
     html += `<div class="detail-formula">${weightStr} &nbsp;·&nbsp; Your partial: ${result.partialAggregate.toFixed(2)}%</div>`;
-    html += `<div class="detail-actions"><a href="../calculator/${result.id}/index.html" class="btn-calc-link">Open ${result.config.shortName} Calculator &rarr;</a></div>`;
+    html += `<div class="detail-actions"><a href="../${result.id}/" class="btn-calc-link">Open ${result.config.shortName} Calculator &rarr;</a></div>`;
     html += '</div>';
     return html;
 }
