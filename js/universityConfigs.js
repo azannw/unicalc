@@ -10,9 +10,9 @@ const calculatorConfigs = {
         description: 'Calculate your FAST aggregate with the verified formula.',
         metaDescription: 'FAST merit calculator covering all campuses and programs with official weighting — Computing 10/40/50, Engineering 17/50/33.',
         programs: [
-            'Computing Programs (CS, SE, AI, DS, Cyber)',
-            'Engineering Programs (EE, CE, EL, Civil)',
-            'Business Programs (BBA, AFM)'
+            'Computing (CS, SE, AI, DS)',
+            'Engineering (EE, CE, Civil)',
+            'Business (BBA, AFM)'
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
         programWeights: {
@@ -29,8 +29,8 @@ const calculatorConfigs = {
         description: 'Compute your NET aggregate for NUST with the verified formula.',
         metaDescription: 'NUST NET calculator with the official 10/15/75 weighting (FSc/Gap) and 25/0/75 for Immediate A-Level students.',
         programs: [
-            'Engineering Schools (SMME, CEME, SEECS)',
-            'Computing & AI Programs',
+            'Engineering (SMME, CEME, SEECS)',
+            'Computing & AI',
             'Business & Social Sciences'
         ],
         weights: { matric: 0.10, inter: 0.15, test: 0.75 },
@@ -68,9 +68,9 @@ const calculatorConfigs = {
         description: 'Accurate COMSATS aggregate calculator for all campuses and programs.',
         metaDescription: 'COMSATS merit calculator with the official 10/40/50 weight split.',
         programs: [
-            'Computing Programs (CS, SE, Cyber)',
-            'Engineering Programs',
-            'Business Programs'
+            'Computing (CS, SE, Cyber)',
+            'Engineering',
+            'Business'
         ],
         weights: { matric: 0.10, inter: 0.40, test: 0.50 },
         testMax: 100
@@ -97,7 +97,7 @@ const calculatorConfigs = {
         programs: [
             'Engineering Disciplines',
             'Applied & Nuclear Sciences',
-            'Computer & Information Sciences'
+            'Computing & Info Sciences'
         ],
         weights: { matric: 0.15, inter: 0.25, test: 0.60 },
         eduSystemWeights: {

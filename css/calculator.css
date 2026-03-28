@@ -693,6 +693,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     width: 100%;
     padding: 14px 16px;
     background: rgba(10, 10, 10, 0.6);
@@ -703,6 +704,12 @@
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.custom-dropdown-trigger span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .custom-dropdown-trigger:hover {
