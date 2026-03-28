@@ -51,15 +51,16 @@
             opacity: 0.6;
         }
         .cp-hero-bg .gradient-sphere {
-            position: absolute; width: 400px; height: 400px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-            filter: blur(60px); animation: cpFloat 20s ease-in-out infinite;
-            top: -100px; right: -100px;
+            position: absolute; width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            filter: blur(80px); animation: cpFloat 20s ease-in-out infinite;
+            top: -150px; right: -150px;
         }
         .cp-hero-bg .gradient-sphere.secondary {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
-            animation-delay: -10s; top: auto; bottom: -50px; left: -80px; right: auto;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
+            filter: blur(80px);
+            animation-delay: -10s; top: auto; bottom: -100px; left: -120px; right: auto;
         }
         @keyframes cpFloat {
             0%, 100% { transform: translate(0, 0); }
@@ -73,7 +74,7 @@
 
         .cp-hero {
             text-align: center;
-            padding-bottom: 72px;
+            padding-bottom: 100px;
             position: relative;
         }
 
@@ -167,39 +168,24 @@
         }
 
         /* Contribute Section */
-        .cp-contribute-section { padding: 0 0 100px; }
-        .cp-contribute-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 20px; max-width: 860px; margin: 0 auto 40px;
-        }
-        .cp-contribute-card {
-            padding: 32px 26px;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; background: rgba(255,255,255,0.015);
-            transition: border-color 0.25s ease, background 0.25s ease;
-        }
-        .cp-contribute-card:hover {
-            border-color: rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.03);
-        }
-        .cp-contribute-icon {
-            font-family: var(--font-display); font-size: 1.5rem;
-            font-weight: 700; color: var(--accent); margin-bottom: 16px;
-        }
-        .cp-contribute-card h3 {
-            font-family: var(--font-display); font-size: 1.05rem;
-            font-weight: 600; color: var(--text-primary); margin-bottom: 10px;
-        }
-        .cp-contribute-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
-
-        .cp-cta-box {
-            text-align: center; padding: 40px 36px;
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px; max-width: 860px;
+        .cp-contribute-section { padding: 0 0 80px; }
+        .cp-contribute-text {
+            max-width: 720px;
             margin: 0 auto;
+            text-align: center;
         }
-        .cp-cta-box p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin: 0 auto 20px; }
+        .cp-contribute-text p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+        .cp-contribute-text p:last-child { margin-bottom: 0; }
+        .cp-contribute-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .cp-contribute-text a:hover { text-decoration: underline; }
 
         .cp-btn {
             display: inline-flex; align-items: center; gap: 8px;
@@ -219,8 +205,7 @@
             .cp-lb-section { padding-bottom: 64px; }
             .lb-list { max-width: 100%; }
             .cp-contribute-section { padding: 0 0 64px; }
-            .cp-contribute-grid { grid-template-columns: 1fr; gap: 12px; max-width: 100%; }
-            .cp-cta-box { padding: 28px 20px; max-width: 100%; }
+            .cp-contribute-text { max-width: 100%; }
             .cp-section-header { max-width: 100%; }
         }
 
@@ -243,9 +228,6 @@
         [data-theme="light"] .lb-row:hover { background: rgba(0,0,0,0.02); }
         [data-theme="light"] .lb-social { border-color: rgba(0,0,0,0.08); }
         [data-theme="light"] .lb-social:hover { border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.03); }
-        [data-theme="light"] .cp-contribute-card { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.01); }
-        [data-theme="light"] .cp-contribute-card:hover { border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.02); }
-        [data-theme="light"] .cp-cta-box { background: rgba(0,0,0,0.01); border-color: rgba(0,0,0,0.08); }
 
         @media (max-width: 576px) {
             .cp-title { font-size: clamp(1.85rem, 8vw, 2.4rem); }
@@ -254,9 +236,6 @@
             .lb-name { font-size: 0.95rem; }
             .lb-row--gold .lb-name { font-size: 1rem; }
             .cp-btn { width: 100%; max-width: 280px; justify-content: center; }
-            .cp-contribute-card { padding: 24px 20px; }
-            .cp-contribute-card h3 { font-size: 0.95rem; }
-            .cp-contribute-card p { font-size: 0.85rem; }
         }
 
         @media (max-width: 340px) {
@@ -270,9 +249,6 @@
             .lb-social { width: 30px; height: 30px; }
             .cp-section-title { font-size: clamp(1.3rem, 5vw, 1.8rem); }
             .cp-section-desc { font-size: 0.88rem; }
-            .cp-cta-box { padding: 24px 16px; }
-            .cp-cta-box p { font-size: 0.9rem; }
-            .cp-contribute-card { padding: 20px 16px; }
         }
     </style>
 </head>
@@ -397,35 +373,10 @@
 
             <section class="cp-contribute-section">
                 <div class="container">
-                    <div class="cp-section-header">
-                        <h2 class="cp-section-title">How to Contribute</h2>
-                        <p class="cp-section-desc">UniCalc is built and maintained by students like you. Here are the ways you can help.</p>
-                    </div>
-
-                    <div class="cp-contribute-grid">
-                        <div class="cp-contribute-card">
-                            <div class="cp-contribute-icon">%</div>
-                            <h3>Merit Data</h3>
-                            <p>Help us keep closing merits accurate and up-to-date. If you have verified merit data for any university, campus, or program, share it with us.</p>
-                        </div>
-                        <div class="cp-contribute-card">
-                            <div class="cp-contribute-icon">&Sigma;</div>
-                            <h3>Formulas & Patterns</h3>
-                            <p>Know the exact aggregate formula or test pattern for a university we haven't covered yet? Let us know and we'll add it.</p>
-                        </div>
-                        <div class="cp-contribute-card">
-                            <div class="cp-contribute-icon">&lt;/&gt;</div>
-                            <h3>Development</h3>
-                            <p>If you're a developer and want to help improve the platform, whether it's fixing bugs, adding features, or improving the UI, reach out.</p>
-                        </div>
-                    </div>
-
-                    <div class="cp-cta-box">
-                        <p>If you want to contribute in any way, drop me an email.</p>
-                        <a href="mailto:hi@azanw.com" class="cp-btn cp-btn-primary">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            hi@azanw.com
-                        </a>
+                    <h2 class="cp-section-title" style="text-align:center;">How to Contribute</h2>
+                    <div class="cp-contribute-text">
+                        <p>UniCalc is built and maintained by students. If you have verified closing merits for any university, campus, or program, sharing them helps us keep the data accurate for everyone. If you know the exact aggregate formula or test pattern for a university we have not covered yet, we would love to add it. And if you are a developer, the entire codebase is open source on <a href="https://github.com/azannw/unicalc" target="_blank">GitHub</a>. You can fix bugs, add features, or improve the UI directly.</p>
+                        <p>Reach out at <a href="mailto:hi@azanw.com">hi@azanw.com</a> if you want to contribute in any way.</p>
                     </div>
                 </div>
             </section>
