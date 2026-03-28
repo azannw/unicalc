@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://unicalc.pk/sitemap.xml
+Sitemap: https://unicalc.csconnect.pk/sitemap.xml

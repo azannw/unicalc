@@ -2,7 +2,7 @@
 
 Pakistan's first open-source university merit calculator. Covers 15+ universities with verified aggregate formulas for both FSc and A-Level students.
 
-Live at [unicalc.pk](https://unicalc.pk)
+Live at [unicalc.csconnect.pk](https://unicalc.csconnect.pk)
 
 ## What it does
 
@@ -16,27 +16,9 @@ Supported universities include NUST, FAST, GIKI, ITU, COMSATS, UET, NED, PIEAS, 
 - Hosted on Vercel.
 - University configs, formulas, and merit data are stored in JS files under `js/`.
 
-## Project structure
-
-```
-js/
-  calculator.js        Main calculator logic
-  universityConfigs.js University formulas and weights
-  meritData.js         Historical closing merits (used for predictions)
-  testPatterns.js      Entry test patterns
-  predictor.js         Admission predictor logic
-  main.js              Shared UI (theme, nav, university grid)
-css/
-  base.css             Shared styles, footer, responsive
-  calculator.css       Calculator page styles
-  home.css             Homepage styles
-calculator/            Calculator pages for each university
-predictor/             Admission predictor page
-```
-
 ## Contributing
 
-Contributions are welcome. Here is how you can help:
+Built by [Azan](https://azanw.com) with the help of some amazing contributors. This is an open-source project and contributions are welcome.
 
 **Merit data.** If you have verified closing merits for any university, campus, or program, open an issue or PR with the data and the source.
 
@@ -60,7 +42,7 @@ Open `http://localhost:8080` in your browser.
 
 ## Contact
 
-Built by [Azan](https://azanw.com). Reach out at hi@azanw.com for questions or feedback.
+Reach out at hi@azanw.com for questions or feedback.
 
 ## License
 
