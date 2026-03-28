@@ -683,6 +683,105 @@
 }
 
 /* Select Wrapper */
+/* Custom Dropdown */
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.custom-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-dropdown-trigger:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-dropdown.open .custom-dropdown-trigger {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.custom-dropdown-arrow {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+}
+
+.custom-dropdown.open .custom-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.custom-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 6px;
+    z-index: 50;
+    display: none;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.custom-dropdown.open .custom-dropdown-menu {
+    display: block;
+}
+
+.custom-dropdown-option {
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.custom-dropdown-option:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.custom-dropdown-option.selected {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+[data-theme="light"] .custom-dropdown-trigger {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .custom-dropdown-menu {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .custom-dropdown-option:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .custom-dropdown-option.selected {
+    background: rgba(37, 99, 235, 0.08);
+}
+
 .select-wrapper {
     position: relative;
 }
@@ -852,19 +951,6 @@
     margin-top: 4px;
 }
 
-.input-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    padding: 4px 2px 0;
-}
-
-.input-labels span:last-child {
-    text-align: right;
-    width: 90px;
-    min-width: 80px;
-}
 
 /* Pill Group */
 .pill-group {

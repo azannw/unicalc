@@ -123,6 +123,7 @@ function applyCalculatorContent(config) {
         programSelect.innerHTML = config.programs
             .map((label, index) => `<option value="${config.shortName.toLowerCase()}-${index}">${label}</option>`)
             .join('');
+        initCustomDropdown(programSelect);
     }
 
     applyWeightLabels(config.weights || defaultWeights);
@@ -1073,4 +1074,72 @@ function updateNuCalcBanner(universityId) {
 
 // Call initDynamicContent after DOM loads
 document.addEventListener('DOMContentLoaded', initDynamicContent);
+
+// Custom dropdown to replace native <select>
+function initCustomDropdown(selectEl) {
+    if (!selectEl || selectEl.dataset.customized) return;
+    selectEl.dataset.customized = 'true';
+    selectEl.style.display = 'none';
+
+    const wrapper = selectEl.closest('.select-wrapper');
+    if (!wrapper) return;
+    wrapper.querySelector('.select-arrow')?.remove();
+
+    const dropdown = document.createElement('div');
+    dropdown.className = 'custom-dropdown';
+
+    const trigger = document.createElement('div');
+    trigger.className = 'custom-dropdown-trigger';
+
+    const triggerText = document.createElement('span');
+    triggerText.textContent = selectEl.options[selectEl.selectedIndex]?.text || 'Select';
+
+    const arrow = document.createElement('span');
+    arrow.className = 'custom-dropdown-arrow';
+    arrow.innerHTML = '&#9660;';
+
+    trigger.appendChild(triggerText);
+    trigger.appendChild(arrow);
+
+    const menu = document.createElement('div');
+    menu.className = 'custom-dropdown-menu';
+
+    function buildOptions() {
+        menu.innerHTML = '';
+        Array.from(selectEl.options).forEach((opt, i) => {
+            const item = document.createElement('div');
+            item.className = 'custom-dropdown-option' + (i === selectEl.selectedIndex ? ' selected' : '');
+            item.textContent = opt.text;
+            item.addEventListener('click', () => {
+                selectEl.selectedIndex = i;
+                selectEl.dispatchEvent(new Event('change'));
+                triggerText.textContent = opt.text;
+                menu.querySelectorAll('.custom-dropdown-option').forEach(o => o.classList.remove('selected'));
+                item.classList.add('selected');
+                dropdown.classList.remove('open');
+            });
+            menu.appendChild(item);
+        });
+    }
+
+    buildOptions();
+
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+    dropdown.appendChild(trigger);
+    dropdown.appendChild(menu);
+    wrapper.appendChild(dropdown);
+
+    // Watch for select options being rebuilt
+    const observer = new MutationObserver(() => {
+        buildOptions();
+        triggerText.textContent = selectEl.options[selectEl.selectedIndex]?.text || 'Select';
+    });
+    observer.observe(selectEl, { childList: true });
+}
 
