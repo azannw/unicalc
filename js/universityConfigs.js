@@ -157,7 +157,7 @@ const calculatorConfigs = {
         eduSystemWeights: {
             'fsc':              { matric: 0.20, inter: 0.40, test: 0.40 }, // FSc: 20% Matric / 40% HSSC / 40% Test
             'alevel-immediate': { matric: 0.40, inter: 0.00, test: 0.60 }, // A-Level Immediate: 40% O-Level / 0% A-Level / 60% Test
-            'alevel-gap':       { matric: 0.40, inter: 0.00, test: 0.60 }  // A-Level Gap Year: same as Immediate
+            'alevel-gap':       { matric: 0.20, inter: 0.40, test: 0.40 }  // A-Level Gap Year: 20% O-Level / 40% A-Level / 40% Test
         },
         testMax: 100,
         hideTestTypePills: true,

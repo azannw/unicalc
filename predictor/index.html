@@ -378,6 +378,60 @@
         /* Section heading for result card */
         .section-heading { text-align: center; font-size: 0.88rem; color: var(--text-tertiary); margin-bottom: 16px; font-weight: 500; }
 
+        .restore-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-divider);
+            border-radius: 12px;
+        }
+        .restore-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .restore-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .restore-btn-yes {
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+            border: none;
+            cursor: pointer;
+            background: var(--accent);
+            color: #fff;
+            transition: background 0.2s ease;
+        }
+        .restore-btn-yes:hover { background: #2563eb; }
+        .restore-btn-no {
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+            border: 1px solid var(--glass-divider);
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-tertiary);
+            transition: all 0.2s ease;
+        }
+        .restore-btn-no:hover { color: var(--text-secondary); border-color: rgba(255,255,255,0.15); }
+        @media (max-width: 480px) {
+            .restore-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
         /* ---- Responsive ---- */
         @media (max-width: 576px) {
             .results-summary { grid-template-columns: repeat(2, 1fr); }
@@ -529,7 +583,12 @@
                     </p>
                 </div>
 
-                <div id="restoreBanner" style="display:none">
+                <div class="restore-banner" id="restoreBanner" style="display:none">
+                    <span class="restore-text">Restore your previous marks?</span>
+                    <div class="restore-actions">
+                        <button class="restore-btn-yes" id="restoreYes">Restore</button>
+                        <button class="restore-btn-no" id="restoreNo">No thanks</button>
+                    </div>
                 </div>
 
                 <div class="calc-main-container reveal-scale">

@@ -725,16 +725,27 @@ function loadFromStorage() {
 function checkSavedData() {
     const saved = loadFromStorage();
     if (!saved) return;
-    const inp = saved.inputs;
-    const eduRadio = document.querySelector(`input[name="eduSystem"][value="${inp.eduSystem}"]`);
-    if (eduRadio) { eduRadio.checked = true; eduRadio.dispatchEvent(new Event('change')); }
-    document.getElementById('matricObtained').value = inp.matricObtained;
-    document.getElementById('matricTotal').value = inp.matricTotal;
-    document.getElementById('interObtained').value = inp.interObtained;
-    document.getElementById('interTotal').value = inp.interTotal;
-    if (saved.selectedUnis && Array.isArray(saved.selectedUnis)) {
-        selectedUniversities = new Set(saved.selectedUnis);
-        initUniPicker();
-    }
-    runPrediction();
+    const banner = document.getElementById('restoreBanner');
+    if (!banner) return;
+    banner.style.display = 'flex';
+
+    document.getElementById('restoreYes')?.addEventListener('click', () => {
+        const inp = saved.inputs;
+        const eduRadio = document.querySelector(`input[name="eduSystem"][value="${inp.eduSystem}"]`);
+        if (eduRadio) { eduRadio.checked = true; eduRadio.dispatchEvent(new Event('change')); }
+        document.getElementById('matricObtained').value = inp.matricObtained;
+        document.getElementById('matricTotal').value = inp.matricTotal;
+        document.getElementById('interObtained').value = inp.interObtained;
+        document.getElementById('interTotal').value = inp.interTotal;
+        if (saved.selectedUnis && Array.isArray(saved.selectedUnis)) {
+            selectedUniversities = new Set(saved.selectedUnis);
+            initUniPicker();
+        }
+        banner.style.display = 'none';
+        runPrediction();
+    });
+
+    document.getElementById('restoreNo')?.addEventListener('click', () => {
+        banner.style.display = 'none';
+    });
 }
