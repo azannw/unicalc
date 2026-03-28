@@ -136,7 +136,7 @@ function applyCalculatorContent(config) {
         const wM = document.getElementById('weightMatric');
         const wI = document.getElementById('weightInter');
         const wT = document.getElementById('weightTest');
-        if (wM) wM.textContent = '\u00D71/4';
+        if (wM) wM.textContent = '25%';
         if (wI) wI.textContent = '100%';
         if (wT) wT.textContent = testPct + '%';
 
@@ -400,8 +400,8 @@ function calculateAggregate() {
         let additionalMarks = 0;
         if (document.getElementById('hafizQuran')?.checked) additionalMarks += 20;
 
-        const completionYearRadio = document.querySelector('input[name="completionYear"]:checked');
-        const gapDeduction = parseInt(completionYearRadio?.value) || 0;
+        const completionYearSelect = document.getElementById('completionYearSelect');
+        const gapDeduction = parseInt(completionYearSelect?.value) || 0;
 
         const numerator = (fraction * matricObtained) + interObtained + additionalMarks;
         const denominator = (fraction * matricTotal) + interTotal;

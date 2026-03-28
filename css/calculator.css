@@ -1737,7 +1737,7 @@
     }
 
     .input-card {
-        padding: 0;
+        padding: 0 0 16px;
     }
 
 
@@ -1862,7 +1862,7 @@
     }
 
     .input-card {
-        padding: 0;
+        padding: 0 0 16px;
     }
 
     .input-label {
@@ -1991,7 +1991,7 @@
     }
 
     .input-card {
-        padding: 0;
+        padding: 0 0 16px;
     }
 
     .input-row {
@@ -2439,7 +2439,7 @@
     }
 
     .input-card {
-        padding: 0;
+        padding: 0 0 16px;
     }
 
     .input-row {

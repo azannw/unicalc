@@ -132,40 +132,26 @@
                                     <div class="input-row"><input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="0"><span class="input-separator">/</span><input type="number" placeholder="Total" class="form-input form-input-total" id="interTotal"></div>
                                 </div>
                                 <div class="input-card full-width" id="additionalMarksSection" style="display: none;">
-                                    <div class="input-header">
-                                        <label class="input-label">Hafiz-e-Quran</label>
-                                    </div>
-                                    <div class="pill-group">
-                                        <label class="pill-option">
-                                            <input type="checkbox" id="hafizQuran">
-                                            <span class="pill-btn">Yes, I am Hafiz-e-Quran</span>
-                                        </label>
-                                    </div>
-                                    <p class="input-hint" id="hintAdditional">20 marks are added to your academic score, not total aggregate (requires original Sanad)</p>
+                                    <label class="checkbox-label" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                                        <input type="checkbox" id="hafizQuran" style="width:18px;height:18px;accent-color:var(--accent);cursor:pointer;">
+                                        <span class="input-label" style="margin:0;cursor:pointer;">Check if you are a Hafiz-e-Quran</span>
+                                    </label>
+                                    <p class="input-hint" style="margin-top:6px;">20 marks are added to your academic score, not total aggregate (requires original Sanad)</p>
                                 </div>
                                 <div class="input-card full-width" id="lateYearsSection" style="display: none;">
                                     <div class="input-header">
                                         <label class="input-label">FSc / A-Levels Completion Year</label>
                                     </div>
-                                    <div class="pill-group">
-                                        <label class="pill-option">
-                                            <input type="radio" name="completionYear" value="0" checked>
-                                            <span class="pill-btn">2026 (This Year)</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="radio" name="completionYear" value="2">
-                                            <span class="pill-btn">2025</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="radio" name="completionYear" value="4">
-                                            <span class="pill-btn">2024</span>
-                                        </label>
-                                        <label class="pill-option">
-                                            <input type="radio" name="completionYear" value="6">
-                                            <span class="pill-btn">2023</span>
-                                        </label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select" id="completionYearSelect">
+                                            <option value="0" selected>2026 (This Year)</option>
+                                            <option value="2">2025 (1 Gap Year)</option>
+                                            <option value="4">2024 (2 Gap Years)</option>
+                                            <option value="6">2023 (3 Gap Years)</option>
+                                        </select>
+                                        <span class="select-arrow">&#9660;</span>
                                     </div>
-                                    <p class="input-hint" id="hintLateYears">2 marks are deducted for each gap year from your academic score, not total aggregate</p>
+                                    <p class="input-hint" style="margin-top:6px;">2 marks are deducted for each gap year from your academic score, not total aggregate</p>
                                 </div>
                                 <div class="input-card full-width" id="testTypeSection">
                                     <label class="input-label">Entry Test Type</label>
