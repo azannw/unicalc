@@ -378,6 +378,11 @@ function calculateAggregate() {
         return;
     }
 
+    if (matricTotal > 1500 || interTotal > 1500) {
+        showCalcWarning('Please enter valid total marks (max 1500).');
+        return;
+    }
+
     // Validate obtained does not exceed total
     const wEduRadio = document.querySelector('input[name="eduSystem"]:checked');
     const wIsALevel = wEduRadio && (wEduRadio.value === 'alevel' || wEduRadio.value === 'alevel-immediate' || wEduRadio.value === 'alevel-gap');

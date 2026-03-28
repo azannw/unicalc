@@ -588,7 +588,7 @@
         0 20px 40px rgba(0, 0, 0, 0.4),
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    overflow: hidden;
+    overflow: visible;
     position: relative;
 }
 
@@ -665,7 +665,7 @@
     flex-direction: column;
     gap: 32px;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .form-section {
@@ -894,7 +894,7 @@
     border-bottom: 1px solid var(--glass-divider);
     border-radius: 0;
     min-width: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .input-card.full-width {

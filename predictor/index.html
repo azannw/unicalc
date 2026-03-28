@@ -376,19 +376,27 @@
 
         /* Restore banner */
         .restore-banner {
-            background: rgba(59,130,246,0.04); border: 1px solid rgba(59,130,246,0.1);
-            border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
-            display: flex; align-items: center; justify-content: space-between; gap: 10px;
-            flex-wrap: wrap; animation: fadeSlideUp 0.3s ease;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-divider);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
         }
-        .restore-banner-text { font-size: 0.82rem; color: var(--text-secondary); }
-        .restore-banner-actions { display: flex; gap: 6px; }
+        .restore-banner-text { font-size: 0.85rem; color: var(--text-secondary); }
+        .restore-banner-actions { display: flex; gap: 8px; }
         .restore-btn {
-            padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;
-            border: none; cursor: pointer; font-family: var(--font-body);
+            padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            border: none; cursor: pointer; font-family: var(--font-display); transition: all 0.2s ease;
         }
         .restore-btn-yes { background: var(--accent); color: #fff; }
-        .restore-btn-no { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+        .restore-btn-yes:hover { background: #2563eb; }
+        .restore-btn-no { background: transparent; color: var(--text-tertiary); border: 1px solid var(--glass-divider); }
+        .restore-btn-no:hover { color: var(--text-secondary); border-color: rgba(255,255,255,0.15); }
 
         /* Section heading for result card */
         .section-heading { text-align: center; font-size: 0.88rem; color: var(--text-tertiary); margin-bottom: 16px; font-weight: 500; }
@@ -575,7 +583,7 @@
                                 <div class="input-row">
                                     <input type="number" placeholder="Obtained" class="form-input" id="matricObtained" min="1" required>
                                     <span class="input-separator">/</span>
-                                    <input type="number" placeholder="Total Marks" class="form-input form-input-total" id="matricTotal" min="1">
+                                    <input type="number" placeholder="Total" class="form-input form-input-total" id="matricTotal" min="1">
                                 </div>
                                 <p class="input-hint" id="hintMatric">SSC / O-Level marks (or HEC equivalence)</p>
                             </div>
@@ -586,7 +594,7 @@
                                 <div class="input-row">
                                     <input type="number" placeholder="Obtained" class="form-input" id="interObtained" min="1" required>
                                     <span class="input-separator">/</span>
-                                    <input type="number" placeholder="Total Marks" class="form-input form-input-total" id="interTotal" min="1">
+                                    <input type="number" placeholder="Total" class="form-input form-input-total" id="interTotal" min="1">
                                 </div>
                                 <p class="input-hint" id="hintInter">HSSC / A-Level marks (or HEC equivalence)</p>
                             </div>
