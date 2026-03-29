@@ -265,7 +265,7 @@ const testPatterns = [
     pattern: {
       totalMCQs: 200,
       duration: "3 hours 30 minutes",
-      totalMarks: 200,
+      totalMarks: 180,
       isComputerBased: true,
       hasNegativeMarking: false,
       allowsCalculator: false,
@@ -276,7 +276,7 @@ const testPatterns = [
         { name: "English", mcqs: 18 },
         { name: "Logical Reasoning", mcqs: 6 }
       ],
-      notes: "Conducted by PMC (Pakistan Medical Commission). 1 mark per MCQ, no negative marking. Required for all Punjab medical/dental college admissions under UHS."
+      notes: "Conducted by PMC (Pakistan Medical Commission). No negative marking. Required for all Punjab medical/dental college admissions under UHS."
     }
   },
   {
