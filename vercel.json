@@ -1,4 +1,6 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "redirects": [
     { "source": "/calculator/:path*", "destination": "/:path*", "permanent": true }
