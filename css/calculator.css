@@ -1234,6 +1234,54 @@
     text-align: right;
 }
 
+/* Rank Input Card (NUST, GIKI) */
+.rank-input-card {
+    padding: 20px 24px;
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+.rank-input-header h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+.rank-input-hint {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+.rank-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.rank-hash {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+.rank-input {
+    max-width: 140px;
+    -moz-appearance: textfield;
+}
+.rank-input::-webkit-outer-spin-button,
+.rank-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.rank-closing-ref {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+[data-theme="light"] .rank-input-card {
+    background: rgba(59, 130, 246, 0.04);
+    border-color: rgba(59, 130, 246, 0.15);
+}
+
 /* Prediction Card */
 .prediction-card {
     padding: 24px;

@@ -346,6 +346,21 @@ function setupInputListeners() {
         obtainedInput.addEventListener('input', validatePair);
         totalInput.addEventListener('input', validatePair);
     });
+
+    // Rank input for rank-based universities (NUST, GIKI)
+    const rankCheckBtn = document.getElementById('rankCheckBtn');
+    const netRankInput = document.getElementById('netRankInput');
+    if (rankCheckBtn && netRankInput) {
+        const triggerRankCheck = () => {
+            const aggregateValue = document.getElementById('aggregateValue');
+            const currentAggregate = parseFloat(aggregateValue?.textContent) || 0;
+            updatePrediction(currentAggregate, currentCalculatorConfig?.shortName);
+        };
+        rankCheckBtn.addEventListener('click', triggerRankCheck);
+        netRankInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); triggerRankCheck(); }
+        });
+    }
 }
 
 function calculateAggregate() {
@@ -622,7 +637,54 @@ function updatePrediction(aggregate, universityName = 'your target university') 
 
         // Check if rank-based
         if (uniMerit.meritType === 'rank') {
-            predictionContent.innerHTML = `<p class="prediction-text">This university uses rank-based merit. Compare your entry test rank against the closing ranks in the Merit tab.</p>`;
+            // Show the rank input card
+            const rankInputCard = document.getElementById('rankInputCard');
+            if (rankInputCard) rankInputCard.style.display = '';
+
+            const rankInput = document.getElementById('netRankInput');
+            const userRank = rankInput ? parseInt(rankInput.value) : NaN;
+
+            if (!userRank || isNaN(userRank)) {
+                predictionContent.innerHTML = `<p class="prediction-text">Your aggregate is based on your marks. Since this university uses rank-based merit, enter your merit position above once the merit list is published, or compare closing ranks in the Merit tab.</p>`;
+                return;
+            }
+
+            // Rank comparison: lower rank number = better
+            let rankHtml = '';
+            uniMerit.campuses.forEach(campus => {
+                let rows = '';
+                campus.programs.forEach(program => {
+                    const closingRank = parseInt(String(program.merit).replace('#', ''));
+                    if (isNaN(closingRank)) return;
+
+                    const ratio = userRank / closingRank;
+                    let statusClass, label;
+
+                    if (ratio <= 0.7) {
+                        statusClass = 'high'; label = 'Safe';
+                    } else if (ratio <= 0.9) {
+                        statusClass = 'good'; label = 'Competitive';
+                    } else if (ratio <= 1.0) {
+                        statusClass = 'low'; label = 'Borderline';
+                    } else {
+                        statusClass = 'poor'; label = 'Risky';
+                    }
+
+                    rows += `<div class="prediction-program-row">
+                        <span class="prediction-program-name">${program.name} <span class="rank-closing-ref">(#${closingRank})</span></span>
+                        <span class="prediction-probability ${statusClass}">${label}</span>
+                    </div>`;
+                });
+                if (rows) {
+                    rankHtml += `<div class="prediction-campus">
+                        <h5 class="prediction-campus-title">${campus.campus}</h5>
+                        <div class="prediction-programs">${rows}</div>
+                    </div>`;
+                }
+            });
+
+            const note = '<p class="prediction-note">Based on your rank vs. last year\'s closing ranks. Actual cutoffs vary each year.</p>';
+            predictionContent.innerHTML = rankHtml + note;
             return;
         }
     }
