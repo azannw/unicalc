@@ -569,7 +569,8 @@ function updatePrediction(aggregate, universityName = 'your target university') 
         const testTypeRadio = document.querySelector('input[name="testType"]:checked');
         if (testTypeRadio) {
             if (testTypeRadio.value === 'nat') selectedTestType = 'NTS';
-            else selectedTestType = 'NU'; // "uni" and "sat" both default to NU
+            else if (testTypeRadio.value === 'sat') selectedTestType = 'SAT';
+            else selectedTestType = 'NU';
         }
     }
 

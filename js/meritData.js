@@ -79,14 +79,16 @@ const meritData = [
       {
         campus: "CFD (Chiniot-Faisalabad)",
         programs: [
-          { name: "BS Computer Science", merit: 45, testType: "NU", history: [45, 67] },
-          { name: "BS Computer Science", merit: 85, testType: "NTS", history: [85, 83] },
-          { name: "BS Software Engineering", merit: 65, testType: "NU", history: [65, 66] },
-          { name: "BS Software Engineering", merit: 85, testType: "NTS", history: [85, 82] },
-          { name: "BS Artificial Intelligence", merit: 66, testType: "NU", history: [66, 66] },
-          { name: "BS Artificial Intelligence", merit: 85, testType: "NTS", history: [85, 82] },
-          { name: "BS Electrical Engineering", merit: 63, testType: "NU", history: [63, 60] },
-          { name: "BS Electrical Engineering", merit: 75, testType: "NTS", history: [75, 75] }
+          { name: "BS Computer Science", merit: 65, testType: "NU", history: [65, 67] },
+          { name: "BS Computer Science", merit: 83.07, testType: "SAT", history: [83.07] },
+          { name: "BS Software Engineering", merit: 65.87, testType: "NU", history: [65.87, 66] },
+          { name: "BS Software Engineering", merit: 79, testType: "NTS", history: [79, 82] },
+          { name: "BS Artificial Intelligence", merit: 71.9, testType: "NU", history: [71.9, 66] },
+          { name: "BS Artificial Intelligence", merit: 84.67, testType: "SAT", history: [84.67] },
+          { name: "BS Electrical Engineering", merit: 62, testType: "NU", history: [62, 60] },
+          { name: "BS Computer Engineering", merit: 70.38, testType: "NU", history: [70.38] },
+          { name: "BS Business Analytics", merit: 59.92, testType: "NU", history: [59.92] },
+          { name: "BS Financial Technologies", merit: 57, testType: "NU", history: [57] }
         ]
       },
       {
