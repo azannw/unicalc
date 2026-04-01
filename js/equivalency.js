@@ -457,7 +457,7 @@
 
         const oTotal = oSelected.reduce((sum, s) => sum + (getMarks(s.grade, s.name, 'o-level') || 0), 0);
         const oMax = oRequired * 100;
-        const oEquiv = (oTotal / oMax) * 900;
+        const oEquiv = (oTotal / oMax) * 1100;
         const oPct = (oTotal / oMax) * 100;
 
         let result = {
@@ -466,7 +466,7 @@
                 rawTotal: oTotal,
                 rawMax: oMax,
                 equivTotal: Math.round(oEquiv * 100) / 100,
-                equivMax: 900,
+                equivMax: 1100,
                 percentage: Math.round(oPct * 100) / 100,
                 allFilled: oFilled,
                 extraCount: Math.max(0, oFilled.length - oRequired)

@@ -65,7 +65,7 @@ function calculate(oRows, aRows) {
     const oMax = oRequired * 100;
     let result = {
         oLevel: { subjects: oSelected, rawTotal: oTotal, rawMax: oMax,
-            equivTotal: Math.round((oTotal / oMax) * 900 * 100) / 100, equivMax: 900,
+            equivTotal: Math.round((oTotal / oMax) * 1100 * 100) / 100, equivMax: 1100,
             percentage: Math.round((oTotal / oMax) * 100 * 100) / 100,
             allFilled: oFilled, extraCount: Math.max(0, oFilled.length - oRequired) },
         aLevel: null, combined: null, stream: null
@@ -168,10 +168,10 @@ test('numeric "85" → 0',      () => eq(getMarks('85','English','o-level'), 0))
 
 console.log('\n\x1b[1m══ 5. O-LEVEL MATRIC EQUIVALENCY (PK) ══\x1b[0m');
 mode = 'pakistan'; board = 'cambridge'; session = '2025';
-test('All A*s → 751/800 → 844.88/900 → 93.88%', () => { const r = calculate([sub('English','A*'),sub('Mathematics','A*'),sub('Urdu','A*'),sub('Islamiyat','A*'),sub('Pakistan Studies','A*'),sub('Physics','A*'),sub('Chemistry','A*'),sub('Biology','A*')], null); eq(r.oLevel.rawTotal, 751); approx(r.oLevel.equivTotal, 844.88, 0.01); approx(r.oLevel.percentage, 93.88, 0.01); });
-test('All As → 680/800 → 765/900 → 85%', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.rawTotal, 680); eq(r.oLevel.equivTotal, 765); eq(r.oLevel.percentage, 85); });
-test('All Bs → 600/800 → 675/900 → 75%', () => { const r = calculate([sub('English','B'),sub('Mathematics','B'),sub('Urdu','B'),sub('Islamiyat','B'),sub('Pakistan Studies','B'),sub('Physics','B'),sub('Chemistry','B'),sub('Biology','B')], null); eq(r.oLevel.rawTotal, 600); eq(r.oLevel.equivTotal, 675); eq(r.oLevel.percentage, 75); });
-test('All Cs → 520/800 → 585/900 → 65%', () => { const r = calculate([sub('English','C'),sub('Mathematics','C'),sub('Urdu','C'),sub('Islamiyat','C'),sub('Pakistan Studies','C'),sub('Physics','C'),sub('Chemistry','C'),sub('Biology','C')], null); eq(r.oLevel.rawTotal, 520); eq(r.oLevel.percentage, 65); });
+test('All A*s → 751/800 → 1032.63/1100 → 93.88%', () => { const r = calculate([sub('English','A*'),sub('Mathematics','A*'),sub('Urdu','A*'),sub('Islamiyat','A*'),sub('Pakistan Studies','A*'),sub('Physics','A*'),sub('Chemistry','A*'),sub('Biology','A*')], null); eq(r.oLevel.rawTotal, 751); approx(r.oLevel.equivTotal, 1032.63, 0.01); approx(r.oLevel.percentage, 93.88, 0.01); });
+test('All As → 680/800 → 935/1100 → 85%', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.rawTotal, 680); eq(r.oLevel.equivTotal, 935); eq(r.oLevel.percentage, 85); });
+test('All Bs → 600/800 → 825/1100 → 75%', () => { const r = calculate([sub('English','B'),sub('Mathematics','B'),sub('Urdu','B'),sub('Islamiyat','B'),sub('Pakistan Studies','B'),sub('Physics','B'),sub('Chemistry','B'),sub('Biology','B')], null); eq(r.oLevel.rawTotal, 600); eq(r.oLevel.equivTotal, 825); eq(r.oLevel.percentage, 75); });
+test('All Cs → 520/800 → 715/1100 → 65%', () => { const r = calculate([sub('English','C'),sub('Mathematics','C'),sub('Urdu','C'),sub('Islamiyat','C'),sub('Pakistan Studies','C'),sub('Physics','C'),sub('Chemistry','C'),sub('Biology','C')], null); eq(r.oLevel.rawTotal, 520); eq(r.oLevel.percentage, 65); });
 test('All Ds → 440/800 → 55%', () => { const r = calculate([sub('English','D'),sub('Mathematics','D'),sub('Urdu','D'),sub('Islamiyat','D'),sub('Pakistan Studies','D'),sub('Physics','D'),sub('Chemistry','D'),sub('Biology','D')], null); eq(r.oLevel.rawTotal, 440); eq(r.oLevel.percentage, 55); });
 test('All Es → 360/800 → 45%', () => { const r = calculate([sub('English','E'),sub('Mathematics','E'),sub('Urdu','E'),sub('Islamiyat','E'),sub('Pakistan Studies','E'),sub('Physics','E'),sub('Chemistry','E'),sub('Biology','E')], null); eq(r.oLevel.rawTotal, 360); eq(r.oLevel.percentage, 45); });
 test('Mixed → 660/800 → 82.5%', () => { const r = calculate([sub('English','A'),sub('Mathematics','A*'),sub('Urdu','B'),sub('Islamiyat','A'),sub('Pakistan Studies','B'),sub('Physics','A*'),sub('Chemistry','A'),sub('Biology','C')], null); eq(r.oLevel.rawTotal, 660); eq(r.oLevel.percentage, 82.5); });
@@ -179,8 +179,8 @@ test('Mixed → 660/800 → 82.5%', () => { const r = calculate([sub('English','
 console.log('\n\x1b[1m══ 6. O-LEVEL MATRIC EQUIVALENCY (OVERSEAS) ══\x1b[0m');
 mode = 'overseas';
 test('OS compulsory = [English, Maths]', () => { eq(getCompulsory().length, 2); eq(getRequiredOCount(), 5); });
-test('All A*s → 471/500 → 847.8/900', () => { const r = calculate([sub('English','A*'),sub('Mathematics','A*'),sub('Physics','A*'),sub('Chemistry','A*'),sub('Biology','A*')], null); eq(r.oLevel.rawTotal, 471); eq(r.oLevel.rawMax, 500); approx(r.oLevel.equivTotal, 847.8, 0.01); });
-test('All As → 425/500 → 765/900', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.rawTotal, 425); eq(r.oLevel.equivTotal, 765); });
+test('All A*s → 471/500 → 1036.2/1100', () => { const r = calculate([sub('English','A*'),sub('Mathematics','A*'),sub('Physics','A*'),sub('Chemistry','A*'),sub('Biology','A*')], null); eq(r.oLevel.rawTotal, 471); eq(r.oLevel.rawMax, 500); approx(r.oLevel.equivTotal, 1036.2, 0.01); });
+test('All As → 425/500 → 935/1100', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.rawTotal, 425); eq(r.oLevel.equivTotal, 935); });
 test('Urdu/Isl/PS available as electives', () => { const el = getElectivesFor(getCompulsory()); eq(el.includes('Urdu'), true); eq(el.includes('Islamiyat'), true); eq(el.includes('Pakistan Studies'), true); });
 test('Can use Urdu/Isl as electives', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','B'),sub('Islamiyat','B'),sub('Pakistan Studies','C')], null); eq(!!r.error, false); eq(r.oLevel.rawTotal, 385); });
 mode = 'pakistan';
@@ -258,7 +258,7 @@ test('Exact 8 O-Lvl works', () => { eq(!!calculate([sub('English','E'),sub('Math
 test('Exact 5 O-Lvl OS works', () => { mode='overseas'; eq(!!calculate([sub('English','E'),sub('Mathematics','E'),sub('Physics','E'),sub('Chemistry','E'),sub('Biology','E')], null).error, false); mode='pakistan'; });
 test('Exact 3 A-Lvl works', () => { eq(!!calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')],[sub('Physics','E','a-level'),sub('Chemistry','E','a-level'),sub('Biology','E','a-level')]).error, false); });
 test('O-Level only → no combined/stream', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.aLevel, null); eq(r.combined, null); eq(r.stream, null); });
-test('Matric formula: (raw/max)*900', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.equivTotal, 765); eq(r.oLevel.equivMax, 900); });
+test('Matric formula: (raw/max)*1100', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')], null); eq(r.oLevel.equivTotal, 935); eq(r.oLevel.equivMax, 1100); });
 test('PK combined max = 1100', () => { const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Urdu','A'),sub('Islamiyat','A'),sub('Pakistan Studies','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')],[sub('Physics','A','a-level'),sub('Chemistry','A','a-level'),sub('Biology','A','a-level')]); eq(r.combined.max, 1100); });
 test('OS combined max = 800', () => { mode='overseas'; const r = calculate([sub('English','A'),sub('Mathematics','A'),sub('Physics','A'),sub('Chemistry','A'),sub('Biology','A')],[sub('Physics','A','a-level'),sub('Chemistry','A','a-level'),sub('Biology','A','a-level')]); eq(r.combined.max, 800); mode='pakistan'; });
 
