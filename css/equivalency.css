@@ -30,6 +30,21 @@
     margin-bottom: 16px;
 }
 
+/* Session Year Row (inside each section) */
+.eq-session-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.eq-session-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
 /* Count Badge */
 .eq-count-badge {
     display: inline-block;

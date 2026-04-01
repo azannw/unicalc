@@ -20,13 +20,13 @@
     const A_STAR = {
         '2025': {
             'o-level': {
-                'Mathematics': 95, 'Additional Mathematics': 95, 'Physics': 95,
+                'Mathematics': 94, 'Additional Mathematics': 94, 'Physics': 94,
                 'Chemistry': 94, 'Biology': 94, 'Islamiyat': 94, 'Computer Science': 94,
-                'English': 93, 'Urdu': 93, 'Pakistan Studies': 93, '_default': 93
+                'English': 93, 'Urdu': 93, 'Pakistan Studies': 93, '_default': 94
             },
             'a-level': {
                 'Physics': 95, 'Chemistry': 94, 'Biology': 94, 'Mathematics': 94,
-                'Further Mathematics': 94, 'Computer Science': 93, '_default': 93
+                'Further Mathematics': 94, 'Computer Science': 93, '_default': 94
             }
         },
         '2024': {
@@ -36,19 +36,16 @@
                 'English': 93, 'Urdu': 93, 'Pakistan Studies': 93, '_default': 93
             },
             'a-level': {
-                'Physics': 95, 'Chemistry': 94, 'Biology': 94, 'Mathematics': 94,
+                'Physics': 93, 'Chemistry': 93, 'Biology': 94, 'Mathematics': 94,
                 'Computer Science': 93, '_default': 93
             }
         },
         '2023': {
             'o-level': {
-                'Mathematics': 95, 'Islamiyat': 95, 'Physics': 94, 'Chemistry': 94,
-                'Biology': 94, 'Computer Science': 94, 'English': 93, 'Urdu': 93,
-                'Pakistan Studies': 93, '_default': 94
+                'Mathematics': 95, 'Islamiyat': 95, 'Urdu': 93, '_default': 94
             },
             'a-level': {
-                'Physics': 95, 'Chemistry': 94, 'Biology': 94, 'Mathematics': 94,
-                'Computer Science': 93, '_default': 93
+                'Physics': 95, '_default': 94
             }
         }
     };
@@ -86,7 +83,8 @@
 
     let mode = 'pakistan';
     let board = 'cambridge';
-    let session = '2025';
+    let oSession = '2025';
+    let aSession = '2025';
     let calcMode = 'both'; // 'both', 'o-only', 'a-only'
     let oLevelRows = [];
     let aLevelRows = [];
@@ -104,7 +102,8 @@
             effective = EDEXCEL_MAP[grade];
         }
         if (effective === 'A*') {
-            const s = A_STAR[session] || A_STAR['2025'];
+            const sessionYear = level === 'a-level' ? aSession : oSession;
+            const s = A_STAR[sessionYear] || A_STAR['2025'];
             const l = s[level] || {};
             return l[subject] || l['_default'] || 90;
         }
@@ -466,7 +465,7 @@
 
             const oTotal = oSelected.reduce((sum, s) => sum + (getMarks(s.grade, s.name, 'o-level') || 0), 0);
             const oMax = oRequired * 100;
-            const oEquiv = (oTotal / oMax) * 1100;
+            const oEquiv = (oTotal / oMax) * 900;
             const oPct = (oTotal / oMax) * 100;
 
             result.oLevel = {
@@ -474,7 +473,7 @@
                 rawTotal: oTotal,
                 rawMax: oMax,
                 equivTotal: Math.round(oEquiv * 100) / 100,
-                equivMax: 1100,
+                equivMax: 900,
                 percentage: Math.round(oPct * 100) / 100,
                 allFilled: oFilled,
                 extraCount: Math.max(0, oFilled.length - oRequired)
@@ -515,11 +514,15 @@
             const combinedMax = result.oLevel.rawMax + result.aLevel.rawMax;
             const combinedPct = (combinedTotal / combinedMax) * 100;
 
+            const hsscTotal = (combinedTotal / combinedMax) * 1100;
+
             result.combined = {
                 total: combinedTotal,
                 max: combinedMax,
                 percentage: Math.round(combinedPct * 100) / 100,
-                oLevelShare: Math.round((result.oLevel.rawTotal / combinedTotal) * 100 * 10) / 10
+                oLevelShare: Math.round((result.oLevel.rawTotal / combinedTotal) * 100 * 10) / 10,
+                hsscTotal: Math.round(hsscTotal * 100) / 100,
+                hsscMax: 1100
             };
         }
 
@@ -550,13 +553,13 @@
 
         if (hasBoth) {
             mainPct = result.combined.percentage;
-            mainTotal = result.combined.total;
-            mainMax = result.combined.max;
+            mainTotal = result.combined.hsscTotal;
+            mainMax = result.combined.hsscMax;
             mainLabel = 'HSSC (FSc) Equivalent';
         } else if (hasOLevel) {
             mainPct = result.oLevel.percentage;
-            mainTotal = result.oLevel.rawTotal;
-            mainMax = result.oLevel.rawMax;
+            mainTotal = result.oLevel.equivTotal;
+            mainMax = result.oLevel.equivMax;
             mainLabel = 'SSC (Matric) Equivalent';
         } else {
             mainPct = result.aLevel.percentage;
@@ -637,32 +640,33 @@
         const oShare = hasBoth ? result.combined.oLevelShare : 0;
         const aShare = hasBoth ? (100 - oShare) : 0;
 
+        const rawMax = hasBoth ? result.combined.max : 0;
         const contribHtml = hasBoth ? `
                 <div class="eq-breakdown-section">
                     <h4>Contribution Breakdown</h4>
                     <div class="eq-contrib">
                         <div class="eq-contrib-row">
                             <div class="eq-contrib-info">
-                                <span class="eq-contrib-label">O-Levels (${result.oLevel.rawMax}/${mainMax})</span>
+                                <span class="eq-contrib-label">O-Levels (${result.oLevel.rawMax}/${rawMax})</span>
                                 <span class="eq-contrib-pct">${oShare.toFixed(1)}%</span>
                             </div>
                             <div class="eq-contrib-bar">
-                                <div class="eq-contrib-fill eq-contrib-o" style="width: ${(result.oLevel.rawMax / mainMax * 100)}%"></div>
+                                <div class="eq-contrib-fill eq-contrib-o" style="width: ${(result.oLevel.rawMax / rawMax * 100)}%"></div>
                             </div>
                         </div>
                         <div class="eq-contrib-row">
                             <div class="eq-contrib-info">
-                                <span class="eq-contrib-label">A-Levels (${result.aLevel.rawMax}/${mainMax})</span>
+                                <span class="eq-contrib-label">A-Levels (${result.aLevel.rawMax}/${rawMax})</span>
                                 <span class="eq-contrib-pct">${aShare.toFixed(1)}%</span>
                             </div>
                             <div class="eq-contrib-bar">
-                                <div class="eq-contrib-fill eq-contrib-a" style="width: ${(result.aLevel.rawMax / mainMax * 100)}%"></div>
+                                <div class="eq-contrib-fill eq-contrib-a" style="width: ${(result.aLevel.rawMax / rawMax * 100)}%"></div>
                             </div>
                         </div>
                     </div>
                     <div class="eq-insight">
-                        Your O-Level marks make up <strong>${(result.oLevel.rawMax / mainMax * 100).toFixed(1)}%</strong> of your total equivalency.
-                        ${result.oLevel.rawMax / mainMax > 0.7 ? 'This is why O-Level performance is crucial for A-Level students.' : ''}
+                        Your O-Level marks make up <strong>${(result.oLevel.rawMax / rawMax * 100).toFixed(1)}%</strong> of your total equivalency.
+                        ${result.oLevel.rawMax / rawMax > 0.7 ? 'This is why O-Level performance is crucial for A-Level students.' : ''}
                     </div>
                 </div>` : '';
 
@@ -765,19 +769,22 @@
             });
         });
 
-        const sessionWrap = $('#eqSessionWrap');
-        if (sessionWrap) {
-            const sessionDD = createDropdown(
-                [{ value: '2025', label: '2025' }, { value: '2024', label: '2024' }, { value: '2023', label: '2023' }],
-                '2025', '2025',
-                (val) => {
-                    session = val;
-                    document.querySelectorAll('.eq-subject-row').forEach(rowEl => {
-                        if (rowEl._updateMarks) rowEl._updateMarks();
-                    });
-                }, false
-            );
-            sessionWrap.appendChild(sessionDD);
+        const sessionOptions = [{ value: '2025', label: '2025' }, { value: '2024', label: '2024' }, { value: '2023', label: '2023' }];
+
+        const oSessionWrap = $('#oSessionWrap');
+        if (oSessionWrap) {
+            oSessionWrap.appendChild(createDropdown(sessionOptions, '2025', '2025', (val) => {
+                oSession = val;
+                $('#oLevelList').querySelectorAll('.eq-subject-row').forEach(r => { if (r._updateMarks) r._updateMarks(); });
+            }, false));
+        }
+
+        const aSessionWrap = $('#aSessionWrap');
+        if (aSessionWrap) {
+            aSessionWrap.appendChild(createDropdown(sessionOptions, '2025', '2025', (val) => {
+                aSession = val;
+                $('#aLevelList').querySelectorAll('.eq-subject-row').forEach(r => { if (r._updateMarks) r._updateMarks(); });
+            }, false));
         }
 
         $$('input[name="eqCalcMode"]').forEach(el => {
