@@ -150,10 +150,28 @@
                             <span class="input-hint">A* marks vary by session year.</span>
                         </div>
 
+                        <div class="form-section">
+                            <label class="form-label">Calculate Equivalence For</label>
+                            <div class="toggle-group">
+                                <label class="toggle-option">
+                                    <input type="radio" name="eqCalcMode" value="both" checked>
+                                    <span class="toggle-btn">Both (FSc Equivalent)</span>
+                                </label>
+                                <label class="toggle-option">
+                                    <input type="radio" name="eqCalcMode" value="o-only">
+                                    <span class="toggle-btn">O-Level Only</span>
+                                </label>
+                                <label class="toggle-option">
+                                    <input type="radio" name="eqCalcMode" value="a-only">
+                                    <span class="toggle-btn">A-Level Only</span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="eq-divider"></div>
 
                         <!-- O-Level Section -->
-                        <div class="eq-section">
+                        <div class="eq-section" id="oLevelSection">
                             <div class="eq-section-header">
                                 <h3>O-Level Subjects</h3>
                                 <span class="eq-count-badge" id="oLevelCount">0 / 8 subjects</span>
@@ -165,22 +183,7 @@
                             <button type="button" class="eq-add-btn" id="addOLevel">+ Add Subject</button>
                         </div>
 
-                        <div class="eq-divider"></div>
-
-                        <!-- A-Level Toggle -->
-                        <div class="form-section">
-                            <label class="form-label">Include A-Level?</label>
-                            <div class="toggle-group">
-                                <label class="toggle-option">
-                                    <input type="radio" name="eqIncludeALevel" value="yes" checked>
-                                    <span class="toggle-btn">Yes (FSc Equivalent)</span>
-                                </label>
-                                <label class="toggle-option">
-                                    <input type="radio" name="eqIncludeALevel" value="no">
-                                    <span class="toggle-btn">O-Level Only</span>
-                                </label>
-                            </div>
-                        </div>
+                        <div class="eq-divider" id="oaDivider"></div>
 
                         <!-- A-Level Section -->
                         <div class="eq-section" id="aLevelSection">

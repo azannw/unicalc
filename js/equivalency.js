@@ -87,7 +87,7 @@
     let mode = 'pakistan';
     let board = 'cambridge';
     let session = '2025';
-    let includeALevel = true;
+    let calcMode = 'both'; // 'both', 'o-only', 'a-only'
     let oLevelRows = [];
     let aLevelRows = [];
     let nextId = 0;
@@ -377,7 +377,7 @@
             oBadge.className = 'eq-count-badge' + (oCount >= oReq ? ' eq-count-ok' : oCount > 0 ? ' eq-count-partial' : '');
         }
 
-        if (includeALevel) {
+        if (calcMode !== 'o-only') {
             const aCount = aLevelRows.filter(r => r.grade && r.name).length;
             const aBadge = $('#aLevelCount');
             if (aBadge) {
@@ -433,35 +433,43 @@
     // ===== CALCULATION =====
 
     function calculate() {
-        const oRequired = getRequiredOCount();
-        const oFilled = oLevelRows.filter(r => r.name && r.grade);
-
-        if (oFilled.length < oRequired) {
-            showError(`Please fill at least ${oRequired} O-Level subjects with grades.`);
-            return null;
-        }
-
-        const comp = getCompulsory();
-        const filledNames = oFilled.map(r => r.name);
-        const missingComp = comp.filter(c => !filledNames.includes(c) || !oFilled.find(r => r.name === c && r.grade));
-        if (missingComp.length > 0) {
-            showError(`Missing compulsory subject${missingComp.length > 1 ? 's' : ''}: ${missingComp.join(', ')}`);
-            return null;
-        }
-
-        const oSelected = bestOf(
-            oFilled.map(r => ({ ...r, marks: getMarks(r.grade, r.name, 'o-level') })),
-            oRequired,
-            comp
-        );
-
-        const oTotal = oSelected.reduce((sum, s) => sum + (getMarks(s.grade, s.name, 'o-level') || 0), 0);
-        const oMax = oRequired * 100;
-        const oEquiv = (oTotal / oMax) * 1100;
-        const oPct = (oTotal / oMax) * 100;
-
         let result = {
-            oLevel: {
+            oLevel: null,
+            aLevel: null,
+            combined: null,
+            stream: null
+        };
+
+        // O-Level calculation (for 'both' and 'o-only')
+        if (calcMode !== 'a-only') {
+            const oRequired = getRequiredOCount();
+            const oFilled = oLevelRows.filter(r => r.name && r.grade);
+
+            if (oFilled.length < oRequired) {
+                showError(`Please fill at least ${oRequired} O-Level subjects with grades.`);
+                return null;
+            }
+
+            const comp = getCompulsory();
+            const filledNames = oFilled.map(r => r.name);
+            const missingComp = comp.filter(c => !filledNames.includes(c) || !oFilled.find(r => r.name === c && r.grade));
+            if (missingComp.length > 0) {
+                showError(`Missing compulsory subject${missingComp.length > 1 ? 's' : ''}: ${missingComp.join(', ')}`);
+                return null;
+            }
+
+            const oSelected = bestOf(
+                oFilled.map(r => ({ ...r, marks: getMarks(r.grade, r.name, 'o-level') })),
+                oRequired,
+                comp
+            );
+
+            const oTotal = oSelected.reduce((sum, s) => sum + (getMarks(s.grade, s.name, 'o-level') || 0), 0);
+            const oMax = oRequired * 100;
+            const oEquiv = (oTotal / oMax) * 1100;
+            const oPct = (oTotal / oMax) * 100;
+
+            result.oLevel = {
                 subjects: oSelected,
                 rawTotal: oTotal,
                 rawMax: oMax,
@@ -470,13 +478,11 @@
                 percentage: Math.round(oPct * 100) / 100,
                 allFilled: oFilled,
                 extraCount: Math.max(0, oFilled.length - oRequired)
-            },
-            aLevel: null,
-            combined: null,
-            stream: null
-        };
+            };
+        }
 
-        if (includeALevel) {
+        // A-Level calculation (for 'both' and 'a-only')
+        if (calcMode !== 'o-only') {
             const aFilled = aLevelRows.filter(r => r.name && r.grade);
             if (aFilled.length < 3) {
                 showError('Please fill at least 3 A-Level subjects with grades.');
@@ -491,10 +497,6 @@
             const aTotal = aSelected.reduce((sum, s) => sum + s.marks, 0);
             const aMax = 300;
 
-            const combinedTotal = oTotal + aTotal;
-            const combinedMax = oMax + aMax;
-            const combinedPct = (combinedTotal / combinedMax) * 100;
-
             result.aLevel = {
                 subjects: aSelected,
                 rawTotal: aTotal,
@@ -504,14 +506,21 @@
                 extraCount: Math.max(0, aFilled.length - 3)
             };
 
+            result.stream = detectStream(aSelected);
+        }
+
+        // Combined calculation (only for 'both')
+        if (calcMode === 'both' && result.oLevel && result.aLevel) {
+            const combinedTotal = result.oLevel.rawTotal + result.aLevel.rawTotal;
+            const combinedMax = result.oLevel.rawMax + result.aLevel.rawMax;
+            const combinedPct = (combinedTotal / combinedMax) * 100;
+
             result.combined = {
                 total: combinedTotal,
                 max: combinedMax,
                 percentage: Math.round(combinedPct * 100) / 100,
-                oLevelShare: Math.round((oTotal / combinedTotal) * 100 * 10) / 10
+                oLevelShare: Math.round((result.oLevel.rawTotal / combinedTotal) * 100 * 10) / 10
             };
-
-            result.stream = detectStream(aSelected);
         }
 
         return result;
@@ -534,18 +543,38 @@
         if (!container) return;
 
         const hasALevel = result.aLevel !== null;
-        const mainPct = hasALevel ? result.combined.percentage : result.oLevel.percentage;
-        const mainTotal = hasALevel ? result.combined.total : result.oLevel.rawTotal;
-        const mainMax = hasALevel ? result.combined.max : result.oLevel.rawMax;
-        const mainLabel = hasALevel ? 'HSSC (FSc) Equivalent' : 'SSC (Matric) Equivalent';
+        const hasOLevel = result.oLevel !== null;
+        const hasBoth = hasALevel && hasOLevel;
 
-        const oSubjectRows = result.oLevel.subjects.map(s =>
-            `<div class="eq-result-row">
-                <span class="eq-result-subject">${s.name}</span>
-                <span class="eq-result-grade">${s.grade}</span>
-                <span class="eq-result-marks">${getMarks(s.grade, s.name, 'o-level')}/100</span>
-            </div>`
-        ).join('');
+        let mainPct, mainTotal, mainMax, mainLabel;
+
+        if (hasBoth) {
+            mainPct = result.combined.percentage;
+            mainTotal = result.combined.total;
+            mainMax = result.combined.max;
+            mainLabel = 'HSSC (FSc) Equivalent';
+        } else if (hasOLevel) {
+            mainPct = result.oLevel.percentage;
+            mainTotal = result.oLevel.rawTotal;
+            mainMax = result.oLevel.rawMax;
+            mainLabel = 'SSC (Matric) Equivalent';
+        } else {
+            mainPct = result.aLevel.percentage;
+            mainTotal = result.aLevel.rawTotal;
+            mainMax = result.aLevel.rawMax;
+            mainLabel = 'A-Level Equivalent';
+        }
+
+        let oSubjectRows = '';
+        if (hasOLevel) {
+            oSubjectRows = result.oLevel.subjects.map(s =>
+                `<div class="eq-result-row">
+                    <span class="eq-result-subject">${s.name}</span>
+                    <span class="eq-result-grade">${s.grade}</span>
+                    <span class="eq-result-marks">${getMarks(s.grade, s.name, 'o-level')}/100</span>
+                </div>`
+            ).join('');
+        }
 
         let aSubjectRows = '';
         if (hasALevel) {
@@ -558,41 +587,15 @@
             ).join('');
         }
 
-        const oShare = hasALevel ? result.combined.oLevelShare : 100;
-        const aShare = hasALevel ? (100 - oShare) : 0;
-
         let bestOfNote = '';
-        if (result.oLevel.extraCount > 0) {
+        if (hasOLevel && result.oLevel.extraCount > 0) {
             bestOfNote += `<div class="eq-info-note">Best ${getRequiredOCount()} of ${result.oLevel.allFilled.length} O-Level subjects selected for highest total.</div>`;
         }
         if (hasALevel && result.aLevel.extraCount > 0) {
             bestOfNote += `<div class="eq-info-note">Best 3 of ${result.aLevel.allFilled.length} A-Level subjects selected for highest total.</div>`;
         }
 
-        container.innerHTML = `
-            <div class="eq-results-inner">
-                <div class="eq-results-header">
-                    <h3>Your IBCC Equivalency</h3>
-                </div>
-
-                <div class="eq-main-result">
-                    <div class="eq-circle-wrap">
-                        <svg class="eq-progress-ring" viewBox="0 0 200 200">
-                            <circle class="eq-ring-bg" cx="100" cy="100" r="85"></circle>
-                            <circle class="eq-ring-fill" cx="100" cy="100" r="85" id="eqProgressCircle"></circle>
-                        </svg>
-                        <div class="eq-circle-content">
-                            <span class="eq-circle-value" id="eqMainValue">0.00</span>
-                            <span class="eq-circle-unit">%</span>
-                            <span class="eq-circle-label">${mainLabel}</span>
-                        </div>
-                    </div>
-                    <div class="eq-main-marks">${mainTotal} / ${mainMax} marks</div>
-                    ${hasALevel && result.stream ? `<div class="eq-stream-badge">${result.stream}</div>` : ''}
-                </div>
-
-                ${bestOfNote}
-
+        const oBreakdownHtml = hasOLevel ? `
                 <div class="eq-breakdown-section">
                     <h4>O-Level Breakdown</h4>
                     <div class="eq-result-table">
@@ -611,9 +614,9 @@
                     <div class="eq-matric-equiv">
                         Matric Equivalent: <strong>${result.oLevel.equivTotal} / ${result.oLevel.equivMax}</strong> (${result.oLevel.percentage}%)
                     </div>
-                </div>
+                </div>` : '';
 
-                ${hasALevel ? `
+        const aBreakdownHtml = hasALevel ? `
                 <div class="eq-breakdown-section">
                     <h4>A-Level Breakdown</h4>
                     <div class="eq-result-table">
@@ -629,8 +632,12 @@
                             <span>${result.aLevel.rawTotal} / ${result.aLevel.rawMax}</span>
                         </div>
                     </div>
-                </div>
+                </div>` : '';
 
+        const oShare = hasBoth ? result.combined.oLevelShare : 0;
+        const aShare = hasBoth ? (100 - oShare) : 0;
+
+        const contribHtml = hasBoth ? `
                 <div class="eq-breakdown-section">
                     <h4>Contribution Breakdown</h4>
                     <div class="eq-contrib">
@@ -657,8 +664,34 @@
                         Your O-Level marks make up <strong>${(result.oLevel.rawMax / mainMax * 100).toFixed(1)}%</strong> of your total equivalency.
                         ${result.oLevel.rawMax / mainMax > 0.7 ? 'This is why O-Level performance is crucial for A-Level students.' : ''}
                     </div>
+                </div>` : '';
+
+        container.innerHTML = `
+            <div class="eq-results-inner">
+                <div class="eq-results-header">
+                    <h3>Your IBCC Equivalency</h3>
                 </div>
-                ` : ''}
+
+                <div class="eq-main-result">
+                    <div class="eq-circle-wrap">
+                        <svg class="eq-progress-ring" viewBox="0 0 200 200">
+                            <circle class="eq-ring-bg" cx="100" cy="100" r="85"></circle>
+                            <circle class="eq-ring-fill" cx="100" cy="100" r="85" id="eqProgressCircle"></circle>
+                        </svg>
+                        <div class="eq-circle-content">
+                            <span class="eq-circle-value" id="eqMainValue">0.00</span>
+                            <span class="eq-circle-unit">%</span>
+                            <span class="eq-circle-label">${mainLabel}</span>
+                        </div>
+                    </div>
+                    <div class="eq-main-marks">${mainTotal} / ${mainMax} marks</div>
+                    ${hasALevel && result.stream ? `<div class="eq-stream-badge">${result.stream}</div>` : ''}
+                </div>
+
+                ${bestOfNote}
+                ${oBreakdownHtml}
+                ${aBreakdownHtml}
+                ${contribHtml}
 
                 <div class="eq-actions">
                     <button type="button" class="btn btn-outline" id="eqEditBtn">Edit Grades</button>
@@ -747,13 +780,15 @@
             sessionWrap.appendChild(sessionDD);
         }
 
-        $$('input[name="eqIncludeALevel"]').forEach(el => {
+        $$('input[name="eqCalcMode"]').forEach(el => {
             el.addEventListener('change', () => {
-                includeALevel = el.value === 'yes';
+                calcMode = el.value;
+                const oSection = $('#oLevelSection');
                 const aSection = $('#aLevelSection');
-                if (aSection) {
-                    aSection.style.display = includeALevel ? 'block' : 'none';
-                }
+                const oaDivider = $('#oaDivider');
+                if (oSection) oSection.style.display = calcMode === 'a-only' ? 'none' : 'block';
+                if (aSection) aSection.style.display = calcMode === 'o-only' ? 'none' : 'block';
+                if (oaDivider) oaDivider.style.display = calcMode === 'both' ? 'block' : 'none';
             });
         });
 
