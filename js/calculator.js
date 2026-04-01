@@ -299,6 +299,9 @@ function setupInputListeners() {
                 const labelInter = document.getElementById('labelInter');
                 if (labelMatric) labelMatric.textContent = isALevel ? 'O-Levels Marks' : 'Matric Marks';
                 if (labelInter) labelInter.textContent = isALevel ? 'A-Levels Marks' : 'Intermediate Marks';
+                // Show/hide equivalency hint
+                const eqHint = document.getElementById('equivHint');
+                if (eqHint) eqHint.style.display = isALevel ? 'block' : 'none';
                 // Switch weights for universities with edu-system-specific weights
                 if (currentCalculatorConfig?.eduSystemWeights) {
                     // Use the exact system value as key first (e.g. 'alevel-immediate', 'alevel-gap'),
