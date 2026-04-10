@@ -22,11 +22,13 @@ loadGlobal('js/meritData.js');
 function getPredictedMerit(program) {
     const numericHistory = (program.history || []).filter(h => typeof h === 'number');
     if (numericHistory.length === 0) return null;
-    if (numericHistory.length >= 2) {
-        const reg = linearRegression(numericHistory);
-        return Math.max(0, Math.min(100, reg.predicted));
-    }
-    return numericHistory[0];
+    if (numericHistory.length === 1) return numericHistory[0];
+
+    const reg = linearRegression(numericHistory);
+    const latest = numericHistory[0];
+    const confidence = Math.min(1, 0.5 + (numericHistory.length - 2) * 0.25);
+    const predicted = latest + (reg.predicted - latest) * confidence;
+    return Math.max(0, Math.min(100, predicted));
 }
 
 function categorizeChance(requiredTestPerc) {
@@ -124,13 +126,13 @@ section('Reverse Calculation Formula');
     assert(Math.abs(r.partialAggregate - 44.27) < 0.1, `FAST partial aggregate should be ~44.27, got ${r.partialAggregate.toFixed(2)}`);
 
     // Find FAST ISB BS CS (NU) — merit 73, history [73, 75]
-    // predicted = linearRegression([73, 75]).predicted
-    // reversed: [75, 73] → slope = (73-75)/1 = -2, intercept = 75, predicted = -2*2 + 75 = 71
+    // regression: reversed [75, 73] → slope=-2, predicted=71
+    // dampened (2 pts, 50%): 73 + 0.5*(71-73) = 72
     const isbCS_NU = r.results.find(p => p.campus === 'Islamabad' && p.program === 'BS Computer Science' && p.testType === 'NU');
     assert(isbCS_NU !== null, 'Should find FAST ISB BS CS (NU)');
     if (isbCS_NU) {
-        const expectedPredicted = 71; // from linear regression of [73, 75]
-        assert(Math.abs(isbCS_NU.predictedMerit - expectedPredicted) < 0.5, `Predicted merit should be ~71, got ${isbCS_NU.predictedMerit.toFixed(2)}`);
+        const expectedPredicted = 72; // regression 71, dampened toward latest (73)
+        assert(Math.abs(isbCS_NU.predictedMerit - expectedPredicted) < 0.5, `Predicted merit should be ~72, got ${isbCS_NU.predictedMerit.toFixed(2)}`);
         const expectedTestPerc = (expectedPredicted - r.partialAggregate) / 0.50;
         assert(Math.abs(isbCS_NU.requiredTestPerc - expectedTestPerc) < 0.5, `Required test % should be ~${expectedTestPerc.toFixed(1)}, got ${isbCS_NU.requiredTestPerc.toFixed(1)}`);
         assert(isbCS_NU.chance === 'very-likely' || isbCS_NU.chance === 'achievable', `Chance for strong student should be achievable or better, got ${isbCS_NU.chance}`);

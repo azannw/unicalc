@@ -446,9 +446,9 @@ const meritData = [
       {
         campus: "Lahore (Main Campus)",
         programs: [
-          { name: "BS Computer Science", merit: 81.13, history: [81.83, 81.13] },
-          { name: "BS Data Science", merit: 79.52, history: [54.37, 79.52] },
-          { name: "BS Artificial Intelligence", merit: 78.0, history: [71.29, 78.0] },
+          { name: "BS Computer Science", merit: 81.13, history: [81.13, 81.83] },
+          { name: "BS Data Science", merit: 79.52, history: [79.52, 54.37] },
+          { name: "BS Artificial Intelligence", merit: 78.0, history: [78.0, 71.29] },
           { name: "BS Cyber Security", merit: 77.0, history: [77.0] },
           { name: "BS Computer Engineering", merit: 76.25, history: [76.25] },
           { name: "Architecture", merit: 76.01, history: [76.01] },
@@ -471,9 +471,9 @@ const meritData = [
       {
         campus: "Taxila Campus",
         programs: [
-          { name: "BS Software Engineering", merit: 79.44, history: [79.43, 79.44] },
-          { name: "BS Computer Science", merit: 77.98, history: [77.97, 77.98] },
-          { name: "BS Computer Engineering", merit: 75.07, history: [75.05, 75.07] },
+          { name: "BS Software Engineering", merit: 79.44, history: [79.44, 79.43] },
+          { name: "BS Computer Science", merit: 77.98, history: [77.98, 77.97] },
+          { name: "BS Computer Engineering", merit: 75.07, history: [75.07, 75.05] },
           { name: "BS Mechatronics Engineering", merit: 69.79, history: [69.79] },
           { name: "BS Mechanical Engineering", merit: 67.76, history: [67.76] },
           { name: "BS Civil Engineering", merit: 65.52, history: [65.52] },
@@ -876,8 +876,8 @@ function linearRegression(history) {
   const n = history.length;
   if (n < 2) return null;
 
-  // x values: 0 = oldest, n-1 = most recent
-  // So history is reversed for regression (oldest first)
+  // History convention: [newest, ..., oldest] (index 0 = most recent year).
+  // Reverse to chronological order for regression (x=0 is oldest).
   const reversed = [...history].reverse();
 
   let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
@@ -965,7 +965,11 @@ function calculateAdmissionPrediction(universityId, programName, userAggregate, 
   if (numericHistory.length >= 2) {
     // Use linear regression for trend prediction
     const reg = linearRegression(numericHistory);
-    predictedMerit = reg.predicted;
+    const latest = numericHistory[0]; // most recent year (convention: newest first)
+
+    // Dampen extrapolation with few data points to avoid wild predictions
+    const confidence = Math.min(1, 0.5 + (numericHistory.length - 2) * 0.25);
+    predictedMerit = latest + (reg.predicted - latest) * confidence;
 
     // Sigma = max of residual std and a minimum uncertainty of 1.5%
     // Also add base uncertainty that scales with how few data points we have

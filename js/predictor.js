@@ -265,11 +265,18 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
 function getPredictedMerit(program) {
     const numericHistory = (program.history || []).filter(h => typeof h === 'number');
     if (numericHistory.length === 0) return null;
-    if (numericHistory.length >= 2) {
-        const reg = linearRegression(numericHistory);
-        return Math.max(0, Math.min(100, reg.predicted));
-    }
-    return numericHistory[0];
+    if (numericHistory.length === 1) return numericHistory[0];
+
+    const reg = linearRegression(numericHistory);
+    const latest = numericHistory[0]; // most recent year (convention: newest first)
+
+    // Dampen extrapolation when data is scarce to avoid wild predictions.
+    // With only 2 points, a steep slope can produce unreliable extremes
+    // (e.g. a new program jumping 54→80 would extrapolate to 106).
+    // Blend: 2 pts → 50% regression, 3 pts → 75%, 4+ pts → full regression.
+    const confidence = Math.min(1, 0.5 + (numericHistory.length - 2) * 0.25);
+    const predicted = latest + (reg.predicted - latest) * confidence;
+    return Math.max(0, Math.min(100, predicted));
 }
 
 function categorizeChance(requiredTestPerc) {
