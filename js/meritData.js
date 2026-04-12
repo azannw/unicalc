@@ -962,23 +962,31 @@ function calculateAdmissionPrediction(universityId, programName, userAggregate, 
 
   let predictedMerit, sigma;
 
-  if (numericHistory.length >= 2) {
-    // Use linear regression for trend prediction
+  if (numericHistory.length >= 4) {
+    // Use linear regression for trend prediction (need 4+ points for meaningful fit)
     const reg = linearRegression(numericHistory);
     const latest = numericHistory[0]; // most recent year (convention: newest first)
 
-    // Dampen extrapolation with few data points to avoid wild predictions
-    const confidence = Math.min(1, 0.5 + (numericHistory.length - 2) * 0.25);
-    predictedMerit = latest + (reg.predicted - latest) * confidence;
+    // Gradually trust the regression as more data accumulates.
+    // 4 pts → 50%, 5+ pts → full regression.
+    const confidence = Math.min(1, 0.5 + (numericHistory.length - 4) * 0.5);
+
+    // Cap extrapolation to prevent outlier-driven wild predictions
+    const MAX_DELTA = 5;
+    let delta = (reg.predicted - latest) * confidence;
+    delta = Math.max(-MAX_DELTA, Math.min(MAX_DELTA, delta));
+    predictedMerit = latest + delta;
 
     // Sigma = max of residual std and a minimum uncertainty of 1.5%
     // Also add base uncertainty that scales with how few data points we have
     const dataUncertainty = 3.0 / Math.sqrt(numericHistory.length);
     sigma = Math.max(reg.residualStd, 1.5) + dataUncertainty;
   } else {
-    // Single data point - use wider uncertainty
-    predictedMerit = numericHistory[0];
-    sigma = 4.0;
+    // ≤3 data points — not enough for a reliable trend.
+    // Nudge latest merit up by 1 since cutoffs generally rise year over year.
+    predictedMerit = Math.min(100, numericHistory[0] + 1);
+    // Use wider uncertainty since we have little data
+    sigma = numericHistory.length === 3 ? 3.0 : (numericHistory.length === 2 ? 3.5 : 4.0);
   }
 
   // Clamp predicted merit to reasonable range

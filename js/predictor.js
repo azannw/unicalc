@@ -265,18 +265,25 @@ function calculatePredictions(matricObtained, matricTotal, interObtained, interT
 function getPredictedMerit(program) {
     const numericHistory = (program.history || []).filter(h => typeof h === 'number');
     if (numericHistory.length === 0) return null;
-    if (numericHistory.length === 1) return numericHistory[0];
 
-    const reg = linearRegression(numericHistory);
     const latest = numericHistory[0]; // most recent year (convention: newest first)
 
-    // Dampen extrapolation when data is scarce to avoid wild predictions.
-    // With only 2 points, a steep slope can produce unreliable extremes
-    // (e.g. a new program jumping 54→80 would extrapolate to 106).
-    // Blend: 2 pts → 50% regression, 3 pts → 75%, 4+ pts → full regression.
-    const confidence = Math.min(1, 0.5 + (numericHistory.length - 2) * 0.25);
-    const predicted = latest + (reg.predicted - latest) * confidence;
-    return Math.max(0, Math.min(100, predicted));
+    // Not enough history for a reliable trend — just nudge the latest merit
+    // up by 1 since cutoffs generally rise year over year.
+    if (numericHistory.length <= 3) return Math.min(100, latest + 1);
+
+    const reg = linearRegression(numericHistory);
+
+    // Gradually trust the regression as more data accumulates.
+    // 4 pts → 50%, 5+ pts → full regression.
+    const confidence = Math.min(1, 0.5 + (numericHistory.length - 4) * 0.5);
+
+    // Cap extrapolation to prevent outlier-driven wild predictions
+    const MAX_DELTA = 5;
+    let delta = (reg.predicted - latest) * confidence;
+    delta = Math.max(-MAX_DELTA, Math.min(MAX_DELTA, delta));
+
+    return Math.max(0, Math.min(100, latest + delta));
 }
 
 function categorizeChance(requiredTestPerc) {
