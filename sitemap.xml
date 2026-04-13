@@ -114,6 +114,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://unicalc.csconnect.pk/muet/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unicalc.csconnect.pk/uog/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://unicalc.csconnect.pk/nu-marks/</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>

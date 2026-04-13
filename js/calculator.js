@@ -167,7 +167,17 @@ function applyCalculatorContent(config) {
     // Hide test type pills for universities that use a single dedicated test (e.g. MDCAT, NUMS)
     const testTypeSection = document.getElementById('testTypeSection');
     if (testTypeSection) {
-        testTypeSection.style.display = config.hideTestTypePills ? 'none' : '';
+        testTypeSection.style.display = (config.hideTestTypePills || config.noTest) ? 'none' : '';
+    }
+
+    // No-test universities (e.g. UOG, QAU BS): hide the test marks input entirely
+    const testMarksSection = document.getElementById('testMarksSection');
+    if (testMarksSection) {
+        testMarksSection.style.display = config.noTest ? 'none' : '';
+    }
+    const nuBannerForNoTest = document.getElementById('nuCalcBanner');
+    if (nuBannerForNoTest && config.noTest) {
+        nuBannerForNoTest.style.display = 'none';
     }
 
     // Adjust A-Level options: show Immediate/Gap Year split only for universities that differentiate
@@ -1044,7 +1054,13 @@ function updateBreakdownLabels(config) {
     const matricLabel = document.querySelector('.breakdown-item:nth-child(1) .breakdown-label');
     const interItem = document.querySelector('.breakdown-item:nth-child(2)');
     const interLabel = interItem?.querySelector('.breakdown-label');
-    const testLabel = document.querySelector('.breakdown-item:nth-child(3) .breakdown-label');
+    const testItem = document.querySelector('.breakdown-item:nth-child(3)');
+    const testLabel = testItem?.querySelector('.breakdown-label');
+
+    // No-test universities hide the entry-test breakdown row entirely
+    if (testItem) {
+        testItem.style.display = config.noTest ? 'none' : '';
+    }
 
     if (config.useAcademicPoolFormula) {
         const acadPct = Math.round((config.academicWeightage || 0.75) * 100);

@@ -291,5 +291,31 @@ const calculatorConfigs = {
         testMax: 100,
         hideTestTypePills: true,
         hasALevelSplit: true
+    },
+    muet: {
+        shortName: 'MUET',
+        longName: 'Mehran University of Engineering & Technology',
+        description: 'Calculate your MUET Jamshoro CPN aggregate with the official formula.',
+        metaDescription: 'MUET Jamshoro merit calculator — official 10/30/60 CPN formula (SSC / HSSC / Pre-Admission Test).',
+        programs: [
+            'Engineering Programs',
+            'BS Programs (Non-Engineering)'
+        ],
+        weights: { matric: 0.10, inter: 0.30, test: 0.60 },
+        testMax: 100,
+        hideTestTypePills: true
+    },
+    uog: {
+        shortName: 'UOG',
+        longName: 'University of Gujrat',
+        description: 'Calculate your UOG aggregate — 30% Matric + 70% HSSC (Part-I).',
+        metaDescription: 'UOG merit calculator with the official 30/70 academic-only formula. No entry test for most programs.',
+        programs: [
+            'All Undergraduate Programs'
+        ],
+        weights: { matric: 0.30, inter: 0.70, test: 0.00 },
+        testMax: 100,
+        noTest: true,
+        hideTestTypePills: true
     }
 };

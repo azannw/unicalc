@@ -823,6 +823,26 @@ const meritData = [
         ]
       }
     ]
+  },
+  // =====================================================
+  // MUET — Mehran University of Engineering & Technology
+  // Cutoff data to be added once official merit lists are parsed
+  // =====================================================
+  {
+    id: "muet",
+    name: "MUET Jamshoro",
+    year: 2025,
+    campuses: []
+  },
+  // =====================================================
+  // UOG — University of Gujrat
+  // Cutoff data to be added once UOG merit lists are parsed
+  // =====================================================
+  {
+    id: "uog",
+    name: "University of Gujrat",
+    year: 2025,
+    campuses: []
   }
 ];
 

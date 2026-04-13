@@ -37,6 +37,8 @@ const universities = [
     { id: 'uhs', name: 'UHS', fullName: 'University of Health Sciences', category: ['medical'] },
     { id: 'nums', name: 'NUMS', fullName: 'National University of Medical Sciences', category: ['medical'] },
     { id: 'iiu', name: 'IIU', fullName: 'International Islamic University', category: ['engineering', 'cs'] },
+    { id: 'muet', name: 'MUET', fullName: 'Mehran University of Engineering & Technology', category: ['engineering', 'cs'] },
+    { id: 'uog', name: 'UOG', fullName: 'University of Gujrat', category: ['cs', 'engineering'] },
 ];
 
 // === Render Universities (Grid Layout) ===
