@@ -15,10 +15,12 @@ const meritData = [
         programs: [
           { name: "BS Computer Science", merit: 73, testType: "NU", history: [73, 75] },
           { name: "BS Computer Science", merit: 90, testType: "NTS", history: [90, 88] },
+          { name: "BS Computer Science", merit: 85.13, testType: "SAT", history: [85.13] },
           { name: "BS Software Engineering", merit: 71.75, testType: "NU", history: [71.75, 73] },
           { name: "BS Software Engineering", merit: 90, testType: "NTS", history: [90, 86] },
           { name: "BS Artificial Intelligence", merit: 73, testType: "NU", history: [73, 74] },
           { name: "BS Artificial Intelligence", merit: 90, testType: "NTS", history: [90, 86] },
+          { name: "BS Artificial Intelligence", merit: 85.02, testType: "SAT", history: [85.02] },
           { name: "BS Data Science", merit: 71.5, testType: "NU", history: [71.5, 71.5] },
           { name: "BS Data Science", merit: 90, testType: "NTS", history: [90, 86] },
           { name: "BS Cyber Security", merit: 70.75, testType: "NU", history: [70.75, 71] },
@@ -26,7 +28,9 @@ const meritData = [
           { name: "BS Electrical Engineering", merit: 67.25, testType: "NU", history: [67.25, 65] },
           { name: "BS Electrical Engineering", merit: 75, testType: "NTS", history: [75, 82] },
           { name: "BS Computer Engineering", merit: 73.5, testType: "NU", history: [73.5, 78] },
-          { name: "BS Computer Engineering", merit: 85, testType: "NTS", history: [85, 87] }
+          { name: "BS Computer Engineering", merit: 85, testType: "NTS", history: [85, 87] },
+          { name: "BS Computer Engineering", merit: 82, testType: "SAT", history: [82] },
+          { name: "BS Business Analytics", merit: 83.06, testType: "SAT", history: [83.06] }
         ]
       },
       {
@@ -34,16 +38,37 @@ const meritData = [
         programs: [
           { name: "BS Computer Science", merit: 76, testType: "NU", history: [76, 76] },
           { name: "BS Computer Science", merit: 90, testType: "NTS", history: [90, 88] },
+          { name: "BS Computer Science", merit: 85, testType: "SAT", history: [85] },
           { name: "BS Software Engineering", merit: 74, testType: "NU", history: [74, 76] },
           { name: "BS Software Engineering", merit: 90, testType: "NTS", history: [90, 87] },
+          { name: "BS Software Engineering", merit: 85, testType: "SAT", history: [85] },
           { name: "BS Artificial Intelligence", merit: 76, testType: "NU", history: [76] },
           { name: "BS Artificial Intelligence", merit: 90, testType: "NTS", history: [90] },
+          { name: "BS Artificial Intelligence", merit: 87, testType: "SAT", history: [87] },
           { name: "BS Data Science", merit: 73.75, testType: "NU", history: [73.75, 74] },
           { name: "BS Data Science", merit: 88, testType: "NTS", history: [88, 86] },
+          { name: "BS Data Science", merit: 85, testType: "SAT", history: [85] },
           { name: "BS Cyber Security", merit: 73.5, testType: "NU", history: [73.5] },
           { name: "BS Cyber Security", merit: 90, testType: "NTS", history: [90] },
+          { name: "BS Cyber Security", merit: 85, testType: "SAT", history: [85] },
           { name: "BS Electrical Engineering", merit: 66, testType: "NU", history: [66, 68] },
-          { name: "BS Electrical Engineering", merit: 75, testType: "NTS", history: [75, 84] }
+          { name: "BS Electrical Engineering", merit: 75, testType: "NTS", history: [75, 84] },
+          { name: "BS Electrical Engineering", merit: 75, testType: "SAT", history: [75] },
+          { name: "BS Civil Engineering", merit: 54, testType: "NU", history: [54] },
+          { name: "BS Civil Engineering", merit: 65, testType: "NTS", history: [65] },
+          { name: "BS Civil Engineering", merit: 70, testType: "SAT", history: [70] },
+          { name: "BBA", merit: 49.67, testType: "NU", history: [49.67] },
+          { name: "BBA", merit: 70, testType: "NTS", history: [70] },
+          { name: "BBA", merit: 70, testType: "SAT", history: [70] },
+          { name: "BS Accounting and Finance", merit: 46.92, testType: "NU", history: [46.92] },
+          { name: "BS Accounting and Finance", merit: 70, testType: "NTS", history: [70] },
+          { name: "BS Accounting and Finance", merit: 70, testType: "SAT", history: [70] },
+          { name: "BS Business Analytics", merit: 61.13, testType: "NU", history: [61.13] },
+          { name: "BS Business Analytics", merit: 75, testType: "NTS", history: [75] },
+          { name: "BS Business Analytics", merit: 70, testType: "SAT", history: [70] },
+          { name: "BS Financial Technologies", merit: 62.57, testType: "NU", history: [62.57] },
+          { name: "BS Financial Technologies", merit: 75, testType: "NTS", history: [75] },
+          { name: "BS Financial Technologies", merit: 70, testType: "SAT", history: [70] }
         ]
       },
       {
@@ -51,6 +76,7 @@ const meritData = [
         programs: [
           { name: "BS Computer Science", merit: 68, testType: "NU", history: [68, 68] },
           { name: "BS Computer Science", merit: 85, testType: "NTS", history: [85, 80] },
+          { name: "BS Computer Science", merit: 75.3, testType: "SAT", history: [75.3] },
           { name: "BS Software Engineering", merit: 66, testType: "NU", history: [66, 66] },
           { name: "BS Software Engineering", merit: 80, testType: "NTS", history: [80, 78] },
           { name: "BS Artificial Intelligence", merit: 65.25, testType: "NU", history: [65.25, 67] },
@@ -59,6 +85,7 @@ const meritData = [
           { name: "BS Data Science", merit: 80, testType: "NTS", history: [80, 78] },
           { name: "BS Cyber Security", merit: 65, testType: "NU", history: [65, 66] },
           { name: "BS Cyber Security", merit: 80, testType: "NTS", history: [80, 79] },
+          { name: "BS Cyber Security", merit: 85.01, testType: "SAT", history: [85.01] },
           { name: "BS Electrical Engineering", merit: 63, testType: "NU", history: [63, 60] },
           { name: "BS Electrical Engineering", merit: 70, testType: "NTS", history: [70, 70] }
         ]
@@ -103,8 +130,10 @@ const meritData = [
         programs: [
           { name: "BS Computer Science", merit: 65.5, testType: "NU", history: [65.5] },
           { name: "BS Computer Science", merit: 85, testType: "NTS", history: [85] },
+          { name: "BS Computer Science", merit: 82.81, testType: "SAT", history: [82.81] },
           { name: "BS Software Engineering", merit: 64, testType: "NU", history: [64] },
           { name: "BS Software Engineering", merit: 85, testType: "NTS", history: [85] },
+          { name: "BS Software Engineering", merit: 82.82, testType: "SAT", history: [82.82] },
           { name: "BS Artificial Intelligence", merit: 63.5, testType: "NU", history: [63.5] },
           { name: "BS Artificial Intelligence", merit: 85, testType: "NTS", history: [85] }
         ]
