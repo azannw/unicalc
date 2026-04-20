@@ -872,6 +872,7 @@ function renderMeritData(universityId) {
                 }
             });
         });
+        initCustomDropdown(filterSelect);
     }
 }
 

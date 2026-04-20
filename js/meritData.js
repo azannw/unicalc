@@ -149,37 +149,145 @@ const meritData = [
       {
         campus: "SEECS Islamabad",
         programs: [
-          { name: "BS Computer Science", merit: "#282", history: ["#282", "#447"] },
-          { name: "BS Artificial Intelligence", merit: "#298", history: ["#298", "#566"] },
-          { name: "BS Data Science", merit: "#328", history: ["#328", "#652"] },
-          { name: "BS Software Engineering", merit: "#115", history: ["#115", "#378"] },
-          { name: "BS Computer Engineering", merit: "#327", history: ["#327", "#400"] },
-          { name: "BS Electrical Engineering", merit: "#691", history: ["#691", "#2449"] }
+          { name: "BS Computer Science", merit: "#853", history: ["#853", "#282", "#447"] },
+          { name: "BS Artificial Intelligence", merit: "#642", history: ["#642", "#298", "#566"] },
+          { name: "BS Data Science", merit: "#909", history: ["#909", "#328", "#652"] },
+          { name: "BE Software Engineering", merit: "#846", history: ["#846", "#115", "#378"] },
+          { name: "BE Computer Engineering", merit: "#1226", history: ["#1226"] },
+          { name: "BE Electrical Engineering", merit: "#1821", history: ["#1821", "#691", "#2449"] }
         ]
       },
       {
-        campus: "EME Rawalpindi",
+        campus: "SMME Islamabad",
         programs: [
-          { name: "BS Computer Engineering", merit: "#1072", history: ["#1072", "#2746"] },
-          { name: "BS Electrical Engineering", merit: "#2914", history: ["#2914", "#6139"] },
-          { name: "BS Mechanical Engineering", merit: "#2980", history: ["#2980", "#6204"] },
-          { name: "BS Mechatronics Engineering", merit: "#1929", history: ["#1929", "#4830"] }
+          { name: "BE Mechanical Engineering", merit: "#2355", history: ["#2355"] },
+          { name: "BE Aerospace Engineering", merit: "#2526", history: ["#2526"] }
+        ]
+      },
+      {
+        campus: "CEME Rawalpindi",
+        programs: [
+          { name: "BE Computer Engineering", merit: "#3260", history: ["#3260", "#1072", "#2746"] },
+          { name: "BE Electrical Engineering", merit: "#5179", history: ["#5179", "#2914", "#6139"] },
+          { name: "BE Mechanical Engineering", merit: "#5422", history: ["#5422", "#2980", "#6204"] },
+          { name: "BE Mechatronics Engineering", merit: "#4144", history: ["#4144", "#1929", "#4830"] }
         ]
       },
       {
         campus: "MCS Rawalpindi",
         programs: [
-          { name: "BS Electrical Engineering", merit: "#3432", history: ["#3432", "#7703"] },
-          { name: "BS Software Engineering", merit: "#819", history: ["#819", "#1262"] },
-          { name: "BS Information Security", merit: "#1351", history: ["#1351", "#2988"] }
+          { name: "BE Electrical Engineering", merit: "#7488", history: ["#7488", "#3432", "#7703"] },
+          { name: "BE Software Engineering", merit: "#3409", history: ["#3409", "#819", "#1262"] },
+          { name: "BE Information Security", merit: "#3979", history: ["#3979", "#1351", "#2988"] }
+        ]
+      },
+      {
+        campus: "CAE Risalpur",
+        programs: [
+          { name: "BE Aerospace Engineering", merit: "#2470", history: ["#2470"] },
+          { name: "BE Avionics Engineering", merit: "#2922", history: ["#2922"] }
+        ]
+      },
+      {
+        campus: "MCE Risalpur",
+        programs: [
+          { name: "BE Civil Engineering", merit: "#9604", history: ["#9604"] }
+        ]
+      },
+      {
+        campus: "PNEC Karachi",
+        programs: [
+          { name: "BS Computer Science", merit: "#4419", history: ["#4419"] },
+          { name: "BE Electrical Engineering", merit: "#8008", history: ["#8008"] },
+          { name: "BE Mechanical Engineering", merit: "#6888", history: ["#6888"] },
+          { name: "BE Naval Architecture", merit: "#14420", history: ["#14420"] }
+        ]
+      },
+      {
+        campus: "SCME Islamabad",
+        programs: [
+          { name: "BE Chemical Engineering", merit: "#5377", history: ["#5377"] },
+          { name: "BE Metallurgy & Material Engineering", merit: "#7501", history: ["#7501"] }
+        ]
+      },
+      {
+        campus: "NICE Islamabad",
+        programs: [
+          { name: "BE Civil Engineering", merit: "#5407", history: ["#5407"] }
+        ]
+      },
+      {
+        campus: "IGIS Islamabad",
+        programs: [
+          { name: "BE Geoinformatics", merit: "#6699", history: ["#6699"] }
+        ]
+      },
+      {
+        campus: "IESE Islamabad",
+        programs: [
+          { name: "BE Environmental Engineering", merit: "#6915", history: ["#6915"] },
+          { name: "BS Environmental Sciences", merit: "#789", history: ["#789"] }
+        ]
+      },
+      {
+        campus: "SNS Islamabad",
+        programs: [
+          { name: "BS Mathematics", merit: "#2294", history: ["#2294"] },
+          { name: "BS Physics", merit: "#1987", history: ["#1987"] },
+          { name: "BS Chemistry", merit: "#2098", history: ["#2098"] }
+        ]
+      },
+      {
+        campus: "SINES Islamabad",
+        programs: [
+          { name: "BS Bioinformatics", merit: "#383", history: ["#383"] }
+        ]
+      },
+      {
+        campus: "ASAB Islamabad",
+        programs: [
+          { name: "BS Food Science & Technology", merit: "#866", history: ["#866"] },
+          { name: "BS Biotechnology", merit: "#253", history: ["#253"] },
+          { name: "BS Agriculture", merit: "#1646", history: ["#1646"] }
+        ]
+      },
+      {
+        campus: "SADA Islamabad",
+        programs: [
+          { name: "BS Architecture", merit: "#126", history: ["#126"] },
+          { name: "BS Industrial Design", merit: "#231", history: ["#231"] }
+        ]
+      },
+      {
+        campus: "NBS Islamabad",
+        programs: [
+          { name: "BBA", merit: "#773", history: ["#773"] },
+          { name: "BS Accounting & Finance", merit: "#759", history: ["#759"] },
+          { name: "BS Tourism & Hospitality", merit: "#2809", history: ["#2809"] }
+        ]
+      },
+      {
+        campus: "S3H Islamabad",
+        programs: [
+          { name: "BS Economics", merit: "#1248", history: ["#1248"] },
+          { name: "BS Mass Communication", merit: "#2692", history: ["#2692"] },
+          { name: "BS Public Administration", merit: "#2531", history: ["#2531"] },
+          { name: "BS Psychology", merit: "#2267", history: ["#2267"] },
+          { name: "BS Liberal Arts & Humanities", merit: "#3348", history: ["#3348"] }
+        ]
+      },
+      {
+        campus: "NLS Islamabad",
+        programs: [
+          { name: "LLB", merit: "#264", history: ["#264"] }
         ]
       },
       {
         campus: "NBC Quetta",
         programs: [
-          { name: "BS Computer Science", merit: "#1002", history: ["#1002", "#5360"] },
-          { name: "BS Artificial Intelligence", merit: "#1214", history: ["#1214", "#12369"] },
-          { name: "BE Civil Engineering", merit: "#7440", history: ["#7440", "#14714"] }
+          { name: "BS Computer Science", merit: "#14263", history: ["#14263", "#1002", "#5360"] },
+          { name: "BS Artificial Intelligence", merit: "#14410", history: ["#14410", "#1214", "#12369"] },
+          { name: "BE Civil Engineering", merit: "#15826", history: ["#15826", "#7440", "#14714"] }
         ]
       }
     ]
