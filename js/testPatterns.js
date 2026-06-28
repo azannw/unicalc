@@ -181,7 +181,7 @@ const testPatterns = [
         { name: "IQ", mcqs: 20 },
         { name: "English", mcqs: 30 }
       ],
-      notes: "Negative marking: -0.125 for English, -0.25 for all other sections. NAT/SAT scores also accepted."
+      notes: "Adv Math, Basic Math & IQ: +1 per correct, -0.25 per incorrect (90 marks). English: +0.33 per correct, -0.0825 per incorrect (10 marks). NAT/SAT scores also accepted."
     }
   },
   {
